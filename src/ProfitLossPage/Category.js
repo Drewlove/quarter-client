@@ -4,7 +4,7 @@ import CategoryTotal from './CategoryTotal';
 import {Capitalize} from '../Utilities/UtilityFunctions'; 
 
 function Category(props){
-
+  
   const renderLineItems = (lineItems) => {
     return lineItems.map((lineItem) => {
       return (
@@ -17,19 +17,28 @@ function Category(props){
     });
   };
 
-  const getTotal = (lineItems) => {
-    return lineItems.reduce((a, b) => ({amount: a.amount + b.amount})); 
+  const renderKpiInfo = () => {
+    return <CategoryTotal 
+    name={props.kpiName} 
+    categoryTotal={props.kpiNum} 
+    salesTotal={props.salesTotal}
+    />
   }
 
   return (
     <fieldset className="pl-fieldset">
       <legend className="pl-legend">
-        <h2>{Capitalize(props.categoryName)}</h2>
+        <h2>{Capitalize(props.name)}</h2>
       </legend>
       {renderLineItems(props.lineItems)}
-      <CategoryTotal categoryName={Capitalize(props.categoryName)} total={getTotal(props.lineItems).amount} />
+      <CategoryTotal 
+      name={Capitalize(props.name)} 
+      categoryTotal={props.categoryTotal} 
+      salesTotal={props.salesTotal}
+      />
+      {props.kpiNum ? renderKpiInfo() : null}
     </fieldset>
-  );
+  )
 }
 
 export default Category; 
