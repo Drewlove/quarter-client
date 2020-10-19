@@ -1,12 +1,16 @@
 import React from 'react'; 
 import ReactDOM from 'react-dom';
-import ProfitLossPage from './ProfitLossPage'
+import LineItem from './LineItem'
 
-describe('ProfitLossPage', ()=> {
+const name = 'line name'
+const category = 'category'
+const amount = 1000
+
+describe('LineItem', ()=> {
     it('renders without crashing', () => {
         const div = document.createElement('div')
         ReactDOM.render(
-            <ProfitLossPage />, div
+            <LineItem name={name} category={category} amount={amount}/>, div
         )
         ReactDOM.unmountComponentAtNode(div)
     })
