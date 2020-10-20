@@ -1,5 +1,5 @@
 import React from 'react';
-import ProfitLossPage from './ProfitLossPage/ProfitLossPage'; 
+import ProfitLossPage from './ProfitLossPage/ProfitLossPage/ProfitLossPage'; 
 import './App.css';
 
 function App() {

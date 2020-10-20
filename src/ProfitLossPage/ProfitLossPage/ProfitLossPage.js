@@ -1,7 +1,7 @@
 import React from 'react'
-import Category from './Category'; 
-import CategoryTotal from './CategoryTotal';
-import {Capitalize} from '../Utilities/UtilityFunctions' 
+import Category from '../Category/Category'; 
+import CategoryTotal from '../CategoryTotal/CategoryTotal';
+import {Capitalize} from '../../Utilities/UtilityFunctions' 
 
 function ProfitLossPage(){
 

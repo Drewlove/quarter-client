@@ -1,8 +1,7 @@
 import React from 'react'; 
-import {Capitalize} from '../Utilities/UtilityFunctions'; 
+import {Capitalize} from '../../Utilities/UtilityFunctions'; 
 
 function CategoryTotal(props){
-
     const getPercentageOf = (sales) => {
         if(props.netProfit && sales){
             let percentage = ((sales-props.categoryTotal)/sales)*100

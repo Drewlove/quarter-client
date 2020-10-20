@@ -1,7 +1,7 @@
 import React from 'react'; 
-import LineItem from './LineItem'; 
-import CategoryTotal from './CategoryTotal'; 
-import {Capitalize} from '../Utilities/UtilityFunctions'; 
+import LineItem from '../LineItem/LineItem'; 
+import CategoryTotal from '../CategoryTotal/CategoryTotal'; 
+import {Capitalize} from '../../Utilities/UtilityFunctions'; 
 
 function Category(props){
   

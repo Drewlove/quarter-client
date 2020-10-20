@@ -1,5 +1,5 @@
 import React from 'react'; 
-import {Capitalize} from '../Utilities/UtilityFunctions'; 
+import {Capitalize} from '../../Utilities/UtilityFunctions'; 
 
 function LineItem(props){
     return (
