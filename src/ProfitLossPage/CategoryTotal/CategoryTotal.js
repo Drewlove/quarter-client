@@ -1,5 +1,5 @@
 import React from 'react'; 
-import {Capitalize} from '../../Utilities/UtilityFunctions'; 
+import {CapitalizeAllWords} from '../../Utilities/UtilityFunctions'; 
 
 function CategoryTotal(props){
     const getPercentageOf = (sales) => {
@@ -16,7 +16,7 @@ function CategoryTotal(props){
 
   return (
     <div className="pl-fieldset__item-container pl-fieldset__item-container_black">
-      <p className="pl-fieldset__item-text">{Capitalize(props.name)}</p>
+      <p className="pl-fieldset__item-text">{CapitalizeAllWords(props.name)}</p>
       <p className="pl-fieldset__item-text">
         {props.categoryTotal.toLocaleString()}
       </p>

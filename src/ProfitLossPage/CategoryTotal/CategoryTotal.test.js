@@ -1,7 +1,7 @@
 import React from 'react'; 
 import ReactDOM from 'react-dom';
 import CategoryTotal from './CategoryTotal'
-import {Capitalize} from '../../Utilities/UtilityFunctions'
+import {CapitalizeAllWords} from '../../Utilities/UtilityFunctions'
 
 const name = 'category'; 
 const categoryTotal = 200;
@@ -51,8 +51,8 @@ describe('CategoryTotal', ()=> {
         )
         ReactDOM.unmountComponentAtNode(div);
     })
-    it('capitalizes the category name', () => {
-        expect(Capitalize(name)).toBe('Category');
+    it('CapitalizeAllWordss the category name', () => {
+        expect(CapitalizeAllWords(name)).toBe('Category');
     })
     it('receives the accurate sales total', () => {
         expect(getTotal(salesLineItems)).toBe(60000); 

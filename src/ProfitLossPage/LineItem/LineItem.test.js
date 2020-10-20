@@ -1,9 +1,10 @@
 import React from 'react'; 
 import ReactDOM from 'react-dom';
 import LineItem from './LineItem'
+import {CapitalizeAllWords, Hyphenate} from '../../Utilities/UtilityFunctions'
 
-const name = 'line name'
-const category = 'category'
+const category = 'direct labor'
+const name = 'service shift leader'
 const amount = 1000
 
 describe('LineItem', ()=> {
@@ -13,5 +14,14 @@ describe('LineItem', ()=> {
             <LineItem name={name} category={category} amount={amount}/>, div
         )
         ReactDOM.unmountComponentAtNode(div)
+    })
+    it('CapitalizeAllWords the category name', () => {
+        expect(CapitalizeAllWords(category)).toBe('Direct Labor');
+    })
+    it('formats category total with commas', () => {
+        expect(amount.toLocaleString()).toBe('1,000');
+    })
+    it('formats the href string correctly', () => {
+        expect(`/${Hyphenate(category)}/${Hyphenate(name)}`.toLocaleString()).toBe('/direct-labor/service-shift-leader');
     })
 })

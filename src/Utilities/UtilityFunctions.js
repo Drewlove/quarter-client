@@ -1,5 +1,14 @@
-export const Capitalize = (str) => {
-  return `${str.slice(0, 1).toUpperCase()}${str.slice(1)}`;
+export const CapitalizeAllWords = (str) => {
+  let strArr = str.split(" ")
+  let newArr = strArr.map(word => {
+    return `${word[0].toUpperCase()}${word.substring(1)}`
+  })
+  return newArr.join(" "); 
+}
+
+export const Hyphenate = (str) => {
+  let strArr = str.split(" "); 
+  return strArr.join("-"); 
 }
 
 
