@@ -4,7 +4,6 @@ import CategoryTotal from '../CategoryTotal/CategoryTotal';
 import {CapitalizeAllWords} from '../../Utilities/UtilityFunctions' 
 
 function ProfitLossPage(){
-
   //currently calculating sales total multiple times
   //instead, calculate sales total after values have been retrieved from server, 
   //then pass that derived total value to all relevant components
@@ -44,15 +43,15 @@ function ProfitLossPage(){
 
   const getGrossProfit = () => {
     const totalSales = getTotal(salesLineItems); 
-    const kpiNum = getTotal(cogsLineItems); 
-    return totalSales - kpiNum; 
+    const totalCogs = getTotal(cogsLineItems); 
+    return totalSales - totalCogs; 
   }
 
   const getPrimeCost = () => {
     return getTotal(cogsLineItems) + getTotal(directLaborLineItems); 
   }
 
-  const grandTotal = () => {
+  const getTotalExpenses = () => {
     return getTotal(cogsLineItems) + getTotal(directLaborLineItems) + getTotal(overheadLineItems)
   }
 
@@ -87,7 +86,7 @@ function ProfitLossPage(){
         />
         <CategoryTotal
           name="Net Profit"
-          categoryTotal={grandTotal()}
+          categoryTotal={getTotalExpenses()}
           salesTotal={getTotal(salesLineItems)}
           netProfit = {true}
         />
