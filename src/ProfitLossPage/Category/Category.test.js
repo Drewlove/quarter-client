@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Category from "./Category";
+import {CapitalizeAllWords} from '../../Utilities/UtilityFunctions'
 
 const lineItems = [
   { category: "cogs", name: "food", amount: 6000, id: 4 },
@@ -11,7 +12,7 @@ const lineItems = [
 const kpiName = "kpi";
 const kpiNum = 100;
 const salesTotal = 200;
-const name = "category";
+const name = "category name";
 
 const categoryTotal = () => {
     const obj = lineItems.reduce( (a, b) => ({amount: a.amount + b.amount}));
@@ -34,4 +35,7 @@ describe("Category", () => {
     );
     ReactDOM.unmountComponentAtNode(div);
   });
+  it('capitalizes all words in category name', () => {
+    expect(CapitalizeAllWords(name)).toBe('Category Name')
+  })
 });
