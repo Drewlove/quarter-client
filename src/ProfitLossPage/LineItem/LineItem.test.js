@@ -22,6 +22,6 @@ describe('LineItem', ()=> {
         expect(amount.toLocaleString()).toBe('1,000');
     })
     it('formats the href string correctly', () => {
-        expect(`/${Hyphenate(category)}/${Hyphenate(name)}`.toLocaleString()).toBe('/direct-labor/service-shift-leader');
+        expect(`/form/${Hyphenate(category)}/${Hyphenate(name)}`.toLocaleString()).toBe('/form/direct-labor/service-shift-leader');
     })
 })

@@ -11,6 +11,30 @@
 *::after {
   box-sizing: border-box;
 }
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-container__button {
+  width: 100px;
+  margin-top: 50px;
+  font-size: 18px;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.button_save {
+  margin-left: auto;
+}
+
+.form {
+  margin: 0 auto;
+  max-width: var(--page-max-width);
+  min-width: var(--page-min-width);
+}
 
 .header {
   background-color: black;
@@ -69,6 +93,23 @@
   color: white;
 }
 
+.input-container {
+  min-width: 200px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  margin-bottom: 10px;
+  align-items: center; 
+}
+
+.input-container_col-3 {
+  display: grid; 
+  grid-template-columns: 1fr minmax(100px, 2fr) 1fr; 
+}
+
+.input-container__input{
+  max-width: 350px 
+}
+
 .main {
   max-width: var(--page-max-width);
   min-width: var(--page-min-width);
@@ -111,4 +152,44 @@
 
 .pl-legend {
   padding-left: 5px;
+}
+
+
+.toggle-container { 
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, 50px);
+  grid-gap: 10px;
+}
+
+.toggle-container_3-col{
+  display: flex; 
+}
+
+.toggle-container__input {
+  display: none;
+}
+
+.toggle-container__box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 40px;
+  transition: 0.4s;
+  border-radius: 5px;
+  border: 5px solid gray;
+  color: gray;
+  font-size: 21px;
+  margin-left: 10px; 
+}
+
+.toggle-container__box:hover {
+  cursor: pointer;
+}
+
+.toggle-container__input:checked + .toggle-container__box {
+  background-color: lightgray;
+  border: 5px solid lightgray;
+  color: black;
 }
