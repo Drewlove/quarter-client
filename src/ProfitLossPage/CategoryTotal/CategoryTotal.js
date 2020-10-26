@@ -15,7 +15,7 @@ function CategoryTotal(props){
     }
 
   return (
-    <div className="pl-fieldset__item-container pl-fieldset__item-container_black">
+    <div className="pl-fieldset__item-container pl-fieldset__item-container_total">
       <p className="pl-fieldset__item-text">{CapitalizeAllWords(props.name)}</p>
       <p className="pl-fieldset__item-text">
         {props.categoryTotal.toLocaleString()}

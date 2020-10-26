@@ -1,7 +1,7 @@
 import React from "react";
 import LineItem from "../LineItem/LineItem";
 import CategoryTotal from "../CategoryTotal/CategoryTotal";
-import { CapitalizeAllWords } from "../../Utilities/UtilityFunctions";
+import { CapitalizeAllWords} from "../../Utilities/UtilityFunctions";
 
 function Category(props) {
   const renderLineItems = (lineItems) => {
@@ -30,9 +30,9 @@ function Category(props) {
   return (
     <fieldset className="pl-fieldset">
       <legend className="pl-legend">
-        <h2>{CapitalizeAllWords(props.name)}</h2>
+        <h2 className='pl-fieldset__header'>{CapitalizeAllWords(props.name)}</h2>
       </legend>
-      {renderLineItems(props.lineItems)}
+        {renderLineItems(props.lineItems)}
       <CategoryTotal
         name={CapitalizeAllWords(props.name)}
         categoryTotal={props.categoryTotal}

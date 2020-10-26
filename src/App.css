@@ -135,12 +135,12 @@
   background-color: darkgray;
 }
 
-.pl-fieldset__item-container_black {
+.pl-fieldset__item-container_total {
   background-color: black;
   color: white;
 }
 
-.pl-fieldset__item-container_black:hover {
+.pl-fieldset__item-container_total:hover {
   cursor: default;
   background-color: black;
 }
