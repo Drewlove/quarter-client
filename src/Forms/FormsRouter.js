@@ -4,15 +4,10 @@ import SalesForm from "./SalesForm";
 import CogsForm from "./CogsForm";
 
 function FormsRouter() {
-  console.log("hi");
   return (
     <Switch>
-      <Route path="/form/sales">
-        <SalesForm />
-      </Route>
-      <Route path="/form/cogs">
-        <CogsForm />
-      </Route>
+      <Route path="/form/sales"><SalesForm /></Route>
+      <Route path="/form/cogs"><CogsForm /></Route>
     </Switch>
   );
 }
