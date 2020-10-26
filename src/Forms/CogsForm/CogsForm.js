@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {CapitalizeAllWords} from '../Utilities/UtilityFunctions'
+import {CapitalizeAllWords} from '../../Utilities/UtilityFunctions'
 
 function CogsForm() {
 

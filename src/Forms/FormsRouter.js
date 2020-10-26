@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import SalesForm from "./SalesForm";
-import CogsForm from "./CogsForm";
+import SalesForm from "./SalesForm/SalesForm";
+import CogsForm from "./CogsForm/CogsForm";
 
 function FormsRouter() {
   return (
