@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function SalesForm() {
+function LineItemForm() {
   const [input, setInput] = useState();
 
   const handleChange = (e) =>
@@ -20,7 +20,7 @@ function SalesForm() {
               className="input-container__input"
               type="text"
               id="line-item"
-              placeholder="Food"
+              placeholder="Line Item Name"
               name="name"
               onChange={(e) => handleChange(e)}
             />
@@ -55,4 +55,4 @@ function SalesForm() {
   );
 }
 
-export default SalesForm;
+export default LineItemForm;

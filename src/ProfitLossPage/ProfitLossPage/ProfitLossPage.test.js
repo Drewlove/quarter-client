@@ -1,5 +1,6 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
+import {BrowserRouter} from 'react-router-dom'
 import ProfitLossPage from "./ProfitLossPage";
 
 const salesLineItems = [
@@ -58,7 +59,7 @@ describe("ProfitLossPage", () => {
     const wrapper = shallow(<ProfitLossPage />);
   });
   it("renders 4 category fieldsets", () => {
-    const wrapper = mount(<ProfitLossPage />);
+    const wrapper = mount(<BrowserRouter><ProfitLossPage /></BrowserRouter>);
     expect(wrapper.find(".pl-fieldset")).toHaveLength(4);
   });
   it("calculates sales total accurately", () => {
