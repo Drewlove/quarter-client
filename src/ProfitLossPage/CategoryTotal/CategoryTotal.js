@@ -9,9 +9,7 @@ function CategoryTotal(props){
         } else if(sales){
             let percentage = (props.categoryTotal/sales)*100
             return `${percentage.toFixed(2)}%`; 
-        } else{
-            return; 
-        }
+        } 
     }
 
   return (
