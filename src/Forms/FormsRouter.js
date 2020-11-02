@@ -6,8 +6,12 @@ import CogsForm from "./CogsForm/CogsForm";
 function FormsRouter() {
   return (
     <Switch>
-      <Route path="/form/cogs/"><CogsForm /></Route>
-      <Route path="/form/"><LineItemForm /></Route>
+      {/* <Route path="/form/cogs/">
+        <CogsForm />
+      </Route> */}
+      <Route path="/form/:category/:lineItem">
+        <LineItemForm />
+      </Route>
     </Switch>
   );
 }

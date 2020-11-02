@@ -1,7 +1,6 @@
 import React from 'react'
 import Category from '../Category/Category'; 
 import CategoryTotal from '../CategoryTotal/CategoryTotal';
-import {CapitalizeAllWords} from '../../Utilities/UtilityFunctions' 
 
 function ProfitLossPage(){
   //currently calculating sales total multiple times
