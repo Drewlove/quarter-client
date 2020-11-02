@@ -1,34 +1,38 @@
 import React from "react";
-import { shallow, mount} from "enzyme";
+import Enzyme from "enzyme";
+import { shallow, mount } from "enzyme";
 import LineItemForm from "./LineItemForm";
 
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useParams: () => ({
-    category: 'sales'
-  })
+    category: "sales",
+  }),
 }));
 
-describe('LineItemForm', () => {
-    it('renders', ()=> {
-        shallow(<LineItemForm />)
-    })
-    it('renders two inputs', () => {
-        const wrapper = shallow(<LineItemForm />); 
-        expect(wrapper.find('input')).toHaveLength(2)
-    })
-    it('displays the cateogry name', () => {
-        const wrapper = mount(<LineItemForm />); 
-        expect(wrapper.find('legend').at(0).text()).toEqual('sales')
-    })
-    it('displays text in line-item input', () => {
-        const wrapper = mount(<LineItemForm />); 
-        wrapper.find('#line-item').instance().value = 'food'; 
-        expect(wrapper.find('#line-item').instance().value).toEqual('food')
-    })
-    it('displays text in amount input', () => {
-        const wrapper = mount(<LineItemForm />); 
-        wrapper.find('#amount').instance().value = '123'; 
-        expect(wrapper.find('#amount').instance().value).toEqual('123')
-    })
-})
+describe("LineItemForm", () => {
+  let wrapper;
+  beforeEach(() => {
+    wrapper = Enzyme.mount(<LineItemForm />);
+  });
+
+  it("renders", () => {
+    shallow(<LineItemForm />);
+  });
+
+  it("renders two inputs", () => {
+    expect(wrapper.find("input")).toHaveLength(2);
+  });
+  it("correctly updates the value on select", () => {
+    const categoryDropDown = wrapper.find("#category");
+    const event = { target: { name: "category", value: "sales" } };
+    categoryDropDown.simulate("change", event);
+    expect(wrapper.find("#category").props().value).toEqual("sales");
+  });
+  it("renders radio button container if category is COGS", () => {
+    const categoryDropDown = wrapper.find("#category");
+    const event = { target: { name: "category", value: "cogs" } };
+    categoryDropDown.simulate("change", event);  
+    expect(wrapper.find('.input-container__radio')).toHaveLength(1) 
+  });
+});

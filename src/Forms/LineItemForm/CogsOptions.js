@@ -1,54 +1,66 @@
 import React from "react";
+import {CapitalizeAllWords} from '../../Utilities/UtilityFunctions'
 
 function CogsOptions(props) {
-//const salesCategories = ['food', 'beverage', 'other']
+  const salesCategories = ["food", "beverage", "other"];
 
+  const renderCategories = (categories) => {
+    return categories.map((category) => {
+      return (
+        <option value={category} key={category}>
+          {CapitalizeAllWords(category)}
+        </option>
+      );
+    });
+  };
 
-// const renderCogsPercentageOptions = () => {
-//     return (
-//       <section className="input-container">
-//         <label htmlFor="category">Category</label>
-//         <select
-//           defaultValue={params.category}
-//           className="input-container__input"
-//           id="category"
-//           onChange={(e) => handleChange(e)}
-//           name="category"
-//         >
-//           {renderCategories(expenseCategories)}
-//         </select>
-//       </section>
-//     );
-//   };
+  const renderCogsPercentageOptions = () => {
+    return (
+      <section className="input-container">
+        <label htmlFor="percentOf">Percent Of</label>
+        <select
+          className="input-container__input"
+          id="percentOf"
+          onChange={(e) => props.onChange(e)}
+          name="percentOf"
+        >
+          {renderCategories(salesCategories)}
+        </select>
+      </section>
+    );
+  };
 
   return (
-    <section className="input-container">
-      <p>Amount Type</p>
-      <div className="input-container__radio input-container__input">
-        <div>
-          <input
-            type="radio"
-            name="amountType"
-            id="dollars"
-            value="dollars"
-            checked={props.amountType === "dollars"}
-            onChange={e => props.onChange(e)}
-          />
-          <label htmlFor="dollars">Dollars</label>
+    <>
+      <section className="input-container">
+        <p>Amount Type</p>
+        <div className="input-container__radio input-container__input">
+          <div>
+            <input
+              type="radio"
+              name="amountType"
+              id="dollars"
+              value="dollars"
+              checked={props.amountType === "dollars"}
+              onChange={(e) => props.onChange(e)}
+            />
+            <label htmlFor="dollars">Dollars</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              name="amountType"
+              id="percentage"
+              value="percentage"
+              checked={props.amountType === "percentage"}
+              onChange={(e) => props.onChange(e)}
+            />
+            <label htmlFor="percentage">Percent</label>
+          </div>
         </div>
-        <div>
-          <input
-            type="radio"
-            name="amountType"
-            id="percentage"
-            value="percentage"
-            checked={props.amountType === "percentage"}
-            onChange={e => props.onChange(e)}
-          />
-          <label htmlFor="percentage">Percentage</label>
-        </div>
-      </div>
-    </section>
+      </section>
+      {props.amountType === 'percentage' ? renderCogsPercentageOptions() : null}
+    </>
   );
 }
 
