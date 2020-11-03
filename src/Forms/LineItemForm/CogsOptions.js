@@ -7,7 +7,7 @@ function CogsOptions(props) {
   const renderCategories = (categories) => {
     return categories.map((category) => {
       return (
-        <option value={category} key={category}>
+        <option value={category} key={category} >
           {CapitalizeAllWords(category)}
         </option>
       );
@@ -23,7 +23,10 @@ function CogsOptions(props) {
           id="percentOf"
           onChange={(e) => props.onChange(e)}
           name="percentOf"
+          value={props.percentOf}
+          defaultValue={''}
         >
+          <option value={''} disabled></option>
           {renderCategories(salesCategories)}
         </select>
       </section>

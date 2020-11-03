@@ -1,4 +1,6 @@
 export const CapitalizeAllWords = (str) => {
+  if(str.length === 0) return ''; 
+  
   let strArr = str.split(" ")
   let newArr = strArr.map(word => {
     return `${word[0].toUpperCase()}${word.substring(1)}`

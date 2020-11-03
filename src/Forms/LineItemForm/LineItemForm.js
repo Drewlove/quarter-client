@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { CapitalizeAllWords } from "../../Utilities/UtilityFunctions";
-import CogsOptions from './CogsOptions'; 
-
+import CogsOptions from "./CogsOptions";
 
 //Below is resource for fetching data and working with state and hooks
 //https://www.carlrippon.com/drop-down-data-binding-with-react-hooks/
 
 function LineItemForm() {
-  const [input, setInput] = useState({ amountType: "dollars" });
+  const [input, setInput] = useState({
+    category: "",
+    name: "",
+    amount: "",
+    amountType: "",
+    percentOf: "",
+  });
 
   const params = useParams();
 
@@ -30,23 +35,27 @@ function LineItemForm() {
     });
   };
 
+  const validate = (e) => {
+    console.log(input[e.target.name]);
+  };
+
   return (
-    <main className="main">   
+    <main className="main">
       <form className="form">
         <fieldset className="fieldset_form">
-            <section className="input-container">
-              <label htmlFor="category">Category</label>
-              <select
-                defaultValue={params.category}
-                className="input-container__input"
-                id="category"
-                onChange={(e) => handleChange(e)}
-                name="category"
-                value={input.category}
-              >
-                {renderCategories(expenseCategories)}
-              </select>
-            </section>
+          <section className="input-container">
+            <label htmlFor="category">Category</label>
+            <select
+              className="input-container__input"
+              id="category"
+              onChange={(e) => handleChange(e)}
+              name="category"
+              value={input.category}
+            >
+              <option value={''} disabled></option>
+              {renderCategories(expenseCategories)}
+            </select>
+          </section>
           <section className="input-container">
             <label htmlFor="line-item">Line Item</label>
             <input
@@ -56,6 +65,7 @@ function LineItemForm() {
               placeholder="Line Item Name"
               name="name"
               onChange={(e) => handleChange(e)}
+              // onBlur = {e => validate(e)}
               value={input.name}
             />
           </section>
@@ -71,7 +81,12 @@ function LineItemForm() {
               onChange={(e) => handleChange(e)}
             />
           </section>
-          {input.category === "cogs" ? <CogsOptions amountType = {input.amountType} onChange={e => handleChange(e)}/> : null}
+          {input.category === "cogs" ? (
+            <CogsOptions
+              amountType={input.amountType}
+              onChange={(e) => handleChange(e)}
+            />
+          ) : null}
           <section className="button-container">
             <button className="button button-container__button button_delete">
               Delete
