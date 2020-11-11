@@ -11,12 +11,12 @@
 *::after {
   box-sizing: border-box;
 }
-.button-container {
+.button-section {
   display: flex;
   justify-content: space-between;
 }
 
-.button-container__button {
+.button-section__button {
   width: 100px;
   margin-top: 50px;
   font-size: 18px;
@@ -34,6 +34,10 @@
   margin: 0 auto;
   max-width: var(--page-max-width);
   min-width: var(--page-min-width);
+}
+
+.form-error{
+  color: red; 
 }
 
 .header {
@@ -93,26 +97,33 @@
   color: white;
 }
 
-.input-container {
-  min-width: 200px;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  margin-bottom: 10px;
-  align-items: center; 
+.input-section {
+  margin: 0 auto;
+  padding: 5px 0px;
+  width: 95%;
 }
 
-.input-container_col-3 {
-  display: grid; 
-  grid-template-columns: 1fr minmax(100px, 2fr) 1fr; 
+.input-section__error{
+  border: 1px solid red; 
 }
 
-.input-container__input{
-  max-width: 350px 
+.input-section__input{
+  width: 100%;
 }
 
-.input-container__radio{
-  display: flex; 
-  justify-content: space-between; 
+.input-section__input_radio{
+  display: flex;
+  justify-content: space-around;
+}
+
+.input-section__radio-container{
+  margin-right: auto;
+}
+
+.input-section__label{
+  display: block; 
+  padding-bottom: 5px;
+  font-weight: bold; 
 }
 
 .main {
@@ -197,4 +208,12 @@
   background-color: lightgray;
   border: 5px solid lightgray;
   color: black;
+}
+
+@media only screen and (min-width: 600px) {
+  .input-section{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    max-width: 500px;
+  }
 }

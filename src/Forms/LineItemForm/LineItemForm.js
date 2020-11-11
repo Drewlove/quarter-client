@@ -1,104 +1,150 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
-import { CapitalizeAllWords } from "../../Utilities/UtilityFunctions";
-import CogsOptions from "./CogsOptions";
-
+import { IsStringValidNum } from "../../Utilities/UtilityFunctions";
+import LineItemFormCategory from "./LineItemFormCategory/LineItemFormCategory";
+import LineItemFormName from "./LineItemFormName/LineItemFormName";
+import LineItemFormAmount from "./LineItemFormAmount/LineItemFormAmount";
+import LineItemFormAmountType from "./LineItemFormAmountType/LineItemFormAmountType";
+import LineItemFormPercentOf from "./LineItemFormPercentOf/LineItemFormPercentOf";
+import ButtonSection from "./LineItemFormButtonSection/ButtonSection";
 //Below is resource for fetching data and working with state and hooks
 //https://www.carlrippon.com/drop-down-data-binding-with-react-hooks/
+//This one too, using useEffect, https://daveceddia.com/useeffect-hook-examples/#prevent-useeffect-from-running-every-render
 
 function LineItemForm() {
   const [input, setInput] = useState({
     category: "",
     name: "",
     amount: "",
-    amountType: "",
+    amountType: "dollars",
     percentOf: "",
   });
 
-  const params = useParams();
+  const [error, setError] = useState({
+    category: false,
+    name: false,
+    amount: false,
+    amountType: false,
+    percentOf: false,
+  });
 
-  const handleChange = (e) =>
+  const handleChange = (e) => {
+    validate(e);
     setInput({
       ...input,
       [e.target.name]: e.target.value,
     });
-
-  const expenseCategories = ["sales", "cogs", "overhead"];
-
-  const renderCategories = (categories) => {
-    return categories.map((category) => {
-      return (
-        <option value={category} key={category}>
-          {CapitalizeAllWords(category)}
-        </option>
-      );
-    });
   };
 
   const validate = (e) => {
-    console.log(input[e.target.name]);
+    e.target.value.length
+      ? setError({ ...error, [e.target.name]: false })
+      : setError({ ...error, [e.target.name]: true });
+  };
+
+  const handleChangeAmount = (e) => {
+    validateChangeAmount(e);
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const validateChangeAmount = (e) => {
+    IsStringValidNum(e.target.value)
+      ? setError({ ...error, [e.target.name]: false })
+      : setError({ ...error, [e.target.name]: true });
+  };
+
+  const handleBlurAmount = (e) => {
+    if (!IsStringValidNum(e.target.value))
+      return setError({ ...error, [e.target.name]: true });
+    let stringWithoutCommas = e.target.value.replace(/,/g, "");
+    setInput({
+      ...input,
+      [e.target.name]: Number(stringWithoutCommas).toLocaleString("en", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }),
+    });
+  };
+
+  const handleSave = (e) => {
+    e.preventDefault();
+    validateAllInputs();
+  };
+
+  const validateAllInputs = () => {
+    let invalidInputs = {};
+    Object.keys(input).forEach((key) => {
+      input[key].length < 1
+        ? (invalidInputs[key] = true)
+        : (invalidInputs[key] = false);
+    });
+    if (input.category !== "cogs") {
+      invalidInputs.amountType = false;
+      invalidInputs.percentOf = false;
+    } else {
+      invalidInputs = validateCogsInputs(invalidInputs);
+    }
+    setError(invalidInputs);
+  };
+
+  const validateCogsInputs = (invalidInputs) => {
+    if (
+      input.category === "cogs" &&
+      (input.amountType === "dollars" || input.amountType === "")
+    ) {
+      invalidInputs.percentOf = false;
+    } else if (
+      input.category === "cogs" &&
+      input.amountType === "percent" &&
+      input.percentOf === ""
+    ) {
+      invalidInputs.percentOf = true;
+    }
+    return invalidInputs;
   };
 
   return (
     <main className="main">
       <form className="form">
         <fieldset className="fieldset_form">
-          <section className="input-container">
-            <label htmlFor="category">Category</label>
-            <select
-              className="input-container__input"
-              id="category"
-              onChange={(e) => handleChange(e)}
-              name="category"
-              value={input.category}
-            >
-              <option value={''} disabled></option>
-              {renderCategories(expenseCategories)}
-            </select>
-          </section>
-          <section className="input-container">
-            <label htmlFor="line-item">Line Item</label>
-            <input
-              className="input-container__input"
-              type="text"
-              id="line-item"
-              placeholder="Line Item Name"
-              name="name"
-              onChange={(e) => handleChange(e)}
-              // onBlur = {e => validate(e)}
-              value={input.name}
-            />
-          </section>
-          <section className="input-container">
-            <label htmlFor="amount">Amount</label>
-            <input
-              className="input-container__input"
-              type="text"
-              id="amount"
-              placeholder="5,000"
-              name="amount"
-              value={input.amount}
-              onChange={(e) => handleChange(e)}
-            />
-          </section>
+          <LineItemFormCategory
+            value={input.category}
+            error={error.category}
+            handleChange={handleChange}
+          />
+          <LineItemFormName
+            value={input.name}
+            error={error.name}
+            handleChange={handleChange}
+            validate={validate}
+          />
+          <LineItemFormAmount
+            value={input.amount}
+            error={error.amount}
+            handleChangeAmount={handleChangeAmount}
+            validate={validate}
+            handleBlurAmount={handleBlurAmount}
+            amountType={input.amountType}
+          />
           {input.category === "cogs" ? (
-            <CogsOptions
-              amountType={input.amountType}
-              onChange={(e) => handleChange(e)}
+            <LineItemFormAmountType
+              value={input.amountType}
+              onChange={handleChange}
+              error={error.amountType}
             />
           ) : null}
-          <section className="button-container">
-            <button className="button button-container__button button_delete">
-              Delete
-            </button>
-            <button
-              className="button button-container__button button_save"
-              type="submit"
-              value="Save"
-            >
-              Save
-            </button>
-          </section>
+
+          {input.category === "cogs" && input.amountType === "percentage" ? (
+            <LineItemFormPercentOf
+              value={input.percentOf}
+              onChange={handleChange}
+              error={error.percentOf}
+            />
+          ) : null}
+
+          <ButtonSection handleSave={handleSave} />
         </fieldset>
       </form>
     </main>
