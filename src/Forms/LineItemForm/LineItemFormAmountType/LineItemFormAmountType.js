@@ -5,7 +5,7 @@ function LineItemFormAmountType(props) {
   return (
     <section className="input-section">
       <p className="input-section__label">Amount Type</p>
-      <div>
+      <div className="input-section__input-container">
         <div
           className={`input-section__input input-section__input_radio 
           ${props.error ? "input-section__error" : ""}`}

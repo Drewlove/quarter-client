@@ -11,12 +11,13 @@
 *::after {
   box-sizing: border-box;
 }
-.button-section {
+
+.save-button-section {
   display: flex;
-  justify-content: space-between;
+  justify-content: center; 
 }
 
-.button-section__button {
+.save-button-section__button {
   width: 100px;
   margin-top: 50px;
   font-size: 18px;
@@ -26,8 +27,9 @@
   cursor: pointer;
 }
 
-.button_save {
-  margin-left: auto;
+.delete-button-section{
+  display: flex;
+  justify-content: flex-end;
 }
 
 .form {
@@ -99,8 +101,8 @@
 
 .input-section {
   margin: 0 auto;
-  padding: 5px 0px;
-  width: 95%;
+  width: 85%;
+  padding: 10px 0px;
 }
 
 .input-section__error{
@@ -109,11 +111,13 @@
 
 .input-section__input{
   width: 100%;
+  border: 1px solid gray;
 }
 
 .input-section__input_radio{
   display: flex;
   justify-content: space-around;
+  border: none; 
 }
 
 .input-section__radio-container{
@@ -121,9 +125,8 @@
 }
 
 .input-section__label{
-  display: block; 
-  padding-bottom: 5px;
-  font-weight: bold; 
+  display: block;
+  font-weight: bold;
 }
 
 .main {

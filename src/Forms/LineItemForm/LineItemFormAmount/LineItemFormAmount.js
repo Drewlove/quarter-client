@@ -3,13 +3,13 @@ import Error from '../../Error/Error';
 
 function LineItemFormAmount(props){
     const getAmountSign = () => {
-        return props.amountType === "dollars" ? "($)" : "(%)";
+        return props.amountType === "dollars" ? "$" : "%";
       };
 
     return (
           <section className="input-section">
             <label className='input-section__label' htmlFor="amount">Amount {getAmountSign()} </label>
-            <div>
+            <div className="input-section__input-container">
             <input
               className={`input-section__input ${props.error ? "input-section__error" : ""}`}
               type="text"

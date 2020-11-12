@@ -5,7 +5,8 @@ import LineItemFormName from "./LineItemFormName/LineItemFormName";
 import LineItemFormAmount from "./LineItemFormAmount/LineItemFormAmount";
 import LineItemFormAmountType from "./LineItemFormAmountType/LineItemFormAmountType";
 import LineItemFormPercentOf from "./LineItemFormPercentOf/LineItemFormPercentOf";
-import ButtonSection from "./LineItemFormButtonSection/ButtonSection";
+import LineItemFormSaveButton from "./LineItemFormSaveButton/LineItemFormSaveButton";
+import LineItemFormDeleteButton from "./LineItemFormDeleteButton/LineItemFormDeleteButton";
 //Below is resource for fetching data and working with state and hooks
 //https://www.carlrippon.com/drop-down-data-binding-with-react-hooks/
 //This one too, using useEffect, https://daveceddia.com/useeffect-hook-examples/#prevent-useeffect-from-running-every-render
@@ -105,10 +106,16 @@ function LineItemForm() {
     return invalidInputs;
   };
 
+  const handleDelete = (e) => {
+    e.preventDefault(); 
+    console.log('deleting')
+  }
+
   return (
     <main className="main">
       <form className="form">
         <fieldset className="fieldset_form">
+          <LineItemFormDeleteButton handleDelete={handleDelete}/>
           <LineItemFormCategory
             value={input.category}
             error={error.category}
@@ -144,7 +151,7 @@ function LineItemForm() {
             />
           ) : null}
 
-          <ButtonSection handleSave={handleSave} />
+          <LineItemFormSaveButton handleSave={handleSave} />
         </fieldset>
       </form>
     </main>

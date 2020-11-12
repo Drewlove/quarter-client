@@ -21,7 +21,7 @@ function LineItemFormCategory(props) {
       <label className="input-section__label" htmlFor="category">
         Category
       </label>
-      <div>
+      <div className="input-section__input-container">
         <select
           className={`input-section__input ${
             props.error ? "input-section__error" : ""

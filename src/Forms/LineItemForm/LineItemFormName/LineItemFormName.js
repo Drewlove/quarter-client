@@ -5,7 +5,7 @@ function LineItemFormName(props){
     return (
         <section className="input-section">
         <label className='input-section__label' htmlFor="line-item">Name</label>
-        <div>
+        <div className="input-section__input-container">
         <input
           className={`input-section__input ${props.error ? "input-section__error" : ""}`}
           type="text"
