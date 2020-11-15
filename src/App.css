@@ -99,6 +99,68 @@
   color: white;
 }
 
+.home-page {
+
+}
+
+.home-page__h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.home-page__h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.home-page__hero-image {
+  min-height: 250px;
+  background-color: lightgray;
+}
+
+.home-page__container {
+  margin-top: 50px;
+  border: 10px 20px solid blue; 
+  padding: 10px; 
+  border-style: ridge; 
+  border-top: 5px solid black; 
+  border-radius: 10px; 
+  box-shadow: 3px 3px 3px darkgray; 
+}
+
+.home-page__promo-image {
+  margin: 0 auto; 
+  min-height: 125px;
+  width: 200px; 
+  background-color: lightgray;
+}
+
+.home-page__text {
+  text-align: center;
+  margin: 25px; 
+  font-size: 28px; 
+}
+
+.home-page__text:nth-of-type(2) {
+  margin-bottom: 25px;
+}
+
+.home-page__user-link_register {
+  margin: 20px auto;
+  line-height: 50px;
+  height: 50px;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 2px;
+  background-color: black;
+  display: block;
+  text-align: center;
+}
+
+
 .input-section {
   margin: 0 auto;
   width: 85%;
@@ -173,7 +235,6 @@
   padding-left: 5px;
 }
 
-
 .toggle-container { 
   display: grid;
   justify-content: center;
@@ -218,5 +279,13 @@
     display: grid;
     grid-template-columns: 1fr 2fr;
     max-width: 500px;
+  }
+
+  .home-page__hero-image{
+    height: 400px; 
+  }
+  .home-page__promo-image{
+    height: 250px; 
+    width: 300px; 
   }
 }

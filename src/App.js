@@ -1,6 +1,7 @@
 import React from 'react';
-import ProfitLossPage from './ProfitLossPage/ProfitLossPage/ProfitLossPage';
 import {BrowserRouter, Switch, Route} from 'react-router-dom' 
+import ProfitLossPage from './ProfitLossPage/ProfitLossPage/ProfitLossPage';
+import HomePage from './HomePage/HomePage'
 import FormsRouter from './Forms/FormsRouter'; 
 import './App.css';
 
@@ -11,6 +12,9 @@ function App() {
         <Switch>
           <Route path = '/form'>
             <FormsRouter />
+          </Route>
+          <Route path="/home">
+            <HomePage />
           </Route>
           <Route path="/">
             <ProfitLossPage />
