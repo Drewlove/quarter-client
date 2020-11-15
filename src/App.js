@@ -1,26 +1,26 @@
-import React from 'react';
-import {BrowserRouter, Switch, Route} from 'react-router-dom' 
-import ProfitLossPage from './ProfitLossPage/ProfitLossPage/ProfitLossPage';
-import HomePage from './HomePage/HomePage'
-import FormsRouter from './Forms/FormsRouter'; 
-import './App.css';
+import React from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import ProfitLossPage from "./ProfitLossPage/ProfitLossPage/ProfitLossPage";
+import HomePage from "./HomePage/HomePage";
+import FormsRouter from "./Forms/FormsRouter";
+import "./App.css";
 
 function App() {
   return (
     <BrowserRouter>
-    <div className="App">
+      <div className="App">
         <Switch>
-          <Route path = '/form'>
+          <Route path="/form">
             <FormsRouter />
           </Route>
-          <Route path="/home">
-            <HomePage />
-          </Route>
-          <Route path="/">
+          <Route path="/p&l">
             <ProfitLossPage />
           </Route>
+          <Route path="/">
+            <HomePage />
+          </Route>
         </Switch>
-    </div>
+      </div>
     </BrowserRouter>
   );
 }

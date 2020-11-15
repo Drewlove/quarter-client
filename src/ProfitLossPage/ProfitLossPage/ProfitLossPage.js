@@ -1,6 +1,7 @@
 import React from 'react'
 import Category from '../Category/Category'; 
 import CategoryTotal from '../CategoryTotal/CategoryTotal';
+import Header from '../../Header/Header'
 
 function ProfitLossPage(){
   //currently calculating sales total multiple times
@@ -55,6 +56,8 @@ function ProfitLossPage(){
   }
 
     return (
+      <>
+      <Header />
       <main className="main">
         <Category
           name="sales"
@@ -90,6 +93,7 @@ function ProfitLossPage(){
           netProfit = {true}
         />
       </main>
+      </>
     );
 }
 
