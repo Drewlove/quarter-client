@@ -14,9 +14,6 @@ export const Hyphenate = (str) => {
 }
 
 
-
-
-
 export const IsStringValidNum = (str) => {
   let validStatus = true; 
   if(str.length === 0) return validStatus = false; 
@@ -38,6 +35,14 @@ function isStringSingleDecimal(str) {
     if (decimalsInString > 1) return false; 
   }
   return true; 
+}
+
+export const ConvertNumToTimeStr = (num) => {
+  let hour = `${((Math.floor(num) + 11) % 12 + 1)}`;
+  let minutes =  num%1 === 0 ? "00" : `${(num%1)*60}`; 
+  let amPm = ""; 
+  num < 12 || num === 24  ? amPm = "am" : amPm = "pm"
+  return `${hour}:${minutes}${amPm}` 
 }
 
 

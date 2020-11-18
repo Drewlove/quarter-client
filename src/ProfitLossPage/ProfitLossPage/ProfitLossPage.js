@@ -57,7 +57,6 @@ function ProfitLossPage(){
 
     return (
       <>
-      <Header />
       <main className="main">
         <Category
           name="sales"

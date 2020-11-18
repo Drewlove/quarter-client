@@ -235,6 +235,62 @@
   padding-left: 5px;
 }
 
+
+.schedule-add {
+  display: none;
+  margin: 0 auto;
+}
+
+.schedule-row__schedule-cell {
+  border: 1px solid black;
+  height: 75px;
+  overflow: hidden;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.schedule-row__schedule-cell_days {
+  text-align: center;
+}
+
+.schedule-row__schedule-cell_shift:hover {
+  background-color: lightgray;
+  cursor: pointer;
+}
+
+.schedule-row__schedule-cell_shift:hover .schedule-add {
+  display: block;
+  cursor: pointer;
+}
+
+.schedule-department {
+  grid-column: 1 / -1;
+  background-color: lightgray;
+}
+
+.schedule-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.schedule-row_days {
+  position: sticky;
+  top: 50px;
+  background-color: white;
+}
+
+.schedule-text_department {
+  text-align: left;
+}
+
+.schedule-text_shift {
+  font-size: 10px;
+  text-align: left;
+  overflow: hidden;
+}
+
 .toggle-container { 
   display: grid;
   justify-content: center;

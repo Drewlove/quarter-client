@@ -4,7 +4,6 @@ import Header from "../Header/Header";
 function HomePage() {
   return (
     <>
-      <Header />
       <main class="main">
         <section class="home-page">
           <div>
@@ -34,7 +33,7 @@ function HomePage() {
             <div class="home-page__promo-image"></div>
             <p class="home-page__text">
               Set your COGS % to determine profitability as sales volume
-              increases
+              increases.
             </p>
           </div>
           <div class="home-page__container">
