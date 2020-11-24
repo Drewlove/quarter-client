@@ -241,7 +241,7 @@
   margin: 0 auto;
 }
 
-.schedule-row__schedule-cell {
+.schedule-row__cell {
   border: 1px solid black;
   height: 75px;
   overflow: hidden;
@@ -251,16 +251,16 @@
   justify-content: center;
 }
 
-.schedule-row__schedule-cell_days {
-  text-align: center;
-}
-
-.schedule-row__schedule-cell_shift:hover {
+.schedule-row__cell:hover {
   background-color: lightgray;
   cursor: pointer;
 }
 
-.schedule-row__schedule-cell_shift:hover .schedule-add {
+.schedule-row__cell_days {
+  text-align: center;
+}
+
+.schedule-row__cell_button:hover .schedule-add {
   display: block;
   cursor: pointer;
 }

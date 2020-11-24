@@ -1,5 +1,5 @@
 import React from "react"; 
-import DepartmentRowCellShift from "./DepartmentRowCellShift"
+import CellShift from "./CellShift"
 import { shallow, mount } from "enzyme";
 
 const shift = {day: 5, department: "bake off", role: "kettle", start: 4, end: 8, people: 1, hourly: 12}; 
@@ -7,10 +7,10 @@ const shift = {day: 5, department: "bake off", role: "kettle", start: 4, end: 8,
 describe("DepartmentRowCellShift", () => {
     let wrapper; 
     beforeEach(() => {
-        wrapper = mount(<DepartmentRowCellShift shift={shift}/>);  
+        wrapper = mount(<CellShift shift={shift}/>);  
     })
     it("renders a cell", () => {
-        expect(wrapper.find(".schedule-row__schedule-cell_shift")).toHaveLength(1); 
+        expect(wrapper.find(".schedule-row__cell_shift")).toHaveLength(1); 
     })
     it("renders text: number of people", () => {
         expect(wrapper.find(".schedule-text_shift-people").text()).toEqual("1X")

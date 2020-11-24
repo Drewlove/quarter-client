@@ -1,36 +1,39 @@
 import React from "react"; 
 import {mount, shallow} from "enzyme"
-import DepartmentRow from "./DepartmentRow"
+import RowRole from "./RowRole"
 
 const row =     [{
-    day: 5,
+    day: 0,
     department: "bake off",
     role: "kettle",
     start: 4,
     end: 8,
     people: 1,
     hourly: 12,
-    id: 6
+    id: 0,
+    isShift: true,
   },
   {
-    day: 6,
+    day: 1,
     department: "bake off",
     role: "kettle",
     start: 4,
     end: 8,
     people: 1,
     hourly: 12,
-    id: 7
+    id: 1,
+    isShift: true,
   },
   {
-    day: 4,
+    day: 2,
     department: "bake off",
     role: "kettle",
     start: 4,
     end: 8,
     people: 1,
     hourly: 12,
-    id: 8
+    id: 2,
+    isShift: true,
   },
   {
     day: 3,
@@ -40,23 +43,37 @@ const row =     [{
     end: 8,
     people: 1,
     hourly: 12,
-    id: 9
-  }]
+    id: 3, 
+    isShift: true,
+  }, 
+  {
+    id: 4, 
+    isShift: false, 
+  },
+  {
+    id: 5, 
+    isShift: false, 
+  },
+  {
+    id: 6, 
+    isShift: false, 
+  },
+]
 
-describe("DepartmentRow",() => {
+describe("RowRole",() => {
     let wrapper; 
 
     beforeEach( () => {
-        wrapper = mount(<DepartmentRow row={row} />)
+        wrapper = mount(<RowRole row={row} />)
     })
     it("renders", () => {
         expect(wrapper.find(".schedule-row")).toHaveLength(1); 
     })
-    it("renders correct number of DepartmentRowCellShift", () => {
-        expect(wrapper.find(".schedule-row").children()).toHaveLength(4); 
+    it("renders correct number of cells with shift info", () => {
+        expect(wrapper.find(".schedule-row__cell_shift")).toHaveLength(4);
     })
-    // it("renders correct number of DepartmentRowCellShiftButton ", () => {
-    //   
-    // })
+    it("renders correct number of blank cells", () => {
+      expect(wrapper.find(".schedule-row__cell_button")).toHaveLength(3);  
+  })
 })
 

@@ -4,7 +4,7 @@ import {
   CapitalizeAllWords,
 } from "../../Utilities/UtilityFunctions";
 
-function DepartmentRowCellShift(props) {
+function CellShift(props) {
   const getShiftSchedule = () => {
     let start = ConvertNumToTimeStr(props.shift.start);
     let end = ConvertNumToTimeStr(props.shift.end);
@@ -18,7 +18,7 @@ function DepartmentRowCellShift(props) {
   }
 
   return (
-    <button className="schedule-row__schedule-cell schedule-row__schedule-cell_shift">
+    <button className="schedule-row__cell schedule-row__cell_shift">
       <p className="schedule-text_shift schedule-text_shift-role">
         <b>{CapitalizeAllWords(props.shift.role)}</b>
       </p>
@@ -28,4 +28,4 @@ function DepartmentRowCellShift(props) {
   );
 }
 
-export default DepartmentRowCellShift;
+export default CellShift;
