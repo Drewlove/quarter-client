@@ -1,5 +1,5 @@
 import React from "react";
-import CellButton from "../CellButton/CellButton";
+import CellButton from "../CellBlank/CellBlank";
 import CellShift from "../CellShift/CellShift";
 
 function RowRole(props) {

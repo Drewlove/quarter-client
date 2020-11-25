@@ -4,10 +4,15 @@ import { CapitalizeAllWords } from "../../Utilities/UtilityFunctions";
 import { Hyphenate } from "../../Utilities/UtilityFunctions";
 
 function LineItem(props) {
+
+  const getLink = () => {
+    return props.category === 'direct labor' ? '/schedule' : `/form/${Hyphenate(props.category)}/${Hyphenate(props.name)}`
+  }
+
   return (
       <Link
         className="pl-fieldset__item-container"
-        to={`/form/${Hyphenate(props.category)}/${Hyphenate(props.name)}`}
+        to={getLink()}
       >
         <p className="pl-fieldset__item-text">
           {CapitalizeAllWords(props.name)}

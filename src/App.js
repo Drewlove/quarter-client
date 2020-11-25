@@ -1,10 +1,11 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Header from './Header/Header';
+import ShiftForm from './Forms/ShiftForm/ShiftForm'
+import LaborSchedule from './LaborSchedule/LaborSchedule/LaborSchedule'
+import FormsRouter from "./Forms/FormsRouter";
 import ProfitLossPage from "./ProfitLossPage/ProfitLossPage/ProfitLossPage";
 import HomePage from "./HomePage/HomePage";
-import FormsRouter from "./Forms/FormsRouter";
-import LaborSchedule from './LaborSchedule/LaborSchedule/LaborSchedule'
 import "./App.css";
 
 function App() {
@@ -13,7 +14,10 @@ function App() {
     <Header />
       <div className="App">
         <Switch>
-        <Route path="/form/direct-labor">
+        <Route path="/schedule/form">
+            <ShiftForm />
+          </Route>
+        <Route path="/schedule">
             <LaborSchedule />
           </Route>
           <Route path="/form">

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { IsStringValidNum } from "../../Utilities/UtilityFunctions";
-import LineItemFormCategory from "./LineItemFormCategory/LineItemFormCategory";
+import FormSelect from '../CommonFormComponents/FormSelect/FormSelect'
 import LineItemFormName from "./LineItemFormName/LineItemFormName";
 import LineItemFormAmount from "./LineItemFormAmount/LineItemFormAmount";
 import LineItemFormAmountType from "./LineItemFormAmountType/LineItemFormAmountType";
 import LineItemFormPercentOf from "./LineItemFormPercentOf/LineItemFormPercentOf";
-import LineItemFormSaveButton from "./LineItemFormSaveButton/LineItemFormSaveButton";
-import LineItemFormDeleteButton from "./LineItemFormDeleteButton/LineItemFormDeleteButton";
+import LineItemFormSaveButton from "../CommonFormComponents/FormSaveButton/FormSaveButton";
+import FormDeleteButton from "../CommonFormComponents/FormDeleteButton/FormDeleteButton";
 //Below is resource for fetching data and working with state and hooks
 //https://www.carlrippon.com/drop-down-data-binding-with-react-hooks/
 //This one too, using useEffect, https://daveceddia.com/useeffect-hook-examples/#prevent-useeffect-from-running-every-render
@@ -108,18 +108,21 @@ function LineItemForm() {
 
   const handleDelete = (e) => {
     e.preventDefault(); 
-    console.log('deleting')
   }
+
+  const options = ['sales', 'cogs', 'overhead']
 
   return (
     <main className="main">
       <form className="form">
         <fieldset className="fieldset_form">
-          <LineItemFormDeleteButton handleDelete={handleDelete}/>
-          <LineItemFormCategory
-            value={input.category}
-            error={error.category}
-            handleChange={handleChange}
+          <FormDeleteButton handleDelete={handleDelete}/>
+          <FormSelect
+          value={input.category}
+          error={error.category}
+          handleChange={handleChange}
+          options={options}
+          name='category'
           />
           <LineItemFormName
             value={input.name}

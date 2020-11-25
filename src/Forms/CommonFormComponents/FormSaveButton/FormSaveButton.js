@@ -1,6 +1,6 @@
 import React from 'react'
 
-function LineItemFormSaveButton(props){
+function FormSaveButton(props){
     return(
         <section className="save-button-section">
         <button
@@ -16,4 +16,4 @@ function LineItemFormSaveButton(props){
     )
 }
 
-export default LineItemFormSaveButton; 
+export default FormSaveButton; 

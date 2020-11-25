@@ -1,6 +1,6 @@
 import React from 'react'
 
-function LineItemFormDeleteButton(props){
+function FormDeleteButton(props){
     return(
         <section className="delete-button-section">
         <button
@@ -15,4 +15,4 @@ function LineItemFormDeleteButton(props){
     )
 }
 
-export default LineItemFormDeleteButton; 
+export default FormDeleteButton; 

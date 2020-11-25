@@ -1,6 +1,7 @@
 import React from "react"; 
 import {mount, shallow} from "enzyme"
 import RowRole from "./RowRole"
+import {MemoryRouter} from 'react-router-dom'
 
 const row =     [{
     day: 0,
@@ -64,16 +65,20 @@ describe("RowRole",() => {
     let wrapper; 
 
     beforeEach( () => {
-        wrapper = mount(<RowRole row={row} />)
+        wrapper = mount(
+          <MemoryRouter>
+            <RowRole row={row} />
+          </MemoryRouter>
+          )
     })
     it("renders", () => {
         expect(wrapper.find(".schedule-row")).toHaveLength(1); 
     })
     it("renders correct number of cells with shift info", () => {
-        expect(wrapper.find(".schedule-row__cell_shift")).toHaveLength(4);
+        expect(wrapper.find("a.schedule-row__cell_shift")).toHaveLength(4);
     })
     it("renders correct number of blank cells", () => {
-      expect(wrapper.find(".schedule-row__cell_button")).toHaveLength(3);  
+      expect(wrapper.find("a.schedule-row__cell_blank")).toHaveLength(3);  
   })
 })
 
