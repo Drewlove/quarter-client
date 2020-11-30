@@ -13,6 +13,7 @@ const row =     [{
     hourly: 12,
     id: 0,
     isShift: true,
+    rowId: 1,
   },
   {
     day: 1,
@@ -24,6 +25,7 @@ const row =     [{
     hourly: 12,
     id: 1,
     isShift: true,
+    rowId: 1,
   },
   {
     day: 2,
@@ -35,6 +37,7 @@ const row =     [{
     hourly: 12,
     id: 2,
     isShift: true,
+    rowId: 1,
   },
   {
     day: 3,
@@ -46,6 +49,7 @@ const row =     [{
     hourly: 12,
     id: 3, 
     isShift: true,
+    rowId: 1,
   }, 
   {
     id: 4, 

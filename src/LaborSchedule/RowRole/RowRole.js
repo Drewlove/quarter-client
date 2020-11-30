@@ -4,12 +4,8 @@ import CellShift from "../CellShift/CellShift";
 
 function RowRole(props) {
   const renderRow = (row) => {
-    return row.map((cellData) => {
-      return cellData.isShift ? (
-        <CellShift key={cellData.id} shift={cellData} />
-      ) : (
-        <CellButton key={cellData.id} />
-      );
+    return row.map((key) => {
+      return key.isShift ? <CellShift key={key.id} shift={key} /> : <CellButton key={key.id} />
     });
   };
 

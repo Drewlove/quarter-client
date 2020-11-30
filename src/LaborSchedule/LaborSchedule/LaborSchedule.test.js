@@ -5,6 +5,6 @@ import {shallow, mount} from 'enzyme';
 describe('LaborSchedule', () => {
     it("renders", () => {
         let wrapper = shallow(<LaborSchedule />); 
-        expect(wrapper.find('.schedule-row_days')).toHaveLength(1); 
+        expect(wrapper.find('.schedule-row_weekdays')).toHaveLength(1); 
     })
 })
