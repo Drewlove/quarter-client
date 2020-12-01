@@ -4,7 +4,7 @@ import Error from '../Error/Error'
 function ShiftFormTime(props) {
   return (
     <>
-      <section className="input-section">
+      <section className="input-section input-section_shift">
         <label className="input-section__label" htmlFor="start-time">
           Start
         </label>
@@ -22,7 +22,7 @@ function ShiftFormTime(props) {
           {props.errorStart ? <Error message='Start time must be earlier than end time'/> : null}
         </div>
       </section>
-      <section className="input-section">
+      <section className="input-section input-section_shift">
         <label className="input-section__label" htmlFor="end-time">
           End
         </label>

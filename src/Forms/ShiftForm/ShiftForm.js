@@ -4,6 +4,7 @@ import FormSaveButton from "../CommonFormComponents/FormSaveButton/FormSaveButto
 import FormSelect from "../CommonFormComponents/FormSelect/FormSelect";
 import ShiftFormTime from "./ShiftFormTime";
 import ShiftFormPeople from "./ShiftFormPeople";
+import ShiftFormDays from './ShiftFormDays'; 
 
 function ShiftForm() {
   const [input, setInput] = useState({
@@ -12,17 +13,31 @@ function ShiftForm() {
     endTime: "12:00",
     department: "",
     role: "",
+    monday: false, 
+    tuesday: false, 
+    wednesday: false, 
+    thursday: false, 
+    friday: false, 
+    saturday: false, 
+    sunday: false,
   });
 
-  const [roles, setRoles] = useState([]);
-
   const [error, setError] = useState({
-    startTime: false,
-    endTime: false,
     people: false,
     department: false,
     role: false,
   });
+
+  //should be useState({} ? )
+  const [roles, setRoles] = useState([]);
+
+
+  const departments = ["kitchen", "service", "bake off"];
+  const departmentRoles = {
+    kitchen: ["chef", "sous chef"],
+    service: ["cashier", "line", "expo"],
+    bagels: ["starters", "dough", "production"],
+  };
 
   useEffect(() => {
     updateRoles();
@@ -39,17 +54,17 @@ function ShiftForm() {
     setInput(updatedInput);
   };
 
+  const handleChangeDay = (e) => {
+    validate(e);
+    const currentState = input[e.target.name]; 
+    const updatedInput = { ...input, [e.target.name]: !currentState };
+    setInput(updatedInput);
+  }
+
   const validate = (e) => {
     e.target.value.length
       ? setError({ ...error, [e.target.name]: false })
       : setError({ ...error, [e.target.name]: true });
-  };
-
-  const departments = ["kitchen", "service", "bake off"];
-  const departmentRoles = {
-    kitchen: ["chef", "sous chef"],
-    service: ["cashier", "line", "expo"],
-    bagels: ["starters", "dough", "production"],
   };
 
   const handleBlur = (e) => {
@@ -66,10 +81,7 @@ function ShiftForm() {
   const validateAllInputs = () => {
     let invalidInputs = {};
     Object.keys(input).forEach((key) => {
-      if ((key === "startTime" || key === "endTime") && input.startTime > input.endTime) {
-        invalidInputs.startTime = true;
-        invalidInputs.endTime = true;
-      } else if (input[key].length < 1) {
+      if (input[key].length < 1) {
         invalidInputs[key] = true;
       } else {
         invalidInputs[key] = false;
@@ -95,6 +107,7 @@ function ShiftForm() {
             name="department"
             options={departments}
             error={error.department}
+            optionalClass={'input-section_shift'}
           />
           <FormSelect
             handleChange={(e) => handleChange(e)}
@@ -102,6 +115,7 @@ function ShiftForm() {
             name="role"
             options={roles}
             error={error.role}
+            optionalClass={'input-section_shift'}
           />
           <ShiftFormTime
             handleChange={(e) => handleChange(e)}
@@ -110,7 +124,18 @@ function ShiftForm() {
             errorStart={error.startTime}
             errorEnd={error.endTime}
           />
-          <FormSaveButton handleSave={handleSave} />
+          <ShiftFormDays 
+          monday={input.monday} 
+          tuesday={input.tuesday} 
+          wednesday={input.wednesday} 
+          thursday={input.thursday} 
+          friday={input.friday} 
+          saturday={input.saturday} 
+          sunday={input.sunday} 
+          handleChangeDay={(e) => handleChangeDay(e)}/>
+          
+          <FormSaveButton 
+          handleSave={handleSave}/>
         </fieldset>
       </form>
     </main>

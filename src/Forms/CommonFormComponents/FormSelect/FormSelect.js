@@ -14,7 +14,7 @@ function FormSelect(props) {
   };
 
   return (
-    <section className="input-section">
+    <section className={`input-section ${props.optionalClass}`}>
       <label className="input-section__label" htmlFor={props.name}>
         {CapitalizeAllWords(props.name)}
       </label>

@@ -4,7 +4,7 @@ import Error from '../Error/Error'
 function ShiftFormPeople(props){
 
     return (
-          <section className="input-section">
+          <section className="input-section input-section_shift">
             <label className='input-section__label' htmlFor="people">People </label>
             <div className="input-section__input-container">
             <input
