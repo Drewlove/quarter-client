@@ -1,5 +1,5 @@
 import React from "react";
-import Error from '../Error/Error'
+import Error from "../Error/Error";
 
 function ShiftFormTime(props) {
   return (
@@ -19,7 +19,7 @@ function ShiftFormTime(props) {
             name="startTime"
             value={props.startTime}
           />
-          {props.errorStart ? <Error message='Start time must be earlier than end time'/> : null}
+          {props.errorStart ? <Error message={props.errorStart} /> : null}
         </div>
       </section>
       <section className="input-section input-section_shift">
@@ -37,7 +37,7 @@ function ShiftFormTime(props) {
             name="endTime"
             value={props.endTime}
           />
-          {props.errorEnd ? <Error message='End time must be later than start time'/> : null}
+          {props.errorEnd ? <Error message={props.errorEnd} /> : null}
         </div>
       </section>
     </>

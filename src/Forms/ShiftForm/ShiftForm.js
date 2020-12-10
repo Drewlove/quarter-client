@@ -1,36 +1,48 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
+import { GetErrorMessage } from "./Utilities";
 import FormDeleteButton from "../CommonFormComponents/FormDeleteButton/FormDeleteButton";
 import FormSaveButton from "../CommonFormComponents/FormSaveButton/FormSaveButton";
-import FormSelect from "../CommonFormComponents/FormSelect/FormSelect";
+// import FormSelect from "../CommonFormComponents/FormSelect/FormSelect";
+import ShiftFormDepartment from "./ShiftFormDepartment";
+import ShiftFormRole from "./ShiftFormRole";
 import ShiftFormTime from "./ShiftFormTime";
 import ShiftFormPeople from "./ShiftFormPeople";
-import ShiftFormDays from './ShiftFormDays'; 
+import ShiftFormDays from "./ShiftFormDays";
+import ShiftFormPay from "./ShiftFormPay";
 
 function ShiftForm() {
   const [input, setInput] = useState({
     people: "",
-    startTime: "12:00",
-    endTime: "12:00",
+    pay: "",
+    startTime: "",
+    endTime: "",
     department: "",
     role: "",
-    monday: false, 
-    tuesday: false, 
-    wednesday: false, 
-    thursday: false, 
-    friday: false, 
-    saturday: false, 
+    // daysChecked: [],
+  });
+
+  const [days, setDays] = useState({
+    monday: false,
+    tuesday: false,
+    wednesday: false,
+    thursday: false,
+    friday: false,
+    saturday: false,
     sunday: false,
   });
 
   const [error, setError] = useState({
-    people: false,
-    department: false,
-    role: false,
+    department: "",
+    role: "",
+    people: "",
+    pay: "",
+    errorStart: "",
+    errorEnd: "",
+    days: "",
   });
 
-  //should be useState({} ? )
+  // //should be useState({} ? )
   const [roles, setRoles] = useState([]);
-
 
   const departments = ["kitchen", "service", "bake off"];
   const departmentRoles = {
@@ -39,36 +51,54 @@ function ShiftForm() {
     bagels: ["starters", "dough", "production"],
   };
 
+  const updateRoles = () => {
+    let updatedRoles = departmentRoles[input.department];
+    setRoles(updatedRoles);
+    setInput({ ...input, role: "" });
+  };
+
+  const handleChange = (e) => {
+    setInput({ ...input, [e.target.name]: e.target.value });
+    validateInput(e);
+  };
+
+  const handleChangeDay = (e) => {
+    const dayStatus = days[e.target.name];
+    setDays({ ...days, [e.target.name]: !dayStatus });
+    validateDaysInput(e);
+  };
+
   useEffect(() => {
     updateRoles();
   }, [input.department]);
 
-  const updateRoles = () => {
-    let updatedRoles = departmentRoles[input.department];
-    setRoles(updatedRoles);
-  };
-
-  const handleChange = (e) => {
-    validate(e);
-    const updatedInput = { ...input, [e.target.name]: e.target.value };
-    setInput(updatedInput);
-  };
-
-  const handleChangeDay = (e) => {
-    validate(e);
-    const currentState = input[e.target.name]; 
-    const updatedInput = { ...input, [e.target.name]: !currentState };
-    setInput(updatedInput);
-  }
-
-  const validate = (e) => {
-    e.target.value.length
-      ? setError({ ...error, [e.target.name]: false })
-      : setError({ ...error, [e.target.name]: true });
-  };
-
   const handleBlur = (e) => {
-    validate(e);
+    validateInput(e);
+  };
+
+  const validateInput = (e) => {
+    let errorMessage = GetErrorMessage(e.target.name, e.target.value);
+    setError({ ...error, [e.target.name]: errorMessage });
+  };
+
+  const validateDaysInput = (e) => {
+    let numDaysChecked = getNumDaysChecked();
+    if (e.target.checked === true || numDaysChecked > 1) {
+      setError({ ...error, days: "" });
+    } else if (numDaysChecked === 1 && e.target.checked === false) {
+      setError({
+        ...error,
+        days: "Select at least one day.",
+      });
+    }
+  };
+
+  const getNumDaysChecked = () => {
+    let numDaysChecked = 0;
+    for (let [day, boolean] of Object.entries(days)) {
+      if (boolean === true) numDaysChecked++;
+    }
+    return numDaysChecked;
   };
 
   const handleDelete = () => {};
@@ -79,15 +109,15 @@ function ShiftForm() {
   };
 
   const validateAllInputs = () => {
-    let invalidInputs = {};
+    let errors = {
+      days: GetErrorMessage("days", days),
+    };
+
     Object.keys(input).forEach((key) => {
-      if (input[key].length < 1) {
-        invalidInputs[key] = true;
-      } else {
-        invalidInputs[key] = false;
-      }
+      errors[key] = GetErrorMessage(key, input[key]);
     });
-    setError(invalidInputs);
+
+    setError(errors);
   };
 
   return (
@@ -95,27 +125,31 @@ function ShiftForm() {
       <form className="form">
         <fieldset className="fieldset_form">
           <FormDeleteButton handleDelete={handleDelete} />
+          <ShiftFormDepartment
+            handleChange={(e) => handleChange(e)}
+            value={input.department}
+            options={departments}
+            error={error.department}
+            optionalClass={"input-section_shift"}
+          />
+          <ShiftFormRole
+            handleChange={(e) => handleChange(e)}
+            value={input.role}
+            options={roles}
+            error={error.role}
+            optionalClass={"input-section_shift"}
+          />
           <ShiftFormPeople
             handleChange={(e) => handleChange(e)}
             value={input.people}
             error={error.people}
             handleBlur={handleBlur}
           />
-          <FormSelect
+          <ShiftFormPay
             handleChange={(e) => handleChange(e)}
-            value={input.department}
-            name="department"
-            options={departments}
-            error={error.department}
-            optionalClass={'input-section_shift'}
-          />
-          <FormSelect
-            handleChange={(e) => handleChange(e)}
-            value={input.role}
-            name="role"
-            options={roles}
-            error={error.role}
-            optionalClass={'input-section_shift'}
+            value={input.pay}
+            error={error.pay}
+            handleBlur={handleBlur}
           />
           <ShiftFormTime
             handleChange={(e) => handleChange(e)}
@@ -124,18 +158,13 @@ function ShiftForm() {
             errorStart={error.startTime}
             errorEnd={error.endTime}
           />
-          <ShiftFormDays 
-          monday={input.monday} 
-          tuesday={input.tuesday} 
-          wednesday={input.wednesday} 
-          thursday={input.thursday} 
-          friday={input.friday} 
-          saturday={input.saturday} 
-          sunday={input.sunday} 
-          handleChangeDay={(e) => handleChangeDay(e)}/>
-          
-          <FormSaveButton 
-          handleSave={handleSave}/>
+          <ShiftFormDays
+            days={days}
+            handleChangeDay={(e) => handleChangeDay(e)}
+            error={error.days}
+          />
+
+          <FormSaveButton handleSave={handleSave} />
         </fieldset>
       </form>
     </main>
