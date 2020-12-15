@@ -96,9 +96,10 @@ function ShiftForm() {
 
   const getNumDaysChecked = () => {
     let numDaysChecked = 0;
-    for (let [day, boolean] of Object.entries(days)) {
-      if (boolean === true) numDaysChecked++;
-    }
+    Object.entries(days).forEach((day) => {
+      let dayBoolean = day[1];
+      if (dayBoolean === true) numDaysChecked++;
+    });
     return numDaysChecked;
   };
 

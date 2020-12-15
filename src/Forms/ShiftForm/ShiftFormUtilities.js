@@ -1,93 +1,80 @@
 export const GetErrorMessage = (name, value) => {
-  let errorMessage = "";
   switch (name) {
     case "people":
-      return (errorMessage = getErrorMessagePeople(value));
-      break;
+      return getErrorMessagePeople(value);
     case "pay":
-      return (errorMessage = getErrorMessagePay(value));
-      break;
+      return getErrorMessagePay(value);
     case "department":
-      return (errorMessage = getErrorMessageDepartment(value));
-      break;
+      return getErrorMessageDepartment(value);
     case "role":
-      return (errorMessage = getErrorMessageRole(value));
-      break;
+      return getErrorMessageRole(value);
     case "startTime":
-      return (errorMessage = getErrorMessageStartTime(value));
-      break;
+      return getErrorMessageStartTime(value);
     case "endTime":
-      return (errorMessage = getErrorMessageEndTime(value));
-      break;
+      return getErrorMessageEndTime(value);
     case "days":
-      return (errorMessage = getErrorMessageDays(value));
+      return getErrorMessageDays(value);
+    default:
       break;
   }
 };
 
 const getErrorMessagePeople = (value) => {
-  let errorMessage = "";
   if (value.length === 0 || value <= 0) {
-    return (errorMessage = "Enter at least one person.");
+    return "Enter at least one person.";
   } else if (parseFloat(value) !== parseInt(value)) {
-    return (errorMessage = "Enter a whole number.");
+    return "Enter a whole number.";
   } else {
-    return (errorMessage = "");
+    return "";
   }
 };
 
 const getErrorMessagePay = (value) => {
-  let errorMessage = "";
   if (value.length === 0 || value < 0) {
-    return (errorMessage = "Enter a valid pay rate.");
+    return "Enter a valid pay rate.";
   } else if (value.indexOf(".") >= 0 && value.split(".")[1].length > 2) {
-    return (errorMessage =
-      "Enter number with max of two digits to right of decimal point.");
+    return "Enter number with max of two digits to right of decimal point.";
   } else {
-    return (errorMessage = "");
+    return "";
   }
 };
 
 const getErrorMessageDepartment = (value) => {
-  let errorMessage = "";
   if (value.length === 0) {
-    return (errorMessage = "Select a department.");
+    return "Select a department.";
   } else {
-    return (errorMessage = "");
+    return "";
   }
 };
 
 const getErrorMessageRole = (value) => {
-  let errorMessage = "";
   if (value.length === 0) {
-    return (errorMessage = "Select a role.");
+    return "Select a role.";
   } else {
-    return (errorMessage = "");
+    return "";
   }
 };
 
 const getErrorMessageStartTime = (value) => {
-  let errorMessage = "";
   if (value.length === 0) {
-    return (errorMessage = "Select a start time.");
+    return "Select a start time.";
   } else {
-    return (errorMessage = "");
+    return "";
   }
 };
 
 const getErrorMessageEndTime = (value) => {
-  let errorMessage = "";
   if (value.length === 0) {
-    return (errorMessage = "Select an end time.");
+    return "Select an end time.";
   } else {
-    return (errorMessage = "");
+    return "";
   }
 };
 
 const getErrorMessageDays = (value) => {
-  let errorMessage = "Select at least one day.";
-  for (let [day, boolean] of Object.entries(value)) {
-    if (boolean === true) return (errorMessage = "");
-  }
-  return errorMessage;
+  Object.entries(value).forEach((day) => {
+    let dayBoolean = day[1];
+    if (dayBoolean === true) return "";
+  });
+  return "Select at least one day.";
 };
