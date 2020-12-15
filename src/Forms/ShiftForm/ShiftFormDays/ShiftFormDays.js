@@ -1,6 +1,6 @@
 import React from "react";
-import Error from "../Error/Error";
-import { CapitalizeAllWords } from "../../Utilities/UtilityFunctions";
+import Error from "../../CommonFormComponents/Error/Error";
+import { CapitalizeAllWords } from "../../../Utilities/UtilityFunctions";
 
 function ShiftFormDays(props) {
   const daysList = [

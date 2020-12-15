@@ -1,11 +1,11 @@
 import React from "react";
-import Error from "../Error/Error";
+import Error from "../../CommonFormComponents/Error/Error";
 
-function ShiftFormPeople(props) {
+function ShiftFormPay(props) {
   return (
     <section className="input-section input-section_shift">
-      <label className="input-section__label" htmlFor="people">
-        People{" "}
+      <label className="input-section__label" htmlFor="pay">
+        Pay
       </label>
       <div className="input-section__input-container">
         <input
@@ -13,17 +13,17 @@ function ShiftFormPeople(props) {
             props.error ? "input-section__error" : ""
           }`}
           type="number"
-          id="people"
-          placeholder="No. of People"
-          name="people"
+          id="pay"
+          placeholder="Hourly Pay Rate"
+          name="pay"
           value={props.value}
           onChange={props.handleChange}
           onBlur={props.handleBlur}
         />
-        {props.error.length > 0 ? <Error message={props.error} /> : null}
+        {props.error ? <Error message={props.error} /> : null}
       </div>
     </section>
   );
 }
 
-export default ShiftFormPeople;
+export default ShiftFormPay;

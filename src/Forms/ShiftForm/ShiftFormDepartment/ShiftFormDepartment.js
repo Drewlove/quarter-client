@@ -1,8 +1,8 @@
 import React from "react";
-import Error from "../Error/Error";
-import { CapitalizeAllWords } from "../../Utilities/UtilityFunctions";
+import Error from "../../CommonFormComponents/Error/Error";
+import { CapitalizeAllWords } from "../../../Utilities/UtilityFunctions";
 
-function ShiftFormRole(props) {
+function ShiftFormDepartment(props) {
   const renderOptions = (options) => {
     return options.map((option) => {
       return (
@@ -14,22 +14,22 @@ function ShiftFormRole(props) {
   };
 
   return (
-    <section className={`input-section ${props.optionalClass}`}>
-      <label className="input-section__label" htmlFor="role">
-        Role
+    <section className={`input-section_department`}>
+      <label className="input-section__label" htmlFor="department">
+        Department
       </label>
       <div className="input-section__input-container">
         <select
           className={`input-section__input ${
             props.error ? "input-section__error" : ""
           }`}
-          id="role"
+          id="department"
           onChange={props.handleChange}
-          name="role"
+          name="department"
           value={props.value}
         >
           <option value={""} disabled>
-            - Select Role -
+            - Select Department -
           </option>
           {props.options ? renderOptions(props.options) : null}
         </select>
@@ -39,4 +39,4 @@ function ShiftFormRole(props) {
   );
 }
 
-export default ShiftFormRole;
+export default ShiftFormDepartment;

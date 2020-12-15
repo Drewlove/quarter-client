@@ -1,14 +1,13 @@
-import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
-import { GetErrorMessage } from "./Utilities";
+import React, { useState, useEffect } from "react";
+import { GetErrorMessage } from "./ShiftFormUtilities";
 import FormDeleteButton from "../CommonFormComponents/FormDeleteButton/FormDeleteButton";
 import FormSaveButton from "../CommonFormComponents/FormSaveButton/FormSaveButton";
-// import FormSelect from "../CommonFormComponents/FormSelect/FormSelect";
-import ShiftFormDepartment from "./ShiftFormDepartment";
-import ShiftFormRole from "./ShiftFormRole";
-import ShiftFormTime from "./ShiftFormTime";
-import ShiftFormPeople from "./ShiftFormPeople";
-import ShiftFormDays from "./ShiftFormDays";
-import ShiftFormPay from "./ShiftFormPay";
+import ShiftFormDepartment from "./ShiftFormDepartment/ShiftFormDepartment";
+import ShiftFormRole from "./ShiftFormRole/ShiftFormRole";
+import ShiftFormTime from "./ShiftFormTime/ShiftFormTime";
+import ShiftFormPeople from "./ShiftFormPeople/ShiftFormPeople";
+import ShiftFormDays from "./ShiftFormDays/ShiftFormDays";
+import ShiftFormPay from "./ShiftFormPay/ShiftFormPay";
 
 function ShiftForm() {
   const [input, setInput] = useState({
@@ -18,7 +17,6 @@ function ShiftForm() {
     endTime: "",
     department: "",
     role: "",
-    // daysChecked: [],
   });
 
   const [days, setDays] = useState({
@@ -41,10 +39,13 @@ function ShiftForm() {
     days: "",
   });
 
-  // //should be useState({} ? )
+  const [departments, setDepartments] = useState([
+    "kitchen",
+    "service",
+    "bake off",
+  ]);
   const [roles, setRoles] = useState([]);
 
-  const departments = ["kitchen", "service", "bake off"];
   const departmentRoles = {
     kitchen: ["chef", "sous chef"],
     service: ["cashier", "line", "expo"],
@@ -58,6 +59,7 @@ function ShiftForm() {
   };
 
   const handleChange = (e) => {
+    console.log(e.target.value);
     setInput({ ...input, [e.target.name]: e.target.value });
     validateInput(e);
   };
@@ -130,14 +132,12 @@ function ShiftForm() {
             value={input.department}
             options={departments}
             error={error.department}
-            optionalClass={"input-section_shift"}
           />
           <ShiftFormRole
             handleChange={(e) => handleChange(e)}
             value={input.role}
             options={roles}
             error={error.role}
-            optionalClass={"input-section_shift"}
           />
           <ShiftFormPeople
             handleChange={(e) => handleChange(e)}
@@ -163,7 +163,6 @@ function ShiftForm() {
             handleChangeDay={(e) => handleChangeDay(e)}
             error={error.days}
           />
-
           <FormSaveButton handleSave={handleSave} />
         </fieldset>
       </form>
