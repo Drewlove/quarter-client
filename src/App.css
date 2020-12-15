@@ -14,7 +14,7 @@
 
 .save-button-section {
   display: flex;
-  justify-content: center; 
+  justify-content: center;
 }
 
 .save-button-section__button {
@@ -27,7 +27,7 @@
   cursor: pointer;
 }
 
-.delete-button-section{
+.delete-button-section {
   display: flex;
   justify-content: flex-end;
 }
@@ -38,8 +38,8 @@
   min-width: var(--page-min-width);
 }
 
-.form-error{
-  color: red; 
+.form-error {
+  color: red;
 }
 
 .header {
@@ -100,7 +100,6 @@
 }
 
 .home-page {
-
 }
 
 .home-page__h2 {
@@ -122,25 +121,25 @@
 
 .home-page__container {
   margin-top: 50px;
-  border: 10px 20px solid blue; 
-  padding: 10px; 
-  border-style: ridge; 
-  border-top: 5px solid black; 
-  border-radius: 10px; 
-  box-shadow: 3px 3px 3px darkgray; 
+  border: 10px 20px solid blue;
+  padding: 10px;
+  border-style: ridge;
+  border-top: 5px solid black;
+  border-radius: 10px;
+  box-shadow: 3px 3px 3px darkgray;
 }
 
 .home-page__promo-image {
-  margin: 0 auto; 
+  margin: 0 auto;
   min-height: 125px;
-  width: 200px; 
+  width: 200px;
   background-color: lightgray;
 }
 
 .home-page__text {
   text-align: center;
-  margin: 25px; 
-  font-size: 28px; 
+  margin: 25px;
+  font-size: 28px;
 }
 
 .home-page__text:nth-of-type(2) {
@@ -165,26 +164,26 @@
   padding: 10px 0px;
 }
 
-.input-section__error{
-  border: 1px solid red; 
+.input-section__error {
+  border: 1px solid red;
 }
 
-.input-section__input{
+.input-section__input {
   width: 100%;
   border: 1px solid gray;
 }
 
-.input-section__input_radio{
+.input-section__input_radio {
   display: flex;
   justify-content: space-around;
-  border: none; 
+  border: none;
 }
 
-.input-section__radio-container{
+.input-section__radio-container {
   margin-right: auto;
 }
 
-.input-section__label{
+.input-section__label {
   display: block;
   font-weight: bold;
 }
@@ -206,7 +205,7 @@
   margin: 5px 0px;
   color: black;
   text-decoration: none;
-  border: 1px solid lightgray;  
+  border: 1px solid lightgray;
 }
 
 .pl-fieldset__item-container:hover {
@@ -233,10 +232,14 @@
   padding-left: 5px;
 }
 
-
 .schedule-add {
   display: none;
   margin: 0 auto;
+}
+
+.schedule-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
 }
 
 .schedule-row__cell {
@@ -247,8 +250,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: black; 
-  text-decoration: none; 
+  color: black;
+  text-decoration: none;
 }
 
 .schedule-row__cell:hover {
@@ -265,20 +268,19 @@
   cursor: pointer;
 }
 
-.schedule-department {
-  grid-column: 1 / -1;
-  background-color: lightgray;
-}
-
-.schedule-row {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-}
-
 .schedule-row_days {
   position: sticky;
   top: 50px;
   background-color: white;
+}
+
+.schedule-row_weekdays__weekday {
+  text-align: center;
+}
+
+.schedule-department {
+  grid-column: 1 / -1;
+  background-color: lightgray;
 }
 
 .schedule-text_department {
@@ -295,7 +297,7 @@
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   justify-content: center;
-  grid-gap: 4px; 
+  grid-gap: 4px;
 }
 
 .toggle-container__input {
@@ -326,17 +328,17 @@
 }
 
 @media only screen and (min-width: 600px) {
-  .input-section{
+  .input-section {
     display: grid;
     grid-template-columns: 1fr 2fr;
     max-width: 500px;
   }
 
-  .home-page__hero-image{
-    height: 400px; 
+  .home-page__hero-image {
+    height: 400px;
   }
-  .home-page__promo-image{
-    height: 250px; 
-    width: 300px; 
+  .home-page__promo-image {
+    height: 250px;
+    width: 300px;
   }
 }

@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from "react";
-import {CollateSchedule} from '../../Utilities/ScheduleAlgo'
-import Department from '../Department/Department'; 
+import React, { useState, useEffect } from "react";
+import { CollateSchedule } from "../../Utilities/ScheduleAlgo";
+import Department from "../Department/Department";
 
 function LaborSchedule() {
   const [schedule, setSchedule] = useState({});
@@ -95,7 +95,6 @@ function LaborSchedule() {
       rowId: 2,
     },
 
-
     {
       id: 9,
       day: 2,
@@ -162,7 +161,6 @@ function LaborSchedule() {
       hourly: 15,
       rowId: 5,
     },
-
 
     {
       id: 15,
@@ -259,35 +257,33 @@ function LaborSchedule() {
   }, []);
 
   const renderDepartments = () => {
-    return Object.keys(schedule).map(key => {
-      return(
-        <Department key={key} schedule={schedule[key]} deptName={key} />
-      ) 
-    })
-  }
+    return Object.keys(schedule).map((key) => {
+      return <Department key={key} schedule={schedule[key]} deptName={key} />;
+    });
+  };
 
   return (
     <main className="main">
       <section className="schedule-row schedule-row_weekdays">
-        <div className="">
+        <div className="schedule-row_weekdays__weekday">
           <h3>Mon</h3>
         </div>
-        <div className="">
+        <div className="schedule-row_weekdays__weekday">
           <h3>Tue</h3>
         </div>
-        <div className="">
+        <div className="schedule-row_weekdays__weekday">
           <h3>Wed</h3>
         </div>
-        <div className="">
+        <div className="schedule-row_weekdays__weekday">
           <h3>Thu</h3>
         </div>
-        <div className="">
+        <div className="schedule-row_weekdays__weekday">
           <h3>Fri</h3>
         </div>
-        <div className="">
+        <div className="schedule-row_weekdays__weekday">
           <h3>Sat</h3>
         </div>
-        <div className="">
+        <div className="schedule-row_weekdays__weekday">
           <h3>Sun</h3>
         </div>
       </section>
