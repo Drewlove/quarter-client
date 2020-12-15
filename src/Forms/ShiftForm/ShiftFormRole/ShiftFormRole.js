@@ -14,7 +14,7 @@ function ShiftFormRole(props) {
   };
 
   return (
-    <section className={`input-section ${props.optionalClass}`}>
+    <section className="input-section input-section_role">
       <label className="input-section__label" htmlFor="role">
         Role
       </label>

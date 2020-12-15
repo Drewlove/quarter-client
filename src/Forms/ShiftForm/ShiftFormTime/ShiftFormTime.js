@@ -4,7 +4,7 @@ import Error from "../../CommonFormComponents/Error/Error";
 function ShiftFormTime(props) {
   return (
     <>
-      <section className="input-section input-section_shift">
+      <section className="input-section input-section_time">
         <label className="input-section__label" htmlFor="start-time">
           Start
         </label>

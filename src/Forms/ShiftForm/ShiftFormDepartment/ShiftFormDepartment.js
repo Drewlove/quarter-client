@@ -14,7 +14,7 @@ function ShiftFormDepartment(props) {
   };
 
   return (
-    <section className={`input-section_department`}>
+    <section className={`input-section input-section_department`}>
       <label className="input-section__label" htmlFor="department">
         Department
       </label>

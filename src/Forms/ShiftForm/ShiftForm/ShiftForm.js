@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { GetErrorMessage } from "./ShiftFormUtilities";
-import FormDeleteButton from "../CommonFormComponents/FormDeleteButton/FormDeleteButton";
-import FormSaveButton from "../CommonFormComponents/FormSaveButton/FormSaveButton";
-import ShiftFormDepartment from "./ShiftFormDepartment/ShiftFormDepartment";
-import ShiftFormRole from "./ShiftFormRole/ShiftFormRole";
-import ShiftFormTime from "./ShiftFormTime/ShiftFormTime";
-import ShiftFormPeople from "./ShiftFormPeople/ShiftFormPeople";
-import ShiftFormDays from "./ShiftFormDays/ShiftFormDays";
-import ShiftFormPay from "./ShiftFormPay/ShiftFormPay";
+import { GetErrorMessage } from "../ShiftFormUtilities";
+import FormDeleteButton from "../../CommonFormComponents/FormDeleteButton/FormDeleteButton";
+import FormSaveButton from "../../CommonFormComponents/FormSaveButton/FormSaveButton";
+import ShiftFormDepartment from "../ShiftFormDepartment/ShiftFormDepartment";
+import ShiftFormRole from "../ShiftFormRole/ShiftFormRole";
+import ShiftFormTime from "../ShiftFormTime/ShiftFormTime";
+import ShiftFormPeople from "../ShiftFormPeople/ShiftFormPeople";
+import ShiftFormDays from "../ShiftFormDays/ShiftFormDays";
+import ShiftFormPay from "../ShiftFormPay/ShiftFormPay";
 
 function ShiftForm() {
   const [input, setInput] = useState({
@@ -59,7 +59,6 @@ function ShiftForm() {
   };
 
   const handleChange = (e) => {
-    console.log(e.target.value);
     setInput({ ...input, [e.target.name]: e.target.value });
     validateInput(e);
   };

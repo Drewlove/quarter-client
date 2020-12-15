@@ -3,7 +3,7 @@ import Error from "../../CommonFormComponents/Error/Error";
 
 function ShiftFormPay(props) {
   return (
-    <section className="input-section input-section_shift">
+    <section className="input-section input-section_pay">
       <label className="input-section__label" htmlFor="pay">
         Pay
       </label>
