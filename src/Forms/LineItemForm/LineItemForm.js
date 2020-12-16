@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IsStringValidNum } from "../../Utilities/UtilityFunctions";
-import FormSelect from '../CommonFormComponents/FormSelect/FormSelect'
+import FormSelect from "../CommonFormComponents/FormSelect/FormSelect";
 import LineItemFormName from "./LineItemFormName/LineItemFormName";
 import LineItemFormAmount from "./LineItemFormAmount/LineItemFormAmount";
 import LineItemFormAmountType from "./LineItemFormAmountType/LineItemFormAmountType";
@@ -27,6 +27,8 @@ function LineItemForm() {
     amountType: false,
     percentOf: false,
   });
+
+  useEffect(() => {}, []);
 
   const handleChange = (e) => {
     validate(e);
@@ -107,22 +109,22 @@ function LineItemForm() {
   };
 
   const handleDelete = (e) => {
-    e.preventDefault(); 
-  }
+    e.preventDefault();
+  };
 
-  const options = ['sales', 'cogs', 'overhead']
+  const options = ["sales", "cogs", "overhead"];
 
   return (
     <main className="main">
       <form className="form">
         <fieldset className="fieldset_form">
-          <FormDeleteButton handleDelete={handleDelete}/>
+          <FormDeleteButton handleDelete={handleDelete} />
           <FormSelect
-          value={input.category}
-          error={error.category}
-          handleChange={handleChange}
-          options={options}
-          name='category'
+            value={input.category}
+            error={error.category}
+            handleChange={handleChange}
+            options={options}
+            name="category"
           />
           <LineItemFormName
             value={input.name}

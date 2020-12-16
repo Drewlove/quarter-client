@@ -47,56 +47,102 @@
   color: white;
   position: sticky;
   top: 0px;
-  height: 50px;
+  height: 40px;
 }
 
-.header__nav {
-  max-width: var(--page-max-width);
-  min-width: var(--page-min-width);
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.header__title {
-  text-decoration: underline;
-  font-size: 24px;
-  margin-top: 15px;
-  margin-left: 20px;
-  min-width: 100px;
-  white-space: nowrap;
-}
-
-.header__user-link-container {
-  margin-top: 10px;
+.header__link-container {
+  margin-top: 5px;
   margin-right: 10px;
   display: flex;
 }
 
-.header__user-link {
+.header__link-container_new-menu {
+  flex-direction: column;
+  width: 150px;
+}
+
+.header__link {
   color: white;
   text-decoration: none;
   font-size: 16px;
   border: 1px solid white;
   padding: 5px;
   border-radius: 2px;
-  margin-left: 25px;
+  margin-left: 15px;
   white-space: nowrap;
 }
 
-.header__user-link:hover {
+.header__link:hover {
   cursor: pointer;
 }
 
-.header__user-link_sign-in {
+.header__link_sign-in {
   background-color: white;
   color: black;
 }
 
-.header__user-link_sign-out {
+.header__link_sign-out {
   background-color: black;
   color: white;
+}
+
+.header__nav {
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header__new-menu {
+  border: 1px solid black;
+  height: 50px;
+  background-color: black;
+  box-shadow: 5px 5px 1px darkgrey;
+  margin-top: 5px;
+}
+
+.header__new-menu-button {
+  width: 75px;
+  display: flex;
+  justify-content: center;
+  font-size: 18px;
+  margin-right: 10px;
+  background-color: white;
+  color: black;
+  margin-left: auto;
+}
+
+.header__new-menu-button:focus {
+}
+
+.header__new-menu-button:hover {
+  color: white;
+  background-color: black;
+}
+
+.header__new-menu-link {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 2px;
+}
+
+.header__new-menu-link:hover {
+  text-decoration: underline;
+}
+
+.header__section_menu {
+  display: flex;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.header__title {
+  text-decoration: underline;
+  font-size: 24px;
+  margin-left: 20px;
+  white-space: nowrap;
+  margin-top: 5px;
 }
 
 .home-page {
