@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
@@ -13,6 +13,23 @@ function Header() {
     const menuDisplayStatus = menu.display;
     setMenuDisplay({ display: !menuDisplayStatus });
   };
+
+  const useOutsideAlerter = (ref) => {
+    useEffect(() => {
+      function handleClickOutside(event) {
+        if (ref.current && !ref.current.contains(event.target)) {
+          setMenuDisplay({ display: false });
+        }
+      }
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [ref]);
+  };
+
+  const wrapperRef = useRef(null);
+  useOutsideAlerter(wrapperRef);
 
   const renderRegisterSignIn = () => {
     return (
@@ -31,9 +48,9 @@ function Header() {
     return (
       <section className="header__link-container header__link-container_new-menu">
         <button
-          // header__new-menu-button
           className="header__new-menu-button header__link"
           onClick={() => toggleMenuDisplay()}
+          ref={wrapperRef}
         >
           +
         </button>

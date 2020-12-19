@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { GetErrorMessage } from "../ShiftFormUtilities";
+import { GetErrorMessage } from "../ShiftFormErrors";
 import FormDeleteButton from "../../CommonFormComponents/FormDeleteButton/FormDeleteButton";
 import FormSaveButton from "../../CommonFormComponents/FormSaveButton/FormSaveButton";
 import ShiftFormDepartment from "../ShiftFormDepartment/ShiftFormDepartment";

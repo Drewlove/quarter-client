@@ -1,7 +1,6 @@
 import React from "react";
-import Error from '../../Error/Error'
-import {CapitalizeAllWords} from '../../../Utilities/UtilityFunctions'
-
+import Error from "../../CommonFormComponents/Error/Error";
+import { CapitalizeAllWords } from "../../../Utilities/UtilityFunctions";
 
 function LineItemFormCategory(props) {
   const expenseCategories = ["sales", "cogs", "overhead"];
@@ -36,7 +35,7 @@ function LineItemFormCategory(props) {
           </option>
           {renderCategories(expenseCategories)}
         </select>
-        {props.error ? <Error message="Select a category" /> : null}
+        {props.error ? <Error message={props.error} /> : null}
       </div>
     </section>
   );

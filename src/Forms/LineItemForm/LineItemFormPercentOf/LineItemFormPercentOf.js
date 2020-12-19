@@ -1,6 +1,6 @@
 import React from "react";
 import { CapitalizeAllWords } from "../../../Utilities/UtilityFunctions";
-import Error from "../../Error/Error";
+import Error from "../../CommonFormComponents/Error/Error";
 
 function LineItemFormPercentOf(props) {
   const salesCategories = ["food", "beverage", "other"];
@@ -23,7 +23,8 @@ function LineItemFormPercentOf(props) {
       <div className="input-section__input-container">
         <select
           className={`input-section__input ${
-            props.error ? "input-section__error" : ""}`}
+            props.error ? "input-section__error" : ""
+          }`}
           id="percentOf"
           onChange={(e) => props.onChange(e)}
           name="percentOf"
@@ -34,7 +35,7 @@ function LineItemFormPercentOf(props) {
           </option>
           {renderCategories(salesCategories)}
         </select>
-        {props.error ? <Error message="Select a line item" /> : null}
+        {props.error ? <Error message={props.error} /> : null}
       </div>
     </section>
   );

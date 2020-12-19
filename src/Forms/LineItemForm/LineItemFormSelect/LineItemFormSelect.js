@@ -1,8 +1,8 @@
 import React from "react";
-import Error from '../../Error/Error'
-import {CapitalizeAllWords} from '../../../Utilities/UtilityFunctions'
+import Error from "../../CommonFormComponents/Error/Error";
+import { CapitalizeAllWords } from "../../../Utilities/UtilityFunctions";
 
-function FormSelect(props) {
+function LineItemFormSelect(props) {
   const renderOptions = (options) => {
     return options.map((option) => {
       return (
@@ -33,10 +33,10 @@ function FormSelect(props) {
           </option>
           {props.options ? renderOptions(props.options) : null}
         </select>
-        {props.error ? <Error message={`Select a ${props.name}`} /> : null}
+        {props.error ? <Error message={props.error} /> : null}
       </div>
     </section>
   );
 }
 
-export default FormSelect;
+export default LineItemFormSelect;

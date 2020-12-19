@@ -1,5 +1,5 @@
 import React from "react";
-import Error from "../../Error/Error";
+import Error from "../../CommonFormComponents/Error/Error";
 
 function LineItemFormAmountType(props) {
   return (
