@@ -8,10 +8,10 @@ export const CapitalizeAllWords = (str) => {
   return newArr.join(" ");
 };
 
-export const Hyphenate = (str) => {
-  let strArr = str.split(" ");
-  return strArr.join("-");
-};
+// export const Hyphenate = (str) => {
+//   let strArr = str.split(" ");
+//   return strArr.join("-");
+// };
 
 export const IsStringValidNum = (str) => {
   let validStatus = true;

@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 import {
   ConvertNumToTimeStr,
   CapitalizeAllWords,
@@ -13,18 +13,26 @@ function CellShift(props) {
   };
 
   const renderNumPeople = () => {
-    let text = ""; 
-    props.shift.people === 1 ? text = "1X" : text = `${props.shift.people}X` 
-    return text; 
-  }
+    return `${props.shift.people}X`;
+  };
+
+  const getUrl = () => {
+    let id = props.shift.id;
+    let url = `/form/schedule/${id}`;
+    return url;
+  };
 
   return (
-    <Link to="/schedule/form" className="schedule-row__cell schedule-row__cell_shift">
+    <Link to={getUrl()} className="schedule-row__cell schedule-row__cell_shift">
       <p className="schedule-text_shift schedule-text_shift-role">
         <b>{CapitalizeAllWords(props.shift.role)}</b>
       </p>
-  <p className="schedule-text_shift schedule-text_shift-people">{renderNumPeople()}</p>
-      <p className="schedule-text_shift schedule-text_shift-hours">{getShiftSchedule()}</p>
+      <p className="schedule-text_shift schedule-text_shift-people">
+        {renderNumPeople()}
+      </p>
+      <p className="schedule-text_shift schedule-text_shift-hours">
+        {getShiftSchedule()}
+      </p>
     </Link>
   );
 }

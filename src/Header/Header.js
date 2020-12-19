@@ -46,11 +46,13 @@ function Header() {
 
   const renderNewMenuButton = () => {
     return (
-      <section className="header__link-container header__link-container_new-menu">
+      <section
+        className="header__link-container header__link-container_new-menu"
+        ref={wrapperRef}
+      >
         <button
           className="header__new-menu-button header__link"
           onClick={() => toggleMenuDisplay()}
-          ref={wrapperRef}
         >
           +
         </button>
@@ -63,7 +65,7 @@ function Header() {
     return (
       <div className="header__new-menu">
         <Link
-          to="/form/new"
+          to="/form/line-item/new"
           className="header__new-menu-link"
           onClick={() => toggleMenuDisplay()}
         >
@@ -94,15 +96,3 @@ function Header() {
 }
 
 export default Header;
-
-// <header className="header">
-// <nav className="header__nav">
-//   <section className="header__section header__section_banner">
-//     <div className="header__title">The Quarter</div>
-//     <div className="header__link-container">
-//       {pathname === "/" ? renderRegisterSignIn() : renderNewButton()}
-//     </div>
-//   </section>
-//   {/* {pathname === "/" ? null : renderNewItemMenu()} */}
-// </nav>
-// </header>
