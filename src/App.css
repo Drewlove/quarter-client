@@ -95,7 +95,6 @@
 
 .header__new-menu {
   border: 1px solid black;
-  height: 50px;
   background-color: black;
   box-shadow: 5px 5px 1px darkgrey;
   margin-top: 5px;
@@ -143,6 +142,7 @@
   margin-left: 20px;
   white-space: nowrap;
   margin-top: 5px;
+  color: white;
 }
 
 .home-page {

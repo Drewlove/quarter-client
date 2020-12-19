@@ -1,95 +1,18 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import React from "react";
+import { Link, useLocation } from "react-router-dom";
+import MenuSignedOut from "./MenuSignedOut";
+import MenuSignedIn from "./MenuSignedIn";
 
 function Header() {
   const { pathname } = useLocation();
 
-  const [menu, setMenuDisplay] = useState({
-    display: false,
-  });
-
-  const toggleMenuDisplay = () => {
-    const menuDisplayStatus = menu.display;
-    setMenuDisplay({ display: !menuDisplayStatus });
-  };
-
-  const useOutsideAlerter = (ref) => {
-    useEffect(() => {
-      function handleClickOutside(event) {
-        if (ref.current && !ref.current.contains(event.target)) {
-          setMenuDisplay({ display: false });
-        }
-      }
-      document.addEventListener("mousedown", handleClickOutside);
-      return () => {
-        document.removeEventListener("mousedown", handleClickOutside);
-      };
-    }, [ref]);
-  };
-
-  const wrapperRef = useRef(null);
-  useOutsideAlerter(wrapperRef);
-
-  const renderRegisterSignIn = () => {
-    return (
-      <>
-        <Link className="header__link header__link_register" href="/register">
-          Register
-        </Link>
-        <Link className="header__link header__link_sign-in" href="/sign-in">
-          Sign In
-        </Link>
-      </>
-    );
-  };
-
-  const renderNewMenuButton = () => {
-    return (
-      <section
-        className="header__link-container header__link-container_new-menu"
-        ref={wrapperRef}
-      >
-        <button
-          className="header__new-menu-button header__link"
-          onClick={() => toggleMenuDisplay()}
-        >
-          +
-        </button>
-        {menu.display ? renderNewMenu() : null}
-      </section>
-    );
-  };
-
-  const renderNewMenu = () => {
-    return (
-      <div className="header__new-menu">
-        <Link
-          to="/form/line-item/new"
-          className="header__new-menu-link"
-          onClick={() => toggleMenuDisplay()}
-        >
-          New Line Item
-        </Link>
-        <Link
-          to="/schedule/form"
-          className="header__new-menu-link"
-          onClick={() => toggleMenuDisplay()}
-        >
-          New Shift
-        </Link>
-      </div>
-    );
-  };
-
   return (
     <header className="header">
       <nav className="header__nav">
-        <div className="header__title">The Quarter</div>
-        <section className="header__link-container">
-          {pathname === "/" ? renderRegisterSignIn() : null}
-        </section>
-        {pathname === "/" ? null : renderNewMenuButton()}
+        <Link className="header__title" to="/p&l">
+          The Quarter
+        </Link>
+        {pathname === "/" ? <MenuSignedOut /> : <MenuSignedIn />}
       </nav>
     </header>
   );
