@@ -5,7 +5,7 @@ import { mount } from "enzyme";
 describe("ShiftFormRole", () => {
   it("renders", () => {
     const wrapper = mount(<ShiftFormRole error="" />);
-    expect(wrapper.find(".input-section_shift").toHaveLength(1));
+    expect(wrapper.find(".input-section_role")).toHaveLength(1);
   });
   it("renders error message if there is an error", () => {
     const wrapper = mount(<ShiftFormRole error="Error message" />);

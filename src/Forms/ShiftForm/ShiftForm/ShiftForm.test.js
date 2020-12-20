@@ -89,7 +89,7 @@ describe("ShiftForm --> ShiftFormRole", () => {
 
 describe("ShiftForm --> ShiftFormPay", () => {
   it("renders ShiftFormTime", () => {
-    expect(wrapper.find(".input-section_time")).toHaveLength(1);
+    expect(wrapper.find(".input-section_time")).toHaveLength(2);
   });
   it("reflects user input for ShiftFormTime, start time", () => {
     const event = { target: { name: "startTime", value: "13:30" } };

@@ -1,8 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
-import HeaderLink from "./HeaderLink";
+import { Link, useLocation } from "react-router-dom";
+import MenuSignedOut from "../MenuSignedOut/MenuSignedOut";
+import MenuSignedIn from "../MenuSignedIn/MenuSignedIn";
+import HeaderLink from "../HeaderLink/HeaderLink";
 
-function MenuSignedOut() {
+function Header() {
+  const { pathname } = useLocation();
+
   const [menu, setMenuDisplay] = useState({
     display: false,
   });
@@ -29,58 +33,61 @@ function MenuSignedOut() {
     setMenuDisplay({ display: !menuDisplayStatus });
   };
 
-  const renderNewMenuButton = () => {
+  const renderMenuButton = () => {
     return (
-      <section className="header__link-container_new-menu">
+      <section className="header__link-container" ref={wrapperRef}>
         <button
           className="header__new-menu-button header__link"
           onClick={() => toggleMenuDisplay()}
         >
-          +
+          MENU
         </button>
-        {menu.display ? renderNewMenu() : null}
+        {menu.display ? renderMenu() : null}
       </section>
     );
   };
 
-  const renderNewMenu = () => {
+  const renderMenu = () => {
     return (
       <div className="header__new-menu">
         <HeaderLink
-          url="/form/line-item/new"
+          url="/p&l"
           toggleMenuDisplay={() => toggleMenuDisplay()}
-          text="New Line Item"
+          text="Home"
         />
         <HeaderLink
-          url="/form/schedule/new"
+          url="/department"
           toggleMenuDisplay={() => toggleMenuDisplay()}
-          text="New Shift"
+          text="Departments"
         />
         <HeaderLink
-          url="/form/department/new"
+          url="/role"
           toggleMenuDisplay={() => toggleMenuDisplay()}
-          text="New Department"
-        />
-        <HeaderLink
-          url="/form/role/new"
-          toggleMenuDisplay={() => toggleMenuDisplay()}
-          text="New Role"
+          text="Roles"
         />
       </div>
     );
   };
 
   return (
-    <section className="header__link-container" ref={wrapperRef}>
-      <Link className="header__link" to="/department">
-        Departments
-      </Link>
-      <Link className="header__link" to="/role">
-        Roles
-      </Link>
-      {renderNewMenuButton()}
-    </section>
+    <header className="header">
+      <nav className="header__nav">
+        {pathname === "/" ? <MenuSignedOut /> : <MenuSignedIn />}
+      </nav>
+    </header>
   );
 }
 
-export default MenuSignedOut;
+export default Header;
+
+{
+  /* <header className="header">
+<nav className="header__nav">
+  <h1>The Quarter</h1>
+  <Link className="header__title" to="/p&l">
+    The Quarter
+  </Link>
+  {pathname === "/" ? <MenuSignedOut /> : <MenuSignedIn />}
+</nav>
+</header> */
+}

@@ -5,7 +5,7 @@ import { mount } from "enzyme";
 describe("ShiftFormTime", () => {
   it("renders", () => {
     const wrapper = mount(<ShiftFormTime />);
-    expect(wrapper.find(".input-section_shift")).toHaveLength(2);
+    expect(wrapper.find(".input-section_time")).toHaveLength(2);
   });
   it("renders error message for 'start time' if there is an error", () => {
     const wrapper = mount(<ShiftFormTime errorStart="Error message" />);

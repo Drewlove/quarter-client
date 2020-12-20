@@ -10,7 +10,7 @@ describe("ShiftFormPeople", () => {
 
   it("renders", () => {
     const wrapper = mount(<ShiftFormPeople error="" />);
-    expect(wrapper.find(".input-section_shift")).toHaveLength(1);
+    expect(wrapper.find(".input-section_people")).toHaveLength(1);
   });
   it("renders error message if there is an error", () => {
     const wrapper = mount(<ShiftFormPeople error="Error message" />);

@@ -22,7 +22,7 @@ function ShiftFormTime(props) {
           {props.errorStart ? <Error message={props.errorStart} /> : null}
         </div>
       </section>
-      <section className="input-section input-section_shift">
+      <section className="input-section input-section_time">
         <label className="input-section__label" htmlFor="end-time">
           End
         </label>

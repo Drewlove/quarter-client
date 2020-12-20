@@ -4,7 +4,6 @@ import { CapitalizeAllWords } from "../../Utilities/UtilityFunctions";
 
 function Department(props) {
   const renderSchedule = () => {
-    console.log(props.schedule);
     return Object.keys(props.schedule.roles).map((key) => {
       return (
         <RowRole key={key} rowName={key} row={props.schedule.roles[key]} />

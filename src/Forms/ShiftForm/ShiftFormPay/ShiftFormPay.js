@@ -12,7 +12,7 @@ function ShiftFormPay(props) {
           className={`input-section__input ${
             props.error ? "input-section__error" : ""
           }`}
-          type="number"
+          type="text"
           id="pay"
           placeholder="Hourly Pay Rate"
           name="pay"

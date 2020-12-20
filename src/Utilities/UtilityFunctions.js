@@ -8,24 +8,13 @@ export const CapitalizeAllWords = (str) => {
   return newArr.join(" ");
 };
 
-// export const Hyphenate = (str) => {
-//   let strArr = str.split(" ");
-//   return strArr.join("-");
-// };
-
-export const IsStringValidNum = (str) => {
-  let validStatus = true;
-  if (str.length === 0) return (validStatus = false);
-  if (!isStringNumeric(str)) return (validStatus = false);
-  if (!isStringSingleDecimal(str)) return (validStatus = false);
-  return validStatus;
+export const FormatNumToDollars = (value) => {
+  let numNoCommas = value.replace(/,/g, "");
+  return Number(numNoCommas).toLocaleString(undefined, {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
 };
-
-function isStringNumeric(str) {
-  const isStringNumeric = /^[0-9,.]*$/.test(str); //checks if str only has: numbers . ,
-  if (isStringNumeric) return true;
-  if (!isStringNumeric) return false;
-}
 
 function isStringSingleDecimal(str) {
   let decimalsInString = 0;

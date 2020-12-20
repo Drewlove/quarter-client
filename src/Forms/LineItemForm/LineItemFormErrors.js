@@ -1,5 +1,4 @@
 export const GetErrorMessage = (name, value) => {
-  console.log(name, value);
   switch (name) {
     case "category":
       return getErrorMessageCategory(value);
@@ -31,7 +30,7 @@ const getErrorMessageName = (value) => {
 };
 
 const getErrorMessageAmount = (value) => {
-  if (value.length === 0) {
+  if (value.length === 0 || value < 0) {
     return "Enter a valid pay rate.";
   } else if (value.indexOf(".") >= 0 && value.split(".")[1].length > 2) {
     return "Enter number with max of two digits to right of decimal point.";

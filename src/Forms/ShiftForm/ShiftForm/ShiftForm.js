@@ -8,6 +8,7 @@ import ShiftFormTime from "../ShiftFormTime/ShiftFormTime";
 import ShiftFormPeople from "../ShiftFormPeople/ShiftFormPeople";
 import ShiftFormDays from "../ShiftFormDays/ShiftFormDays";
 import ShiftFormPay from "../ShiftFormPay/ShiftFormPay";
+import { FormatNumToDollars } from "../../../Utilities/UtilityFunctions";
 
 function ShiftForm() {
   const [input, setInput] = useState({
@@ -74,7 +75,11 @@ function ShiftForm() {
   }, [input.department]);
 
   const handleBlur = (e) => {
-    validateInput(e);
+    e.target.name === "pay" ? handleBlurPay(e) : validateInput(e);
+  };
+
+  const handleBlurPay = (e) => {
+    setInput({ ...input, pay: FormatNumToDollars(e.target.value) });
   };
 
   const validateInput = (e) => {

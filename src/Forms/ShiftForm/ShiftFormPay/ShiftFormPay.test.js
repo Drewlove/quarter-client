@@ -5,7 +5,7 @@ import { mount } from "enzyme";
 describe("ShiftFormPay", () => {
   it("renders", () => {
     const wrapper = mount(<ShiftFormPay error="" />);
-    expect(wrapper.find(".input-section_shift").toHaveLength(1));
+    expect(wrapper.find(".input-section_pay")).toHaveLength(1);
   });
   it("renders error message if there is an error", () => {
     const wrapper = mount(<ShiftFormPay error="Error message" />);

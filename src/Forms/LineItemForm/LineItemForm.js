@@ -7,6 +7,7 @@ import LineItemFormPercentOf from "./LineItemFormPercentOf/LineItemFormPercentOf
 import LineItemFormSaveButton from "../CommonFormComponents/FormSaveButton/FormSaveButton";
 import FormDeleteButton from "../CommonFormComponents/FormDeleteButton/FormDeleteButton";
 import { GetErrorMessage } from "./LineItemFormErrors";
+import { FormatNumToDollars } from "../../Utilities/UtilityFunctions";
 //Below is resource for fetching data and working with state and hooks
 //https://www.carlrippon.com/drop-down-data-binding-with-react-hooks/
 //This one too, using useEffect, https://daveceddia.com/useeffect-hook-examples/#prevent-useeffect-from-running-every-render
@@ -39,7 +40,11 @@ function LineItemForm() {
   };
 
   const handleBlur = (e) => {
-    validate(e);
+    e.target.name === "amount" ? handleBlurAmount(e) : validate(e);
+  };
+
+  const handleBlurAmount = (e) => {
+    setInput({ ...input, amount: FormatNumToDollars(e.target.value) });
   };
 
   const validate = (e) => {

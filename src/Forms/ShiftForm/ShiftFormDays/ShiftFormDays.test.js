@@ -25,7 +25,7 @@ describe("ShiftFormDays", () => {
         handleChangeDay={(e) => handleChangeDay(e)}
       />
     );
-    expect(wrapper.find(".input-section_shift")).toHaveLength(1);
+    expect(wrapper.find(".input-section_days")).toHaveLength(1);
   });
 
   it("renders error message if there is an error", () => {

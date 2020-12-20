@@ -1,5 +1,4 @@
 import React from "react";
-// import Error from "../../Error/Error";
 import Error from "../../CommonFormComponents/Error/Error";
 
 function LineItemFormAmount(props) {
@@ -19,7 +18,11 @@ function LineItemFormAmount(props) {
           }`}
           type="text"
           id="amount"
-          placeholder="Dollar Amount"
+          placeholder={
+            props.amountType === "dollars"
+              ? "Dollar Amount"
+              : "Percentage Amount"
+          }
           name="amount"
           value={props.value}
           onChange={props.handleChange}

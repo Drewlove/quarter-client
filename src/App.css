@@ -47,21 +47,82 @@
   color: white;
   position: sticky;
   top: 0px;
-  height: 40px;
+  height: 55px;
+}
+
+.header__button-container {
+  margin-top: 5px;
+}
+
+.header__menu-button_hamburger {
+  width: 50px;
+  height: 45px;
+  background-color: black;
+  transform: rotate(0deg);
+  transition: 0.1s ease-in-out;
+  cursor: pointer;
+  border: none;
+}
+
+.header__menu-button_hamburger span {
+  display: block;
+  position: absolute;
+  height: 4px;
+  width: 100%;
+  background: white;
+  left: 0;
+  transform: rotate(0deg);
+  transition: 0.1s ease-in-out;
+}
+
+.header__menu-button_hamburger span:nth-child(1) {
+  top: 0px;
+  transform-origin: left center;
+}
+
+.header__menu-button_hamburger span:nth-child(2) {
+  top: 12px;
+  transform-origin: left center;
+}
+
+.header__menu-button_hamburger span:nth-child(3) {
+  top: 24px;
+  transform-origin: left center;
+}
+
+.header__menu-button_hamburger.open span:nth-child(1) {
+  transform: rotate(45deg);
+  left: 8px;
+}
+
+.header__menu-button_hamburger.open span:nth-child(2) {
+  width: 0%;
+  opacity: 0;
+}
+
+.header__menu-button_hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg);
+  top: 35px;
+  left: 8px;
 }
 
 .header__link-container {
-  margin-top: 5px;
-  margin-right: 10px;
+  margin: 10px;
   display: flex;
+  flex-direction: column;
 }
 
-.header__link-container_new-menu {
-  flex-direction: column;
-  width: 150px;
+.header__link-container_signed-out {
+  flex-direction: row;
+  margin-left: auto;
+}
+
+.header__link-container_right {
+  margin-left: auto;
 }
 
 .header__link {
+  height: 30px;
   color: white;
   text-decoration: none;
   font-size: 16px;
@@ -93,14 +154,16 @@
   justify-content: space-between;
 }
 
-.header__new-menu {
-  border: 1px solid black;
+.header__menu-button {
   background-color: black;
-  box-shadow: 5px 5px 1px darkgrey;
-  margin-top: 5px;
+  border: none;
 }
 
-.header__new-menu-button {
+.header__menu-button:hover {
+  cursor: pointer;
+}
+
+.header__menu-button_new {
   width: 75px;
   display: flex;
   justify-content: center;
@@ -109,6 +172,20 @@
   background-color: white;
   color: black;
   margin-left: auto;
+}
+
+.header__menu-button_main {
+}
+
+.header__menu-button_right {
+  margin-left: auto;
+}
+
+.header__menu_drop-down {
+  border: 1px solid black;
+  background-color: black;
+  box-shadow: 5px 5px 1px darkgrey;
+  margin-top: 5px;
 }
 
 .header__new-menu-button:focus {
