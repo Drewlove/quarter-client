@@ -35,23 +35,29 @@ function MenuSignedInMain() {
           url="/p&l"
           toggleMenuDisplay={() => toggleMenuDisplay()}
           text="Home"
+          className="header__link_dropdown"
         />
         <HeaderLink
           url="/department"
           toggleMenuDisplay={() => toggleMenuDisplay()}
           text="Departments"
+          className="header__link_dropdown"
         />
         <HeaderLink
           url="/role"
           toggleMenuDisplay={() => toggleMenuDisplay()}
           text="Roles"
+          className="header__link_dropdown"
         />
       </div>
     );
   };
 
   return (
-    <div className="header__button-container" ref={wrapperRef}>
+    <div
+      className="header__button-container header__button-container_hamburger"
+      ref={wrapperRef}
+    >
       <button
         className={`header__menu-button header__menu-button_hamburger ${
           menu.display === true ? "open" : ""

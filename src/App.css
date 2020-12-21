@@ -51,7 +51,11 @@
 }
 
 .header__button-container {
-  margin-top: 5px;
+  margin-top: 10px;
+}
+
+.header__button-container_new-button {
+  margin-left: auto;
 }
 
 .header__menu-button_hamburger {
@@ -121,7 +125,20 @@
   margin-left: auto;
 }
 
+.header__link-container_row {
+  flex-direction: row;
+  display: none;
+}
+
 .header__link {
+  color: white;
+}
+
+.header__link:hover {
+  cursor: pointer;
+}
+
+.header__link_row {
   height: 30px;
   color: white;
   text-decoration: none;
@@ -133,18 +150,14 @@
   white-space: nowrap;
 }
 
-.header__link:hover {
-  cursor: pointer;
+.header__link_dropdown {
+  display: block;
+  text-decoration: none;
+  padding: 2px;
 }
 
-.header__link_sign-in {
-  background-color: white;
-  color: black;
-}
-
-.header__link_sign-out {
-  background-color: black;
-  color: white;
+.header__link_dropdown:hover {
+  text-decoration: underline;
 }
 
 .header__nav {
@@ -164,14 +177,17 @@
 }
 
 .header__menu-button_new {
-  width: 75px;
+  width: 40px;
+  height: 40px;
+  font-size: 36px;
+  margin-right: 10px;
+  border-radius: 50%;
+  margin-left: auto;
   display: flex;
   justify-content: center;
-  font-size: 18px;
-  margin-right: 10px;
+  align-items: center;
   background-color: white;
   color: black;
-  margin-left: auto;
 }
 
 .header__menu-button_main {
@@ -194,17 +210,6 @@
 .header__new-menu-button:hover {
   color: white;
   background-color: black;
-}
-
-.header__new-menu-link {
-  display: block;
-  color: white;
-  text-decoration: none;
-  padding: 2px;
-}
-
-.header__new-menu-link:hover {
-  text-decoration: underline;
 }
 
 .header__section_menu {
@@ -451,10 +456,8 @@
 }
 
 @media only screen and (min-width: 600px) {
-  .input-section {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    max-width: 500px;
+  .header__link-container_row {
+    display: flex;
   }
 
   .home-page__hero-image {
@@ -463,5 +466,14 @@
   .home-page__promo-image {
     height: 250px;
     width: 300px;
+  }
+
+  .header__button-container_hamburger {
+    display: none;
+  }
+  .input-section {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    max-width: 500px;
   }
 }

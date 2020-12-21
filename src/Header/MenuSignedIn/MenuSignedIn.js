@@ -1,11 +1,13 @@
 import React from "react";
-import MenuSignedInMain from "../MenuSignedInMain/MenuSignedInMain";
+import MenuSignedInMainRow from "../MenuSignedInMainRow/MenuSignedInMainRow";
+import MenuSignedInMainHamburger from "../MenuSignedInMainHamburger/MenuSignedInMainHamburger";
 import MenuSignedInNewItem from "../MenuSignedInNewItem/MenuSignedInNewItem";
 
 function MenuSignedIn() {
   return (
     <>
-      <MenuSignedInMain />
+      <MenuSignedInMainRow />
+      <MenuSignedInMainHamburger />
       <MenuSignedInNewItem />
     </>
   );

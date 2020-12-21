@@ -29,23 +29,6 @@ function MenuSignedInNewItem() {
     setDisplayMenuNewItem({ display: !menuDisplayStatus });
   };
 
-  // const renderNewMenuButton = () => {
-  //   return (
-  //     <div
-  //       className="header__link-container header__link-container_signed-in"
-  //       ref={wrapperRef}
-  //     >
-  //       <button
-  //         className="header__menu-button header__menu-button_right header__link"
-  //         onClick={() => toggleMenuDisplay()}
-  //       >
-  //         +
-  //       </button>
-  //       {menuNewItem.display ? renderNewMenu() : null}
-  //     </div>
-  //   );
-  // };
-
   const renderNewMenu = () => {
     return (
       <div className="header__menu_drop-down">
@@ -53,21 +36,25 @@ function MenuSignedInNewItem() {
           url="/form/line-item/new"
           toggleMenuDisplay={() => toggleMenuDisplay()}
           text="New Line Item"
+          className="header__link_dropdown"
         />
         <HeaderLink
           url="/form/schedule/new"
           toggleMenuDisplay={() => toggleMenuDisplay()}
           text="New Shift"
+          className="header__link_dropdown"
         />
         <HeaderLink
           url="/form/department/new"
           toggleMenuDisplay={() => toggleMenuDisplay()}
           text="New Department"
+          className="header__link_dropdown"
         />
         <HeaderLink
           url="/form/role/new"
           toggleMenuDisplay={() => toggleMenuDisplay()}
           text="New Role"
+          className="header__link_dropdown"
         />
       </div>
     );
@@ -75,8 +62,7 @@ function MenuSignedInNewItem() {
 
   return (
     <div
-      className="header__button-container"
-      // className="header__link-container header__link-container_signed-in"
+      className="header__button-container header__button-container_new-button"
       ref={wrapperRef}
     >
       <button

@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Header from "./Header/Header/Header";
-import ShiftForm from "./Forms/ShiftForm/ShiftForm/ShiftForm";
 import LaborSchedule from "./LaborSchedule/LaborSchedule/LaborSchedule";
 import FormsRouter from "./Forms/FormsRouter";
 import ProfitLossPage from "./ProfitLossPage/ProfitLossPage/ProfitLossPage";
@@ -14,9 +13,6 @@ function App() {
       <Header />
       <div className="App">
         <Switch>
-          <Route path="/schedule/form">
-            <ShiftForm />
-          </Route>
           <Route path="/schedule">
             <LaborSchedule />
           </Route>
