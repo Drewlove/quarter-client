@@ -38,15 +38,21 @@ function MenuSignedInMain() {
           className="header__link_dropdown"
         />
         <HeaderLink
-          url="/department"
+          url="/departments"
           toggleMenuDisplay={() => toggleMenuDisplay()}
           text="Departments"
           className="header__link_dropdown"
         />
         <HeaderLink
-          url="/role"
+          url="/roles"
           toggleMenuDisplay={() => toggleMenuDisplay()}
           text="Roles"
+          className="header__link_dropdown"
+        />
+        <HeaderLink
+          url="/schedule"
+          toggleMenuDisplay={() => toggleMenuDisplay()}
+          text="Schedule"
           className="header__link_dropdown"
         />
       </div>

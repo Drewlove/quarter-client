@@ -29,11 +29,9 @@ function Category(props) {
   };
 
   return (
-    <fieldset className="pl-fieldset">
-      <legend className="pl-legend">
-        <h2 className="pl-fieldset__header">
-          {CapitalizeAllWords(props.name)}
-        </h2>
+    <fieldset className="fieldset">
+      <legend className="fieldset__legend">
+        <h2 className="fieldset__header">{CapitalizeAllWords(props.name)}</h2>
       </legend>
       {renderLineItems(props.lineItems)}
       <CategoryTotal

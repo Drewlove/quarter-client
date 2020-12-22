@@ -44,7 +44,9 @@ function LineItemForm() {
   };
 
   const handleBlurAmount = (e) => {
-    setInput({ ...input, amount: FormatNumToDollars(e.target.value) });
+    return e.target.value > 0
+      ? setInput({ ...input, amount: FormatNumToDollars(e.target.value) })
+      : null;
   };
 
   const validate = (e) => {

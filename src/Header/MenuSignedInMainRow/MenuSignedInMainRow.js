@@ -11,15 +11,21 @@ function MenuSignedInMainRow() {
         className="header__link_row"
       />
       <HeaderLink
-        url="/department"
+        url="/departments"
         toggleMenuDisplay={() => null}
         text="Departments"
         className="header__link_row"
       />
       <HeaderLink
-        url="/role"
+        url="/roles"
         toggleMenuDisplay={() => null}
         text="Roles"
+        className="header__link_row"
+      />
+      <HeaderLink
+        url="/schedule"
+        toggleMenuDisplay={() => null}
+        text="Schedule"
         className="header__link_row"
       />
     </div>
