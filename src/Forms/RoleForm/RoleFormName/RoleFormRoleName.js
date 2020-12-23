@@ -1,11 +1,11 @@
 import React from "react";
 import Error from "../../CommonFormComponents/FormError/FormError";
 
-function LineItemFormName(props) {
+function RoleForm(props) {
   return (
-    <section className="input-section input-section_name">
+    <section className="input-section input-section_role-name">
       <label className="input-section__label" htmlFor="line-item">
-        Name
+        Role
       </label>
       <div className="input-section__input-container">
         <input
@@ -13,12 +13,12 @@ function LineItemFormName(props) {
             props.error ? "input-section__error" : ""
           }`}
           type="text"
-          id="name"
-          placeholder="Line Item Name"
-          name="name"
+          id="role"
+          placeholder="Role"
+          name="role"
           onChange={props.handleChange}
           onBlur={props.handleBlur}
-          value={props.value}
+          value={props.role}
         />
         {props.error ? <Error message={props.error} /> : null}
       </div>
@@ -26,4 +26,4 @@ function LineItemFormName(props) {
   );
 }
 
-export default LineItemFormName;
+export default RoleForm;

@@ -1,5 +1,5 @@
 import React from "react";
-import Error from "../../CommonFormComponents/Error/Error";
+import Error from "../../CommonFormComponents/FormError/FormError";
 
 function LineItemFormAmount(props) {
   const getAmountSign = () => {
@@ -7,7 +7,7 @@ function LineItemFormAmount(props) {
   };
 
   return (
-    <section className="input-section">
+    <section className="input-section input-section_amount">
       <label className="input-section__label" htmlFor="amount">
         Amount {getAmountSign()}{" "}
       </label>

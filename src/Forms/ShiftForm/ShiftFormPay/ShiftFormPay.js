@@ -1,5 +1,5 @@
 import React from "react";
-import Error from "../../CommonFormComponents/Error/Error";
+import FormError from "../../CommonFormComponents/FormError/FormError";
 
 function ShiftFormPay(props) {
   return (
@@ -20,7 +20,7 @@ function ShiftFormPay(props) {
           onChange={props.handleChange}
           onBlur={props.handleBlur}
         />
-        {props.error ? <Error message={props.error} /> : null}
+        {props.error ? <FormError message={props.error} /> : null}
       </div>
     </section>
   );

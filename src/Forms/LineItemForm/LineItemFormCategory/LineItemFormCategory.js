@@ -1,5 +1,5 @@
 import React from "react";
-import Error from "../../CommonFormComponents/Error/Error";
+import Error from "../../CommonFormComponents/FormError/FormError";
 import { CapitalizeAllWords } from "../../../Utilities/UtilityFunctions";
 
 function LineItemFormCategory(props) {
@@ -16,7 +16,7 @@ function LineItemFormCategory(props) {
   };
 
   return (
-    <section className="input-section">
+    <section className="input-section input-section_category">
       <label className="input-section__label" htmlFor="category">
         Category
       </label>

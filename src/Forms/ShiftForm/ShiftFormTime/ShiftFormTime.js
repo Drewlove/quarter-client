@@ -1,5 +1,5 @@
 import React from "react";
-import Error from "../../CommonFormComponents/Error/Error";
+import FormError from "../../CommonFormComponents/FormError/FormError";
 
 function ShiftFormTime(props) {
   return (
@@ -19,7 +19,7 @@ function ShiftFormTime(props) {
             name="startTime"
             value={props.startTime}
           />
-          {props.errorStart ? <Error message={props.errorStart} /> : null}
+          {props.errorStart ? <FormError message={props.errorStart} /> : null}
         </div>
       </section>
       <section className="input-section input-section_time">
@@ -37,7 +37,7 @@ function ShiftFormTime(props) {
             name="endTime"
             value={props.endTime}
           />
-          {props.errorEnd ? <Error message={props.errorEnd} /> : null}
+          {props.errorEnd ? <FormError message={props.errorEnd} /> : null}
         </div>
       </section>
     </>

@@ -1,20 +1,22 @@
 import React from "react";
-import FormError from "../../CommonFormComponents/FormError/FormError";
+import Error from "../../CommonFormComponents/FormError/FormError";
 import { CapitalizeAllWords } from "../../../Utilities/UtilityFunctions";
 
-function ShiftFormDepartment(props) {
-  const renderOptions = (options) => {
-    return options.map((option) => {
+function RoleFormDepartment(props) {
+  const expenseCategories = ["service", "kitchen", "production"];
+
+  const renderCategories = (categories) => {
+    return categories.map((department) => {
       return (
-        <option value={option} key={option}>
-          {CapitalizeAllWords(option)}
+        <option value={department} key={department}>
+          {CapitalizeAllWords(department)}
         </option>
       );
     });
   };
 
   return (
-    <section className={`input-section input-section_department`}>
+    <section className="input-section input-section_role-department">
       <label className="input-section__label" htmlFor="department">
         Department
       </label>
@@ -31,12 +33,12 @@ function ShiftFormDepartment(props) {
           <option value={""} disabled>
             - Select Department -
           </option>
-          {props.options ? renderOptions(props.options) : null}
+          {renderCategories(expenseCategories)}
         </select>
-        {props.error.length > 0 ? <FormError message={props.error} /> : null}
+        {props.error ? <Error message={props.error} /> : null}
       </div>
     </section>
   );
 }
 
-export default ShiftFormDepartment;
+export default RoleFormDepartment;

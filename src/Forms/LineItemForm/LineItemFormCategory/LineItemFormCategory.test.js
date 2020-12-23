@@ -3,19 +3,16 @@ import { shallow, mount } from "enzyme";
 import LineItemFormCategory from "./LineItemFormCategory";
 
 describe("LineItemFormCategory", () => {
-  let wrapper;
-  beforeEach(() => {
-    wrapper = mount(<LineItemFormCategory />);
-  });
   it("renders", () => {
-    shallow(<LineItemFormCategory />);
+    const wrapper = shallow(<LineItemFormCategory />);
+    expect(wrapper.find(".input-section")).toHaveLength(1);
   });
   it("If error, error component renders", () => {
-    wrapper = mount(<LineItemFormCategory error={true} />);
+    const wrapper = mount(<LineItemFormCategory error={true} />);
     expect(wrapper.find(".form-error")).toHaveLength(1);
   });
   it("If no error, no error component renders", () => {
-    wrapper = mount(<LineItemFormCategory error={false} />);
+    const wrapper = mount(<LineItemFormCategory error={false} />);
     expect(wrapper.find(".form-error")).toHaveLength(0);
   });
 });

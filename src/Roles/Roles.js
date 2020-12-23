@@ -16,7 +16,7 @@ function Roles() {
         <Link
           className="fieldset__item-container"
           key={key.id}
-          to={`/forms/roles/${key.id}`}
+          to={`/form/role/${key.id}`}
         >
           {key.name}
         </Link>
@@ -26,7 +26,7 @@ function Roles() {
 
   return (
     <main className="main">
-      <fieldset className="fieldset">
+      <fieldset className="fieldset fieldset_roles">
         <legend className="fieldset__legend">
           <h2 className="fieldset__header">Roles</h2>
         </legend>

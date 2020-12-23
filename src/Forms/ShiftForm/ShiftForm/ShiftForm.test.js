@@ -10,95 +10,135 @@ beforeEach(() => {
 
 describe("ShiftForm", () => {
   it("renders", () => {
-    wrapper;
+    expect(wrapper.find(".fieldset_form")).toHaveLength(1);
   });
   it("renders correct number of input sections", () => {
     expect(wrapper.find(".input-section")).toHaveLength(7);
   });
 });
 
-describe("ShiftForm --> ShiftFormDays", () => {
-  it("renders ShiftFormDays", () => {
-    expect(wrapper.find(".input-section_days")).toHaveLength(1);
-  });
-  it("reflects user input for ShiftFormDays", () => {
-    const event = { target: { name: "monday", checked: true } };
-    wrapper.find("#monday").simulate("change", event);
-    expect(wrapper.find("#monday").props().checked).toEqual(true);
-  });
-  it("If save button is clicked and fields are empty, then display errors for every field", () => {
-    wrapper.find("#button-save").simulate("click");
-    expect(wrapper.find(".form-error")).toHaveLength(7);
-  });
-});
-
-describe("ShiftForm --> ShiftFormDepartment", () => {
-  it("renders ShiftFormDepartment", () => {
+describe("ShiftForm, Field: Department", () => {
+  it("renders", () => {
     expect(wrapper.find(".input-section_department")).toHaveLength(1);
   });
-  it("reflects user input for ShiftFormDepartment", () => {
-    const event = { target: { name: "department", value: "service" } };
-    wrapper.find("#department").simulate("change", event);
+  it("updates value correctly based on user input", () => {
+    wrapper
+      .find("#department")
+      .simulate("change", { target: { name: "department", value: "service" } });
     expect(wrapper.find("#department").props().value).toEqual("service");
   });
 });
 
-describe("ShiftForm --> ShiftFormPay", () => {
-  it("renders ShiftFormPay", () => {
-    expect(wrapper.find(".input-section_pay")).toHaveLength(1);
+describe("ShiftForm, Field: Role", () => {
+  it("renders", () => {
+    expect(wrapper.find(".input-section_role")).toHaveLength(1);
   });
-  it("reflects user input for ShiftFormPay", () => {
-    const event = { target: { name: "pay", value: "1.00" } };
-    wrapper.find("#pay").simulate("change", event);
-    expect(wrapper.find("#pay").props().value).toEqual("1.00");
-  });
-  it("displays error for ShiftFormPay if number has values in the hundreds place", () => {
-    const event = { target: { name: "pay", value: "1.123" } };
-    wrapper.find("#pay").simulate("change", event);
-    expect(wrapper.find(".form-error")).toHaveLength(1);
+  it("updates value correctly based on user input", () => {
+    wrapper
+      .find("#role")
+      .simulate("change", { target: { name: "role", value: "chef" } });
+    expect(wrapper.find("#role").props().value).toEqual("chef");
   });
 });
 
-describe("ShiftForm --> ShiftFormPeople", () => {
-  it("renders ShiftFormPeople", () => {
+describe("ShiftForm, Field: People", () => {
+  let wrapper;
+  beforeEach(() => {
+    wrapper = mount(<ShiftForm />);
+  });
+  it("renders", () => {
     expect(wrapper.find(".input-section_people")).toHaveLength(1);
   });
-  it("reflects user input for ShiftFormPeople", () => {
-    const event = { target: { name: "people", value: "1" } };
+  it("renders error when user inputs empty value", () => {
+    const event = { target: { name: "people", value: "" } };
     wrapper.find("#people").simulate("change", event);
-    expect(wrapper.find("#people").props().value).toEqual("1");
+    expect(wrapper.find(".form-error")).toHaveLength(1);
   });
-  it("displays error for ShiftFormPeople if number is a decimal number", () => {
+  it("renders error if pay is negative", () => {
+    const event = { target: { name: "people", value: "-1" } };
+    wrapper.find("#people").simulate("change", event);
+    expect(wrapper.find(".form-error")).toHaveLength(1);
+  });
+  it("renders error if any decimal numbers", () => {
     const event = { target: { name: "people", value: "1.1" } };
     wrapper.find("#people").simulate("change", event);
     expect(wrapper.find(".form-error")).toHaveLength(1);
   });
-});
-
-describe("ShiftForm --> ShiftFormRole", () => {
-  it("renders ShiftFormRole", () => {
-    const wrapper = mount(<ShiftForm />);
-    expect(wrapper.find(".input-section_role")).toHaveLength(1);
-  });
-  it("reflects user input for ShiftFormRole", () => {
-    const event = { target: { name: "role", value: "server" } };
-    wrapper.find("#role").simulate("change", event);
-    expect(wrapper.find("#role").props().value).toEqual("server");
+  it("updates value based on user input", () => {
+    const event = { target: { name: "people", value: "1" } };
+    wrapper.find("#people").simulate("change", event);
+    expect(wrapper.find("#people").props().value).toBe("1");
   });
 });
 
-describe("ShiftForm --> ShiftFormPay", () => {
-  it("renders ShiftFormTime", () => {
+describe("ShiftForm, Field: Pay", () => {
+  let wrapper;
+  beforeEach(() => {
+    wrapper = mount(<ShiftForm />);
+  });
+  it("renders", () => {
+    expect(wrapper.find(".input-section_pay")).toHaveLength(1);
+  });
+  it("renders error when user inputs empty value", () => {
+    const event = { target: { name: "pay", value: "" } };
+    wrapper.find("#pay").simulate("change", event);
+    expect(wrapper.find(".form-error")).toHaveLength(1);
+  });
+  it("renders error if pay is negative", () => {
+    const event = { target: { name: "pay", value: "-1" } };
+    wrapper.find("#pay").simulate("change", event);
+    expect(wrapper.find(".form-error")).toHaveLength(1);
+  });
+  it("renders error if more than 2 numbers appear after decimal place", () => {
+    const event = { target: { name: "pay", value: "1.000" } };
+    wrapper.find("#pay").simulate("change", event);
+    expect(wrapper.find(".form-error")).toHaveLength(1);
+  });
+  it("updates value based on user input", () => {
+    const event = { target: { name: "pay", value: "1" } };
+    wrapper.find("#pay").simulate("change", event);
+    expect(wrapper.find("#pay").props().value).toBe("1");
+  });
+  it("on blur, formats value with commas and decimals if pay is valid", () => {
+    const event = { target: { name: "pay", value: "123456" } };
+    wrapper.find("#pay").simulate("change", event);
+    wrapper.find("#pay").simulate("blur");
+    expect(wrapper.find("#pay").props().value).toBe("123,456.00");
+  });
+});
+
+describe("ShiftForm, Field: Time", () => {
+  it("renders", () => {
     expect(wrapper.find(".input-section_time")).toHaveLength(2);
   });
-  it("reflects user input for ShiftFormTime, start time", () => {
-    const event = { target: { name: "startTime", value: "13:30" } };
-    wrapper.find("#start-time").simulate("change", event);
-    expect(wrapper.find("#start-time").props().value).toEqual("13:30");
+  it("updates start time correctly based on user input", () => {
+    wrapper
+      .find("#start-time")
+      .simulate("change", { target: { name: "startTime", value: "00:24" } });
+    expect(wrapper.find("#start-time").props().value).toEqual("00:24");
   });
-  it("reflects user input for ShiftFormTime, end time", () => {
-    const event = { target: { name: "endTime", value: "13:30" } };
-    wrapper.find("#end-time").simulate("change", event);
-    expect(wrapper.find("#end-time").props().value).toEqual("13:30");
+  it("updates end time correctly based on user input", () => {
+    wrapper
+      .find("#end-time")
+      .simulate("change", { target: { name: "endTime", value: "00:24" } });
+    expect(wrapper.find("#end-time").props().value).toEqual("00:24");
+  });
+});
+
+describe("ShiftForm, Field: Days", () => {
+  it("renders", () => {
+    expect(wrapper.find(".input-section_days")).toHaveLength(1);
+  });
+  it("updates value correctly based on user input", () => {
+    const event = { target: { name: "monday", checked: true } };
+    wrapper.find("#monday").simulate("change", event);
+    expect(wrapper.find("#monday").props().checked).toEqual(true);
+  });
+  it("renders error when user selects one day, then deselects day, leaving no days selected", () => {
+    const eventOne = { target: { name: "monday", checked: true } };
+    const eventTwo = { target: { name: "monday", checked: false } };
+    wrapper.find("#monday").simulate("change", eventOne);
+    wrapper.find("#monday").simulate("change", eventTwo);
+    expect(wrapper.find(".form-error")).toHaveLength(1);
   });
 });

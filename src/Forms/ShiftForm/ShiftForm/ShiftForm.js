@@ -75,7 +75,9 @@ function ShiftForm() {
   }, [input.department]);
 
   const handleBlur = (e) => {
-    e.target.name === "pay" ? handleBlurPay(e) : validateInput(e);
+    e.target.name === "pay" && error.pay === ""
+      ? handleBlurPay(e)
+      : validateInput(e);
   };
 
   const handleBlurPay = (e) => {

@@ -14,7 +14,7 @@ function Departments() {
         <Link
           className="fieldset__item-container"
           key={key.id}
-          to={`/forms/departments/${key.id}`}
+          to={`/form/department/${key.id}`}
         >
           {key.name}
         </Link>
@@ -24,7 +24,7 @@ function Departments() {
 
   return (
     <main className="main">
-      <fieldset className="fieldset">
+      <fieldset className="fieldset fieldset_departments">
         <legend className="fieldset__legend">
           <h2 className="fieldset__header">Departments</h2>
         </legend>

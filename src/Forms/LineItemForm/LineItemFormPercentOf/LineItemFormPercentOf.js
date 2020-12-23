@@ -1,6 +1,6 @@
 import React from "react";
 import { CapitalizeAllWords } from "../../../Utilities/UtilityFunctions";
-import Error from "../../CommonFormComponents/Error/Error";
+import Error from "../../CommonFormComponents/FormError/FormError";
 
 function LineItemFormPercentOf(props) {
   const salesCategories = ["food", "beverage", "other"];
@@ -16,7 +16,7 @@ function LineItemFormPercentOf(props) {
   };
 
   return (
-    <section className="input-section">
+    <section className="input-section input-section_percent-of">
       <label className="input-section__label" htmlFor="percentOf">
         Percent Of
       </label>

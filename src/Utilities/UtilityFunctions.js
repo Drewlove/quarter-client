@@ -1,4 +1,5 @@
 export const CapitalizeAllWords = (str) => {
+  if (!str) return null;
   if (str.length === 0) return "";
 
   let strArr = str.split(" ");
@@ -9,21 +10,13 @@ export const CapitalizeAllWords = (str) => {
 };
 
 export const FormatNumToDollars = (value) => {
-  let numNoCommas = value.replace(/,/g, "");
-  return Number(numNoCommas).toLocaleString(undefined, {
+  let valueOnlyNumbers = value.replace(/\D/g, "");
+  let revisedNum = Number(valueOnlyNumbers).toLocaleString(undefined, {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   });
+  return revisedNum;
 };
-
-function isStringSingleDecimal(str) {
-  let decimalsInString = 0;
-  for (let i = 0; i < str.length; i++) {
-    if (str[i] === ".") decimalsInString++;
-    if (decimalsInString > 1) return false;
-  }
-  return true;
-}
 
 export const ConvertNumToTimeStr = (num) => {
   let hour = `${((Math.floor(num) + 11) % 12) + 1}`;

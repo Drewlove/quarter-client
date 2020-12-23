@@ -29,7 +29,7 @@ function Category(props) {
   };
 
   return (
-    <fieldset className="fieldset">
+    <fieldset className="fieldset fieldset_pl">
       <legend className="fieldset__legend">
         <h2 className="fieldset__header">{CapitalizeAllWords(props.name)}</h2>
       </legend>

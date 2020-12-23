@@ -1,9 +1,9 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import LineItemForm from "./LineItemForm/LineItemForm";
+import LineItemForm from "./LineItemForm/LineItemForm/LineItemForm";
 import ShiftForm from "./ShiftForm/ShiftForm/ShiftForm";
 import DepartmentForm from "./DepartmentForm/DepartmentForm";
-import RoleForm from "./RoleForm/RoleForm";
+import RoleForm from "./RoleForm/RoleForm/RoleForm";
 
 function FormsRouter() {
   return (

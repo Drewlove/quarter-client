@@ -1,5 +1,5 @@
 import React from "react";
-import Error from "../../CommonFormComponents/Error/Error";
+import FormError from "../../CommonFormComponents/FormError/FormError";
 
 function ShiftFormPeople(props) {
   return (
@@ -20,7 +20,7 @@ function ShiftFormPeople(props) {
           onChange={props.handleChange}
           onBlur={props.handleBlur}
         />
-        {props.error.length > 0 ? <Error message={props.error} /> : null}
+        {props.error.length > 0 ? <FormError message={props.error} /> : null}
       </div>
     </section>
   );

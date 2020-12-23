@@ -11,7 +11,7 @@ describe("Header", () => {
       </BrowserRouter>
     );
   });
-  it("if logged OUT, renders relevant menu", () => {
+  it("if logged OUT, renders logged out menu", () => {
     const wrapper = mount(
       <MemoryRouter initialEntries={["/"]}>
         <Header />

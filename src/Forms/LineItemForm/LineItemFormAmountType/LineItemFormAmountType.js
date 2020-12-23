@@ -1,9 +1,9 @@
 import React from "react";
-import Error from "../../CommonFormComponents/Error/Error";
+import Error from "../../CommonFormComponents/FormError/FormError";
 
 function LineItemFormAmountType(props) {
   return (
-    <section className="input-section">
+    <section className="input-section input-section_amount-type">
       <p className="input-section__label">Amount Type</p>
       <div className="input-section__input-container">
         <div

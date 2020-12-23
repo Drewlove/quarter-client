@@ -3,21 +3,17 @@ import { shallow, mount } from "enzyme";
 import LineItemFormAmount from "./LineItemFormAmount";
 
 describe("LineItemFormAmount", () => {
-  let wrapper;
-  beforeEach(() => {
-    wrapper = mount(<LineItemFormAmount />);
-  });
-
   it("renders", () => {
-    shallow(<LineItemFormAmount />);
+    const wrapper = shallow(<LineItemFormAmount />);
+    expect(wrapper.find(".input-section_amount")).toHaveLength(1);
   });
 
   it("If error, error component renders", () => {
-    wrapper = mount(<LineItemFormAmount error={true} />);
+    const wrapper = mount(<LineItemFormAmount error={true} />);
     expect(wrapper.find(".form-error")).toHaveLength(1);
   });
   it("If no error, no error component renders", () => {
-    wrapper = mount(<LineItemFormAmount error={false} />);
+    const wrapper = mount(<LineItemFormAmount error={false} />);
     expect(wrapper.find(".form-error")).toHaveLength(0);
   });
 });

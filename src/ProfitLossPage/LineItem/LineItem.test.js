@@ -15,7 +15,7 @@ describe("LineItem", () => {
         <LineItem category="category" name="name" amount={200} />
       </BrowserRouter>
     );
-    expect(wrapper.find(".pl-fieldset__item-text")).toHaveLength(2);
+    expect(wrapper.find(".fieldset__item-text")).toHaveLength(2);
   });
   it("capitalizes line item name", () => {
     const wrapper = mount(
@@ -23,9 +23,7 @@ describe("LineItem", () => {
         <LineItem category="category" name="name" amount={200} />
       </BrowserRouter>
     );
-    expect(wrapper.find(".pl-fieldset__item-text").at(0).text()).toEqual(
-      "Name"
-    );
+    expect(wrapper.find(".fieldset__item-text").at(0).text()).toEqual("Name");
   });
   it("formats href correctly", () => {
     const wrapper = mount(

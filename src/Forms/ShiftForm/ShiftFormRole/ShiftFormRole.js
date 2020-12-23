@@ -1,5 +1,5 @@
 import React from "react";
-import Error from "../../CommonFormComponents/Error/Error";
+import FormError from "../../CommonFormComponents/FormError/FormError";
 import { CapitalizeAllWords } from "../../../Utilities/UtilityFunctions";
 
 function ShiftFormRole(props) {
@@ -33,7 +33,7 @@ function ShiftFormRole(props) {
           </option>
           {props.options ? renderOptions(props.options) : null}
         </select>
-        {props.error.length > 0 ? <Error message={props.error} /> : null}
+        {props.error.length > 0 ? <FormError message={props.error} /> : null}
       </div>
     </section>
   );

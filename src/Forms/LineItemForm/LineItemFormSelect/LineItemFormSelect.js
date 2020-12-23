@@ -1,5 +1,5 @@
 import React from "react";
-import Error from "../../CommonFormComponents/Error/Error";
+import FormError from "../../CommonFormComponents/FormError/FormError";
 import { CapitalizeAllWords } from "../../../Utilities/UtilityFunctions";
 
 function LineItemFormSelect(props) {
@@ -14,7 +14,9 @@ function LineItemFormSelect(props) {
   };
 
   return (
-    <section className={`input-section ${props.optionalClass}`}>
+    <section
+      className={`input-section input-section_select ${props.optionalClass}`}
+    >
       <label className="input-section__label" htmlFor={props.name}>
         {CapitalizeAllWords(props.name)}
       </label>
@@ -33,7 +35,7 @@ function LineItemFormSelect(props) {
           </option>
           {props.options ? renderOptions(props.options) : null}
         </select>
-        {props.error ? <Error message={props.error} /> : null}
+        {props.error ? <FormError message={props.error} /> : null}
       </div>
     </section>
   );
