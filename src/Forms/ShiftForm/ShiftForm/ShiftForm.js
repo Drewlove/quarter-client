@@ -40,24 +40,15 @@ function ShiftForm() {
     days: "",
   });
 
-  const [departments, setDepartments] = useState([
-    "kitchen",
-    "service",
-    "bake off",
-  ]);
   const [roles, setRoles] = useState([]);
 
-  const departmentRoles = {
-    kitchen: ["chef", "sous chef"],
-    service: ["cashier", "line", "expo"],
-    bagels: ["starters", "dough", "production"],
-  };
+  const departments = ["kitchen", "service", "bagels"];
 
-  const updateRoles = () => {
-    let updatedRoles = departmentRoles[input.department];
-    setRoles(updatedRoles);
-    setInput({ ...input, role: "" });
-  };
+  // const updateRoles = () => {
+  //   let updatedRoles = departmentRoles[input.department];
+  //   setRoles(updatedRoles);
+  //   setInput({ ...input, role: "" });
+  // };
 
   const handleChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -71,7 +62,15 @@ function ShiftForm() {
   };
 
   useEffect(() => {
-    updateRoles();
+    const departmentRoles = {
+      kitchen: ["chef", "sous chef"],
+      service: ["cashier", "line", "expo"],
+      bagels: ["starters", "dough", "production"],
+    };
+
+    let updatedRoles = departmentRoles[input.department];
+    setRoles(updatedRoles);
+    setInput({ ...input, role: "" });
   }, [input.department]);
 
   const handleBlur = (e) => {

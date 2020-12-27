@@ -1,6 +1,5 @@
 import React from "react";
 import HeaderLink from "../HeaderLink/HeaderLink";
-import { Link } from "react-router-dom";
 
 function MenuSignedOut() {
   return (

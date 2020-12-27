@@ -254,7 +254,7 @@ function LaborSchedule() {
 
   useEffect(() => {
     setSchedule(CollateSchedule(shifts));
-  }, []);
+  }, [shifts]);
 
   const renderDepartments = () => {
     return Object.keys(schedule).map((key) => {
