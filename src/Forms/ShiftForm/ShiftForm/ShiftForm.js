@@ -10,6 +10,13 @@ import ShiftFormDays from "../ShiftFormDays/ShiftFormDays";
 import ShiftFormPay from "../ShiftFormPay/ShiftFormPay";
 import { FormatNumToDollars } from "../../../Utilities/UtilityFunctions";
 
+//prevent zoom in when focusing on input
+
+//24.32 produces 2,432,
+//write test to cover error on ShiftForm
+//write test to cover error on LineItem
+//fix error
+
 function ShiftForm() {
   const [input, setInput] = useState({
     people: "",

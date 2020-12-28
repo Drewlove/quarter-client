@@ -10,7 +10,7 @@ export const CapitalizeAllWords = (str) => {
 };
 
 export const FormatNumToDollars = (value) => {
-  let valueOnlyNumbers = value.replace(/\D/g, "");
+  let valueOnlyNumbers = value.replace(/,/g, "");
   let revisedNum = Number(valueOnlyNumbers).toLocaleString(undefined, {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,

@@ -99,11 +99,17 @@ describe("ShiftForm, Field: Pay", () => {
     wrapper.find("#pay").simulate("change", event);
     expect(wrapper.find("#pay").props().value).toBe("1");
   });
-  it("on blur, formats value with commas and decimals if pay is valid", () => {
+  it("on blur, formats value with commas and decimals if pay value is valid and has 0 numbers after decimal places", () => {
     const event = { target: { name: "pay", value: "123456" } };
     wrapper.find("#pay").simulate("change", event);
     wrapper.find("#pay").simulate("blur");
     expect(wrapper.find("#pay").props().value).toBe("123,456.00");
+  });
+  it("on blur, formats value with commas and decimals if pay value is valid and has 2 numbers after decimal places", () => {
+    const event = { target: { name: "pay", value: "23.43" } };
+    wrapper.find("#pay").simulate("change", event);
+    wrapper.find("#pay").simulate("blur");
+    expect(wrapper.find("#pay").props().value).toBe("23.43");
   });
 });
 

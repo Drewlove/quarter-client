@@ -31,12 +31,22 @@ const getErrorMessagePeople = (value) => {
 
 const getErrorMessagePay = (value) => {
   if (value.length === 0 || value[0] === "-") {
-    return "Enter an amount greater than or equal to 0.";
+    return "Enter a number greater than or equal to 0.";
   } else if (value.indexOf(".") >= 0 && value.split(".")[1].length > 2) {
-    return "Enter number with max of two digits to right of decimal point.";
+    return "Enter a number with max of two digits to right of decimal point.";
+  } else if (multipleDecimals(value)) {
+    return "Enter a number with a maximum of one decimal.";
   } else {
     return "";
   }
+};
+
+const multipleDecimals = (value) => {
+  let decimals = 0;
+  for (let i = 0; i < value.length; i++) {
+    if (value[i] === ".") decimals++;
+  }
+  return decimals > 1 ? true : false;
 };
 
 const getErrorMessageDepartment = (value) => {

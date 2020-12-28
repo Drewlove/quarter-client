@@ -99,6 +99,12 @@ describe("LineItemForm, Field: Amount", () => {
     wrapper.find("#amount").simulate("blur");
     expect(wrapper.find("#amount").props().value).toBe("123,456.00");
   });
+  it("on blur, formats value with commas and decimals if pay value is valid and has 2 numbers after decimal places", () => {
+    const event = { target: { name: "amount", value: "23.43" } };
+    wrapper.find("#amount").simulate("change", event);
+    wrapper.find("#amount").simulate("blur");
+    expect(wrapper.find("#amount").props().value).toBe("23.43");
+  });
 });
 
 describe("LineItemForm, Field: Amount Type", () => {
