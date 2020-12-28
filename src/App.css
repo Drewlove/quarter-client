@@ -299,7 +299,6 @@
 
 .home-page__container {
   margin-top: 50px;
-  border: 10px 20px solid blue;
   padding: 10px;
   border-style: ridge;
   border-top: 5px solid black;
@@ -317,7 +316,7 @@
 .home-page__text {
   text-align: center;
   margin: 25px;
-  font-size: 28px;
+  font-size: 18px;
 }
 
 .home-page__text:nth-of-type(2) {
