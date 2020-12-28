@@ -8,6 +8,7 @@ function MenuSignedInNewItem() {
 
   const useOutsideClick = (ref) => {
     useEffect(() => {
+      console.log("use effect");
       function handleClickOutside(event) {
         if (ref.current && !ref.current.contains(event.target)) {
           setDisplayMenuNewItem({ display: false });

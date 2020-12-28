@@ -253,8 +253,9 @@ function LaborSchedule() {
   ];
 
   useEffect(() => {
+    console.log("setting schedule");
     setSchedule(CollateSchedule(shifts));
-  }, [shifts]);
+  }, []);
 
   const renderDepartments = () => {
     return Object.keys(schedule).map((key) => {
