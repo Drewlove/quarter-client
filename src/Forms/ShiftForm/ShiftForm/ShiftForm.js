@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { GetErrorMessage } from "../ShiftFormErrors";
 import FormDeleteButton from "../../CommonFormComponents/FormDeleteButton/FormDeleteButton";
 import FormSaveButton from "../../CommonFormComponents/FormSaveButton/FormSaveButton";
@@ -40,21 +40,17 @@ function ShiftForm() {
     days: "",
   });
 
-  const departments = ["kitchen", "service", "bake off"];
-
-  const [roles, setRoles] = useState([]);
-
-  const departmentRoles = {
-    kitchen: ["chef", "sous chef"],
-    service: ["cashier", "line", "expo"],
-    bagels: ["starters", "dough", "production"],
-  };
-
-  const updateRoles = () => {
-    let updatedRoles = departmentRoles[input.department];
-    setRoles(updatedRoles);
-    setInput({ ...input, role: "" });
-  };
+  const departments = ["kitchen", "service", "bagels"];
+  const roles = [
+    { role: "chef", department: "kitchen" },
+    { role: "sous chef", department: "kitchen" },
+    { role: "cashier", department: "service" },
+    { role: "line", department: "service" },
+    { role: "expo", department: "service" },
+    { role: "starters", department: "bagels" },
+    { role: "dough", department: "bagels" },
+    { role: "production", department: "bagels" },
+  ];
 
   const handleChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -66,10 +62,6 @@ function ShiftForm() {
     setDays({ ...days, [e.target.name]: !dayStatus });
     validateDaysInput(e);
   };
-
-  useEffect(() => {
-    updateRoles();
-  }, [input.department]);
 
   const handleBlur = (e) => {
     e.target.name === "pay" && error.pay === ""
@@ -140,6 +132,7 @@ function ShiftForm() {
           <ShiftFormRole
             handleChange={(e) => handleChange(e)}
             value={input.role}
+            department={input.department}
             options={roles}
             error={error.role}
           />

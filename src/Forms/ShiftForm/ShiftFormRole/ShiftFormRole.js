@@ -3,11 +3,18 @@ import FormError from "../../CommonFormComponents/FormError/FormError";
 import { CapitalizeAllWords } from "../../../Utilities/UtilityFunctions";
 
 function ShiftFormRole(props) {
+  const getFilteredOptions = (options) => {
+    return options.filter((option) => option.department === props.department);
+  };
+
   const renderOptions = (options) => {
-    return options.map((option) => {
+    const filteredOptions = getFilteredOptions(options);
+
+    return filteredOptions.map((option) => {
+      const { role } = option;
       return (
-        <option value={option} key={option}>
-          {CapitalizeAllWords(option)}
+        <option value={role} key={role}>
+          {CapitalizeAllWords(role)}
         </option>
       );
     });
