@@ -1,6 +1,4 @@
 export default {
-  //   API_ENDPOINT: `https://limitless-stream-84911.herokuapp.com/api/`,
-  //   API_ENDPOINT: "http://localhost:9000/api",
   API_KEY: process.env.REACT_APP_API_KEY,
   API_ENDPOINT:
     process.env.NODE_ENV === "development"
