@@ -1,22 +1,31 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { API_GET } from "../Utilities/CRUDmethods";
 
 function Departments() {
-  const departments = [
-    { name: "kitchen", id: 1 },
-    { name: "service", id: 2 },
-    { name: "production", id: 3 },
-  ];
+  const [{ data, isLoading, isError }] = API_GET({ hits: [] });
+
+  const renderLoading = () => {
+    return <p>Loading...</p>;
+  };
+
+  const renderResults = () => {
+    return isError ? renderError() : renderDepartments();
+  };
+
+  const renderError = () => {
+    return <p>Error!</p>;
+  };
 
   const renderDepartments = () => {
-    return departments.map((key) => {
+    return data.map((key) => {
       return (
         <Link
           className="fieldset__item-container"
-          key={key.id}
-          to={`/form/department/${key.id}`}
+          key={key.department_id}
+          to={`/form/department/${key.department_id}`}
         >
-          {key.name}
+          {key.department_name}
         </Link>
       );
     });
@@ -28,7 +37,7 @@ function Departments() {
         <legend className="fieldset__legend">
           <h2 className="fieldset__header">Departments</h2>
         </legend>
-        {renderDepartments()}
+        {isLoading ? renderLoading() : renderResults()}
       </fieldset>
     </main>
   );
