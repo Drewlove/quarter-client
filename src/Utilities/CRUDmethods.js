@@ -9,7 +9,6 @@ export const API_GET = () => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
-  console.log(config.API_ENDPOINT, process.env.NODE_ENV, config.API_KEY);
 
   useEffect(() => {
     const fetchData = async () => {
