@@ -2,7 +2,7 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import LineItemForm from "./LineItemForm/LineItemForm/LineItemForm";
 import ShiftForm from "./ShiftForm/ShiftForm/ShiftForm";
-import DepartmentForm from "./DepartmentForm/DepartmentForm";
+import DepartmentFormContainer from "./DepartmentFormContainer/DepartmentFormContainer";
 import RoleForm from "./RoleForm/RoleForm/RoleForm";
 
 function FormsRouter() {
@@ -14,8 +14,8 @@ function FormsRouter() {
       <Route path="/form/schedule/:shift">
         <ShiftForm />
       </Route>
-      <Route path="/form/department/:department">
-        <DepartmentForm />
+      <Route path="/form/department/:id">
+        <DepartmentFormContainer />
       </Route>
       <Route path="/form/role/:role">
         <RoleForm />
