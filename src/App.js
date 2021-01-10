@@ -4,7 +4,7 @@ import Header from "./Header/Header/Header";
 import LaborSchedule from "./LaborSchedule/LaborSchedule/LaborSchedule";
 import FormsRouter from "./Forms/FormsRouter";
 import ProfitLossPage from "./ProfitLossPage/ProfitLossPage/ProfitLossPage";
-import Departments from "./Departments/Departments";
+import DepartmentsList from "./DepartmentsList/DepartmentsList";
 import Roles from "./Roles/Roles";
 import HomePage from "./HomePage/HomePage";
 import "./App.css";
@@ -25,7 +25,7 @@ function App() {
             <ProfitLossPage />
           </Route>
           <Route path="/departments">
-            <Departments />
+            <DepartmentsList />
           </Route>
           <Route path="/roles">
             <Roles />

@@ -1,11 +1,11 @@
 import React from "react";
 import FormError from "../../Forms/CommonFormComponents/FormError/FormError";
-import DepartmentFormSaveButton from "../../Forms/CommonFormComponents/FormSaveButton/FormSaveButton";
-import DepartmentFormDeleteButton from "../../Forms/CommonFormComponents/FormDeleteButton/FormDeleteButton";
+import FormSaveButton from "../../Forms/CommonFormComponents/FormSaveButton/FormSaveButton";
+import FormDeleteButton from "../../Forms/CommonFormComponents/FormDeleteButton/FormDeleteButton";
 
 function DepartmentForm(props) {
   const renderDeleteButton = () => {
-    return <DepartmentFormDeleteButton handleDelete={props.handleDelete} />;
+    return <FormDeleteButton id={props.id} formName="departments" />;
   };
   return (
     <form className="form form_department">
@@ -25,13 +25,23 @@ function DepartmentForm(props) {
               placeholder="Department"
               name="department_name"
               onChange={(e) => props.handleChange(e)}
-              onBlur={() => props.handleBlur()}
+              onBlur={(e) => props.handleBlur(e)}
               value={props.data.department_name}
             />
-            {props.formError ? <FormError message={props.formError} /> : null}
+            {props.formError.department_name.length > 0 ? (
+              <FormError message={props.formError.department_name} />
+            ) : null}
           </div>
         </section>
-        <DepartmentFormSaveButton handleSave={props.handleSave} />
+        <FormSaveButton
+          formName="departments"
+          validateForm={props.validateForm}
+          getError={props.getError}
+          data={props.data}
+          id={props.id}
+          setFormError={props.setFormError}
+          formError={props.formError}
+        />
       </fieldset>
     </form>
   );

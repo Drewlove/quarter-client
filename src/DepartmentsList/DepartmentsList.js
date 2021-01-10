@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { API_GET } from "../Utilities/API_GET";
+import { API_GET } from "../API_Methods/API_GET";
+import EmptyList from "../EmptyList/EmptyList";
 
-function Departments() {
+function DepartmentsList() {
   const [{ data, isLoading, isError }] = API_GET("departments");
 
   const renderLoading = () => {
@@ -10,14 +11,26 @@ function Departments() {
   };
 
   const renderResults = () => {
-    return isError ? renderError() : renderDepartments();
+    return isError ? renderError() : renderContainer();
   };
 
   const renderError = () => {
     return <p>Error!</p>;
   };
 
-  const renderDepartments = () => {
+  const renderContainer = () => {
+    return (
+      <section className="fieldset__container">
+        {data.length === 0 ? renderEmptyList() : renderDepartmentsList()}
+      </section>
+    );
+  };
+
+  const renderEmptyList = () => {
+    return <EmptyList name="department" />;
+  };
+
+  const renderDepartmentsList = () => {
     return data.map((key) => {
       return (
         <Link
@@ -43,4 +56,4 @@ function Departments() {
   );
 }
 
-export default Departments;
+export default DepartmentsList;

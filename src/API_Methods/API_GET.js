@@ -63,52 +63,6 @@ export const API_GET = (table, params) => {
     return () => {
       didCancel = true;
     };
-  }, []);
+  }, [table, params]);
   return [state, dispatch];
 };
-
-// export const API_SEND = (table, params) => {
-//   const [state, dispatchSEND] = useReducer(dataReducer, {
-//     isSending: false,
-//     isSendingError: false,
-//   });
-
-//   useEffect(() => {
-//     let didCancel = false;
-
-//     const sendData = async () => {
-//       dispatchSEND({ type: "FETCH_INIT" });
-//       // let url;
-//       // if (params === "new")
-//       //   return dispatch({ type: "FETCH_SUCCESS", payload: [] });
-//       // params ? (url = `${table}/${params}`) : (url = `${table}`);
-
-//       // try {
-//       //   if (!didCancel) {
-//       //     const response = await fetch(`${config.API_ENDPOINT}/${url}`, {
-//       //       method: "GET",
-//       //       headers,
-//       //     });
-//       //     const data = await response.json();
-//       //     dispatch({ type: "FETCH_SUCCESS", payload: data });
-//       //   }
-//       // } catch (error) {
-//       //   if (!didCancel) dispatch({ type: "FETCH_FAILURE" });
-//       // }
-//     };
-//     sendData();
-//     return () => {
-//       didCancel = true;
-//     };
-//   }, []);
-//   return [state, dispatchSEND];
-// };
-
-// export const API_POST = async (params, data) => {
-//   const result = await fetch(`${config.API_ENDPOINT}/${params}`, {
-//     method: "POST",
-//     body: JSON.stringify(data),
-//     headers,
-//   });
-//   console.log(result);
-// };

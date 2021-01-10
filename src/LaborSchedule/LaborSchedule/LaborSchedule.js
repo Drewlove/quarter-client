@@ -286,7 +286,7 @@ function LaborSchedule() {
           <h3>Sun</h3>
         </div>
       </section>
-      {renderDepartments()}
+      <section className="schedule__holder">{renderDepartments()}</section>
     </main>
   );
 }

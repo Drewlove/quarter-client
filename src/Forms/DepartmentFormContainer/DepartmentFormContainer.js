@@ -1,19 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import DepartmentForm from "../DepartmentForm/DepartmentForm";
-import Modal from "../../Modal/Modal";
-
-import { API_GET } from "../../Utilities/API_GET";
-import { API_SEND } from "../../Utilities/API_SEND";
+import { API_GET } from "../../API_Methods/API_GET";
 
 function DepartmentFormContainer() {
-  const history = useHistory();
-  let { id } = useParams();
+  const { id } = useParams();
 
   const [{ data, isLoading, isError }, dispatch] = API_GET("departments", id);
-  const [res, apiMethod] = API_SEND(data);
-  const [formError, setFormError] = useState("");
-  const [modal, setModal] = useState({ display: false, text: "" });
+  const [formError, setFormError] = useState({
+    department_name: "",
+  });
 
   useEffect(() => {
     if (id === "new") {
@@ -22,35 +18,28 @@ function DepartmentFormContainer() {
         payload: { department_name: "", department_id: 0 },
       });
     }
-  }, [id]);
+  }, [id, dispatch]);
 
   const handleChange = (e) => {
-    validate(e.target.value);
+    validateField(e.target.value);
     let updatedData = { ...data, [e.target.name]: e.target.value };
     dispatch({ type: "UPDATE_DATA", payload: updatedData });
   };
 
   const handleBlur = (e) => {
-    validate(data);
+    validateField(e.target.value);
   };
 
-  const handleDelete = (e) => {
-    e.preventDefault();
+  const validateField = (value) => {
+    const error = getError(value);
+    setFormError({ ...formError, department_name: error });
   };
 
-  const handleSave = (e) => {
-    e.preventDefault();
-    apiMethod(data);
-    if (res.isSending === false && res.sendingError === null) {
-      setModal({ ...modal, display: true, text: "Item saved" });
-    }
-  };
-
-  const validate = (value) => {
+  const getError = (value) => {
     if (value.length === 0) {
-      setFormError("Enter a department.");
+      return "Enter a department.";
     } else {
-      setFormError("");
+      return "";
     }
   };
 
@@ -70,21 +59,18 @@ function DepartmentFormContainer() {
     return (
       <DepartmentForm
         id={id}
-        isLoading={isLoading}
-        isError={isError}
         data={data}
+        getError={getError}
         formError={formError}
+        setFormError={setFormError}
         handleBlur={handleBlur}
         handleChange={handleChange}
-        handleSave={handleSave}
-        handleDelete={handleDelete}
       />
     );
   };
 
   return (
     <main className="main">
-      {modal.display ? <Modal text={modal.text} /> : null}
       {isLoading ? renderLoading() : renderResults()}
     </main>
   );

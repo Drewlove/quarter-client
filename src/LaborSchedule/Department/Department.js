@@ -13,13 +13,13 @@ function Department(props) {
 
   return (
     <>
-      <section className="schedule-row schedule-row_department">
+      <div className="schedule-row schedule-row_department">
         <div className="schedule-department">
           <h4 className="schedule-text_department">
             {CapitalizeAllWords(props.deptName)} - ${props.schedule.cost}
           </h4>
         </div>
-      </section>
+      </div>
       {renderSchedule()}
     </>
   );

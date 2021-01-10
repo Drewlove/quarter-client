@@ -1,10 +1,10 @@
 import React from "react";
 import { shallow } from "enzyme";
-import Departments from "./Departments";
+import DepartmentsList from "./DepartmentsList";
 
-describe("Departments", () => {
+describe("DepartmentsList", () => {
   it("renders", () => {
-    const wrapper = shallow(<Departments />);
+    const wrapper = shallow(<DepartmentsList />);
     expect(wrapper.find(".fieldset_departments")).toHaveLength(1);
   });
 });

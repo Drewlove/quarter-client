@@ -1,26 +1,33 @@
-import { useState, useCallback, seReducer, useEffect } from "react";
+import { useState, useCallback } from "react";
 import config from "../config";
 
 const headers = new Headers(config.HEADERS);
 
-//Redirect on successful save
-//PATCH
-
-export const API_SEND = (data) => {
-  const [res, setRes] = useState({
+export const API_SEND = (data, table, id) => {
+  const [resSend, setRes] = useState({
     data: null,
     isSending: false,
     sendingError: null,
   });
-  const callAPI = useCallback(async () => {
+
+  let saveMethod;
+  let url;
+  if (id === "new") {
+    saveMethod = "POST";
+    url = `${table}`;
+  } else if (id >= 1) {
+    saveMethod = "PATCH";
+    url = `${table}/${id}`;
+  }
+
+  const saveData = useCallback(async () => {
     setRes((prevState) => ({ ...prevState, isSending: true }));
     try {
-      const result = await fetch(`${config.API_ENDPOINT}/departments`, {
-        method: "POST",
+      const result = await fetch(`${config.API_ENDPOINT}/${url}`, {
+        method: saveMethod,
         body: JSON.stringify(data),
         headers,
       });
-
       if (result.ok)
         setRes((prevState) => ({
           ...prevState,
@@ -30,6 +37,6 @@ export const API_SEND = (data) => {
     } catch (error) {
       setRes({ data: null, isSending: false, sendingError: error });
     }
-  }, [data]);
-  return [res, callAPI];
+  }, [data, saveMethod, url]);
+  return [resSend, saveData];
 };
