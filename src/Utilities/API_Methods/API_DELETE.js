@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import { useState, useCallback } from "react";
 import config from "../../config";
 
 const headers = new Headers(config.HEADERS);

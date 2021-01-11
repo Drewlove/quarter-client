@@ -15,10 +15,23 @@ function FormDeleteButton(props) {
   });
 
   useEffect(() => {
+    const modalDeleteSuccessful = {
+      display: true,
+      type: "notification",
+      redirect: true,
+      text: "Record deleted",
+    };
+    const modalDeleteFail = {
+      display: true,
+      type: "notification",
+      redirect: false,
+      text: resDelete.deleteErrorMessage,
+    };
+
     if (resDelete.recordDeleted === true) {
-      renderModalDeleteSuccessful();
+      setModal(modalDeleteSuccessful);
     } else if (resDelete.isDeleteError === true) {
-      renderModalDeleteFail();
+      setModal(modalDeleteFail);
     }
   }, [resDelete]);
 
@@ -65,26 +78,6 @@ function FormDeleteButton(props) {
   const deleteItem = (e) => {
     e.preventDefault();
     deleteData(props.formName, props.id);
-  };
-
-  const renderModalDeleteSuccessful = () => {
-    setModal({
-      ...modal,
-      display: true,
-      type: "notification",
-      redirect: true,
-      text: "Record deleted",
-    });
-  };
-
-  const renderModalDeleteFail = () => {
-    setModal({
-      ...modal,
-      display: true,
-      type: "notification",
-      redirect: false,
-      text: resDelete.deleteErrorMessage,
-    });
   };
 
   return (
