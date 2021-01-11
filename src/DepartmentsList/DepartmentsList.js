@@ -2,12 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { API_GET } from "../Utilities/API_Methods/API_GET";
 import EmptyList from "../EmptyList/EmptyList";
+import LoadingIndicator from "../LoadingIndicator/LoadingIndicator";
 
 function DepartmentsList() {
   const [{ data, isLoading, isError }] = API_GET("departments");
 
   const renderLoading = () => {
-    return <p>Loading...</p>;
+    return <LoadingIndicator />;
   };
 
   const renderResults = () => {

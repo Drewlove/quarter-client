@@ -5,7 +5,7 @@ import LaborSchedule from "./LaborSchedule/LaborSchedule/LaborSchedule";
 import FormsRouter from "./Forms/FormsRouter";
 import ProfitLossPage from "./ProfitLossPage/ProfitLossPage/ProfitLossPage";
 import DepartmentsList from "./DepartmentsList/DepartmentsList";
-import Roles from "./Roles/Roles";
+import RolesListContainer from "./RolesListContainer/RolesListContainer";
 import HomePage from "./HomePage/HomePage";
 import "./App.css";
 
@@ -28,7 +28,7 @@ function App() {
             <DepartmentsList />
           </Route>
           <Route path="/roles">
-            <Roles />
+            <RolesListContainer />
           </Route>
           <Route path="/">
             <HomePage />

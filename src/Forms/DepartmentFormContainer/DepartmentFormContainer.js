@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import DepartmentForm from "../DepartmentForm/DepartmentForm";
 import { API_GET } from "../../Utilities/API_Methods/API_GET";
+import LoadingIndicator from "../../LoadingIndicator/LoadingIndicator";
 
 function DepartmentFormContainer() {
   const { id } = useParams();

@@ -447,6 +447,16 @@
   justify-content: center;
 }
 
+.roles-list-item__department {
+  border: 2px solid black;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.roles-list-item__container {
+  margin-left: 25px;
+}
+
 .schedule-add {
   display: none;
   margin: 0 auto;
