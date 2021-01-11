@@ -2,8 +2,6 @@ import React from "react";
 import { MemoryRouter } from "react-router-dom";
 import { mount } from "enzyme";
 import * as MOCK_GET from "../../Utilities/API_Methods/API_GET";
-import * as MOCK_SEND from "../../Utilities/API_Methods/API_SEND";
-import { act } from "react-dom/test-utils";
 import DepartmentFormContainer from "./DepartmentFormContainer";
 
 describe("DepartmentFormContainer", () => {
