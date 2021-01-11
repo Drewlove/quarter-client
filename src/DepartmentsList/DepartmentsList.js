@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { API_GET } from "../API_Methods/API_GET";
+import { API_GET } from "../Utilities/API_Methods/API_GET";
 import EmptyList from "../EmptyList/EmptyList";
 
 function DepartmentsList() {

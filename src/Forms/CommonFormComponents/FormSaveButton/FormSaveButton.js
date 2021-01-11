@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Modal from "../../../Modal/Modal";
-import { API_SEND } from "../../../API_Methods/API_SEND";
+import { API_SEND } from "../../../Utilities/API_Methods/API_SEND";
 import { useHistory } from "react-router-dom";
 import { GET_FORM_ERRORS } from "../../ValidateForm/GetFormErrors";
 

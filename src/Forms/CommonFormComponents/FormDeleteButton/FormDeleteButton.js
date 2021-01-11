@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { API_DELETE } from "../../../API_Methods/API_DELETE";
+import React, { useState, useEffect } from "react";
+import { API_DELETE } from "../../../Utilities/API_Methods/API_DELETE";
 import Modal from "../../../Modal/Modal";
 import { useHistory } from "react-router-dom";
 
@@ -14,6 +14,24 @@ function FormDeleteButton(props) {
     redirect: false,
   });
 
+  useEffect(() => {
+    if (resDelete.recordDeleted === true) {
+      renderModalDeleteSuccessful();
+    } else if (resDelete.isDeleteError === true) {
+      renderModalDeleteFail();
+    }
+  }, [resDelete]);
+
+  const handleDeleteClick = (e) => {
+    e.preventDefault();
+    setModal({
+      ...modal,
+      display: true,
+      type: "confirmation",
+      text: "Delete this record?",
+    });
+  };
+
   const renderModal = () => {
     return modal.type === "notification"
       ? renderModalNotification()
@@ -22,12 +40,8 @@ function FormDeleteButton(props) {
 
   const renderModalNotification = () => {
     return (
-      <Modal text={modal.text} handleModalClose={() => handleModalClose()} />
+      <Modal text={modal.text} handleModalClose={(e) => handleModalClose(e)} />
     );
-  };
-  const handleModalClose = () => {
-    setModal({ ...modal, display: false });
-    return modal.redirect === true ? history.push(`/${props.formName}`) : null;
   };
 
   const renderModalConfirmation = () => {
@@ -35,33 +49,41 @@ function FormDeleteButton(props) {
       <Modal
         text={modal.text}
         type={modal.type}
-        handleModalClose={() => handleModalClose()}
-        handleModalConfirm={() => deleteItem()}
+        handleModalClose={(e) => handleModalClose(e)}
+        handleModalConfirm={(e) => deleteItem(e)}
         confirmAction="Delete"
       />
     );
   };
 
-  const deleteItem = () => {
-    deleteData(props.formName, props.id);
-    if (resDelete.isDeleting === false && resDelete.deletingError === null) {
-      setModal({
-        ...modal,
-        display: true,
-        type: "notification",
-        redirect: true,
-        text: "Record deleted",
-      });
-    }
+  const handleModalClose = (e) => {
+    e.preventDefault();
+    setModal({ ...modal, display: false });
+    return modal.redirect === true ? history.push(`/${props.formName}`) : null;
   };
 
-  const handleDelete = (e) => {
+  const deleteItem = (e) => {
     e.preventDefault();
+    deleteData(props.formName, props.id);
+  };
+
+  const renderModalDeleteSuccessful = () => {
     setModal({
       ...modal,
       display: true,
-      type: "confirmation",
-      text: "Delete this record?",
+      type: "notification",
+      redirect: true,
+      text: "Record deleted",
+    });
+  };
+
+  const renderModalDeleteFail = () => {
+    setModal({
+      ...modal,
+      display: true,
+      type: "notification",
+      redirect: false,
+      text: resDelete.deleteErrorMessage,
     });
   };
 
@@ -72,7 +94,7 @@ function FormDeleteButton(props) {
         id="button-delete"
         className="button delete-button-section__button"
         value="delete"
-        onClick={handleDelete}
+        onClick={handleDeleteClick}
       >
         Delete
       </button>

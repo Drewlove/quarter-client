@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import DepartmentForm from "../DepartmentForm/DepartmentForm";
-import { API_GET } from "../../API_Methods/API_GET";
+import { API_GET } from "../../Utilities/API_Methods/API_GET";
 
 function DepartmentFormContainer() {
   const { id } = useParams();
@@ -52,7 +52,7 @@ function DepartmentFormContainer() {
   };
 
   const renderError = () => {
-    return <p>Error!</p>;
+    return <p className="loading-error">Error! Failed to load data.</p>;
   };
 
   const renderForm = () => {

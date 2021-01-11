@@ -413,13 +413,15 @@
   overflow: auto;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
 }
 
 .modal__content {
   background-color: #fefefe;
-  margin: 15% auto;
-  height: 10%;
-  width: 80%;
+  margin-top: 100px;
+  width: 300px;
+  height: 150px;
 }
 
 .modal__close {

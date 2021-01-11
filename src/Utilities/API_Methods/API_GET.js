@@ -1,12 +1,12 @@
 import { useEffect, useReducer } from "react";
-import config from "../config";
+import config from "../../config";
 
 const headers = new Headers(config.HEADERS);
 
 const dataReducer = (state, action) => {
   switch (action.type) {
     case "FETCH_INIT":
-      return { ...state, isLoading: true, isError: false, isSending: false };
+      return { ...state, isLoading: true, isError: false };
     case "FETCH_SUCCESS":
       return {
         ...state,
@@ -15,13 +15,12 @@ const dataReducer = (state, action) => {
         data: action.payload,
       };
     case "FETCH_FAILURE":
-      return { ...state, isLoading: false, isError: true, isSending: false };
+      return { ...state, isLoading: false, isError: true };
     case "UPDATE_DATA":
       return {
         ...state,
         isLoading: false,
         isError: false,
-        isSending: false,
         data: action.payload,
       };
     default:
@@ -52,8 +51,12 @@ export const API_GET = (table, params) => {
             method: "GET",
             headers,
           });
-          const data = await response.json();
-          dispatch({ type: "FETCH_SUCCESS", payload: data });
+          if (response.ok) {
+            const data = await response.json();
+            dispatch({ type: "FETCH_SUCCESS", payload: data });
+          } else {
+            dispatch({ type: "FETCH_FAILURE" });
+          }
         }
       } catch (error) {
         if (!didCancel) dispatch({ type: "FETCH_FAILURE" });
