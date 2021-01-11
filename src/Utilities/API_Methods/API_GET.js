@@ -44,7 +44,7 @@ export const API_GET = (table, params) => {
       if (params === "new")
         return dispatch({ type: "FETCH_SUCCESS", payload: [] });
       params ? (url = `${table}/${params}`) : (url = `${table}`);
-      console.log(headers);
+      // console.log(headers);
 
       try {
         if (!didCancel) {
