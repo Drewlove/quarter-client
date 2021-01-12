@@ -45,7 +45,7 @@ function DepartmentFormContainer() {
   };
 
   const renderLoading = () => {
-    return <p className="loading-indicator">Loading...</p>;
+    return <LoadingIndicator />;
   };
 
   const renderResults = () => {

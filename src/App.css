@@ -379,6 +379,7 @@
 .input-section__input {
   width: 100%;
   border: 1px solid gray;
+  background-color: white;
 }
 
 .input-section__input_radio {

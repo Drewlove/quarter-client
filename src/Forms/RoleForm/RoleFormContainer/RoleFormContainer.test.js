@@ -1,11 +1,11 @@
 import React from "react";
-import RoleForm from "./RoleForm";
+import RoleFormContainer from "./RoleFormContainer";
 import { shallow, mount } from "enzyme";
 
-describe("RoleForm", () => {
+describe("RoleFormContainer", () => {
   let wrapper;
   beforeEach(() => {
-    wrapper = mount(<RoleForm />);
+    wrapper = mount(<RoleFormContainer />);
   });
   it("renders", () => {
     expect(wrapper.find(".form_role")).toHaveLength(1);

@@ -3,11 +3,10 @@ import { Link } from "react-router-dom";
 
 function RolesListItem(props) {
   const renderRoles = () => {
-    console.log(props.roles);
     return props.roles.map((key) => {
       return (
         <Link
-          id={key.role_id}
+          key={key.role_id}
           className="fieldset__item-container"
           to={`/form/role/${key.role_id}`}
         >

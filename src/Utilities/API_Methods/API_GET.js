@@ -44,7 +44,6 @@ export const API_GET = (table, params) => {
       if (params === "new")
         return dispatch({ type: "FETCH_SUCCESS", payload: [] });
       params ? (url = `${table}/${params}`) : (url = `${table}`);
-
       try {
         if (!didCancel) {
           const response = await fetch(`${config.API_ENDPOINT}/${url}`, {
