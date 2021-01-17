@@ -3,7 +3,7 @@ import config from "../../config";
 
 const headers = new Headers(config.HEADERS);
 
-export const API_DELETE = (endpoint, id) => {
+export const API_DELETE = (endpointSuffix, id) => {
   const [resDelete, setResDelete] = useState({
     isDeleting: false,
     isDeleteError: false,
@@ -12,12 +12,16 @@ export const API_DELETE = (endpoint, id) => {
   });
 
   const deleteData = useCallback(async () => {
+    console.log(endpointSuffix);
     setResDelete((prevState) => ({ ...prevState, isDeleting: true }));
     try {
-      const result = await fetch(`${config.API_ENDPOINT}/${endpoint}/${id}`, {
-        method: "DELETE",
-        headers,
-      });
+      const result = await fetch(
+        `${config.API_ENDPOINT}/${endpointSuffix}/${id}`,
+        {
+          method: "DELETE",
+          headers,
+        }
+      );
       if (result.ok) {
         setResDelete((prevState) => ({
           ...prevState,
@@ -31,7 +35,7 @@ export const API_DELETE = (endpoint, id) => {
           ...prevState,
           isDeleting: false,
           isDeleteError: true,
-          deleteErrorMessage: "Unable to delete record.",
+          deleteErrorMessage: "Failed to delete record.",
           recordDeleted: false,
         }));
       }
@@ -44,6 +48,6 @@ export const API_DELETE = (endpoint, id) => {
         recordDeleted: false,
       }));
     }
-  }, [endpoint, id]);
+  }, [endpointSuffix, id]);
   return [resDelete, deleteData];
 };

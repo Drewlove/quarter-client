@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import LineItemFormCategory from "../LineItemFormSelect/LineItemFormSelect";
+import LineItemFormCategory from "../LineItemFormSS/LineItemFormSelect/LineItemFormSelect";
 import LineItemFormName from "../LineItemFormName/LineItemFormName";
 import LineItemFormAmount from "../LineItemFormAmount/LineItemFormAmount";
 import LineItemFormAmountType from "../LineItemFormAmountType/LineItemFormAmountType";
 import LineItemFormPercentOf from "../LineItemFormPercentOf/LineItemFormPercentOf";
 import LineItemFormSaveButton from "../../CommonFormComponents/FormSaveButton/FormSaveButton";
 import FormDeleteButton from "../../CommonFormComponents/FormDeleteButton/FormDeleteButton";
-import { GetErrorMessage } from "../LineItemFormErrors";
+import { GetErrorMessage } from "../../LineItemFormErrors";
 import { FormatNumToDollars } from "../../../Utilities/UtilityFunctions";
 //Below is resource for fetching data and working with state and hooks
 //https://www.carlrippon.com/drop-down-data-binding-with-react-hooks/

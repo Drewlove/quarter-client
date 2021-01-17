@@ -6,12 +6,13 @@ import { useHistory } from "react-router-dom";
 function FormDeleteButton(props) {
   const history = useHistory();
 
-  const [resDelete, deleteData] = API_DELETE(props.formName, props.id);
+  const [resDelete, deleteData] = API_DELETE(props.endpointSuffix, props.id);
   const [modal, setModal] = useState({
     display: false,
     text: "",
     type: "",
     redirect: false,
+    redirectSuffix: "",
   });
 
   useEffect(() => {
@@ -20,12 +21,14 @@ function FormDeleteButton(props) {
       type: "notification",
       redirect: true,
       text: "Record deleted",
+      redirectSuffix: props.redirectSuffix,
     };
     const modalDeleteFail = {
       display: true,
       type: "notification",
       redirect: false,
       text: resDelete.deleteErrorMessage,
+      redirectSuffix: "",
     };
 
     if (resDelete.recordDeleted === true) {
@@ -33,7 +36,7 @@ function FormDeleteButton(props) {
     } else if (resDelete.isDeleteError === true) {
       setModal(modalDeleteFail);
     }
-  }, [resDelete]);
+  }, [resDelete, props.redirectSuffix]);
 
   const handleDeleteClick = (e) => {
     e.preventDefault();
@@ -72,12 +75,14 @@ function FormDeleteButton(props) {
   const handleModalClose = (e) => {
     e.preventDefault();
     setModal({ ...modal, display: false });
-    return modal.redirect === true ? history.push(`/${props.formName}`) : null;
+    return modal.redirect === true
+      ? history.push(`/${props.redirectSuffix}`)
+      : null;
   };
 
   const deleteItem = (e) => {
     e.preventDefault();
-    deleteData(props.formName, props.id);
+    deleteData();
   };
 
   return (

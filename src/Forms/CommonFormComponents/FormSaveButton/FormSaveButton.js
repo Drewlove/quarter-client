@@ -1,27 +1,55 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "../../../Modal/Modal";
-import { API_SEND } from "../../../Utilities/API_Methods/API_SEND";
+import { API_SAVE } from "../../../Utilities/API_Methods/API_SAVE";
 import { useHistory } from "react-router-dom";
-import { GET_FORM_ERRORS } from "../../ValidateForm/GetFormErrors";
+import { GET_ALL_ERROR_MESSAGES } from "../../ValidateForm/GET_ALL_ERROR_MESSAGES";
 
 function FormSaveButton(props) {
   const history = useHistory();
-  const [resSend, saveData] = API_SEND(props.data, props.formName, props.id);
+  const [resSave, saveData] = API_SAVE(
+    props.formData,
+    props.endpointSuffix,
+    props.id
+  );
   const [modal, setModal] = useState({
     display: false,
-    text: "",
-    type: "",
-    redirect: false,
   });
 
-  const handleModalClose = () => {
+  useEffect(() => {
+    if (resSave.saveSuccessful)
+      return setModal({
+        display: true,
+        type: "notification",
+        text: "Save successful.",
+        redirect: true,
+        redirectSuffix: props.redirectSuffix,
+      });
+
+    if (resSave.saveError.length > 0) {
+      return setModal({
+        display: true,
+        type: "notification",
+        text: "Failed to save.",
+        redirect: false,
+        redirectSuffix: "",
+      });
+    }
+  }, [resSave, props.redirectSuffix]);
+
+  const hideModal = (e) => {
+    e.preventDefault();
     setModal({ ...modal, display: false });
-    return modal.redirect === true ? history.push(`/${props.formName}`) : null;
+    if (modal.redirect) history.push(`/${props.redirectSuffix}`);
   };
 
-  const renderModalNotification = () => {
+  const renderModal = () => {
     return (
-      <Modal text={modal.text} handleModalClose={() => handleModalClose()} />
+      <Modal
+        type={modal.type}
+        text={modal.text}
+        redirect={modal.redirect}
+        handleModalClose={(e) => hideModal(e)}
+      />
     );
   };
 
@@ -31,31 +59,21 @@ function FormSaveButton(props) {
   };
 
   const validateForm = () => {
-    const formErrorsObj = GET_FORM_ERRORS(props.formName, props.data);
+    const formErrorsObj = GET_ALL_ERROR_MESSAGES(
+      props.formName,
+      props.formData
+    );
     props.setFormError(formErrorsObj);
     for (const property in formErrorsObj) {
       let formErrorMessage = formErrorsObj[property];
       if (formErrorMessage.length > 0) return;
     }
-    sendSavedData();
-  };
-
-  const sendSavedData = () => {
-    saveData(props.data, props.id);
-    if (resSend.isSending === false && resSend.sendingError === null) {
-      setModal({
-        ...props.modal,
-        display: true,
-        type: "notification",
-        redirect: true,
-        text: "Save successful.",
-      });
-    }
+    saveData();
   };
 
   return (
     <section className="save-button-section">
-      {modal.display === true ? renderModalNotification() : null}
+      {modal.display ? renderModal() : null}
       <button
         id="button-save"
         className="button save-button-section__button"

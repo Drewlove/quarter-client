@@ -1,7 +1,7 @@
 import React from "react";
-import Error from "../../CommonFormComponents/FormError/FormError";
+import FormError from "../CommonFormComponents/FormError/FormError";
 
-function RoleForm(props) {
+function RoleFormName(props) {
   return (
     <section className="input-section input-section_role-name">
       <label className="input-section__label" htmlFor="line-item">
@@ -9,21 +9,21 @@ function RoleForm(props) {
       </label>
       <div className="input-section__input-container">
         <input
-          className={`input-section__input ${
-            props.error ? "input-section__error" : ""
-          }`}
+          className="input-section__input"
           type="text"
           id="role"
           placeholder="Role"
-          name="role"
+          name="role_name"
           onChange={props.handleChange}
           onBlur={props.handleBlur}
-          value={props.role}
+          value={props.value}
         />
-        {props.error ? <Error message={props.error} /> : null}
+        {props.formError.length > 0 ? (
+          <FormError message={props.formError} />
+        ) : null}
       </div>
     </section>
   );
 }
 
-export default RoleForm;
+export default RoleFormName;

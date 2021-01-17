@@ -4,7 +4,7 @@ import LoadingIndicator from "../LoadingIndicator/LoadingIndicator";
 import EmptyList from "../EmptyList/EmptyList";
 import RolesListItem from "../RolesListItem/RolesListItem";
 
-function Roles() {
+function RolesListContainer() {
   const [{ data, isLoading, isError }] = API_GET("roles");
 
   const renderLoading = () => {
@@ -22,7 +22,7 @@ function Roles() {
   const renderContainer = () => {
     return (
       <section className="fieldset__container">
-        {data.length === 0 ? renderEmptyList() : renderDepartments()}
+        {data[0].length === 0 ? renderEmptyList() : renderDepartments()}
       </section>
     );
   };
@@ -33,12 +33,17 @@ function Roles() {
 
   const renderDepartments = () => {
     const collatedData = collateDataByDept();
-    return Object.entries(collatedData).map(([key, value]) => {
+    let departments = [];
+    for (const property in collatedData) {
+      departments.push(property);
+    }
+    departments.sort();
+    return departments.map((key) => {
       return (
         <RolesListItem
           department={key}
-          roles={value.roles}
-          key={value.roles[0].department_id}
+          roles={collatedData[key].roles}
+          key={key}
         />
       );
     });
@@ -46,7 +51,7 @@ function Roles() {
 
   const collateDataByDept = () => {
     let collatedData = {};
-    data.forEach((item) => {
+    data[0].forEach((item) => {
       !collatedData[item.department_name]
         ? (collatedData[item.department_name] = { roles: [item] })
         : collatedData[item.department_name].roles.push(item);
@@ -66,4 +71,4 @@ function Roles() {
   );
 }
 
-export default Roles;
+export default RolesListContainer;

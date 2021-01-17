@@ -32,7 +32,7 @@ function DepartmentsList() {
   };
 
   const renderDepartmentsList = () => {
-    return data.map((key) => {
+    return data[0].map((key) => {
       return (
         <Link
           className="fieldset__item-container"

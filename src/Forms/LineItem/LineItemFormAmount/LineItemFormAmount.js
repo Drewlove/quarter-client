@@ -1,5 +1,5 @@
 import React from "react";
-import Error from "../../CommonFormComponents/FormError/FormError";
+import Error from "../CommonFormComponents/FormError/FormError";
 
 function LineItemFormAmount(props) {
   const getAmountSign = () => {
