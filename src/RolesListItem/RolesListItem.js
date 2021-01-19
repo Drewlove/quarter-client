@@ -10,7 +10,7 @@ function RolesListItem(props) {
           className="fieldset__item-container"
           to={`/form/role/${key.role_id}`}
         >
-          {key.role_name}
+          <span className="fieldset__item-text">{key.role_name}</span>
         </Link>
       );
     });

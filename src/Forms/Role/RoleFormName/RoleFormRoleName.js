@@ -1,5 +1,5 @@
 import React from "react";
-import FormError from "../CommonFormComponents/FormError/FormError";
+import FormError from "../../CommonFormComponents/FormError/FormError";
 
 function RoleFormName(props) {
   return (

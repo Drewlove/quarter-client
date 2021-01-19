@@ -9,9 +9,10 @@ describe("DepartmentFormContainer", () => {
     MOCK_GET.API_GET = jest.fn(() => {
       return [
         {
-          data: null,
           isLoading: true,
+          isLoaded: false,
           isError: false,
+          data: [],
         },
         () => {},
       ];
@@ -23,31 +24,14 @@ describe("DepartmentFormContainer", () => {
     );
     expect(wrapper.find(".loading-indicator")).toHaveLength(1);
   });
-  it("Does not render loading indicator when isLoading is false", async () => {
-    MOCK_GET.API_GET = jest.fn(() => {
-      return [
-        {
-          data: {},
-          isLoading: false,
-          isError: false,
-        },
-        () => {},
-      ];
-    });
-    let wrapper = mount(
-      <MemoryRouter>
-        <DepartmentFormContainer />
-      </MemoryRouter>
-    );
-    expect(wrapper.find(".loading-indicator")).toHaveLength(0);
-  });
   it("Renders error when isError is true", async () => {
     MOCK_GET.API_GET = jest.fn(() => {
       return [
         {
-          data: {},
           isLoading: false,
+          isLoaded: false,
           isError: true,
+          data: [],
         },
         () => {},
       ];
@@ -57,43 +41,26 @@ describe("DepartmentFormContainer", () => {
         <DepartmentFormContainer />
       </MemoryRouter>
     );
-    expect(wrapper.find(".loading-error")).toHaveLength(1);
+    expect(wrapper.find(".error")).toHaveLength(1);
   });
-  it("Does not render error when isError is false", async () => {
+  it("Renders form and displays data when isLoaded is true", async () => {
     MOCK_GET.API_GET = jest.fn(() => {
       return [
         {
-          data: {},
           isLoading: false,
+          isLoaded: true,
           isError: false,
+          data: [{ department_name: "kitchen", department_id: 1 }],
         },
         () => {},
       ];
     });
     let wrapper = mount(
-      <MemoryRouter>
+      <MemoryRouter initialEntries={["/form/department/1"]}>
         <DepartmentFormContainer />
       </MemoryRouter>
     );
-    expect(wrapper.find(".loading-error")).toHaveLength(0);
-  });
-
-  it("Renders data correctly", async () => {
-    MOCK_GET.API_GET = jest.fn(() => {
-      return [
-        {
-          data: { department_name: "test name", department_id: 1 },
-          isLoading: false,
-          isError: false,
-        },
-        () => {},
-      ];
-    });
-    let wrapper = mount(
-      <MemoryRouter>
-        <DepartmentFormContainer />
-      </MemoryRouter>
-    );
-    expect(wrapper.find("#department").props().value).toBe("test name");
+    expect(wrapper.find(".form_department")).toHaveLength(1);
+    expect(wrapper.find("#department").props().value).toBe("kitchen");
   });
 });

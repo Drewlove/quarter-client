@@ -5,7 +5,11 @@ function RoleFormDepartment(props) {
   const renderDepartments = () => {
     return props.departments.map((key) => {
       return (
-        <option value={key.department_id} key={key.department_id}>
+        <option
+          value={key.department_id}
+          key={key.department_id}
+          className="input-section__option"
+        >
           {key.department_name}
         </option>
       );

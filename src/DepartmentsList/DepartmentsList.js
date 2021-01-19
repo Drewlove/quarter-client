@@ -1,28 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { API_GET } from "../Utilities/API_Methods/API_GET";
 import EmptyList from "../EmptyList/EmptyList";
-import LoadingIndicator from "../LoadingIndicator/LoadingIndicator";
 
-function DepartmentsList() {
-  const [{ data, isLoading, isError }] = API_GET("departments");
-
-  const renderLoading = () => {
-    return <LoadingIndicator />;
-  };
-
-  const renderResults = () => {
-    return isError ? renderError() : renderContainer();
-  };
-
-  const renderError = () => {
-    return <p>Error!</p>;
-  };
-
+function DepartmentsList(props) {
   const renderContainer = () => {
     return (
       <section className="fieldset__container">
-        {data.length === 0 ? renderEmptyList() : renderDepartmentsList()}
+        {props.data[0].length === 0
+          ? renderEmptyList()
+          : renderDepartmentsList()}
       </section>
     );
   };
@@ -32,28 +18,28 @@ function DepartmentsList() {
   };
 
   const renderDepartmentsList = () => {
-    return data[0].map((key) => {
+    return props.data[0].map((key) => {
       return (
         <Link
           className="fieldset__item-container"
           key={key.department_id}
           to={`/form/department/${key.department_id}`}
         >
-          {key.department_name}
+          <span className="fieldset__item-text">{key.department_name}</span>
         </Link>
       );
     });
   };
 
   return (
-    <main className="main">
+    <>
       <fieldset className="fieldset fieldset_departments">
         <legend className="fieldset__legend">
           <h2 className="fieldset__header">Departments</h2>
         </legend>
-        {isLoading ? renderLoading() : renderResults()}
+        {renderContainer()}
       </fieldset>
-    </main>
+    </>
   );
 }
 

@@ -1,7 +1,7 @@
 import React from "react";
 
 function LoadingIndicator() {
-  return <p>Loading...</p>;
+  return <p className="loading-indicator">Loading...</p>;
 }
 
 export default LoadingIndicator;

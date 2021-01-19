@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import RoleFormDepartment from "../RoleFormDepartment/RoleFormDepartment";
-import RoleFormRoleName from "../../RoleFormName/RoleFormRoleName";
+import RoleFormRoleName from "../RoleFormName/RoleFormRoleName";
 import FormSaveButton from "../../CommonFormComponents/FormSaveButton/FormSaveButton";
 import FormDeleteButton from "../../CommonFormComponents/FormDeleteButton/FormDeleteButton";
 import { GET_ERROR_MESSAGE } from "../../ValidateForm/GET_ERROR_MESSAGE";
 
 function RoleForm(props) {
   const [formData, setFormData] = useState({
+    role_id: "",
     role_name: "",
     department_id: "",
+    department_name: "",
   });
   const [formError, setFormError] = useState({
     role_name: "",
@@ -20,7 +22,7 @@ function RoleForm(props) {
       setFormData({
         role_id: props.data[1].role_id,
         role_name: props.data[1].role_name,
-        department_id: props.data[1].department_id,
+        department_id: props.data[1].department_id.toString(),
       });
   }, [props.id, props.data]);
 

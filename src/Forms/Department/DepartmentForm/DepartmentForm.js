@@ -15,7 +15,7 @@ function DepartmentForm(props) {
   useEffect(() => {
     if (props.id !== "new")
       setFormData({
-        department_name: props.data.department_name,
+        department_name: props.data[0].department_name,
       });
     if (props.id === "new") {
       setFormData({
@@ -67,7 +67,7 @@ function DepartmentForm(props) {
             <input
               className="input-section__input"
               type="text"
-              id="role"
+              id="department"
               placeholder="Department"
               name="department_name"
               onChange={(e) => handleChange(e)}

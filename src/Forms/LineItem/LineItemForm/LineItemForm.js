@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import LineItemFormCategory from "../LineItemFormSS/LineItemFormSelect/LineItemFormSelect";
+import LineItemFormCategory from "../LineItemFormCategory/LineItemFormCategory";
 import LineItemFormName from "../LineItemFormName/LineItemFormName";
 import LineItemFormAmount from "../LineItemFormAmount/LineItemFormAmount";
 import LineItemFormAmountType from "../LineItemFormAmountType/LineItemFormAmountType";
@@ -8,9 +8,6 @@ import LineItemFormSaveButton from "../../CommonFormComponents/FormSaveButton/Fo
 import FormDeleteButton from "../../CommonFormComponents/FormDeleteButton/FormDeleteButton";
 import { GetErrorMessage } from "../../LineItemFormErrors";
 import { FormatNumToDollars } from "../../../Utilities/UtilityFunctions";
-//Below is resource for fetching data and working with state and hooks
-//https://www.carlrippon.com/drop-down-data-binding-with-react-hooks/
-//This one too, using useEffect, https://daveceddia.com/useeffect-hook-examples/#prevent-useeffect-from-running-every-render
 
 function LineItemForm() {
   const [input, setInput] = useState({

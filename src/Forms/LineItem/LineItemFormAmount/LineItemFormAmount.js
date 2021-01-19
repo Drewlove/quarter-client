@@ -1,5 +1,5 @@
 import React from "react";
-import Error from "../CommonFormComponents/FormError/FormError";
+import FormError from "../../CommonFormComponents/FormError/FormError";
 
 function LineItemFormAmount(props) {
   const getAmountSign = () => {
@@ -28,7 +28,7 @@ function LineItemFormAmount(props) {
           onChange={props.handleChange}
           onBlur={props.handleBlur}
         />
-        {props.error ? <Error message={props.error} /> : null}
+        {props.error ? <FormError message={props.error} /> : null}
       </div>
     </section>
   );
