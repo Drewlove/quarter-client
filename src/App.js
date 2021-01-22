@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Header from "./Header/Header/Header";
-import LaborSchedule from "./LaborSchedule/LaborSchedule/LaborSchedule";
+import ScheduleContainer from "./Schedule/ScheduleContainer/ScheduleContainer";
 import FormsRouter from "./Forms/FormsRouter";
 import ProfitLossPage from "./ProfitLossPage/ProfitLossPage/ProfitLossPage";
 import DepartmentsListContainer from "./DepartmentsListContainer/DepartmentsListContainer";
@@ -16,7 +16,7 @@ function App() {
       <div className="App">
         <Switch>
           <Route path="/schedule">
-            <LaborSchedule />
+            <ScheduleContainer />
           </Route>
           <Route path="/form">
             <FormsRouter />

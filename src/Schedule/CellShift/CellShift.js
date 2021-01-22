@@ -7,8 +7,8 @@ import {
 
 function CellShift(props) {
   const getShiftSchedule = () => {
-    let start = ConvertNumToTimeStr(props.shift.start);
-    let end = ConvertNumToTimeStr(props.shift.end);
+    let start = ConvertNumToTimeStr(props.shift.shift_start);
+    let end = ConvertNumToTimeStr(props.shift.shift_end);
     return `${start}-${end}`;
   };
 
@@ -16,16 +16,10 @@ function CellShift(props) {
     return `${props.shift.people}X`;
   };
 
-  const getUrl = () => {
-    let id = props.shift.id;
-    let url = `/form/schedule/${id}`;
-    return url;
-  };
-
   return (
-    <Link to={getUrl()} className="schedule-row__cell schedule-row__cell_shift">
+    <div className="schedule-row__cell schedule-row__cell_shift">
       <p className="schedule-text_shift schedule-text_shift-role">
-        <b>{CapitalizeAllWords(props.shift.role)}</b>
+        <b>{CapitalizeAllWords(props.shift.role_name)}</b>
       </p>
       <p className="schedule-text_shift schedule-text_shift-people">
         {renderNumPeople()}
@@ -33,7 +27,7 @@ function CellShift(props) {
       <p className="schedule-text_shift schedule-text_shift-hours">
         {getShiftSchedule()}
       </p>
-    </Link>
+    </div>
   );
 }
 
