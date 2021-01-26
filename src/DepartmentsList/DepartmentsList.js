@@ -14,7 +14,7 @@ function DepartmentsList(props) {
   };
 
   const renderEmptyList = () => {
-    return <EmptyList name="department" />;
+    return <EmptyList name="department" url="/form/department/new" />;
   };
 
   const renderDepartmentsList = () => {

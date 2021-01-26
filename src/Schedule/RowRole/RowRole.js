@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import CellButton from "../CellBlank/CellBlank";
+import CellBlank from "../CellBlank/CellBlank";
 import CellShift from "../CellShift/CellShift";
 
 function RowRole(props) {
@@ -9,24 +9,20 @@ function RowRole(props) {
       return key.isShift ? (
         <CellShift key={key.id} shift={key.shift} id={key.id} />
       ) : (
-        <CellButton key={key.id} />
+        <CellBlank key={key.id} />
       );
     });
   };
 
-  const getUrl = () => {
-    return;
-  };
-
   return (
-    <>
+    <div className="schedule-row_role-container">
       <Link
         className="schedule-row schedule-row_role"
         to={`/form/schedule/${props.id}`}
       >
         {renderRow()}
       </Link>
-    </>
+    </div>
   );
 }
 

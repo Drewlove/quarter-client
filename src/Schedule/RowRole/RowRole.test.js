@@ -1,88 +1,64 @@
-import React from "react"; 
-import {mount, shallow} from "enzyme"
-import RowRole from "./RowRole"
-import {MemoryRouter} from 'react-router-dom'
+import React from "react";
+import { mount, shallow } from "enzyme";
+import RowRole from "./RowRole";
+import { MemoryRouter } from "react-router-dom";
 
-const row =     [{
-    day: 0,
-    department: "bake off",
-    role: "kettle",
-    start: 4,
-    end: 8,
-    people: 1,
-    hourly: 12,
-    id: 0,
-    isShift: true,
-    rowId: 1,
-  },
-  {
-    day: 1,
-    department: "bake off",
-    role: "kettle",
-    start: 4,
-    end: 8,
-    people: 1,
-    hourly: 12,
-    id: 1,
-    isShift: true,
-    rowId: 1,
-  },
-  {
-    day: 2,
-    department: "bake off",
-    role: "kettle",
-    start: 4,
-    end: 8,
-    people: 1,
-    hourly: 12,
-    id: 2,
-    isShift: true,
-    rowId: 1,
-  },
-  {
-    day: 3,
-    department: "bake off",
-    role: "kettle",
-    start: 4,
-    end: 8,
-    people: 1,
-    hourly: 12,
-    id: 3, 
-    isShift: true,
-    rowId: 1,
-  }, 
-  {
-    id: 4, 
-    isShift: false, 
-  },
-  {
-    id: 5, 
-    isShift: false, 
-  },
-  {
-    id: 6, 
-    isShift: false, 
-  },
-]
+const dummyShift = {
+  department_name: "kitchen",
+  people: 1,
+  role_name: "sous chef",
+  shift_day: [4, 5, 6],
+  shift_department: 1,
+  shift_end: "16.50",
+  shift_id: 13,
+  shift_role: 3,
+  shift_start: "9.00",
+  wage: "15.00",
+};
 
-describe("RowRole",() => {
-    let wrapper; 
+const dummyRow = [
+  { isShift: false, id: "13-0" },
+  { isShift: false, id: "13-1" },
+  { isShift: false, id: "13-2" },
+  { isShift: false, id: "13-3" },
+  { isShift: true, id: "13-4", shift: dummyShift },
+  { isShift: true, id: "13-5", shift: dummyShift },
+  { isShift: true, id: "13-6", shift: dummyShift },
+];
 
-    beforeEach( () => {
-        wrapper = mount(
-          <MemoryRouter>
-            <RowRole row={row} />
-          </MemoryRouter>
-          )
-    })
-    it("renders", () => {
-        expect(wrapper.find(".schedule-row")).toHaveLength(1); 
-    })
-    it("renders correct number of cells with shift info", () => {
-        expect(wrapper.find("a.schedule-row__cell_shift")).toHaveLength(4);
-    })
-    it("renders correct number of blank cells", () => {
-      expect(wrapper.find("a.schedule-row__cell_blank")).toHaveLength(3);  
-  })
-})
+const row = describe("RowRole", () => {
+  let wrapper;
 
+  beforeEach(() => {
+    wrapper = mount(
+      <MemoryRouter>
+        <RowRole row={dummyRow} />
+      </MemoryRouter>
+    );
+  });
+  it("renders", () => {
+    expect(wrapper.find(".schedule-row_role-container")).toHaveLength(1);
+    console.log(wrapper.debug());
+  });
+  it("renders correct number of blank cells", () => {
+    expect(wrapper.find(".schedule-row__cell_blank")).toHaveLength(4);
+  });
+  it("renders correct number of cells with shift info", () => {
+    expect(wrapper.find(".schedule-row__cell_shift")).toHaveLength(3);
+  });
+  it("renders text: role name", () => {
+    expect(wrapper.find(".schedule-text_shift-role").at(0).text()).toEqual(
+      "Sous Chef"
+    );
+  });
+  it("renders text: number of people", () => {
+    expect(wrapper.find(".schedule-text_shift-people").at(0).text()).toEqual(
+      "1X"
+    );
+  });
+  it("renders text: shift hours", () => {
+    expect(wrapper.find(".schedule-text_shift-hours").at(0).text()).toEqual(
+      "9:00am-4:30pm"
+    );
+  });
+});

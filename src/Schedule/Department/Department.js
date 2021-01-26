@@ -14,7 +14,8 @@ function Department(props) {
       <div className="schedule-row schedule-row_department">
         <div className="schedule-department">
           <h4 className="schedule-text_department">
-            {CapitalizeAllWords(props.deptName)} - ${props.schedule.cost}
+            {CapitalizeAllWords(props.deptName)} - $
+            {parseFloat(props.schedule.cost).toFixed(2)}
           </h4>
         </div>
       </div>

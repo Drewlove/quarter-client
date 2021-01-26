@@ -10,6 +10,6 @@ describe("CellBlank", () => {
         <CellBlank />
       </MemoryRouter>
     );
-    expect(wrapper.find("a.schedule-row__cell_blank")).toHaveLength(1);
+    expect(wrapper.find(".schedule-row__cell_blank")).toHaveLength(1);
   });
 });

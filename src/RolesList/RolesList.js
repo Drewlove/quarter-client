@@ -12,7 +12,7 @@ function RolesList(props) {
   };
 
   const renderEmptyList = () => {
-    return <EmptyList name="role" />;
+    return <EmptyList name="role" url="/form/role/new" />;
   };
 
   const renderDepartments = () => {
