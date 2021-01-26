@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { GetErrorMessage } from "../../ShiftFormErrors";
 import FormDeleteButton from "../../CommonFormComponents/FormDeleteButton/FormDeleteButton";
 import FormSaveButton from "../../CommonFormComponents/FormSaveButton/FormSaveButton";
@@ -10,7 +10,7 @@ import ShiftFormDays from "../ShiftFormDays/ShiftFormDays";
 import ShiftFormPay from "../ShiftFormPay/ShiftFormPay";
 import { FormatNumToDollars } from "../../../Utilities/UtilityFunctions";
 
-function ShiftForm() {
+function ShiftForm(props) {
   const [input, setInput] = useState({
     people: "",
     pay: "",
@@ -40,17 +40,21 @@ function ShiftForm() {
     days: "",
   });
 
-  const departments = ["kitchen", "service", "bagels"];
-  const roles = [
-    { role: "chef", department: "kitchen" },
-    { role: "sous chef", department: "kitchen" },
-    { role: "cashier", department: "service" },
-    { role: "line", department: "service" },
-    { role: "expo", department: "service" },
-    { role: "starters", department: "bagels" },
-    { role: "dough", department: "bagels" },
-    { role: "production", department: "bagels" },
-  ];
+  useEffect(() => {
+    console.log(props.data);
+  }, []);
+
+  // const departments = ["kitchen", "service", "bagels"];
+  // const roles = [
+  //   { role: "chef", department: "kitchen" },
+  //   { role: "sous chef", department: "kitchen" },
+  //   { role: "cashier", department: "service" },
+  //   { role: "line", department: "service" },
+  //   { role: "expo", department: "service" },
+  //   { role: "starters", department: "bagels" },
+  //   { role: "dough", department: "bagels" },
+  //   { role: "production", department: "bagels" },
+  // ];
 
   const handleChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -120,7 +124,7 @@ function ShiftForm() {
 
   return (
     <main className="main">
-      <form className="form">
+      {/* <form className="form">
         <fieldset className="fieldset_form">
           <FormDeleteButton handleDelete={handleDelete} />
           <ShiftFormDepartment
@@ -162,7 +166,7 @@ function ShiftForm() {
           />
           <FormSaveButton handleSave={handleSave} />
         </fieldset>
-      </form>
+      </form> */}
     </main>
   );
 }

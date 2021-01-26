@@ -5,7 +5,7 @@ import FetchFormData from "../../FetchFormData/FetchFormData";
 
 function ShiftFormContainer() {
   const { id } = useParams();
-  let endpointStr = id === `new` ? `` : `shifts/${id}`;
+  let endpointStr = id === `new` ? `` : `shifts/${id}, departments, roles`;
 
   return (
     <>

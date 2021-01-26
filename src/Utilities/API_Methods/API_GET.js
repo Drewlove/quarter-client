@@ -70,6 +70,7 @@ export const API_GET = (endpointStr) => {
 
       dispatch({ type: "FETCH_INIT" });
       const urls = getUrls(endpointStr);
+      console.log(urls);
       try {
         if (!didCancel) {
           const responseArr = await Promise.all(
