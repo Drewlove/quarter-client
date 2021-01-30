@@ -11,15 +11,16 @@ function ShiftFormTime(props) {
         <div className="input-section__input-container">
           <input
             type="time"
-            className={`input-section__input ${
-              props.errorStart ? "input-section__error" : ""
-            }`}
+            className="input-section__input"
             id="start-time"
             onChange={props.handleChange}
-            name="startTime"
+            onBlur={props.handleBlur}
+            name="shift_start"
             value={props.startTime}
           />
-          {props.errorStart ? <FormError message={props.errorStart} /> : null}
+          {props.formErrorStart ? (
+            <FormError message={props.formErrorStart} />
+          ) : null}
         </div>
       </section>
       <section className="input-section input-section_time">
@@ -29,15 +30,16 @@ function ShiftFormTime(props) {
         <div className="input-section__input-container">
           <input
             type="time"
-            className={`input-section__input ${
-              props.errorEnd ? "input-section__error" : ""
-            }`}
+            className="input-section__input"
             id="end-time"
             onChange={props.handleChange}
-            name="endTime"
+            onBlur={props.handleBlur}
+            name="shift_end"
             value={props.endTime}
           />
-          {props.errorEnd ? <FormError message={props.errorEnd} /> : null}
+          {props.formErrorEnd ? (
+            <FormError message={props.formErrorEnd} />
+          ) : null}
         </div>
       </section>
     </>

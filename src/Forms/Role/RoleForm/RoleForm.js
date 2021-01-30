@@ -12,6 +12,7 @@ function RoleForm(props) {
     department_id: "",
     department_name: "",
   });
+
   const [formError, setFormError] = useState({
     role_name: "",
     department_id: "",
@@ -28,8 +29,7 @@ function RoleForm(props) {
 
   const handleChange = (e) => {
     validate(e);
-    let updatedForm = { ...formData, [e.target.name]: e.target.value };
-    setFormData(updatedForm);
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const validate = (e) => {
@@ -41,14 +41,9 @@ function RoleForm(props) {
     validate(e);
   };
 
-  const handleDelete = (e) => {
-    e.preventDefault();
-  };
-
   const renderDeleteButton = () => {
     return (
       <FormDeleteButton
-        handleDelete={handleDelete}
         endpointSuffix="roles"
         id={props.id}
         redirectSuffix="roles"

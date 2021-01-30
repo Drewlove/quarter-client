@@ -41,9 +41,15 @@ function Schedule(props) {
 
   const renderSchedule = () => {
     let schedule = COLLATE_SCHEDULE(props.data[0]);
-    // console.log(schedule.kitchen);
-    return Object.keys(schedule).map((key) => {
-      return <Department key={key} schedule={schedule[key]} deptName={key} />;
+    return schedule.map((key) => {
+      return (
+        <Department
+          key={key.deptName}
+          shifts={key.shifts}
+          cost={key.cost}
+          deptName={key.deptName}
+        />
+      );
     });
   };
 

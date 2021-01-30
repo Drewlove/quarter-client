@@ -6,6 +6,8 @@ export const GET_ALL_ERROR_MESSAGES = (formName, formData) => {
       return getDepartmentErrors(formData);
     case "role":
       return getRoleErrors(formData);
+    case "shift":
+      return getShiftErrors(formData);
     default:
   }
 };
@@ -25,5 +27,22 @@ function getRoleErrors(formData) {
     department_id: GET_ERROR_MESSAGE("department_id", formData.department_id),
     role_name: GET_ERROR_MESSAGE("role_name", formData.role_name),
   };
+  return formErrorsObj;
+}
+
+function getShiftErrors(formData) {
+  let formErrorsObj = {
+    shift_department: GET_ERROR_MESSAGE(
+      "shift_department",
+      formData.shift_department
+    ),
+    shift_role: GET_ERROR_MESSAGE("shift_role", formData.shift_role),
+    people: GET_ERROR_MESSAGE("people", formData.people),
+    wage: GET_ERROR_MESSAGE("wage", formData.wage),
+    shift_start: GET_ERROR_MESSAGE("shift_start", formData.shift_start),
+    shift_end: GET_ERROR_MESSAGE("shift_end", formData.shift_end),
+    shift_day: GET_ERROR_MESSAGE("shift_day", formData.shift_day),
+  };
+  console.log(formErrorsObj);
   return formErrorsObj;
 }

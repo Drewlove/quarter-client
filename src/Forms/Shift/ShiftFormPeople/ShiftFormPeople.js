@@ -9,9 +9,7 @@ function ShiftFormPeople(props) {
       </label>
       <div className="input-section__input-container">
         <input
-          className={`input-section__input ${
-            props.error ? "input-section__error" : ""
-          }`}
+          className="input-section__input"
           type="number"
           id="people"
           placeholder="No. of People"
@@ -20,7 +18,9 @@ function ShiftFormPeople(props) {
           onChange={props.handleChange}
           onBlur={props.handleBlur}
         />
-        {props.error.length > 0 ? <FormError message={props.error} /> : null}
+        {props.formError.length > 0 ? (
+          <FormError message={props.formError} />
+        ) : null}
       </div>
     </section>
   );

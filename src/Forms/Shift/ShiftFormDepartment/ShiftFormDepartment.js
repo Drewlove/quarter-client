@@ -3,11 +3,14 @@ import FormError from "../../CommonFormComponents/FormError/FormError";
 import { CapitalizeAllWords } from "../../../Utilities/UtilityFunctions";
 
 function ShiftFormDepartment(props) {
-  const renderOptions = (options) => {
-    return options.map((option) => {
+  const renderDepartments = () => {
+    return Object.keys(props.departments).map((key) => {
       return (
-        <option value={option} key={option}>
-          {CapitalizeAllWords(option)}
+        <option
+          value={props.departments[key].toString()}
+          key={props.departments[key]}
+        >
+          {CapitalizeAllWords(key)}
         </option>
       );
     });
@@ -20,20 +23,22 @@ function ShiftFormDepartment(props) {
       </label>
       <div className="input-section__input-container">
         <select
-          className={`input-section__input ${
-            props.error ? "input-section__error" : ""
-          }`}
+          className="input-section__input"
           id="department"
           onChange={props.handleChange}
-          name="department"
+          name="shift_department"
           value={props.value}
         >
           <option value={""} disabled>
             - Select Department -
           </option>
-          {props.options ? renderOptions(props.options) : null}
+          {Object.keys(props.departments).length > 0
+            ? renderDepartments()
+            : null}
         </select>
-        {props.error.length > 0 ? <FormError message={props.error} /> : null}
+        {props.formError.length > 0 ? (
+          <FormError message={props.formError} />
+        ) : null}
       </div>
     </section>
   );

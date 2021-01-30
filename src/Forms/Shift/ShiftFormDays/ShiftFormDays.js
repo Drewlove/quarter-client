@@ -22,23 +22,20 @@ function ShiftFormDays(props) {
     return <p>{CapitalizeAllWords(dayAbbr)}</p>;
   };
 
-  const isChecked = (day) => {
-    return props.days[day];
-  };
-
   const renderDays = () => {
-    return daysList.map((day) => {
+    return daysList.map((key, idx) => {
       return (
-        <label htmlFor={day} key={day}>
+        <label htmlFor={key} key={key}>
           <input
             className="toggle-container__input"
             type="checkbox"
-            id={day}
-            name={day}
-            checked={isChecked(day)}
+            id={key}
+            name="shift_day"
+            checked={props.days.indexOf(idx) >= 0}
             onChange={props.handleChangeDay}
+            value={idx}
           />
-          <div className="toggle-container__box">{displayName(day)}</div>
+          <div className="toggle-container__box">{displayName(key)}</div>
         </label>
       );
     });
@@ -49,7 +46,9 @@ function ShiftFormDays(props) {
       <label className="input-section__label">Days</label>
       <div>
         <div className="toggle-container">{renderDays()}</div>
-        {props.error.length > 0 ? <Error message={props.error} /> : null}
+        {props.formError.length > 0 ? (
+          <Error message={props.formError} />
+        ) : null}
       </div>
     </section>
   );

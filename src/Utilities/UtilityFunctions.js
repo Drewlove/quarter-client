@@ -15,13 +15,16 @@ export const FormatNumToDollars = (value) => {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   });
-  return revisedNum;
+  return revisedNum === "NaN" ? "0.00" : revisedNum;
 };
 
-export const ConvertNumToTimeStr = (num) => {
-  let hour = `${((Math.floor(num) + 11) % 12) + 1}`;
-  let minutes = num % 1 === 0 ? "00" : `${(num % 1) * 60}`;
+export const ConvertNumToTimeStr = (str) => {
+  let times = str.split(":");
+  let militaryHour = parseInt(times[0]);
+  let standardHour =
+    militaryHour < 13 ? `${militaryHour}` : `${militaryHour - 12}`;
+  let minutes = times[1] % 60 === 0 ? "00" : `${times[1] % 60}`;
   let amPm = "";
-  num < 12 || num === 24 ? (amPm = "am") : (amPm = "pm");
-  return `${hour}:${minutes}${amPm}`;
+  times[0] < 12 || times[0] === 24 ? (amPm = "am") : (amPm = "pm");
+  return `${standardHour}:${minutes}${amPm}`;
 };

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { GetErrorMessage } from "../../ShiftFormErrors";
+import { GET_ERROR_MESSAGE } from "../../ValidateForm/GET_ERROR_MESSAGE";
 import FormDeleteButton from "../../CommonFormComponents/FormDeleteButton/FormDeleteButton";
 import FormSaveButton from "../../CommonFormComponents/FormSaveButton/FormSaveButton";
 import ShiftFormDepartment from "../ShiftFormDepartment/ShiftFormDepartment";
@@ -7,166 +7,171 @@ import ShiftFormRole from "../ShiftFormRole/ShiftFormRole";
 import ShiftFormTime from "../ShiftFormTime/ShiftFormTime";
 import ShiftFormPeople from "../ShiftFormPeople/ShiftFormPeople";
 import ShiftFormDays from "../ShiftFormDays/ShiftFormDays";
-import ShiftFormPay from "../ShiftFormPay/ShiftFormPay";
+import ShiftFormWage from "../ShiftFormWage/ShiftFormWage";
 import { FormatNumToDollars } from "../../../Utilities/UtilityFunctions";
 
 function ShiftForm(props) {
-  const [input, setInput] = useState({
+  const [formData, setFormData] = useState({
+    shift_id: "",
+    shift_department: "",
+    shift_role: "",
     people: "",
-    pay: "",
-    startTime: "",
-    endTime: "",
-    department: "",
-    role: "",
+    wage: "",
+    shift_start: "",
+    shift_end: "",
+    shift_day: [],
   });
 
-  const [days, setDays] = useState({
-    monday: false,
-    tuesday: false,
-    wednesday: false,
-    thursday: false,
-    friday: false,
-    saturday: false,
-    sunday: false,
-  });
+  const [roles, setRoles] = useState([]);
 
-  const [error, setError] = useState({
-    department: "",
-    role: "",
+  const [formError, setFormError] = useState({
+    shift_id: "",
+    shift_department: "",
+    shift_role: "",
     people: "",
-    pay: "",
-    errorStart: "",
-    errorEnd: "",
-    days: "",
+    wage: "",
+    shift_start: "",
+    shift_end: "",
+    shift_day: "",
   });
 
   useEffect(() => {
-    console.log(props.data);
-  }, []);
-
-  // const departments = ["kitchen", "service", "bagels"];
-  // const roles = [
-  //   { role: "chef", department: "kitchen" },
-  //   { role: "sous chef", department: "kitchen" },
-  //   { role: "cashier", department: "service" },
-  //   { role: "line", department: "service" },
-  //   { role: "expo", department: "service" },
-  //   { role: "starters", department: "bagels" },
-  //   { role: "dough", department: "bagels" },
-  //   { role: "production", department: "bagels" },
-  // ];
+    if (props.id !== "new") {
+      setFormData({
+        shift_id: props.data[1].shift_id,
+        shift_department: props.data[1].shift_department.toString(),
+        shift_role: props.data[1].shift_role.toString(),
+        people: props.data[1].people,
+        wage: props.data[1].wage,
+        shift_start: props.data[1].shift_start,
+        shift_end: props.data[1].shift_end,
+        shift_day: props.data[1].shift_day,
+      });
+    }
+    setRoles(props.data[0]);
+  }, [props.data, props.id]);
 
   const handleChange = (e) => {
-    setInput({ ...input, [e.target.name]: e.target.value });
-    validateInput(e);
+    validate(e);
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleChangeDay = (e) => {
-    const dayStatus = days[e.target.name];
-    setDays({ ...days, [e.target.name]: !dayStatus });
-    validateDaysInput(e);
-  };
-
-  const handleBlur = (e) => {
-    e.target.name === "pay" && error.pay === ""
-      ? handleBlurPay(e)
-      : validateInput(e);
-  };
-
-  const handleBlurPay = (e) => {
-    setInput({ ...input, pay: FormatNumToDollars(e.target.value) });
-  };
-
-  const validateInput = (e) => {
-    let errorMessage = GetErrorMessage(e.target.name, e.target.value);
-    setError({ ...error, [e.target.name]: errorMessage });
-  };
-
-  const validateDaysInput = (e) => {
-    let numDaysChecked = getNumDaysChecked();
-    if (e.target.checked === true || numDaysChecked > 1) {
-      setError({ ...error, days: "" });
-    } else if (numDaysChecked === 1 && e.target.checked === false) {
-      setError({
-        ...error,
-        days: "Select at least one day.",
-      });
+  const handleChangeWage = (e) => {
+    if (/^[0-9,.]*$/.test(e.target.value)) {
+      validate(e);
+      setFormData({ ...formData, wage: e.target.value });
     }
   };
 
-  const getNumDaysChecked = () => {
-    let numDaysChecked = 0;
-    Object.entries(days).forEach((day) => {
-      let dayBoolean = day[1];
-      if (dayBoolean === true) numDaysChecked++;
-    });
-    return numDaysChecked;
+  const handleChangeDay = (e) => {
+    let dayVal = parseInt(e.target.value);
+    let days = [...formData.shift_day];
+    const dayIndex = formData.shift_day.indexOf(dayVal);
+    dayIndex >= 0 ? days.splice(dayIndex, 1) : days.push(dayVal);
+    validateDays(days);
+    setFormData({ ...formData, shift_day: days });
   };
 
-  const handleDelete = () => {};
-
-  const handleSave = (e) => {
-    e.preventDefault();
-    validateAllInputs();
+  const handleBlur = (e) => {
+    validate(e);
   };
 
-  const validateAllInputs = () => {
-    let errors = {
-      days: GetErrorMessage("days", days),
-    };
+  const handleBlurWage = (e) => {
+    validate(e);
+    return e.target.value !== "" && formError.wage === ""
+      ? setFormData({ ...formData, wage: FormatNumToDollars(e.target.value) })
+      : null;
+  };
 
-    Object.keys(input).forEach((key) => {
-      errors[key] = GetErrorMessage(key, input[key]);
-    });
+  const validate = (e) => {
+    let errorMessage = GET_ERROR_MESSAGE(e.target.name, e.target.value);
+    setFormError({ ...formError, [e.target.name]: errorMessage });
+  };
 
-    setError(errors);
+  const validateDays = (days) => {
+    let errorMessage = GET_ERROR_MESSAGE("shift_day", days);
+    console.log(errorMessage);
+    setFormError({ ...formError, shift_day: errorMessage });
+  };
+
+  const getDepartments = () => {
+    const departments = {};
+    if (roles.length === 0) {
+      return departments;
+    } else {
+      roles.forEach((role) => {
+        if (!departments[role.department_name])
+          departments[role.department_name] = role.department_id;
+      });
+    }
+    return departments;
+  };
+
+  const renderDeleteButton = () => {
+    return (
+      <FormDeleteButton
+        endpointSuffix="shifts"
+        id={props.id}
+        redirectSuffix="schedule"
+      />
+    );
   };
 
   return (
     <main className="main">
-      {/* <form className="form">
+      <form className="form">
         <fieldset className="fieldset_form">
-          <FormDeleteButton handleDelete={handleDelete} />
+          {props.id !== "new" ? renderDeleteButton() : null}
           <ShiftFormDepartment
             handleChange={(e) => handleChange(e)}
-            value={input.department}
-            options={departments}
-            error={error.department}
+            value={formData.shift_department}
+            departments={getDepartments()}
+            formError={formError.shift_department}
           />
           <ShiftFormRole
             handleChange={(e) => handleChange(e)}
-            value={input.role}
-            department={input.department}
-            options={roles}
-            error={error.role}
+            roles={roles}
+            departmentId={formData.shift_department}
+            value={formData.shift_role}
+            formError={formError.shift_role}
           />
           <ShiftFormPeople
             handleChange={(e) => handleChange(e)}
-            value={input.people}
-            error={error.people}
+            value={formData.people}
+            formError={formError.people}
             handleBlur={handleBlur}
           />
-          <ShiftFormPay
-            handleChange={(e) => handleChange(e)}
-            value={input.pay}
-            error={error.pay}
-            handleBlur={handleBlur}
+
+          <ShiftFormWage
+            handleChangeWage={(e) => handleChangeWage(e)}
+            value={formData.wage}
+            formError={formError.wage}
+            handleBlurWage={handleBlurWage}
           />
+
           <ShiftFormTime
             handleChange={(e) => handleChange(e)}
-            startTime={input.startTime}
-            endTime={input.endTime}
-            errorStart={error.startTime}
-            errorEnd={error.endTime}
+            handleBlur={(e) => handleBlur(e)}
+            startTime={formData.shift_start}
+            endTime={formData.shift_end}
+            formErrorStart={formError.shift_start}
+            formErrorEnd={formError.shift_end}
           />
           <ShiftFormDays
-            days={days}
+            days={formData.shift_day}
             handleChangeDay={(e) => handleChangeDay(e)}
-            error={error.days}
+            formError={formError.shift_day}
           />
-          <FormSaveButton handleSave={handleSave} />
+          <FormSaveButton
+            formData={formData}
+            formName="shift"
+            endpointSuffix="shifts"
+            redirectSuffix="schedule"
+            id={props.id}
+            setFormError={setFormError}
+          />
         </fieldset>
-      </form> */}
+      </form>
     </main>
   );
 }

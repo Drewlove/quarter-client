@@ -38,7 +38,6 @@ const row = describe("RowRole", () => {
   });
   it("renders", () => {
     expect(wrapper.find(".schedule-row_role-container")).toHaveLength(1);
-    console.log(wrapper.debug());
   });
   it("renders correct number of blank cells", () => {
     expect(wrapper.find(".schedule-row__cell_blank")).toHaveLength(4);

@@ -3,18 +3,19 @@ import FormError from "../../CommonFormComponents/FormError/FormError";
 import { CapitalizeAllWords } from "../../../Utilities/UtilityFunctions";
 
 function ShiftFormRole(props) {
-  const getFilteredOptions = (options) => {
-    return options.filter((option) => option.department === props.department);
+  const getFilteredOptions = () => {
+    return props.roles.filter(
+      (option) => option.department_id.toString() === props.departmentId
+    );
   };
 
-  const renderOptions = (options) => {
-    const filteredOptions = getFilteredOptions(options);
+  const renderRoles = () => {
+    const filteredOptions = getFilteredOptions();
 
     return filteredOptions.map((option) => {
-      const { role } = option;
       return (
-        <option value={role} key={role}>
-          {CapitalizeAllWords(role)}
+        <option value={option.role_id.toString()} key={option.role_id}>
+          {CapitalizeAllWords(option.role_name)}
         </option>
       );
     });
@@ -27,20 +28,20 @@ function ShiftFormRole(props) {
       </label>
       <div className="input-section__input-container">
         <select
-          className={`input-section__input ${
-            props.error ? "input-section__error" : ""
-          }`}
+          className="input-section__input"
           id="role"
           onChange={props.handleChange}
-          name="role"
+          name="shift_role"
           value={props.value}
         >
           <option value={""} disabled>
             - Select Role -
           </option>
-          {props.options ? renderOptions(props.options) : null}
+          {props.roles.length > 0 ? renderRoles() : null}
         </select>
-        {props.error.length > 0 ? <FormError message={props.error} /> : null}
+        {props.formError.length > 0 ? (
+          <FormError message={props.formError} />
+        ) : null}
       </div>
     </section>
   );

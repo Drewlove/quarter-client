@@ -1,87 +1,48 @@
 import React from "react";
 import ShiftFormDays from "./ShiftFormDays";
-import { mount } from "enzyme";
-
-const handleChangeDay = (e) => {
-  const dayStatus = days[e.target.name];
-  setDays({ ...days, [e.target.name]: !dayStatus });
-  validateDaysInput(e);
-};
+import { mount, shallow } from "enzyme";
 
 describe("ShiftFormDays", () => {
+  const days = [0, 1, 2];
   it("renders", () => {
-    const wrapper = mount(
-      <ShiftFormDays
-        error=""
-        days={{
-          monday: false,
-          tuesday: false,
-          wednesday: false,
-          thursday: false,
-          friday: false,
-          saturday: false,
-          sunday: false,
-        }}
-        handleChangeDay={(e) => handleChangeDay(e)}
-      />
-    );
+    const wrapper = shallow(<ShiftFormDays days={days} formError="" />);
     expect(wrapper.find(".input-section_days")).toHaveLength(1);
   });
-
-  it("renders error message if there is an error", () => {
+  it("Checkboxes that should be checked, are checked", () => {
+    const wrapper = shallow(<ShiftFormDays days={days} formError="" />);
+    expect(wrapper.find(".toggle-container__input").at(0).props().checked).toBe(
+      true
+    );
+    expect(wrapper.find(".toggle-container__input").at(1).props().checked).toBe(
+      true
+    );
+    expect(wrapper.find(".toggle-container__input").at(2).props().checked).toBe(
+      true
+    );
+  });
+  it("Checkboxes that should not be checked, are not checked", () => {
+    const wrapper = shallow(<ShiftFormDays days={days} formError="" />);
+    expect(wrapper.find(".toggle-container__input").at(3).props().checked).toBe(
+      false
+    );
+    expect(wrapper.find(".toggle-container__input").at(4).props().checked).toBe(
+      false
+    );
+    expect(wrapper.find(".toggle-container__input").at(5).props().checked).toBe(
+      false
+    );
+    expect(wrapper.find(".toggle-container__input").at(6).props().checked).toBe(
+      false
+    );
+  });
+  it("Renders an error message if no days have been selected", () => {
     const wrapper = mount(
       <ShiftFormDays
-        error="Error message here"
-        days={{
-          monday: false,
-          tuesday: false,
-          wednesday: false,
-          thursday: false,
-          friday: false,
-          saturday: false,
-          sunday: false,
-        }}
-        handleChangeDay={(e) => handleChangeDay(e)}
+        days={[]}
+        formError="Select at least one day."
+        handleChangeDay={() => null}
       />
     );
     expect(wrapper.find(".form-error")).toHaveLength(1);
-  });
-
-  it("renders NO error message if there is NO error", () => {
-    const wrapper = mount(
-      <ShiftFormDays
-        error=""
-        days={{
-          monday: false,
-          tuesday: false,
-          wednesday: false,
-          thursday: false,
-          friday: false,
-          saturday: false,
-          sunday: false,
-        }}
-        handleChangeDay={(e) => handleChangeDay(e)}
-      />
-    );
-    expect(wrapper.find(".form-error")).toHaveLength(0);
-  });
-
-  it("Displays box as checked if it is marked as true", () => {
-    const wrapper = mount(
-      <ShiftFormDays
-        error=""
-        days={{
-          monday: true,
-          tuesday: false,
-          wednesday: false,
-          thursday: false,
-          friday: false,
-          saturday: false,
-          sunday: false,
-        }}
-        handleChangeDay={(e) => handleChangeDay(e)}
-      />
-    );
-    expect(wrapper.find("#monday").prop("checked")).toBe(true);
   });
 });
