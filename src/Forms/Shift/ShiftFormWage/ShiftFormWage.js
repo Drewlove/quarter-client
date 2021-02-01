@@ -9,7 +9,7 @@ function ShiftFormWage(props) {
       </label>
       <div className="input-section__input-container">
         <input
-          className="input-section__input"
+          className="input-section__input input-section__input_wage"
           type="text"
           id="wage"
           placeholder="Hourly wage Rate"

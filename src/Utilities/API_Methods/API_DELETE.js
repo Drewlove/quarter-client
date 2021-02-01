@@ -12,7 +12,6 @@ export const API_DELETE = (endpointSuffix, id) => {
   });
 
   const deleteData = useCallback(async () => {
-    console.log(endpointSuffix);
     setResDelete((prevState) => ({ ...prevState, isDeleting: true }));
     try {
       const result = await fetch(

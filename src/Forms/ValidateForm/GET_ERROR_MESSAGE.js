@@ -77,6 +77,8 @@ function getErrorMessageWage(formValue) {
     return "Enter $0.01 or more.";
   } else if (isCurrencyFormat(formValue)) {
     return "Number must be in standard currency format.";
+  } else if (formValue >= 10000) {
+    return "Number must be 9,999.99 or less.";
   } else {
     return "";
   }
@@ -89,7 +91,6 @@ function isCurrencyFormat(value) {
 }
 
 function getErrorMessageShiftStart(formValue) {
-  console.log(formValue);
   if (formValue.length === 0) {
     return "Enter a start time.";
   } else {

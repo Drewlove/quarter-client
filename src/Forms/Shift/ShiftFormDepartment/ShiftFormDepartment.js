@@ -1,19 +1,28 @@
 import React from "react";
 import FormError from "../../CommonFormComponents/FormError/FormError";
-import { CapitalizeAllWords } from "../../../Utilities/UtilityFunctions";
 
 function ShiftFormDepartment(props) {
   const renderDepartments = () => {
-    return Object.keys(props.departments).map((key) => {
+    let sortedDepartments = sortDepartments();
+    return sortedDepartments.map((key) => {
       return (
         <option
-          value={props.departments[key].toString()}
-          key={props.departments[key]}
+          className="option option_shift-department"
+          key={key.department_id}
+          value={key.department_id}
         >
-          {CapitalizeAllWords(key)}
+          {key.department_name}
         </option>
       );
     });
+  };
+
+  const sortDepartments = () => {
+    return props.departments.sort((a, b) =>
+      a.department_name.toUpperCase() >= b.department_name.toUpperCase()
+        ? 1
+        : -1
+    );
   };
 
   return (
@@ -23,18 +32,20 @@ function ShiftFormDepartment(props) {
       </label>
       <div className="input-section__input-container">
         <select
-          className="input-section__input"
+          className="input-section__input input-section__input_department"
           id="department"
           onChange={props.handleChange}
           name="shift_department"
           value={props.value}
         >
-          <option value={""} disabled>
+          <option
+            value={""}
+            disabled
+            className="option option_shift-department"
+          >
             - Select Department -
           </option>
-          {Object.keys(props.departments).length > 0
-            ? renderDepartments()
-            : null}
+          {props.departments.length > 0 ? renderDepartments() : null}
         </select>
         {props.formError.length > 0 ? (
           <FormError message={props.formError} />

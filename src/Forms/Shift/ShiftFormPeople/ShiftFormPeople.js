@@ -9,7 +9,7 @@ function ShiftFormPeople(props) {
       </label>
       <div className="input-section__input-container">
         <input
-          className="input-section__input"
+          className="input-section__input input-section__input_people"
           type="number"
           id="people"
           placeholder="No. of People"

@@ -3,17 +3,30 @@ import ShiftFormPeople from "./ShiftFormPeople";
 import { mount } from "enzyme";
 
 describe("ShiftFormPeople", () => {
-  let wrapper;
-  beforeEach(() => {
-    wrapper = mount(<ShiftFormPeople error="" />);
-  });
-
-  it("renders", () => {
-    const wrapper = mount(<ShiftFormPeople error="" />);
+  it("Renders", () => {
+    const wrapper = mount(
+      <ShiftFormPeople formError="" handleChange={() => null} />
+    );
     expect(wrapper.find(".input-section_people")).toHaveLength(1);
   });
-  it("renders error message if there is an error", () => {
-    const wrapper = mount(<ShiftFormPeople error="Error message" />);
+  it("Renders the value correctly", () => {
+    const wrapper = mount(
+      <ShiftFormPeople value="3" formError="" handleChange={() => null} />
+    );
+    expect(wrapper.find(".input-section__input_people").props().value).toBe(
+      "3"
+    );
+  });
+  it("Renders error message if there is an error", () => {
+    const wrapper = mount(
+      <ShiftFormPeople formError="Error message" handleChange={() => null} />
+    );
     expect(wrapper.find(".form-error")).toHaveLength(1);
+  });
+  it("Renders NO error message if there is NO error", () => {
+    const wrapper = mount(
+      <ShiftFormPeople formError="" handleChange={() => null} />
+    );
+    expect(wrapper.find(".form-error")).toHaveLength(0);
   });
 });

@@ -31,7 +31,6 @@ function DepartmentForm(props) {
   };
 
   const validate = (e) => {
-    console.log(e.target.name, e.target.value);
     let errorMessage = GET_ERROR_MESSAGE(e.target.name, e.target.value);
     setFormError({ ...formError, [e.target.name]: errorMessage });
   };

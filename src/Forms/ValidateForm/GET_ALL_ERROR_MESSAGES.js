@@ -43,6 +43,5 @@ function getShiftErrors(formData) {
     shift_end: GET_ERROR_MESSAGE("shift_end", formData.shift_end),
     shift_day: GET_ERROR_MESSAGE("shift_day", formData.shift_day),
   };
-  console.log(formErrorsObj);
   return formErrorsObj;
 }

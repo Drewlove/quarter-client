@@ -23,6 +23,7 @@ function ShiftForm(props) {
   });
 
   const [roles, setRoles] = useState([]);
+  const [departments, setDepartments] = useState([]);
 
   const [formError, setFormError] = useState({
     shift_id: "",
@@ -38,17 +39,18 @@ function ShiftForm(props) {
   useEffect(() => {
     if (props.id !== "new") {
       setFormData({
-        shift_id: props.data[1].shift_id,
-        shift_department: props.data[1].shift_department.toString(),
-        shift_role: props.data[1].shift_role.toString(),
-        people: props.data[1].people,
-        wage: props.data[1].wage,
-        shift_start: props.data[1].shift_start,
-        shift_end: props.data[1].shift_end,
-        shift_day: props.data[1].shift_day,
+        shift_id: props.data[2].shift_id,
+        shift_department: props.data[2].shift_department.toString(),
+        shift_role: props.data[2].shift_role.toString(),
+        people: props.data[2].people,
+        wage: props.data[2].wage,
+        shift_start: props.data[2].shift_start,
+        shift_end: props.data[2].shift_end,
+        shift_day: props.data[2].shift_day,
       });
     }
-    setRoles(props.data[0]);
+    setDepartments(props.data[0]);
+    setRoles(props.data[1]);
   }, [props.data, props.id]);
 
   const handleChange = (e) => {
@@ -90,21 +92,7 @@ function ShiftForm(props) {
 
   const validateDays = (days) => {
     let errorMessage = GET_ERROR_MESSAGE("shift_day", days);
-    console.log(errorMessage);
     setFormError({ ...formError, shift_day: errorMessage });
-  };
-
-  const getDepartments = () => {
-    const departments = {};
-    if (roles.length === 0) {
-      return departments;
-    } else {
-      roles.forEach((role) => {
-        if (!departments[role.department_name])
-          departments[role.department_name] = role.department_id;
-      });
-    }
-    return departments;
   };
 
   const renderDeleteButton = () => {
@@ -119,13 +107,13 @@ function ShiftForm(props) {
 
   return (
     <main className="main">
-      <form className="form">
+      <form className="form form_shift">
         <fieldset className="fieldset_form">
           {props.id !== "new" ? renderDeleteButton() : null}
           <ShiftFormDepartment
             handleChange={(e) => handleChange(e)}
             value={formData.shift_department}
-            departments={getDepartments()}
+            departments={departments}
             formError={formError.shift_department}
           />
           <ShiftFormRole
@@ -163,7 +151,7 @@ function ShiftForm(props) {
             formError={formError.shift_day}
           />
           <FormSaveButton
-            formData={formData}
+            formData={{ ...formData, wage: formData.wage.replace(",", "") }}
             formName="shift"
             endpointSuffix="shifts"
             redirectSuffix="schedule"

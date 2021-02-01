@@ -1,6 +1,5 @@
 import React from "react";
 import FormError from "../../CommonFormComponents/FormError/FormError";
-import { CapitalizeAllWords } from "../../../Utilities/UtilityFunctions";
 
 function ShiftFormRole(props) {
   const getFilteredOptions = () => {
@@ -11,14 +10,25 @@ function ShiftFormRole(props) {
 
   const renderRoles = () => {
     const filteredOptions = getFilteredOptions();
+    const sortedOptions = sortOptions(filteredOptions);
 
-    return filteredOptions.map((option) => {
+    return sortedOptions.map((option) => {
       return (
-        <option value={option.role_id.toString()} key={option.role_id}>
-          {CapitalizeAllWords(option.role_name)}
+        <option
+          className="option option_shift-role"
+          value={option.role_id.toString()}
+          key={option.role_id}
+        >
+          {option.role_name}
         </option>
       );
     });
+  };
+
+  const sortOptions = (options) => {
+    return options.sort((a, b) =>
+      a.role_name.toUpperCase() >= b.role_name.toUpperCase() ? 1 : -1
+    );
   };
 
   return (
@@ -28,13 +38,13 @@ function ShiftFormRole(props) {
       </label>
       <div className="input-section__input-container">
         <select
-          className="input-section__input"
+          className="input-section__input input-section__input_role"
           id="role"
           onChange={props.handleChange}
           name="shift_role"
           value={props.value}
         >
-          <option value={""} disabled>
+          <option className="option option_shift-role" value={""} disabled>
             - Select Role -
           </option>
           {props.roles.length > 0 ? renderRoles() : null}

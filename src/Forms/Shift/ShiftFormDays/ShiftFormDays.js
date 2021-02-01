@@ -27,7 +27,7 @@ function ShiftFormDays(props) {
       return (
         <label htmlFor={key} key={key}>
           <input
-            className="toggle-container__input"
+            className="toggle-container__input toggle-container__input_days"
             type="checkbox"
             id={key}
             name="shift_day"

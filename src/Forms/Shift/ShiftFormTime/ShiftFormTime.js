@@ -11,7 +11,7 @@ function ShiftFormTime(props) {
         <div className="input-section__input-container">
           <input
             type="time"
-            className="input-section__input"
+            className="input-section__input input-section__input_time"
             id="start-time"
             onChange={props.handleChange}
             onBlur={props.handleBlur}
@@ -30,7 +30,7 @@ function ShiftFormTime(props) {
         <div className="input-section__input-container">
           <input
             type="time"
-            className="input-section__input"
+            className="input-section__input input-section__input_time"
             id="end-time"
             onChange={props.handleChange}
             onBlur={props.handleBlur}
