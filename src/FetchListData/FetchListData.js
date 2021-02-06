@@ -20,11 +20,11 @@ function FetchListData(props) {
 
   const renderContainer = () => {
     return (
-      <section className="fetch-list-data">
+      <>
         {React.cloneElement(props.children, {
           data: data,
         })}
-      </section>
+      </>
     );
   };
 

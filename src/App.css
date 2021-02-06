@@ -130,6 +130,7 @@
   position: sticky;
   top: 0px;
   height: 55px;
+  z-index: 1;
 }
 
 .header__button-container {
@@ -400,8 +401,9 @@
 .main {
   max-width: var(--page-max-width);
   min-width: var(--page-min-width);
-  margin: 5px auto;
-  padding: 10px;
+  margin: 0px auto;
+  /* margin: 5px auto; */
+  /* padding: 10px; */
 }
 
 .modal {
@@ -467,8 +469,6 @@
 }
 
 .schedule__holder {
-  overflow: auto;
-  height: 80vh;
 }
 
 .schedule-row {
@@ -504,6 +504,13 @@
   position: sticky;
   top: 50px;
   background-color: white;
+}
+
+.schedule-row_weekdays {
+  position: sticky;
+  top: 50px;
+  background-color: white;
+  padding: 10px 0px;
 }
 
 .schedule-row_weekdays__weekday {

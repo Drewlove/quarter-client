@@ -4,11 +4,11 @@ import FetchListData from "../../FetchListData/FetchListData";
 
 function ScheduleContainer() {
   return (
-    <main className="main">
+    <>
       <FetchListData endpointStr="shifts">
         <Schedule />
       </FetchListData>
-    </main>
+    </>
   );
 }
 
