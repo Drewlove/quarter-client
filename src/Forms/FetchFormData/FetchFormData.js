@@ -15,20 +15,20 @@ function FetchFormData(props) {
 
   const renderForm = () => {
     return (
-      <section className="fetch-form-data">
+      <>
         {React.cloneElement(props.children, {
           data: data,
         })}
-      </section>
+      </>
     );
   };
 
   return (
-    <main className="main">
+    <>
       {isLoading ? renderLoading() : null}
       {isError ? renderError() : null}
       {isLoaded ? renderForm() : null}
-    </main>
+    </>
   );
 }
 
