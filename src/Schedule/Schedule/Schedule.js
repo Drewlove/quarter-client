@@ -8,7 +8,10 @@ function Schedule(props) {
     return <EmptyList name="shift" url="/form/schedule/new" />;
   };
 
+  let schedule = [];
+
   const renderResults = () => {
+    schedule = COLLATE_SCHEDULE(props.data[0]);
     return (
       <>
         <section className="schedule-row schedule-row_weekdays">
@@ -34,13 +37,30 @@ function Schedule(props) {
             <h3>Sun</h3>
           </div>
         </section>
+        <section className="schedule__total-wages">
+          {renderTotalWages()}
+        </section>
         <section className="schedule__holder">{renderSchedule()}</section>
       </>
     );
   };
 
+  const renderTotalWages = () => {
+    let totalCost = 0;
+    schedule.forEach((key) => {
+      totalCost += key.cost;
+    });
+    return (
+      <h2>
+        Total Wages: $
+        {totalCost.toLocaleString(undefined, {
+          minimumFractionDigits: 2,
+        })}
+      </h2>
+    );
+  };
+
   const renderSchedule = () => {
-    let schedule = COLLATE_SCHEDULE(props.data[0]);
     return schedule.map((key) => {
       return (
         <Department

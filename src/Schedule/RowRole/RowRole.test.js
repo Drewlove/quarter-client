@@ -9,10 +9,10 @@ const dummyShift = {
   role_name: "sous chef",
   shift_day: [4, 5, 6],
   shift_department: 1,
-  shift_end: "16.50",
+  shift_end: "16:30",
   shift_id: 13,
   shift_role: 3,
-  shift_start: "9.00",
+  shift_start: "9:00",
   wage: "15.00",
 };
 
@@ -47,7 +47,7 @@ const row = describe("RowRole", () => {
   });
   it("renders text: role name", () => {
     expect(wrapper.find(".schedule-text_shift-role").at(0).text()).toEqual(
-      "Sous Chef"
+      "sous chef"
     );
   });
   it("renders text: number of people", () => {

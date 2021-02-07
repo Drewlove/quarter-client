@@ -7,7 +7,7 @@ import LineItemFormPercentOf from "../LineItemFormPercentOf/LineItemFormPercentO
 import LineItemFormSaveButton from "../../CommonFormComponents/FormSaveButton/FormSaveButton";
 import FormDeleteButton from "../../CommonFormComponents/FormDeleteButton/FormDeleteButton";
 import { GetErrorMessage } from "../../LineItemFormErrors";
-import { FormatNumToDollars } from "../../../Utilities/UtilityFunctions";
+import { FORMAT_NUM_TO_DOLLARS } from "../../../Utilities/UtilityFunctions";
 
 function LineItemForm() {
   const [input, setInput] = useState({
@@ -43,7 +43,7 @@ function LineItemForm() {
   };
 
   const handleBlurAmount = (e) => {
-    setInput({ ...input, amount: FormatNumToDollars(e.target.value) });
+    setInput({ ...input, amount: FORMAT_NUM_TO_DOLLARS(e.target.value) });
   };
 
   const validate = (e) => {

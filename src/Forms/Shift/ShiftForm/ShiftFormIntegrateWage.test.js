@@ -78,20 +78,25 @@ describe("ShiftForm, wage", () => {
       "14.25"
     );
   });
-  it("Renders error if value is an empty string", () => {
+  it("Renders error on blur if value is an empty string", () => {
     const userEvent = { target: { name: "wage", value: "" } };
     wrapper.find(".input-section__input_wage").simulate("change", userEvent);
+    wrapper.find(".input-section__input_wage").simulate("blur");
     expect(wrapper.find(".form-error")).toHaveLength(1);
   });
-  it("Renders error if value is set to 0", () => {
+  it("Renders error on blur if value is set to 0", () => {
     const userEvent = { target: { name: "wage", value: "0" } };
     wrapper.find(".input-section__input_wage").simulate("change", userEvent);
+    wrapper.find(".input-section__input_wage").simulate("blur");
     expect(wrapper.find(".form-error")).toHaveLength(1);
   });
-  it("Renders error if value is set to number with three digits to right of decimal point", () => {
+  it("Rounds value on blur if value has more than two digits to right of decimal point", () => {
     const userEvent = { target: { name: "wage", value: "9.123" } };
     wrapper.find(".input-section__input_wage").simulate("change", userEvent);
-    expect(wrapper.find(".form-error")).toHaveLength(1);
+    wrapper.find(".input-section__input_wage").simulate("blur");
+    expect(wrapper.find(".input-section__input_wage").props().value).toBe(
+      "9.12"
+    );
   });
   it("Renders two numbers to right of decimal point if one or zero numbers to right of decimal point are entered", () => {
     const userEvent = { target: { name: "wage", value: "9.1" } };

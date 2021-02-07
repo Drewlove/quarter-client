@@ -116,6 +116,7 @@
 
 .form {
   margin: 20px auto;
+  padding: 5px;
   max-width: var(--page-max-width);
   min-width: var(--page-min-width);
 }
@@ -402,8 +403,6 @@
   max-width: var(--page-max-width);
   min-width: var(--page-min-width);
   margin: 0px auto;
-  /* margin: 5px auto; */
-  /* padding: 10px; */
 }
 
 .modal {
@@ -468,7 +467,13 @@
   margin-top: 20px;
 }
 
+.schedule__total-wages {
+  display: flex;
+  justify-content: center;
+}
+
 .schedule__holder {
+  padding: 5px 5px 25px 5px;
 }
 
 .schedule-row {

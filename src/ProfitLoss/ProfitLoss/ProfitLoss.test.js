@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
 import { BrowserRouter } from "react-router-dom";
-import ProfitLossPage from "./ProfitLossPage";
+import ProfitLoss from "./ProfitLoss";
 
 const salesLineItems = [
   { category: "sales", name: "food", amount: 30000, id: 1 },
@@ -54,14 +54,14 @@ const getTotalExpenses = () => {
   );
 };
 
-describe("ProfitLossPage", () => {
+describe("ProfitLoss", () => {
   it("renders", () => {
-    const wrapper = shallow(<ProfitLossPage />);
+    const wrapper = shallow(<ProfitLoss />);
   });
   it("renders 4 category fieldsets", () => {
     const wrapper = mount(
       <BrowserRouter>
-        <ProfitLossPage />
+        <ProfitLoss />
       </BrowserRouter>
     );
     expect(wrapper.find(".fieldset_pl")).toHaveLength(4);

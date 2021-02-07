@@ -31,13 +31,6 @@ function addRow(shift) {
   collatedSchedule[shift.department_name].shifts[shift.shift_id] = row;
 }
 
-function timeStringToFloat(time) {
-  var hoursMinutes = time.split(/[.:]/);
-  var hours = parseInt(hoursMinutes[0], 10);
-  var minutes = hoursMinutes[1] ? parseInt(hoursMinutes[1], 10) : 0;
-  return hours + minutes / 60;
-}
-
 function sumShiftCost(shift) {
   collatedSchedule[shift.department_name].cost +=
     (timeStringToFloat(shift.shift_end) -
@@ -47,14 +40,21 @@ function sumShiftCost(shift) {
     shift.shift_day.length;
 }
 
+function timeStringToFloat(time) {
+  var hoursMinutes = time.split(/[.:]/);
+  var hours = parseInt(hoursMinutes[0], 10);
+  var minutes = hoursMinutes[1] ? parseInt(hoursMinutes[1], 10) : 0;
+  return hours + minutes / 60;
+}
+
 function sortSchedule(schedule) {
   let sortedSchedule = Object.keys(schedule)
     .sort()
-    .map(function (dept) {
+    .map(function (key) {
       return {
-        deptName: [dept][0],
-        shifts: schedule[dept].shifts,
-        cost: schedule[dept].cost,
+        deptName: [key][0],
+        shifts: schedule[key].shifts,
+        cost: schedule[key].cost,
       };
     });
   return sortedSchedule;

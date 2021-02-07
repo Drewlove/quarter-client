@@ -9,7 +9,7 @@ export const CapitalizeAllWords = (str) => {
   return newArr.join(" ");
 };
 
-export const FormatNumToDollars = (value) => {
+export const FORMAT_NUM_TO_DOLLARS = (value) => {
   let valueOnlyNumbers = value.replace(/,/g, "");
   let revisedNum = Number(valueOnlyNumbers).toLocaleString(undefined, {
     minimumFractionDigits: 2,
@@ -20,11 +20,15 @@ export const FormatNumToDollars = (value) => {
 
 export const ConvertNumToTimeStr = (str) => {
   let times = str.split(":");
-  let militaryHour = parseInt(times[0]);
-  let standardHour =
-    militaryHour < 13 ? `${militaryHour}` : `${militaryHour - 12}`;
-  let minutes = times[1] % 60 === 0 ? "00" : `${times[1] % 60}`;
+  let hour = parseInt(times[0]);
+  let minutes = times[1];
   let amPm = "";
-  times[0] < 12 || times[0] === 24 ? (amPm = "am") : (amPm = "pm");
-  return `${standardHour}:${minutes}${amPm}`;
+  hour < 12 ? (amPm = "am") : (amPm = "pm");
+  if (hour < 1) {
+    return `12:${minutes}${amPm}`;
+  } else if (hour <= 12) {
+    return `${hour}:${minutes}${amPm}`;
+  } else {
+    return `${hour - 12}:${minutes}${amPm}`;
+  }
 };

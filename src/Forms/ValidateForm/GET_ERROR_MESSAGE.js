@@ -75,20 +75,18 @@ function getErrorMessagePeople(formValue) {
 function getErrorMessageWage(formValue) {
   if (formValue <= 0) {
     return "Enter $0.01 or more.";
-  } else if (isCurrencyFormat(formValue)) {
-    return "Number must be in standard currency format.";
   } else if (formValue >= 10000) {
-    return "Number must be 9,999.99 or less.";
+    return "Value is out of range.";
   } else {
     return "";
   }
 }
 
-function isCurrencyFormat(value) {
-  return !/(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$/.test(
-    value
-  );
-}
+// function isCurrencyFormat(value) {
+//   return !/(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$/.test(
+//     value
+//   );
+// }
 
 function getErrorMessageShiftStart(formValue) {
   if (formValue.length === 0) {

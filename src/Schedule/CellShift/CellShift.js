@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  ConvertNumToTimeStr,
-  CapitalizeAllWords,
-} from "../../Utilities/UtilityFunctions";
+import { ConvertNumToTimeStr } from "../../Utilities/UtilityFunctions";
 
 function CellShift(props) {
   const getShiftSchedule = () => {
@@ -18,7 +15,7 @@ function CellShift(props) {
   return (
     <div className="schedule-row__cell schedule-row__cell_shift">
       <p className="schedule-text_shift schedule-text_shift-role">
-        <b>{CapitalizeAllWords(props.shift.role_name)}</b>
+        <b>{props.shift.role_name}</b>
       </p>
       <p className="schedule-text_shift schedule-text_shift-people">
         {renderNumPeople()}

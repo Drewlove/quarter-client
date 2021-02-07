@@ -9,8 +9,8 @@ const dummyData = [
     shift_day: [0, 1, 2, 3, 4],
     shift_department: 1,
     shift_role: 4,
-    shift_start: "7.00",
-    shift_end: "15.00",
+    shift_start: "7:00",
+    shift_end: "15:00",
     people: 1,
     wage: "27.50",
     department_name: "kitchen",
@@ -21,8 +21,8 @@ const dummyData = [
     shift_day: [3, 4, 5, 6],
     shift_department: 2,
     shift_role: 5,
-    shift_start: "6.50",
-    shift_end: "14.00",
+    shift_start: "6:30",
+    shift_end: "14:00",
     people: 2,
     wage: "13.50",
     department_name: "service",
@@ -33,8 +33,8 @@ const dummyData = [
     shift_day: [0, 1, 2, 3, 4],
     shift_department: 1,
     shift_role: 4,
-    shift_start: "7.00",
-    shift_end: "15.00",
+    shift_start: "7:00",
+    shift_end: "15:00",
     people: 1,
     wage: "15.00",
     department_name: "kitchen",
@@ -72,10 +72,10 @@ describe("Schedule", () => {
       </MemoryRouter>
     );
     expect(wrapper.find(".schedule-text_department").at(0).text()).toBe(
-      "Kitchen - $1700.00"
+      "kitchen - $1,700.00"
     );
     expect(wrapper.find(".schedule-text_department").at(1).text()).toBe(
-      "Service - $810.00"
+      "service - $810.00"
     );
   });
   it("Renders the correct number of rows for each department", () => {

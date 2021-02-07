@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { GET_ERROR_MESSAGE } from "../../ValidateForm/GET_ERROR_MESSAGE";
 import FormDeleteButton from "../../CommonFormComponents/FormDeleteButton/FormDeleteButton";
 import FormSaveButton from "../../CommonFormComponents/FormSaveButton/FormSaveButton";
 import ShiftFormDepartment from "../ShiftFormDepartment/ShiftFormDepartment";
@@ -8,7 +7,8 @@ import ShiftFormTime from "../ShiftFormTime/ShiftFormTime";
 import ShiftFormPeople from "../ShiftFormPeople/ShiftFormPeople";
 import ShiftFormDays from "../ShiftFormDays/ShiftFormDays";
 import ShiftFormWage from "../ShiftFormWage/ShiftFormWage";
-import { FormatNumToDollars } from "../../../Utilities/UtilityFunctions";
+import { FORMAT_NUM_TO_DOLLARS } from "../../../Utilities/UtilityFunctions";
+import { GET_ERROR_MESSAGE } from "../../ValidateForm/GET_ERROR_MESSAGE";
 
 function ShiftForm(props) {
   const [formData, setFormData] = useState({
@@ -59,10 +59,8 @@ function ShiftForm(props) {
   };
 
   const handleChangeWage = (e) => {
-    if (/^[0-9,.]*$/.test(e.target.value)) {
-      validate(e);
-      setFormData({ ...formData, wage: e.target.value });
-    }
+    if (formError.wage) validate(e);
+    setFormData({ ...formData, wage: e.target.value });
   };
 
   const handleChangeDay = (e) => {
@@ -78,11 +76,20 @@ function ShiftForm(props) {
     validate(e);
   };
 
+  //here
   const handleBlurWage = (e) => {
-    validate(e);
-    return e.target.value !== "" && formError.wage === ""
-      ? setFormData({ ...formData, wage: FormatNumToDollars(e.target.value) })
-      : null;
+    const formattedWage = FORMAT_NUM_TO_DOLLARS(e.target.value);
+    setFormData({ ...formData, wage: formattedWage });
+    let errorMessage = GET_ERROR_MESSAGE("wage", formattedWage);
+    setFormError({ ...formError, [e.target.name]: errorMessage });
+
+    // validate(e);
+    // return e.target.value !== "" && formError.wage === ""
+    //   ? setFormData({
+    //       ...formData,
+    //       wage: FORMAT_NUM_TO_DOLLARS(e.target.value),
+    //     })
+    //   : null;
   };
 
   const validate = (e) => {
