@@ -29,7 +29,7 @@ describe("Header", () => {
   });
   it("if logged IN, does render both signed-in menu containers", () => {
     const wrapper = mount(
-      <MemoryRouter initialEntries={["/p&L"]}>
+      <MemoryRouter initialEntries={["/pnL"]}>
         <Header />
       </MemoryRouter>
     );
@@ -37,7 +37,7 @@ describe("Header", () => {
   });
   it("if logged IN, does NOT render sign-in and register links", () => {
     const wrapper = mount(
-      <MemoryRouter initialEntries={["/p&L"]}>
+      <MemoryRouter initialEntries={["/pnL"]}>
         <Header />
       </MemoryRouter>
     );

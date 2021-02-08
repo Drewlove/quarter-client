@@ -1,5 +1,5 @@
 import React from "react";
-import { CapitalizeAllWords } from "../../Utilities/UtilityFunctions";
+import LineItemAmount from "../LineItemAmount/LineItemAmount";
 
 function CategoryTotal(props) {
   const getPercentageOf = (sales) => {
@@ -14,13 +14,9 @@ function CategoryTotal(props) {
 
   return (
     <div className="fieldset__item-container fieldset__item-container_total">
-      <p className="pl-fieldset__item-text">{CapitalizeAllWords(props.name)}</p>
-      <p className="pl-fieldset__item-text">
-        {props.categoryTotal.toLocaleString()}
-      </p>
-      <p className="pl-fieldset__item-text">
-        {getPercentageOf(props.salesTotal)}
-      </p>
+      <p className="fieldset__item-text">{props.name}</p>
+      <LineItemAmount amount={parseFloat(props.categoryTotal).toFixed(2)} />
+      <p className="fieldset__item-text">{getPercentageOf(props.salesTotal)}</p>
     </div>
   );
 }

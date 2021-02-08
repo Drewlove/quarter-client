@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Header from "./Header/Header/Header";
 import ScheduleContainer from "./Schedule/ScheduleContainer/ScheduleContainer";
 import FormsRouter from "./Forms/FormsRouter";
-import ProfitLossPage from "./ProfitLossPage/ProfitLossPage/ProfitLossPage";
+import ProfitLossContainer from "./ProfitLoss/ProfitLossContainer/ProfitLossContainer";
 import DepartmentsListContainer from "./DepartmentsListContainer/DepartmentsListContainer";
 import RolesListContainer from "./RolesListContainer/RolesListContainer";
 import HomePage from "./HomePage/HomePage";
@@ -21,8 +21,8 @@ function App() {
           <Route path="/form">
             <FormsRouter />
           </Route>
-          <Route path="/p&l">
-            <ProfitLossPage />
+          <Route path="/pnl">
+            <ProfitLossContainer />
           </Route>
           <Route path="/departments">
             <DepartmentsListContainer />

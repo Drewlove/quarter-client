@@ -75,10 +75,14 @@
   margin-top: 20px;
 }
 
+.fieldset__amount {
+}
+
 .fieldset__container {
-  max-height: 75vh;
+  /* max-height: 75vh;
   min-height: 25vh;
-  overflow: auto;
+  overflow: auto; */
+  padding: 5px;
 }
 
 .fieldset__item-container {
@@ -88,6 +92,11 @@
   color: black;
   text-decoration: none;
   border: 1px solid lightgray;
+}
+
+.fieldset__amount-container {
+  display: grid;
+  grid-template-columns: 12px 10px 10px 10px 5px 10px 10px 10px 5px 10px 10px 10px 5px 10px 10px;
 }
 
 .fieldset__item-container:hover {

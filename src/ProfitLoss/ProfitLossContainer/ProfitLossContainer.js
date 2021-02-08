@@ -1,15 +1,15 @@
 import React from "react";
 import ProfitLoss from "../ProfitLoss/ProfitLoss";
-import FetchListData from "../FetchListData/FetchListData";
+import FetchListData from "../../FetchListData/FetchListData";
 
-function DepartmentsListContainer() {
+function ProfitLossContainer() {
   return (
     <main className="main">
-      <FetchListData endpointStr="departments">
+      <FetchListData endpointStr="line_items">
         <ProfitLoss />
       </FetchListData>
     </main>
   );
 }
 
-export default DepartmentsListContainer;
+export default ProfitLossContainer;

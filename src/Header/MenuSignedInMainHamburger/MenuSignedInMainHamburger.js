@@ -32,7 +32,7 @@ function MenuSignedInMain() {
     return (
       <div className="header__menu_drop-down">
         <HeaderLink
-          url="/p&l"
+          url="/pnl"
           toggleMenuDisplay={() => toggleMenuDisplay()}
           text="Home"
           className="header__link_dropdown"

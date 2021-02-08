@@ -1,18 +1,17 @@
 import React from "react";
 import LineItem from "../LineItem/LineItem";
 import CategoryTotal from "../CategoryTotal/CategoryTotal";
-import { CapitalizeAllWords } from "../../Utilities/UtilityFunctions";
 
 function Category(props) {
-  const renderLineItems = (lineItems) => {
-    return lineItems.map((lineItem) => {
+  const renderLineItems = () => {
+    return props.lineItems.map((key) => {
       return (
         <LineItem
-          category={lineItem.category}
-          name={lineItem.name}
-          amount={lineItem.amount}
-          id={lineItem.id}
-          key={lineItem.id}
+          category={key.category}
+          name={key.line_item_name}
+          amount={key.amount}
+          id={key.line_item_id}
+          key={key.line_item_id}
         />
       );
     });
@@ -31,11 +30,11 @@ function Category(props) {
   return (
     <fieldset className="fieldset fieldset_pl">
       <legend className="fieldset__legend">
-        <h2 className="fieldset__header">{CapitalizeAllWords(props.name)}</h2>
+        <h2 className="fieldset__header">{props.name}</h2>
       </legend>
-      {renderLineItems(props.lineItems)}
+      {renderLineItems()}
       <CategoryTotal
-        name={CapitalizeAllWords(props.name)}
+        name={props.name}
         categoryTotal={props.categoryTotal}
         salesTotal={props.salesTotal}
       />

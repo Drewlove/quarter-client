@@ -1,102 +1,129 @@
 import React from "react";
+import EmptyList from "../../EmptyList/EmptyList";
 import Category from "../Category/Category";
 import CategoryTotal from "../CategoryTotal/CategoryTotal";
 
-function ProfitLoss() {
-  //currently calculating sales total multiple times
-  //instead, calculate sales total after values have been retrieved from server,
-  //then pass that derived total value to all relevant components
+function ProfitLoss(props) {
+  // currently calculating sales total multiple times
+  // instead, calculate sales total after values have been retrieved from server,
+  // then pass that derived total value to all relevant components
 
-  // const salesLineItems = [
-  //   { category: "sales", name: "food", amount: 20000, id: 1 },
-  //   { category: "sales", name: "beverage", amount: 2000, id: 2 },
-  //   { category: "sales", name: "other", amount: 1000, id: 3 },
-  // ];
-
-  // const cogsLineItems = [
-  //   { category: "cogs", name: "food", amount: 6000, id: 4 },
-  //   { category: "cogs", name: "beverage", amount: 500, id: 5 },
-  //   { category: "cogs", name: "other", amount: 300, id: 6 },
-  // ];
-
-  // const directLaborLineItems = [
-  //   { category: "direct labor", name: "salaried", amount: 1000, id: 7 },
-  //   { category: "direct labor", name: "hourly", amount: 6000, id: 8 },
-  //   { category: "direct labor", name: "payroll tax", amount: 700, id: 9 },
-  // ];
-
-  // const overheadLineItems = [
-  //   { category: "overhead", name: "supplies", amount: 1000, id: 10 },
-  //   { category: "overhead", name: "repairs", amount: 900, id: 11 },
-  //   { category: "overhead", name: "advertising", amount: 100, id: 12 },
-  //   { category: "overhead", name: "manager's salary", amount: 2000, id: 13 },
-  //   { category: "overhead", name: "payroll tax, salary", amount: 1000, id: 14 },
-  //   { category: "overhead", name: "utilities", amount: 700, id: 15 },
-  //   { category: "overhead", name: "rent", amount: 1900, id: 16 },
-  // ];
-
-  const getTotal = (lineItems) => {
-    const totalObj = lineItems.reduce((a, b) => ({
-      amount: a.amount + b.amount,
-    }));
-    return totalObj.amount;
+  const getTotal = (arr) => {
+    let total = 0;
+    arr.forEach((key) => {
+      total += Number(parseFloat(key.amount).toFixed(2));
+    });
+    return total;
   };
 
   const getGrossProfit = () => {
-    const totalSales = getTotal(salesLineItems);
-    const totalCogs = getTotal(cogsLineItems);
+    const totalSales = getTotal(lineItems.sales);
+    const totalCogs = getTotal(lineItems.cogs);
     return totalSales - totalCogs;
   };
 
-  const getPrimeCost = () => {
-    return getTotal(cogsLineItems) + getTotal(directLaborLineItems);
+  // const getPrimeCost = () => {
+  //   return getTotal(cogsLineItems) + getTotal(directLaborLineItems);
+  // };
+
+  // const getTotalExpenses = () => {
+  //   return (
+  //     getTotal(cogsLineItems) +
+  //     getTotal(directLaborLineItems) +
+  //     getTotal(overheadLineItems)
+  //   );
+  // };
+
+  const lineItemsById = {};
+
+  const lineItems = {
+    sales: [],
+    cogs: [],
+    direct_labor: [],
+    overhead: [],
   };
 
-  const getTotalExpenses = () => {
+  const renderContainer = () => {
     return (
-      getTotal(cogsLineItems) +
-      getTotal(directLaborLineItems) +
-      getTotal(overheadLineItems)
+      <section className="fieldset__container">
+        {props.data[0].length === 0 ? renderEmptyList() : renderPnL()}
+      </section>
     );
+  };
+
+  const renderEmptyList = () => {
+    return <EmptyList name="line_item" url="/form/line_item/new" />;
+  };
+
+  const renderPnL = () => {
+    allocateLineItems();
+    return (
+      <>
+        <Category
+          name="Sales"
+          lineItems={lineItems.sales}
+          categoryTotal={getTotal(lineItems.sales)}
+        />
+        <Category
+          name="COGS"
+          lineItems={getCOGS()}
+          categoryTotal={getTotal(lineItems.cogs)}
+          salesTotal={getTotal(lineItems.sales)}
+          kpiName="Gross Profit"
+          kpiNum={getGrossProfit()}
+        />
+      </>
+    );
+  };
+
+  const allocateLineItems = () => {
+    props.data[0].forEach((key) => {
+      lineItems[key.line_item_category].push(key);
+      lineItemsById[key.line_item_id] = key;
+    });
+  };
+
+  const getCOGS = () => {
+    let things = lineItems.cogs.map((key) => {
+      if (key.line_item_amount_type === "percent") {
+        return {
+          ...key,
+          amount: parseFloat(
+            key.amount * (lineItemsById[key.percent_of].amount * 0.01)
+          ).toFixed(2),
+        };
+      }
+      return key;
+    });
+    return things;
   };
 
   return (
     <>
-      <main className="main">
-        <Category
-          name="sales"
-          lineItems={salesLineItems}
-          categoryTotal={getTotal(salesLineItems)}
-        />
-        <Category
-          name="cogs"
-          lineItems={cogsLineItems}
-          categoryTotal={getTotal(cogsLineItems)}
-          salesTotal={getTotal(salesLineItems)}
-          kpiName="Gross Profit"
-          kpiNum={getGrossProfit(cogsLineItems)}
-        />
-        <Category
+      {renderContainer()}
+
+      {/* <Category
           name="direct labor"
           lineItems={directLaborLineItems}
           categoryTotal={getTotal(directLaborLineItems)}
           salesTotal={getTotal(salesLineItems)}
           kpiName="Prime Cost"
           kpiNum={getPrimeCost()}
-        />
-        <Category
+        /> */}
+
+      {/* <Category
           name="overhead"
           lineItems={overheadLineItems}
           categoryTotal={getTotal(overheadLineItems)}
           salesTotal={getTotal(salesLineItems)}
-        />
-        <CategoryTotal
+        /> */}
+
+      {/* <CategoryTotal
           name="Net Profit"
           categoryTotal={getTotalExpenses()}
           salesTotal={getTotal(salesLineItems)}
           netProfit={true}
-        />
-      </main>
+        />  */}
     </>
   );
 }

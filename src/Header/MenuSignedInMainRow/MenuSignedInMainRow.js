@@ -5,7 +5,7 @@ function MenuSignedInMainRow() {
   return (
     <div className="header__link-container header__link-container_row">
       <HeaderLink
-        url="/p&l"
+        url="/pnl"
         toggleMenuDisplay={() => null}
         text="Home"
         className="header__link_row"

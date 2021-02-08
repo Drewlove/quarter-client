@@ -1,18 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { CapitalizeAllWords } from "../../Utilities/UtilityFunctions";
+import LineItemAmount from "../LineItemAmount/LineItemAmount";
 
 function LineItem(props) {
   const getLink = () => {
-    return props.category === "direct labor"
+    return props.line_item_category === "direct labor"
       ? `/schedule/`
-      : `form/line-item/${props.id}`;
+      : `form/line-item/${props.line_item_id}`;
   };
 
   return (
     <Link className="fieldset__item-container" to={getLink()}>
-      <p className="fieldset__item-text">{CapitalizeAllWords(props.name)}</p>
-      <p className="fieldset__item-text">{props.amount.toLocaleString()}</p>
+      <p className="fieldset__item-text">{props.name}</p>
+      <LineItemAmount amount={props.amount} />
     </Link>
   );
 }
