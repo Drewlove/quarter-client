@@ -14,8 +14,8 @@ function CategoryTotal(props) {
 
   return (
     <div className="fieldset__item-container fieldset__item-container_total">
-      <p className="fieldset__item-text">{props.name}</p>
-      <LineItemAmount amount={parseFloat(props.categoryTotal).toFixed(2)} />
+      <p className="fieldset__item-text">Total {props.name}</p>
+      <LineItemAmount amount={props.categoryTotal.toString()} />
       <p className="fieldset__item-text">{getPercentageOf(props.salesTotal)}</p>
     </div>
   );

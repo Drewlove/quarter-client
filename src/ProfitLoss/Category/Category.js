@@ -21,7 +21,7 @@ function Category(props) {
     return (
       <CategoryTotal
         name={props.kpiName}
-        categoryTotal={props.kpiNum}
+        categoryTotal={props.salesTotal - props.categoryTotal}
         salesTotal={props.salesTotal}
       />
     );
@@ -33,12 +33,8 @@ function Category(props) {
         <h2 className="fieldset__header">{props.name}</h2>
       </legend>
       {renderLineItems()}
-      <CategoryTotal
-        name={props.name}
-        categoryTotal={props.categoryTotal}
-        salesTotal={props.salesTotal}
-      />
-      {props.kpiNum ? renderKpiInfo() : null}
+      <CategoryTotal name={props.name} categoryTotal={props.categoryTotal} />
+      {props.kpiName ? renderKpiInfo() : null}
     </fieldset>
   );
 }
