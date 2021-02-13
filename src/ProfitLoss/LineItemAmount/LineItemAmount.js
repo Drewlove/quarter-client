@@ -8,7 +8,7 @@ function LineItemAmount(props) {
   const renderNormalAmount = () => {
     let renderedAmount = new Array(15).fill("");
     let j = 14;
-    renderedAmount[0] = "$";
+    renderedAmount[0] = props.numberSymbol;
 
     let commaIndex = new Set([4, 8]);
 

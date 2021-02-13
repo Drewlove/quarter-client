@@ -17,13 +17,33 @@ function Category(props) {
     });
   };
 
+  const getPercentageOf = () => {
+    if (props.netProfit && props.salesTotal) {
+      let percentage =
+        ((props.salesTotal - props.categoryTotal) / props.salesTotal) * 100;
+      return `${percentage.toFixed(2)}%`;
+    } else if (props.salesTotal) {
+      let percentage = (props.kpiNum / props.salesTotal) * 100;
+      return `${percentage.toFixed(2)}%`;
+    }
+  };
+
   const renderKpiInfo = () => {
     return (
-      <CategoryTotal
-        name={props.kpiName}
-        categoryTotal={props.kpiNum}
-        salesTotal={props.salesTotal}
-      />
+      <>
+        <CategoryTotal
+          name={props.kpiName}
+          categoryTotal={props.kpiNum}
+          numberSymbol="$"
+          class="fieldset__item-container_kpi"
+        />
+        <CategoryTotal
+          name={props.kpiName}
+          categoryTotal={getPercentageOf()}
+          numberSymbol="%"
+          class="fieldset__item-container_kpi"
+        />
+      </>
     );
   };
 
@@ -33,7 +53,12 @@ function Category(props) {
         <h2 className="fieldset__header">{props.name}</h2>
       </legend>
       {renderLineItems()}
-      <CategoryTotal name={props.name} categoryTotal={props.categoryTotal} />
+      <CategoryTotal
+        name={props.name}
+        categoryTotal={props.categoryTotal}
+        numberSymbol="$"
+        class=""
+      />
       {props.kpiName ? renderKpiInfo() : null}
     </fieldset>
   );

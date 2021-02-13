@@ -16,8 +16,11 @@ function ProfitLoss(props) {
   const [pageReady, setPageReady] = useState();
 
   useEffect(() => {
-    let lineItemsById = allocateLineItemsById();
-    setLineItemsById(lineItemsById);
+    let obj = {};
+    props.data[0].forEach((key) => {
+      obj[key.line_item_id] = key;
+    });
+    setLineItemsById(obj);
   }, []);
 
   useEffect(() => {
@@ -27,14 +30,6 @@ function ProfitLoss(props) {
       setPageReady(true);
     }
   }, [lineItemsById]);
-
-  const allocateLineItemsById = () => {
-    let obj = {};
-    props.data[0].forEach((key) => {
-      obj[key.line_item_id] = key;
-    });
-    return obj;
-  };
 
   const allocateLineItemsByCategory = () => {
     let lineItemsByCategoryObj = { ...lineItemsByCategory };
@@ -128,6 +123,18 @@ function ProfitLoss(props) {
           kpiName="Prime Cost"
           kpiNum={getPrimeCost()}
         />
+        <Category
+          name="Overhead"
+          lineItems={lineItemsByCategory.overhead.list}
+          categoryTotal={lineItemsByCategory.overhead.total}
+          salesTotal={lineItemsByCategory.sales.total}
+          kpiName="Net Income"
+          kpiNum={getNetExpenses()}
+
+          // lineItems={overheadLineItems}
+          // categoryTotal={getTotal(overheadLineItems)}
+          // salesTotal={getTotal(salesLineItems)}
+        />
       </>
     );
   };
@@ -142,17 +149,19 @@ function ProfitLoss(props) {
     );
   };
 
+  const getNetExpenses = () => {
+    return (
+      lineItemsByCategory.cogs.total +
+      lineItemsByCategory.direct_labor.total +
+      lineItemsByCategory.direct_labor.overhead
+    );
+  };
+
   return (
     <>
       <section className="fieldset__container">
         {props.data[0].length === 0 ? renderEmptyList() : renderPage()}
       </section>
-      {/* <Category
-          name="overhead"
-          lineItems={overheadLineItems}
-          categoryTotal={getTotal(overheadLineItems)}
-          salesTotal={getTotal(salesLineItems)}
-        /> */}
       {/* <CategoryTotal
           name="Net Profit"
           categoryTotal={getTotalExpenses()}
