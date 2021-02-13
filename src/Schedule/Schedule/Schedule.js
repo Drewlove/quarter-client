@@ -52,7 +52,7 @@ function Schedule(props) {
     });
     return (
       <h2>
-        Total Wages: $
+        Total Payroll: $
         {totalCost.toLocaleString(undefined, {
           minimumFractionDigits: 2,
         })}

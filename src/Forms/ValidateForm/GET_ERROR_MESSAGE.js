@@ -14,6 +14,8 @@ export const GET_ERROR_MESSAGE = (name, formValue) => {
       return getErrorMessagePeople(formValue);
     case "wage":
       return getErrorMessageWage(formValue);
+    case "payroll_tax":
+      return getErrorMessagePayrollTax(formValue);
     case "shift_start":
       return getErrorMessageShiftStart(formValue);
     case "shift_end":
@@ -82,11 +84,13 @@ function getErrorMessageWage(formValue) {
   }
 }
 
-// function isCurrencyFormat(value) {
-//   return !/(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$/.test(
-//     value
-//   );
-// }
+function getErrorMessagePayrollTax(formValue) {
+  if (formValue === "") {
+    return "Enter a number 0 through 100";
+  } else {
+    return "";
+  }
+}
 
 function getErrorMessageShiftStart(formValue) {
   if (formValue.length === 0) {

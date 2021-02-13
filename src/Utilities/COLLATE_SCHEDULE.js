@@ -1,12 +1,17 @@
+import { SUM_WEEKLY_SHIFT_TOTAL } from "../Utilities/UtilityFunctions";
+
 let collatedSchedule = {};
 
 export const COLLATE_SCHEDULE = (shifts) => {
   collatedSchedule = {};
   shifts.forEach((shift) => {
     if (!collatedSchedule[shift.department_name]) addDepartment(shift);
-    if (!collatedSchedule[shift.department_name].shifts[shift.shift_id])
+    if (!collatedSchedule[shift.department_name].shifts[shift.shift_id]) {
       addRow(shift);
-    sumShiftCost(shift);
+      collatedSchedule[shift.department_name].cost += SUM_WEEKLY_SHIFT_TOTAL(
+        shift
+      );
+    }
   });
   const sortedSchedule = sortSchedule(collatedSchedule);
   return sortedSchedule;
@@ -32,12 +37,14 @@ function addRow(shift) {
 }
 
 function sumShiftCost(shift) {
-  collatedSchedule[shift.department_name].cost +=
+  let sum =
     (timeStringToFloat(shift.shift_end) -
       timeStringToFloat(shift.shift_start)) *
     shift.wage *
     shift.people *
-    shift.shift_day.length;
+    shift.shift_day.length *
+    (parseFloat(shift.payroll_tax).toFixed(2) / 100 + 1);
+  return sum;
 }
 
 function timeStringToFloat(time) {
@@ -50,11 +57,11 @@ function timeStringToFloat(time) {
 function sortSchedule(schedule) {
   let sortedSchedule = Object.keys(schedule)
     .sort()
-    .map(function (key) {
+    .map(function (dept) {
       return {
-        deptName: [key][0],
-        shifts: schedule[key].shifts,
-        cost: schedule[key].cost,
+        deptName: [dept][0],
+        shifts: schedule[dept].shifts,
+        cost: schedule[dept].cost,
       };
     });
   return sortedSchedule;

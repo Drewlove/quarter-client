@@ -3,11 +3,13 @@ import FormDeleteButton from "../../CommonFormComponents/FormDeleteButton/FormDe
 import FormSaveButton from "../../CommonFormComponents/FormSaveButton/FormSaveButton";
 import ShiftFormDepartment from "../ShiftFormDepartment/ShiftFormDepartment";
 import ShiftFormRole from "../ShiftFormRole/ShiftFormRole";
-import ShiftFormTime from "../ShiftFormTime/ShiftFormTime";
 import ShiftFormPeople from "../ShiftFormPeople/ShiftFormPeople";
-import ShiftFormDays from "../ShiftFormDays/ShiftFormDays";
 import ShiftFormWage from "../ShiftFormWage/ShiftFormWage";
-import { FORMAT_NUM_TO_DOLLARS } from "../../../Utilities/UtilityFunctions";
+import ShiftFormPayrollTax from "../ShiftFormPayrollTax/ShiftFormPayrollTax";
+import ShiftFormTime from "../ShiftFormTime/ShiftFormTime";
+import ShiftFormDays from "../ShiftFormDays/ShiftFormDays";
+import { SUM_WEEKLY_SHIFT_TOTAL } from "../../../Utilities/UtilityFunctions";
+import { FORMAT_NUM } from "../../../Utilities/UtilityFunctions";
 import { GET_ERROR_MESSAGE } from "../../ValidateForm/GET_ERROR_MESSAGE";
 
 function ShiftForm(props) {
@@ -19,6 +21,7 @@ function ShiftForm(props) {
     wage: "",
     shift_start: "",
     shift_end: "",
+    payroll_tax: "",
     shift_day: [],
   });
 
@@ -33,6 +36,7 @@ function ShiftForm(props) {
     wage: "",
     shift_start: "",
     shift_end: "",
+    payroll_tax: "",
     shift_day: "",
   });
 
@@ -46,6 +50,7 @@ function ShiftForm(props) {
         wage: props.data[2].wage,
         shift_start: props.data[2].shift_start,
         shift_end: props.data[2].shift_end,
+        payroll_tax: props.data[2].payroll_tax,
         shift_day: props.data[2].shift_day,
       });
     }
@@ -63,6 +68,11 @@ function ShiftForm(props) {
     setFormData({ ...formData, wage: e.target.value });
   };
 
+  const handleChangePayrollTax = (e) => {
+    if (Number(e.target.value) <= 100)
+      setFormData({ ...formData, payroll_tax: e.target.value });
+  };
+
   const handleChangeDay = (e) => {
     let dayVal = parseInt(e.target.value);
     let days = [...formData.shift_day];
@@ -76,20 +86,18 @@ function ShiftForm(props) {
     validate(e);
   };
 
-  //here
   const handleBlurWage = (e) => {
-    const formattedWage = FORMAT_NUM_TO_DOLLARS(e.target.value);
+    const formattedWage = FORMAT_NUM(e.target.value);
     setFormData({ ...formData, wage: formattedWage });
     let errorMessage = GET_ERROR_MESSAGE("wage", formattedWage);
     setFormError({ ...formError, [e.target.name]: errorMessage });
+  };
 
-    // validate(e);
-    // return e.target.value !== "" && formError.wage === ""
-    //   ? setFormData({
-    //       ...formData,
-    //       wage: FORMAT_NUM_TO_DOLLARS(e.target.value),
-    //     })
-    //   : null;
+  const handleBlurPayrollTax = (e) => {
+    const formattedPayrollTax = FORMAT_NUM(e.target.value);
+    setFormData({ ...formData, payroll_tax: formattedPayrollTax });
+    let errorMessage = GET_ERROR_MESSAGE("payroll_tax", formattedPayrollTax);
+    setFormError({ ...formError, [e.target.name]: errorMessage });
   };
 
   const validate = (e) => {
@@ -100,6 +108,11 @@ function ShiftForm(props) {
   const validateDays = (days) => {
     let errorMessage = GET_ERROR_MESSAGE("shift_day", days);
     setFormError({ ...formError, shift_day: errorMessage });
+  };
+
+  const getWeeklyTotal = () => {
+    let sum = SUM_WEEKLY_SHIFT_TOTAL(formData);
+    return sum >= 0 ? parseFloat(sum).toFixed(2) : "0.00";
   };
 
   const renderDeleteButton = () => {
@@ -115,6 +128,9 @@ function ShiftForm(props) {
   return (
     <main className="main">
       <form className="form form_shift">
+        <p className="form_shift__weekly-total">
+          Weekly Total: ${getWeeklyTotal()}
+        </p>
         <fieldset className="fieldset_form">
           {props.id !== "new" ? renderDeleteButton() : null}
           <ShiftFormDepartment
@@ -142,6 +158,13 @@ function ShiftForm(props) {
             value={formData.wage}
             formError={formError.wage}
             handleBlurWage={handleBlurWage}
+          />
+
+          <ShiftFormPayrollTax
+            handleChangePayrollTax={(e) => handleChangePayrollTax(e)}
+            value={formData.payroll_tax}
+            formError={formError.payroll_tax}
+            handleBlurPayrollTax={handleBlurPayrollTax}
           />
 
           <ShiftFormTime

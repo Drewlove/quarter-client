@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import EmptyList from "../../EmptyList/EmptyList";
 import Category from "../Category/Category";
 import CategoryTotal from "../CategoryTotal/CategoryTotal";
+import { COLLATE_SCHEDULE } from "../../Utilities/COLLATE_SCHEDULE";
 
 function ProfitLoss(props) {
   const [lineItemsById, setLineItemsById] = useState({});
@@ -36,19 +37,38 @@ function ProfitLoss(props) {
   };
 
   const allocateLineItemsByCategory = () => {
-    let obj = {
-      sales: { total: 0, list: [] },
-      cogs: { total: 0, list: [] },
-      direct_labor: { total: 0, list: [] },
-      overhead: { total: 0, list: [] },
-    };
+    let lineItemsByCategoryObj = { ...lineItemsByCategory };
     props.data[0].forEach((key) => {
       if (key.line_item_amount_type === "percent")
         key = { ...key, amount: getAmountByPercent(key) };
-      obj[key.line_item_category].list.push(key);
-      obj[key.line_item_category].total += parseFloat(key.amount);
+
+      lineItemsByCategoryObj[key.line_item_category].list.push(key);
+      lineItemsByCategoryObj[key.line_item_category].total += Number(
+        key.amount
+      );
     });
-    return obj;
+    let directLaborCategoryObj = getDirectLaborCategory();
+    return {
+      ...lineItemsByCategoryObj,
+      direct_labor: directLaborCategoryObj,
+    };
+  };
+
+  const getDirectLaborCategory = () => {
+    let directLaborCategoryObj = { total: 0, list: [] };
+    let schedule = COLLATE_SCHEDULE(props.data[1]);
+    schedule.forEach((key, i) => {
+      directLaborCategoryObj.list.push({
+        line_item_category: "direct_labor",
+        line_item_id: i,
+        line_item_name: key.deptName,
+        amount: parseFloat(key.cost).toFixed(2),
+        line_item_amount_type: "dollars",
+        percent_of: null,
+      });
+      directLaborCategoryObj.total += Number(key.cost);
+    });
+    return directLaborCategoryObj;
   };
 
   const getAmountByPercent = (key) => {
@@ -98,9 +118,27 @@ function ProfitLoss(props) {
           categoryTotal={lineItemsByCategory.cogs.total}
           salesTotal={lineItemsByCategory.sales.total}
           kpiName="Gross Profit"
-          // kpiNum={salesTotal -}
+          kpiNum={getGrossProfit()}
+        />
+        <Category
+          name="Direct Labor"
+          lineItems={lineItemsByCategory.direct_labor.list}
+          categoryTotal={lineItemsByCategory.direct_labor.total}
+          salesTotal={lineItemsByCategory.sales.total}
+          kpiName="Prime Cost"
+          kpiNum={getPrimeCost()}
         />
       </>
+    );
+  };
+
+  const getGrossProfit = () => {
+    return lineItemsByCategory.sales.total - lineItemsByCategory.cogs.total;
+  };
+
+  const getPrimeCost = () => {
+    return (
+      lineItemsByCategory.cogs.total + lineItemsByCategory.direct_labor.total
     );
   };
 
@@ -109,14 +147,6 @@ function ProfitLoss(props) {
       <section className="fieldset__container">
         {props.data[0].length === 0 ? renderEmptyList() : renderPage()}
       </section>
-      {/* <Category
-          name="direct labor"
-          lineItems={directLaborLineItems}
-          categoryTotal={getTotal(directLaborLineItems)}
-          salesTotal={getTotal(salesLineItems)}
-          kpiName="Prime Cost"
-          kpiNum={getPrimeCost()}
-        /> */}
       {/* <Category
           name="overhead"
           lineItems={overheadLineItems}

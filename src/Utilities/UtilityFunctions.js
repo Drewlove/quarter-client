@@ -9,7 +9,7 @@ export const CapitalizeAllWords = (str) => {
   return newArr.join(" ");
 };
 
-export const FORMAT_NUM_TO_DOLLARS = (value) => {
+export const FORMAT_NUM = (value) => {
   let valueOnlyNumbers = value.replace(/,/g, "");
   let revisedNum = Number(valueOnlyNumbers).toLocaleString(undefined, {
     minimumFractionDigits: 2,
@@ -32,3 +32,21 @@ export const ConvertNumToTimeStr = (str) => {
     return `${hour - 12}:${minutes}${amPm}`;
   }
 };
+
+export const SUM_WEEKLY_SHIFT_TOTAL = (shift) => {
+  let sum =
+    (timeStringToFloat(shift.shift_end) -
+      timeStringToFloat(shift.shift_start)) *
+    shift.wage *
+    shift.people *
+    shift.shift_day.length *
+    (parseFloat(shift.payroll_tax).toFixed(2) / 100 + 1);
+  return sum;
+};
+
+function timeStringToFloat(time) {
+  var hoursMinutes = time.split(/[.:]/);
+  var hours = parseInt(hoursMinutes[0], 10);
+  var minutes = hoursMinutes[1] ? parseInt(hoursMinutes[1], 10) : 0;
+  return hours + minutes / 60;
+}

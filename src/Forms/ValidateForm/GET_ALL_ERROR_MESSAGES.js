@@ -39,6 +39,7 @@ function getShiftErrors(formData) {
     shift_role: GET_ERROR_MESSAGE("shift_role", formData.shift_role),
     people: GET_ERROR_MESSAGE("people", formData.people),
     wage: GET_ERROR_MESSAGE("wage", formData.wage),
+    payroll_tax: GET_ERROR_MESSAGE("payroll_tax", formData.payroll_tax),
     shift_start: GET_ERROR_MESSAGE("shift_start", formData.shift_start),
     shift_end: GET_ERROR_MESSAGE("shift_end", formData.shift_end),
     shift_day: GET_ERROR_MESSAGE("shift_day", formData.shift_day),

@@ -21,7 +21,7 @@ function Category(props) {
     return (
       <CategoryTotal
         name={props.kpiName}
-        categoryTotal={props.salesTotal - props.categoryTotal}
+        categoryTotal={props.kpiNum}
         salesTotal={props.salesTotal}
       />
     );
