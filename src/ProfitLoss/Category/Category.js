@@ -12,38 +12,21 @@ function Category(props) {
           amount={key.amount}
           id={key.line_item_id}
           key={key.line_item_id}
+          numberSymbol="$"
         />
       );
     });
   };
 
-  const getPercentageOf = () => {
-    if (props.netProfit && props.salesTotal) {
-      let percentage =
-        ((props.salesTotal - props.categoryTotal) / props.salesTotal) * 100;
-      return `${percentage.toFixed(2)}%`;
-    } else if (props.salesTotal) {
-      let percentage = (props.kpiNum / props.salesTotal) * 100;
-      return `${percentage.toFixed(2)}%`;
-    }
-  };
-
-  const renderKpiInfo = () => {
+  const renderCategoryTotalPercentage = () => {
+    const percentageAmount = (props.amount / props.salesTotal) * 100;
     return (
-      <>
-        <CategoryTotal
-          name={props.kpiName}
-          categoryTotal={props.kpiNum}
-          numberSymbol="$"
-          class="fieldset__item-container_kpi"
-        />
-        <CategoryTotal
-          name={props.kpiName}
-          categoryTotal={getPercentageOf()}
-          numberSymbol="%"
-          class="fieldset__item-container_kpi"
-        />
-      </>
+      <CategoryTotal
+        name={props.name}
+        amount={percentageAmount}
+        numberSymbol="%"
+        class="fieldset__item-container_total"
+      />
     );
   };
 
@@ -55,11 +38,11 @@ function Category(props) {
       {renderLineItems()}
       <CategoryTotal
         name={props.name}
-        categoryTotal={props.categoryTotal}
+        amount={props.amount}
         numberSymbol="$"
-        class=""
+        class="fieldset__item-container_total"
       />
-      {props.kpiName ? renderKpiInfo() : null}
+      {props.name !== "Sales" ? renderCategoryTotalPercentage() : null}
     </fieldset>
   );
 }

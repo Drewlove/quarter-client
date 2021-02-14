@@ -2,7 +2,11 @@ import React from "react";
 
 function LineItemAmount(props) {
   const renderLargeAmount = () => {
-    return <p className="fieldset__item-text">{props.amount}</p>;
+    return (
+      <p className="fieldset__item-text">
+        {parseFloat(props.amount).toFixed(2)}
+      </p>
+    );
   };
 
   const renderNormalAmount = () => {

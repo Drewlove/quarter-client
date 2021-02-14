@@ -108,10 +108,12 @@
 
 .fieldset__item-container_kpi {
   background-color: black;
+  color: white;
 }
 
 .fieldset__item-container_kpi:hover {
   background-color: black;
+  cursor: default;
 }
 
 .fieldset__item-container_total:hover {

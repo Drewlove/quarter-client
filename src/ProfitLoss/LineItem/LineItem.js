@@ -12,7 +12,7 @@ function LineItem(props) {
   return (
     <Link className="fieldset__item-container" to={getLink()}>
       <p className="fieldset__item-text">{props.name}</p>
-      <LineItemAmount amount={props.amount} />
+      <LineItemAmount amount={props.amount} numberSymbol={props.numberSymbol} />
     </Link>
   );
 }

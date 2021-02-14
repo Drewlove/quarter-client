@@ -4,12 +4,10 @@ import LineItemAmount from "../LineItemAmount/LineItemAmount";
 function CategoryTotal(props) {
   return (
     <>
-      <div
-        className={`fieldset__item-container fieldset__item-container_total ${props.class}`}
-      >
+      <div className={`fieldset__item-container ${props.class}`}>
         <p className="fieldset__item-text">{props.name}</p>
         <LineItemAmount
-          amount={parseFloat(props.categoryTotal).toFixed(2)}
+          amount={parseFloat(props.amount).toFixed(2)}
           numberSymbol={props.numberSymbol}
         />
       </div>

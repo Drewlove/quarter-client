@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import EmptyList from "../../EmptyList/EmptyList";
 import Category from "../Category/Category";
-import CategoryTotal from "../CategoryTotal/CategoryTotal";
+import KpiTotal from "../KpiTotal/KpiTotal";
 import { COLLATE_SCHEDULE } from "../../Utilities/COLLATE_SCHEDULE";
 
 function ProfitLoss(props) {
@@ -73,24 +73,6 @@ function ProfitLoss(props) {
     ).toFixed(2);
   };
 
-  // const getGrossProfit = () => {
-  //   const totalSales = getTotal(lineItems.sales);
-  //   const totalCogs = getTotal(lineItems.cogs);
-  //   return totalSales - totalCogs;
-  // };
-
-  // const getPrimeCost = () => {
-  //   return getTotal(cogsLineItems) + getTotal(directLaborLineItems);
-  // };
-
-  // const getTotalExpenses = () => {
-  //   return (
-  //     getTotal(cogsLineItems) +
-  //     getTotal(directLaborLineItems) +
-  //     getTotal(overheadLineItems)
-  //   );
-  // };
-
   const renderEmptyList = () => {
     return <EmptyList name="line_item" url="/form/line_item/new" />;
   };
@@ -105,35 +87,41 @@ function ProfitLoss(props) {
         <Category
           name="Sales"
           lineItems={lineItemsByCategory.sales.list}
-          categoryTotal={lineItemsByCategory.sales.total}
+          amount={lineItemsByCategory.sales.total}
         />
         <Category
           name="COGS"
           lineItems={lineItemsByCategory.cogs.list}
-          categoryTotal={lineItemsByCategory.cogs.total}
+          amount={lineItemsByCategory.cogs.total}
           salesTotal={lineItemsByCategory.sales.total}
-          kpiName="Gross Profit"
-          kpiNum={getGrossProfit()}
         />
+        <KpiTotal
+          name="Gross Profit"
+          amount={getGrossProfit()}
+          salesTotal={lineItemsByCategory.sales.total}
+        />
+
         <Category
           name="Direct Labor"
           lineItems={lineItemsByCategory.direct_labor.list}
-          categoryTotal={lineItemsByCategory.direct_labor.total}
+          amount={lineItemsByCategory.direct_labor.total}
           salesTotal={lineItemsByCategory.sales.total}
-          kpiName="Prime Cost"
-          kpiNum={getPrimeCost()}
+        />
+        <KpiTotal
+          name="Prime Costs"
+          amount={getPrimeCosts()}
+          salesTotal={lineItemsByCategory.sales.total}
         />
         <Category
           name="Overhead"
           lineItems={lineItemsByCategory.overhead.list}
-          categoryTotal={lineItemsByCategory.overhead.total}
+          amount={lineItemsByCategory.overhead.total}
           salesTotal={lineItemsByCategory.sales.total}
-          kpiName="Net Income"
-          kpiNum={getNetExpenses()}
-
-          // lineItems={overheadLineItems}
-          // categoryTotal={getTotal(overheadLineItems)}
-          // salesTotal={getTotal(salesLineItems)}
+        />
+        <KpiTotal
+          name="Net Profit"
+          amount={getNetProfit()}
+          salesTotal={lineItemsByCategory.sales.total}
         />
       </>
     );
@@ -143,17 +131,18 @@ function ProfitLoss(props) {
     return lineItemsByCategory.sales.total - lineItemsByCategory.cogs.total;
   };
 
-  const getPrimeCost = () => {
+  const getPrimeCosts = () => {
     return (
       lineItemsByCategory.cogs.total + lineItemsByCategory.direct_labor.total
     );
   };
 
-  const getNetExpenses = () => {
+  const getNetProfit = () => {
     return (
-      lineItemsByCategory.cogs.total +
-      lineItemsByCategory.direct_labor.total +
-      lineItemsByCategory.direct_labor.overhead
+      lineItemsByCategory.sales.total -
+      lineItemsByCategory.cogs.total -
+      lineItemsByCategory.direct_labor.total -
+      lineItemsByCategory.overhead.total
     );
   };
 
