@@ -32,14 +32,14 @@ function DepartmentsList(props) {
   };
 
   return (
-    <>
+    <section className="fieldset__container">
       <fieldset className="fieldset fieldset_departments">
         <legend className="fieldset__legend">
           <h2 className="fieldset__header">Departments</h2>
         </legend>
         {renderContainer()}
       </fieldset>
-    </>
+    </section>
   );
 }
 

@@ -44,12 +44,14 @@ function RolesList(props) {
   };
 
   return (
-    <fieldset className="fieldset">
-      <legend className="fieldset__legend">
-        <h2 className="fieldset__header">Roles</h2>
-      </legend>
-      {renderContainer()}
-    </fieldset>
+    <section className="fieldset__container">
+      <fieldset className="fieldset">
+        <legend className="fieldset__legend">
+          <h2 className="fieldset__header">Roles</h2>
+        </legend>
+        {renderContainer()}
+      </fieldset>
+    </section>
   );
 }
 
