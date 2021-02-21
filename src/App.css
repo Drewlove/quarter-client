@@ -495,9 +495,17 @@
   margin-top: 20px;
 }
 
+.schedule__header {
+  padding: 5px;
+  position: sticky;
+  top: 50px;
+  background-color: white;
+}
+
 .schedule__total-wages {
   display: flex;
   justify-content: center;
+  margin-bottom: 25px;
 }
 
 .schedule__holder {

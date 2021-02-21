@@ -7,7 +7,7 @@ function Category(props) {
     return props.lineItems.map((key) => {
       return (
         <LineItem
-          category={key.category}
+          category={key.line_item_category}
           name={key.line_item_name}
           amount={key.amount}
           id={key.line_item_id}
@@ -31,7 +31,7 @@ function Category(props) {
   };
 
   return (
-    <fieldset className="fieldset fieldset_pl">
+    <fieldset className="fieldset fieldset_pl fieldset_pl-category">
       <legend className="fieldset__legend">
         <h2 className="fieldset__header">{props.name}</h2>
       </legend>

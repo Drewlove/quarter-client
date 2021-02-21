@@ -14,6 +14,7 @@ const dummyData = [
     shift_end: "15:00",
     people: 1,
     wage: "27.50",
+    payroll_tax: "7.65",
     department_name: "kitchen",
     role_name: "head chef",
   },
@@ -26,6 +27,7 @@ const dummyData = [
     shift_end: "17:30",
     people: 1,
     wage: "15.00",
+    payroll_tax: "7.65",
     department_name: "kitchen",
     role_name: "sous chef",
   },
@@ -53,7 +55,7 @@ describe("Department", () => {
   });
   it("Renders the department name and total payroll costs", () => {
     expect(wrapper.find(".schedule-text_department").at(0).text()).toBe(
-      "kitchen - $1,662.50"
+      "kitchen - $1,789.68"
     );
   });
   it("Renders two rows when given two roles", () => {

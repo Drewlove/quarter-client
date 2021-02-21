@@ -13,6 +13,7 @@ const dummyData = [
     shift_end: "15:00",
     people: 1,
     wage: "27.50",
+    payroll_tax: "7.65",
     department_name: "kitchen",
     role_name: "head chef",
   },
@@ -25,6 +26,7 @@ const dummyData = [
     shift_end: "14:00",
     people: 2,
     wage: "13.50",
+    payroll_tax: "7.65",
     department_name: "service",
     role_name: "line prep",
   },
@@ -37,6 +39,7 @@ const dummyData = [
     shift_end: "15:00",
     people: 1,
     wage: "15.00",
+    payroll_tax: "7.65",
     department_name: "kitchen",
     role_name: "sous chef",
   },
@@ -47,7 +50,7 @@ const dummyDataEmpty = [];
 describe("Schedule", () => {
   it("Renders", () => {
     const wrapper = shallow(<Schedule data={[dummyData]} />);
-    expect(wrapper.find(".schedule-row_weekdays")).toHaveLength(1);
+    expect(wrapper.find(".schedule__header")).toHaveLength(1);
   });
   it("Renders EmptyList if data is empty", () => {
     const wrapper = mount(
@@ -72,10 +75,10 @@ describe("Schedule", () => {
       </MemoryRouter>
     );
     expect(wrapper.find(".schedule-text_department").at(0).text()).toBe(
-      "kitchen - $1,700.00"
+      "kitchen - $1,830.05"
     );
     expect(wrapper.find(".schedule-text_department").at(1).text()).toBe(
-      "service - $810.00"
+      "service - $871.97"
     );
   });
   it("Renders the correct number of rows for each department", () => {

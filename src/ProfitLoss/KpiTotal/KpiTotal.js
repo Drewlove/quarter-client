@@ -6,7 +6,7 @@ function KpiTotal(props) {
     return parseFloat((props.amount / props.salesTotal) * 100).toFixed(2);
   };
   return (
-    <fieldset className="fieldset fieldset_pl">
+    <fieldset className="fieldset fieldset_pl fieldset_pl-kpi">
       <legend className="fieldset__legend">
         <h2 className="fieldset__header">{props.name}</h2>
       </legend>

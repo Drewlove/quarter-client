@@ -6,31 +6,56 @@ import LineItem from "./LineItem";
 describe("LineItem", () => {
   it("renders", () => {
     const wrapper = shallow(
-      <LineItem category="category" name="name" amount={200} />
+      <LineItem
+        line_item_category="cogs"
+        name="food"
+        amount={200}
+        line_item_id={1}
+        number_symbol="$"
+      />
     );
+    expect(wrapper.find(".fieldset__item-container_line-item")).toHaveLength(1);
   });
-  it("displays two paragraph elements", () => {
+  it("renders the name", () => {
     const wrapper = mount(
       <BrowserRouter>
-        <LineItem category="category" name="name" amount={200} />
+        <LineItem
+          line_item_category="cogs"
+          name="food"
+          amount={200}
+          line_item_id={1}
+          number_symbol="$"
+        />
       </BrowserRouter>
     );
-    expect(wrapper.find(".fieldset__item-text")).toHaveLength(2);
+    expect(wrapper.find(".fieldset__item-text").text()).toBe("food");
   });
-  it("capitalizes line item name", () => {
+  it("formats link correctly when line_item_category prop does NOT equal direct_labor", () => {
     const wrapper = mount(
       <BrowserRouter>
-        <LineItem category="category" name="name" amount={200} />
+        <LineItem
+          line_item_category="cogs"
+          name="food"
+          amount={200}
+          line_item_id={1}
+          number_symbol="$"
+        />
       </BrowserRouter>
     );
-    expect(wrapper.find(".fieldset__item-text").at(0).text()).toEqual("Name");
+    expect(wrapper.find("a").prop("href")).toEqual("/form/line-item/1");
   });
-  it("formats href correctly", () => {
+  it("formats link correctly when line_item_category prop does equal direct_labor", () => {
     const wrapper = mount(
       <BrowserRouter>
-        <LineItem category="category" id="1" amount={200} name="name" />
+        <LineItem
+          line_item_category="direct_labor"
+          name="kitchen"
+          amount={200}
+          line_item_id={2}
+          number_symbol="$"
+        />
       </BrowserRouter>
     );
-    expect(wrapper.find("a").props().href).toEqual("/form/line-item/1");
+    expect(wrapper.find("a").prop("href")).toEqual("/schedule");
   });
 });

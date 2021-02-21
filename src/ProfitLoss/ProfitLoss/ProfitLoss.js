@@ -34,9 +34,9 @@ function ProfitLoss(props) {
   const allocateLineItemsByCategory = () => {
     let lineItemsByCategoryObj = { ...lineItemsByCategory };
     props.data[0].forEach((key) => {
-      if (key.line_item_amount_type === "percent")
+      if (key.line_item_amount_type === "percent") {
         key = { ...key, amount: getAmountByPercent(key) };
-
+      }
       lineItemsByCategoryObj[key.line_item_category].list.push(key);
       lineItemsByCategoryObj[key.line_item_category].total += Number(
         key.amount
@@ -57,11 +57,11 @@ function ProfitLoss(props) {
         line_item_category: "direct_labor",
         line_item_id: i,
         line_item_name: key.deptName,
-        amount: parseFloat(key.cost).toFixed(2),
+        amount: parseFloat(key.cost * 13).toFixed(2),
         line_item_amount_type: "dollars",
         percent_of: null,
       });
-      directLaborCategoryObj.total += Number(key.cost);
+      directLaborCategoryObj.total += Number(key.cost * 13);
     });
     return directLaborCategoryObj;
   };
@@ -79,6 +79,25 @@ function ProfitLoss(props) {
 
   const renderPage = () => {
     return pageReady ? renderPageContent() : null;
+  };
+
+  const getGrossProfit = () => {
+    return lineItemsByCategory.sales.total - lineItemsByCategory.cogs.total;
+  };
+
+  const getPrimeCosts = () => {
+    return (
+      lineItemsByCategory.cogs.total + lineItemsByCategory.direct_labor.total
+    );
+  };
+
+  const getNetProfit = () => {
+    return (
+      lineItemsByCategory.sales.total -
+      lineItemsByCategory.cogs.total -
+      lineItemsByCategory.direct_labor.total -
+      lineItemsByCategory.overhead.total
+    );
   };
 
   const renderPageContent = () => {
@@ -127,36 +146,11 @@ function ProfitLoss(props) {
     );
   };
 
-  const getGrossProfit = () => {
-    return lineItemsByCategory.sales.total - lineItemsByCategory.cogs.total;
-  };
-
-  const getPrimeCosts = () => {
-    return (
-      lineItemsByCategory.cogs.total + lineItemsByCategory.direct_labor.total
-    );
-  };
-
-  const getNetProfit = () => {
-    return (
-      lineItemsByCategory.sales.total -
-      lineItemsByCategory.cogs.total -
-      lineItemsByCategory.direct_labor.total -
-      lineItemsByCategory.overhead.total
-    );
-  };
-
   return (
     <>
-      <section className="fieldset__container">
+      <section className="fieldset__container fieldset__container-pnl">
         {props.data[0].length === 0 ? renderEmptyList() : renderPage()}
       </section>
-      {/* <CategoryTotal
-          name="Net Profit"
-          categoryTotal={getTotalExpenses()}
-          salesTotal={getTotal(salesLineItems)}
-          netProfit={true}
-        />  */}
     </>
   );
 }

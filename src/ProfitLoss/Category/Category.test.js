@@ -1,103 +1,37 @@
 import React from "react";
-import { shallow, mount } from "enzyme";
 import Category from "./Category";
-import { BrowserRouter } from "react-router-dom";
+import { shallow, mount } from "enzyme";
 
-const cogsLineItems = [
-  { category: "cogs", name: "food", amount: 6000, id: 4 },
-  { category: "cogs", name: "beverage", amount: 500, id: 5 },
-  { category: "cogs", name: "other", amount: 300, id: 6 },
+const listSales = [
+  {
+    line_item_category: "sales",
+    line_item_id: 1,
+    line_item_name: "Beverage",
+    amount: "1000.50",
+    line_item_amount_type: "dollars",
+    percent_of: null,
+  },
+  {
+    line_item_category: "sales",
+    line_item_id: 2,
+    line_item_name: "Food",
+    amount: "500.25",
+    line_item_amount_type: "dollars",
+    percent_of: null,
+  },
 ];
 
-const kpiPercentage = () => {
-  return getGrossProfit() / getTotal();
-};
-
 describe("Category", () => {
-  it("renders", () => {
-    shallow(<Category name="category name" lineItems={cogsLineItems} />);
-  });
-
-  it("capitalizes category name", () => {
-    const wrapper = mount(
-      <BrowserRouter>
-        <Category
-          name="category name"
-          lineItems={cogsLineItems}
-          salesTotal={100}
-          categoryTotal={50}
-        />
-      </BrowserRouter>
+  it("Renders", () => {
+    const wrapper = shallow(
+      <Category name="sales" lineItems={listSales} amount={1500.75} />
     );
-    expect(wrapper.find(".fieldset__header").text()).toEqual("Category Name");
+    expect(wrapper.find(".fieldset_pl-category")).toHaveLength(1);
   });
-  it("renders the correct number of line items", () => {
-    const wrapper = mount(
-      <BrowserRouter>
-        <Category
-          name="category name"
-          lineItems={cogsLineItems}
-          salesTotal={100}
-          categoryTotal={50}
-        />
-      </BrowserRouter>
+  it("Renders the category name", () => {
+    const wrapper = shallow(
+      <Category name="sales" lineItems={listSales} amount={1500.75} />
     );
-    expect(wrapper.find("a")).toHaveLength(3);
-  });
-  it("renders kpi name", () => {
-    const wrapper = mount(
-      <BrowserRouter>
-        <Category
-          name="category name"
-          lineItems={cogsLineItems}
-          salesTotal={100}
-          categoryTotal={50}
-          kpiNum={50}
-          kpiName="Gross Profit"
-        />
-      </BrowserRouter>
-    );
-    expect(
-      wrapper
-        .find(".fieldset__item-container_total")
-        .at(1)
-        .children()
-        .at(0)
-        .text()
-    ).toEqual("Gross Profit");
-  });
-  it("renders kpi number", () => {
-    const wrapper = mount(
-      <BrowserRouter>
-        <Category
-          name="category name"
-          lineItems={cogsLineItems}
-          salesTotal={100}
-          categoryTotal={50}
-          kpiNum={50}
-          kpiName="Gross Profit"
-        />
-      </BrowserRouter>
-    );
-    expect(
-      wrapper.find(".fieldset__item-container_total").children().at(1).text()
-    ).toEqual("50");
-  });
-  it("renders kpi %", () => {
-    const wrapper = mount(
-      <BrowserRouter>
-        <Category
-          name="category name"
-          lineItems={cogsLineItems}
-          salesTotal={100}
-          categoryTotal={50}
-          kpiNum={50}
-          kpiName="Gross Profit"
-        />
-      </BrowserRouter>
-    );
-    expect(
-      wrapper.find(".fieldset__item-container_total").children().at(2).text()
-    ).toEqual("50.00%");
+    expect(wrapper.find(".fieldset__header").text()).toBe("sales");
   });
 });

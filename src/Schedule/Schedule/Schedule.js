@@ -14,31 +14,31 @@ function Schedule(props) {
     schedule = COLLATE_SCHEDULE(props.data[0]);
     return (
       <>
-        <section className="schedule-row schedule-row_weekdays">
-          <div className="schedule-row_weekdays__weekday">
-            <h3>Mon</h3>
+        <section className="schedule__header">
+          <div className="schedule__total-wages">{renderTotalWages()}</div>
+          <div className="schedule-row">
+            <div className="schedule-row_weekdays__weekday">
+              <h3>Mon</h3>
+            </div>
+            <div className="schedule-row_weekdays__weekday">
+              <h3>Tue</h3>
+            </div>
+            <div className="schedule-row_weekdays__weekday">
+              <h3>Wed</h3>
+            </div>
+            <div className="schedule-row_weekdays__weekday">
+              <h3>Thu</h3>
+            </div>
+            <div className="schedule-row_weekdays__weekday">
+              <h3>Fri</h3>
+            </div>
+            <div className="schedule-row_weekdays__weekday">
+              <h3>Sat</h3>
+            </div>
+            <div className="schedule-row_weekdays__weekday">
+              <h3>Sun</h3>
+            </div>
           </div>
-          <div className="schedule-row_weekdays__weekday">
-            <h3>Tue</h3>
-          </div>
-          <div className="schedule-row_weekdays__weekday">
-            <h3>Wed</h3>
-          </div>
-          <div className="schedule-row_weekdays__weekday">
-            <h3>Thu</h3>
-          </div>
-          <div className="schedule-row_weekdays__weekday">
-            <h3>Fri</h3>
-          </div>
-          <div className="schedule-row_weekdays__weekday">
-            <h3>Sat</h3>
-          </div>
-          <div className="schedule-row_weekdays__weekday">
-            <h3>Sun</h3>
-          </div>
-        </section>
-        <section className="schedule__total-wages">
-          {renderTotalWages()}
         </section>
         <section className="schedule__holder">{renderSchedule()}</section>
       </>
@@ -52,9 +52,10 @@ function Schedule(props) {
     });
     return (
       <h2>
-        Total Payroll: $
+        Weekly Payroll: $
         {totalCost.toLocaleString(undefined, {
           minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
         })}
       </h2>
     );

@@ -16,6 +16,7 @@ function Department(props) {
             {props.deptName} - $
             {props.cost.toLocaleString(undefined, {
               minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
             })}
           </h4>
         </div>
