@@ -4,9 +4,9 @@ import LineItemAmount from "../LineItemAmount/LineItemAmount";
 
 function LineItem(props) {
   const getLink = () => {
-    return props.line_item_category === "direct_labor"
+    return props.category === "direct_labor"
       ? `/schedule`
-      : `form/line-item/${props.line_item_id}`;
+      : `form/line-item/${props.id}`;
   };
 
   return (

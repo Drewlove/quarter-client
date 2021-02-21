@@ -3,13 +3,11 @@ import { CapitalizeAllWords } from "../../../Utilities/UtilityFunctions";
 import Error from "../../CommonFormComponents/FormError/FormError";
 
 function LineItemFormPercentOf(props) {
-  const salesCategories = ["food", "beverage", "other"];
-
-  const renderCategories = (categories) => {
-    return categories.map((category) => {
+  const renderLineItems = (lineItems) => {
+    return lineItems.map((key) => {
       return (
-        <option value={category} key={category}>
-          {CapitalizeAllWords(category)}
+        <option value={key.line_item_id} key={key.line_item_id}>
+          {CapitalizeAllWords(key.line_item_category)} - {key.line_item_name}
         </option>
       );
     });
@@ -17,23 +15,24 @@ function LineItemFormPercentOf(props) {
 
   return (
     <section className="input-section input-section_percent-of">
-      <label className="input-section__label" htmlFor="percentOf">
+      {console.log(props.value)}
+      <label className="input-section__label" htmlFor="percent_of">
         Percent Of
       </label>
       <div className="input-section__input-container">
         <select
-          className={`input-section__input ${
-            props.error ? "input-section__error" : ""
-          }`}
-          id="percentOf"
+          className="input-section__input"
+          id="percent_of"
           onChange={(e) => props.onChange(e)}
-          name="percentOf"
+          name="percent_of"
           value={props.value}
         >
           <option value={""} disabled>
             - Select Line Item -
           </option>
-          {renderCategories(salesCategories)}
+          {renderLineItems(props.lineItems.sales)}
+          {renderLineItems(props.lineItems.cogs)}
+          {renderLineItems(props.lineItems.overhead)}
         </select>
         {props.error ? <Error message={props.error} /> : null}
       </div>

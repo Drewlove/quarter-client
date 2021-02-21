@@ -1,4 +1,5 @@
 export const GET_ERROR_MESSAGE = (name, formValue) => {
+  console.log(name, formValue);
   switch (name) {
     case "department_name":
       return getErrorMessageDepartmentName(formValue);
@@ -22,6 +23,14 @@ export const GET_ERROR_MESSAGE = (name, formValue) => {
       return getErrorMessageShiftEnd(formValue);
     case "shift_day":
       return getErrorMessageShiftDay(formValue);
+    case "line_item_category":
+      return getErrorMessageLineItemCategory(formValue);
+    case "line_item_name":
+      return getErrorMessageLineItemName(formValue);
+    case "amount":
+      return getErrorMessageAmount(formValue);
+    case "percent_of":
+      return getErrorMessagePercentofLineItem(formValue);
     default:
   }
 };
@@ -111,6 +120,40 @@ function getErrorMessageShiftEnd(formValue) {
 function getErrorMessageShiftDay(formValue) {
   if (formValue.length === 0) {
     return "Select at least one day.";
+  } else {
+    return "";
+  }
+}
+
+function getErrorMessageLineItemCategory(formValue) {
+  if (formValue.length === 0) {
+    return "Category selection cannot be blank.";
+  } else {
+    return "";
+  }
+}
+
+function getErrorMessageLineItemName(formValue) {
+  if (formValue.length === 0) {
+    return "Line item name cannot be blank.";
+  } else {
+    return "";
+  }
+}
+
+function getErrorMessageAmount(formValue) {
+  if (formValue <= 0) {
+    return "Enter a value greater than 0.";
+  } else if (formValue >= 10000) {
+    return "Value is out of range.";
+  } else {
+    return "";
+  }
+}
+
+function getErrorMessagePercentofLineItem(formValue) {
+  if (formValue.length === 0) {
+    return "Line item selection cannot be blank.";
   } else {
     return "";
   }

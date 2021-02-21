@@ -6,19 +6,16 @@ function LineItemFormAmountType(props) {
     <section className="input-section input-section_amount-type">
       <p className="input-section__label">Amount Type</p>
       <div className="input-section__input-container">
-        <div
-          className={`input-section__input input-section__input_radio 
-          ${props.error ? "input-section__error" : ""}`}
-        >
+        <div className="input-section__input input-section__input_radio">
           <div className="input-section__radio-container">
             <input
               type="radio"
               className="radio"
-              name="amountType"
+              name="line_item_amount_type"
               id="dollars"
               value="dollars"
               checked={props.value === "dollars"}
-              onChange={(e) => props.onChange(e)}
+              onChange={(e) => props.handleChangeAmountType(e)}
             />
             <label htmlFor="dollars">Dollars</label>
           </div>
@@ -26,16 +23,16 @@ function LineItemFormAmountType(props) {
             <input
               type="radio"
               className="radio"
-              name="amountType"
+              name="line_item_amount_type"
               id="percentage"
               value="percentage"
-              checked={props.value === "percentage"}
-              onChange={(e) => props.onChange(e)}
+              checked={props.value === "percent"}
+              onChange={(e) => props.handleChangeAmountType(e)}
             />
             <label htmlFor="percentage">Percent</label>
           </div>
         </div>
-        {props.error ? <Error message="Choose an amount type" /> : null}
+        {props.formError ? <Error message="Choose an amount type" /> : null}
       </div>
     </section>
   );

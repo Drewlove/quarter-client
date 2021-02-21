@@ -4,117 +4,165 @@ import LineItemFormName from "../LineItemFormName/LineItemFormName";
 import LineItemFormAmount from "../LineItemFormAmount/LineItemFormAmount";
 import LineItemFormAmountType from "../LineItemFormAmountType/LineItemFormAmountType";
 import LineItemFormPercentOf from "../LineItemFormPercentOf/LineItemFormPercentOf";
-import LineItemFormSaveButton from "../../CommonFormComponents/FormSaveButton/FormSaveButton";
+import FormSaveButton from "../../CommonFormComponents/FormSaveButton/FormSaveButton";
 import FormDeleteButton from "../../CommonFormComponents/FormDeleteButton/FormDeleteButton";
-import { GetErrorMessage } from "../../LineItemFormErrors";
+import { GET_ERROR_MESSAGE } from "../../ValidateForm/GET_ERROR_MESSAGE";
 import { FORMAT_NUM } from "../../../Utilities/UtilityFunctions";
 
-function LineItemForm() {
-  const [input, setInput] = useState({
-    category: "",
-    name: "",
-    amount: "",
-    amountType: "dollars",
-    percentOf: "",
+function LineItemForm(props) {
+  const [lineItems, setLineItems] = useState({
+    sales: [],
+    cogs: [],
+    overhead: [],
   });
 
-  const [error, setError] = useState({
-    category: "",
-    name: "",
+  const [formData, setFormData] = useState({
+    line_item_category: "",
+    line_item_name: "",
     amount: "",
-    amountType: "",
-    percentOf: "",
+    line_item_amount_type: "dollars",
+    percent_of: "",
   });
 
-  useEffect(() => {}, []);
+  const [formError, setFormError] = useState({
+    line_item_category: "",
+    line_item_name: "",
+    amount: "",
+    line_item_amount_type: "dollars",
+    percent_of: "",
+  });
+
+  useEffect(() => {
+    setLineItems(sortLineItems());
+
+    if (props.id !== "new")
+      setFormData({
+        line_item_category: props.data[1].line_item_category,
+        line_item_name: props.data[1].line_item_name,
+        amount: Number(props.data[1].amount).toLocaleString(undefined, {
+          minimumFractionDigits: 2,
+        }),
+        line_item_amount_type: props.data[1].line_item_amount_type,
+        percent_of:
+          props.data[1].percent_of === null ? "" : props.data[1].percent_of,
+      });
+  }, [props.id, props.formData]);
+
+  const sortLineItems = () => {
+    const lineItems = { sales: [], cogs: [], overhead: [] };
+    props.data[0].forEach((key) => {
+      if (key.line_item_amount_type === "dollars")
+        lineItems[key.line_item_category].push(key);
+    });
+    return lineItems;
+  };
 
   const handleChange = (e) => {
     validate(e);
-    setInput({
-      ...input,
+    setFormData({
+      ...formData,
       [e.target.name]: e.target.value,
     });
   };
 
+  const handleChangeAmountType = (e) => {
+    if (e.target.value === "dollars") {
+      setFormData({
+        ...formData,
+        percent_of: "",
+        line_item_amount_type: "dollars",
+      });
+    } else {
+      setFormData({
+        ...formData,
+        line_item_amount_type: "percent",
+      });
+    }
+  };
+
+  const handleChangeAmount = (e) => {
+    if (formError.amount) validate(e);
+    setFormData({ ...formData, amount: e.target.value });
+  };
+
   const handleBlur = (e) => {
-    e.target.name === "amount" && error.amount === ""
+    e.target.name === "amount" && formError.amount === ""
       ? handleBlurAmount(e)
       : validate(e);
   };
 
   const handleBlurAmount = (e) => {
-    setInput({ ...input, amount: FORMAT_NUM(e.target.value) });
+    const formattedAmount = FORMAT_NUM(e.target.value);
+    setFormData({ ...formData, amount: formattedAmount });
+    let errorMessage = GET_ERROR_MESSAGE("amount", formattedAmount);
+    setFormError({ ...formError, [e.target.name]: errorMessage });
   };
 
   const validate = (e) => {
-    let errorMessage = GetErrorMessage(e.target.name, e.target.value);
-    setError({ ...error, [e.target.name]: errorMessage });
+    let errorMessage = GET_ERROR_MESSAGE(e.target.name, e.target.value);
+    setFormError({ ...formError, [e.target.name]: errorMessage });
   };
 
-  const handleSave = (e) => {
-    e.preventDefault();
-    validateAllInputs();
+  const renderDeleteButton = () => {
+    return (
+      <FormDeleteButton
+        endpointSuffix="line_items"
+        id={props.id}
+        redirectSuffix="pnl"
+      />
+    );
   };
 
-  const validateAllInputs = () => {
-    let errors = {};
-
-    Object.keys(input).forEach((key) => {
-      errors[key] = GetErrorMessage(key, input[key]);
-    });
-    if (input.amountType === "dollars") errors.percentOf = "";
-
-    setError(errors);
-  };
-
-  const handleDelete = (e) => {
-    e.preventDefault();
-  };
-
-  const options = ["sales", "cogs", "overhead"];
+  const categories = ["sales", "cogs", "overhead"];
 
   return (
     <main className="main">
       <form className="form">
         <fieldset className="fieldset_form">
-          <FormDeleteButton handleDelete={handleDelete} />
+          {props.id !== "new" ? renderDeleteButton() : null}
           <LineItemFormCategory
-            value={input.category}
-            error={error.category}
+            value={formData.line_item_category}
+            error={formError.line_item_category}
             handleChange={handleChange}
-            options={options}
+            categories={categories}
             name="category"
           />
           <LineItemFormName
-            value={input.name}
-            error={error.name}
+            value={formData.line_item_name}
+            error={formError.line_item_name}
             handleChange={handleChange}
             handleBlur={handleBlur}
             validate={validate}
           />
           <LineItemFormAmount
-            value={input.amount}
-            error={error.amount}
-            handleChange={handleChange}
+            value={formData.amount}
+            error={formError.amount}
+            handleChangeAmount={handleChangeAmount}
             validate={validate}
-            handleBlur={handleBlur}
-            amountType={input.amountType}
+            handleBlurAmount={handleBlurAmount}
+            line_item_amount_type={formData.line_item_amount_type}
           />
           <LineItemFormAmountType
-            value={input.amountType}
-            onChange={handleChange}
-            error={error.amountType}
+            value={formData.line_item_amount_type}
+            handleChangeAmountType={handleChangeAmountType}
+            error={formError.line_item_amount_type}
           />
-
-          {input.amountType === "percentage" ? (
+          {formData.line_item_amount_type === "percent" ? (
             <LineItemFormPercentOf
-              value={input.percentOf}
+              lineItems={lineItems}
+              value={formData.percent_of}
               onChange={handleChange}
-              error={error.percentOf}
+              error={formError.percent_of}
             />
           ) : null}
-
-          <LineItemFormSaveButton handleSave={handleSave} />
+          <FormSaveButton
+            formData={formData}
+            formName="lineItem"
+            endpointSuffix="line_items"
+            redirectSuffix="pnl"
+            id={props.id}
+            setFormError={setFormError}
+          />
         </fieldset>
       </form>
     </main>

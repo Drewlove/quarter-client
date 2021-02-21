@@ -9,13 +9,11 @@ function LineItemFormName(props) {
       </label>
       <div className="input-section__input-container">
         <input
-          className={`input-section__input ${
-            props.error ? "input-section__error" : ""
-          }`}
+          className="input-section__input"
           type="text"
-          id="name"
+          id="line_item_name"
           placeholder="Line Item Name"
-          name="name"
+          name="line_item_name"
           onChange={props.handleChange}
           onBlur={props.handleBlur}
           value={props.value}
