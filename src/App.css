@@ -340,6 +340,7 @@
 }
 
 .home-page {
+  padding: 10px;
 }
 
 .home-page__h2 {
@@ -385,16 +386,18 @@
 }
 
 .home-page__user-link_register {
-  margin: 20px auto;
-  line-height: 50px;
-  height: 50px;
-  color: white;
-  text-decoration: none;
-  font-size: 16px;
-  border-radius: 2px;
-  background-color: black;
   display: block;
-  text-align: center;
+  margin: 5px auto;
+  padding: 5px;
+  width: 150px;
+  font-size: 21px;
+  margin-top: 5px;
+  color: white;
+  background-color: black;
+}
+
+.home-page__user-link_register:hover {
+  cursor: pointer;
 }
 
 .input-section {
@@ -431,6 +434,7 @@
   max-width: var(--page-max-width);
   min-width: var(--page-min-width);
   margin: 0px auto;
+  padding-bottom: 50px;
 }
 
 .modal {

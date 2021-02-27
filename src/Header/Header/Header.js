@@ -2,6 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import MenuSignedOut from "../MenuSignedOut/MenuSignedOut";
 import MenuSignedIn from "../MenuSignedIn/MenuSignedIn";
+import LogoutButton from "../../LogoutButton/LogoutButton";
 
 function Header() {
   const { pathname } = useLocation();
@@ -9,7 +10,7 @@ function Header() {
   return (
     <header className="header">
       <nav className="header__nav">
-        {pathname === "/" ? <MenuSignedOut /> : <MenuSignedIn />}
+        {pathname === "/" ? <LogoutButton /> : <MenuSignedIn />}
       </nav>
     </header>
   );

@@ -10,7 +10,7 @@ ReactDOM.render(
     <Auth0Provider
       domain="dev-twvvyq34.auth0.com"
       clientId="Bm9jxDvy5oPvOrhWnH6iMTSF0JdiCWA0"
-      redirectUri={"https://quarter-client.vercel.app/pnl"}
+      redirectUri={"http://localhost:3000/pnl"}
     >
       <App />
     </Auth0Provider>
