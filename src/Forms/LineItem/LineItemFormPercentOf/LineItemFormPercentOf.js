@@ -15,7 +15,6 @@ function LineItemFormPercentOf(props) {
 
   return (
     <section className="input-section input-section_percent-of">
-      {console.log(props.value)}
       <label className="input-section__label" htmlFor="percent_of">
         Percent Of
       </label>

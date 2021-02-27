@@ -69,7 +69,6 @@ function FormSaveButton(props) {
       let formErrorMessage = formErrorsObj[property];
       if (formErrorMessage.length > 0) return;
     }
-    console.log(props.formData, formErrorsObj);
     saveData();
   };
 
