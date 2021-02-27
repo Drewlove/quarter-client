@@ -32,8 +32,22 @@ function LineItemForm(props) {
   });
 
   useEffect(() => {
-    setLineItems(sortLineItems());
+    const sortLineItems = () => {
+      const lineItems = { sales: [], cogs: [], overhead: [] };
+      props.data[0].forEach((key) => {
+        if (
+          key.line_item_amount_type === "dollars" &&
+          key.line_item_id !== parseInt(props.id)
+        )
+          lineItems[key.line_item_category].push(key);
+      });
+      return lineItems;
+    };
 
+    setLineItems(sortLineItems());
+  }, [props.data, props.id]);
+
+  useEffect(() => {
     if (props.id !== "new")
       setFormData({
         line_item_category: props.data[1].line_item_category,
@@ -44,19 +58,7 @@ function LineItemForm(props) {
         line_item_amount_type: props.data[1].line_item_amount_type,
         percent_of: props.data[1].percent_of,
       });
-  }, [props.id, props.formData]);
-
-  const sortLineItems = () => {
-    const lineItems = { sales: [], cogs: [], overhead: [] };
-    props.data[0].forEach((key) => {
-      if (
-        key.line_item_amount_type === "dollars" &&
-        key.line_item_id !== parseInt(props.id)
-      )
-        lineItems[key.line_item_category].push(key);
-    });
-    return lineItems;
-  };
+  }, [props.data, props.id]);
 
   const handleChange = (e) => {
     validate(e);
@@ -116,12 +118,10 @@ function LineItemForm(props) {
   };
 
   const getFormData = () => {
-    let thing = {
+    return {
       ...formData,
       amount: parseFloat(formData.amount.replace(/,/g, "")),
     };
-    console.log(formData, thing);
-    return thing;
   };
 
   const categories = ["sales", "cogs", "overhead"];

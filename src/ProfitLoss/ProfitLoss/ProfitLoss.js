@@ -6,14 +6,6 @@ import { COLLATE_SCHEDULE } from "../../Utilities/COLLATE_SCHEDULE";
 
 function ProfitLoss(props) {
   const [lineItemsById, setLineItemsById] = useState({});
-  const [lineItemsByCategory, setLineItemsByCategory] = useState({
-    sales: { total: 0, list: [] },
-    cogs: { total: 0, list: [] },
-    direct_labor: { total: 0, list: [] },
-    overhead: { total: 0, list: [] },
-  });
-
-  const [pageReady, setPageReady] = useState();
 
   useEffect(() => {
     let obj = {};
@@ -21,33 +13,7 @@ function ProfitLoss(props) {
       obj[key.line_item_id] = key;
     });
     setLineItemsById(obj);
-  }, []);
-
-  useEffect(() => {
-    if (Object.keys(lineItemsById).length !== 0) {
-      let lineItemsByCategory = allocateLineItemsByCategory(lineItemsById);
-      setLineItemsByCategory(lineItemsByCategory);
-      setPageReady(true);
-    }
-  }, [lineItemsById]);
-
-  const allocateLineItemsByCategory = () => {
-    let lineItemsByCategoryObj = { ...lineItemsByCategory };
-    props.data[0].forEach((key) => {
-      if (key.line_item_amount_type === "percent") {
-        key = { ...key, amount: getAmountByPercent(key) };
-      }
-      lineItemsByCategoryObj[key.line_item_category].list.push(key);
-      lineItemsByCategoryObj[key.line_item_category].total += Number(
-        key.amount
-      );
-    });
-    let directLaborCategoryObj = getDirectLaborCategory();
-    return {
-      ...lineItemsByCategoryObj,
-      direct_labor: directLaborCategoryObj,
-    };
-  };
+  }, [props.data]);
 
   const getDirectLaborCategory = () => {
     let directLaborCategoryObj = { total: 0, list: [] };
@@ -77,21 +43,17 @@ function ProfitLoss(props) {
     return <EmptyList name="Line Item" url="/form/line-item/new" />;
   };
 
-  const renderPage = () => {
-    return pageReady ? renderPageContent() : null;
-  };
-
-  const getGrossProfit = () => {
+  const getGrossProfit = (lineItemsByCategory) => {
     return lineItemsByCategory.sales.total - lineItemsByCategory.cogs.total;
   };
 
-  const getPrimeCosts = () => {
+  const getPrimeCosts = (lineItemsByCategory) => {
     return (
       lineItemsByCategory.cogs.total + lineItemsByCategory.direct_labor.total
     );
   };
 
-  const getNetProfit = () => {
+  const getNetProfit = (lineItemsByCategory) => {
     return (
       lineItemsByCategory.sales.total -
       lineItemsByCategory.cogs.total -
@@ -100,7 +62,8 @@ function ProfitLoss(props) {
     );
   };
 
-  const renderPageContent = () => {
+  const renderPage = () => {
+    const lineItemsByCategory = getLineItemsByCategory();
     return (
       <>
         <div className="pnl__header-container">
@@ -119,7 +82,7 @@ function ProfitLoss(props) {
         />
         <KpiTotal
           name="Gross Profit"
-          amount={getGrossProfit()}
+          amount={getGrossProfit(lineItemsByCategory)}
           salesTotal={lineItemsByCategory.sales.total}
         />
 
@@ -131,7 +94,7 @@ function ProfitLoss(props) {
         />
         <KpiTotal
           name="Prime Costs"
-          amount={getPrimeCosts()}
+          amount={getPrimeCosts(lineItemsByCategory)}
           salesTotal={lineItemsByCategory.sales.total}
         />
         <Category
@@ -142,17 +105,42 @@ function ProfitLoss(props) {
         />
         <KpiTotal
           name="Net Profit"
-          amount={getNetProfit()}
+          amount={getNetProfit(lineItemsByCategory)}
           salesTotal={lineItemsByCategory.sales.total}
         />
       </>
     );
   };
 
+  const getLineItemsByCategory = () => {
+    let lineItemsByCategoryObj = {
+      sales: { total: 0, list: [] },
+      cogs: { total: 0, list: [] },
+      direct_labor: { total: 0, list: [] },
+      overhead: { total: 0, list: [] },
+    };
+    props.data[0].forEach((key) => {
+      if (key.line_item_amount_type === "percent") {
+        key = { ...key, amount: getAmountByPercent(key) };
+      }
+      lineItemsByCategoryObj[key.line_item_category].list.push(key);
+      lineItemsByCategoryObj[key.line_item_category].total += Number(
+        key.amount
+      );
+    });
+    let directLaborCategoryObj = getDirectLaborCategory();
+    return {
+      ...lineItemsByCategoryObj,
+      direct_labor: directLaborCategoryObj,
+    };
+  };
+
   return (
     <>
       <section className="fieldset__container fieldset__container-pnl">
-        {props.data[0].length === 0 ? renderEmptyList() : renderPage()}
+        {Object.keys(lineItemsById).length === 0
+          ? renderEmptyList()
+          : renderPage()}
       </section>
     </>
   );
