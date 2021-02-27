@@ -1,11 +1,5 @@
 import React from "react";
 import FormError from "../../CommonFormComponents/FormError/FormError";
-import { FORMAT_NUM } from "../../../Utilities/UtilityFunctions";
-
-//NEXT, format the number
-//do the rest of the child components rendered in LineItemForm
-//do error handlig
-//do tests (start with leaf nodes, work your way up the tree, finishing with integration tests at LineItemForm)
 
 function LineItemFormAmount(props) {
   const getAmountSign = () => {
