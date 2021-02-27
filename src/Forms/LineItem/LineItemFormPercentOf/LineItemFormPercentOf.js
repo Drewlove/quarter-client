@@ -25,7 +25,7 @@ function LineItemFormPercentOf(props) {
           id="percent_of"
           onChange={(e) => props.onChange(e)}
           name="percent_of"
-          value={props.value}
+          value={props.value === null ? "" : props.value}
         >
           <option value={""} disabled>
             - Select Line Item -

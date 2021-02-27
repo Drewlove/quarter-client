@@ -11,22 +11,15 @@ function LineItemAmount(props) {
 
   const renderNormalAmount = () => {
     let renderedAmount = new Array(15).fill("");
-    let j = 14;
     renderedAmount[0] = props.numberSymbol;
+    let stringAmount = Number(props.amount).toLocaleString(undefined, {
+      minimumFractionDigits: 2,
+    });
 
-    let commaIndex = new Set([4, 8]);
-
-    for (let i = props.amount.length - 1; i >= 0; i--) {
-      let char = props.amount[i];
-      let nextChar = props.amount[i - 1];
-
-      if (nextChar !== "" && commaIndex.has(j)) {
-        renderedAmount[j] = ",";
-        renderedAmount[j - 1] = char;
-        j--;
-      } else {
-        renderedAmount[j] = char;
-      }
+    let j = 14;
+    for (let i = stringAmount.length - 1; i >= 0; i--) {
+      let char = stringAmount[i];
+      renderedAmount[j] = char;
       j--;
     }
 

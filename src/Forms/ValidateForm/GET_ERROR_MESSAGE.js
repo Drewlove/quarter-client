@@ -1,5 +1,4 @@
 export const GET_ERROR_MESSAGE = (name, formValue) => {
-  console.log(name, formValue);
   switch (name) {
     case "department_name":
       return getErrorMessageDepartmentName(formValue);
@@ -144,7 +143,7 @@ function getErrorMessageLineItemName(formValue) {
 function getErrorMessageAmount(formValue) {
   if (formValue <= 0) {
     return "Enter a value greater than 0.";
-  } else if (formValue >= 10000) {
+  } else if (formValue >= 10000000) {
     return "Value is out of range.";
   } else {
     return "";

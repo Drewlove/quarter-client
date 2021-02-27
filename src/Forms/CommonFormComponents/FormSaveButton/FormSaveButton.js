@@ -63,11 +63,13 @@ function FormSaveButton(props) {
       props.formName,
       props.formData
     );
+
     props.setFormError(formErrorsObj);
     for (const property in formErrorsObj) {
       let formErrorMessage = formErrorsObj[property];
       if (formErrorMessage.length > 0) return;
     }
+    console.log(props.formData, formErrorsObj);
     saveData();
   };
 

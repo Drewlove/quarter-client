@@ -21,14 +21,13 @@ function LineItemForm(props) {
     line_item_name: "",
     amount: "",
     line_item_amount_type: "dollars",
-    percent_of: "",
+    percent_of: null,
   });
 
   const [formError, setFormError] = useState({
     line_item_category: "",
     line_item_name: "",
     amount: "",
-    line_item_amount_type: "dollars",
     percent_of: "",
   });
 
@@ -43,15 +42,17 @@ function LineItemForm(props) {
           minimumFractionDigits: 2,
         }),
         line_item_amount_type: props.data[1].line_item_amount_type,
-        percent_of:
-          props.data[1].percent_of === null ? "" : props.data[1].percent_of,
+        percent_of: props.data[1].percent_of,
       });
   }, [props.id, props.formData]);
 
   const sortLineItems = () => {
     const lineItems = { sales: [], cogs: [], overhead: [] };
     props.data[0].forEach((key) => {
-      if (key.line_item_amount_type === "dollars")
+      if (
+        key.line_item_amount_type === "dollars" &&
+        key.line_item_id !== parseInt(props.id)
+      )
         lineItems[key.line_item_category].push(key);
     });
     return lineItems;
@@ -69,12 +70,13 @@ function LineItemForm(props) {
     if (e.target.value === "dollars") {
       setFormData({
         ...formData,
-        percent_of: "",
+        percent_of: null,
         line_item_amount_type: "dollars",
       });
     } else {
       setFormData({
         ...formData,
+        percent_of: "",
         line_item_amount_type: "percent",
       });
     }
@@ -113,6 +115,15 @@ function LineItemForm(props) {
     );
   };
 
+  const getFormData = () => {
+    let thing = {
+      ...formData,
+      amount: parseFloat(formData.amount.replace(/,/g, "")),
+    };
+    console.log(formData, thing);
+    return thing;
+  };
+
   const categories = ["sales", "cogs", "overhead"];
 
   return (
@@ -134,6 +145,11 @@ function LineItemForm(props) {
             handleBlur={handleBlur}
             validate={validate}
           />
+          <LineItemFormAmountType
+            value={formData.line_item_amount_type}
+            handleChangeAmountType={handleChangeAmountType}
+            error={formError.line_item_amount_type}
+          />
           <LineItemFormAmount
             value={formData.amount}
             error={formError.amount}
@@ -142,11 +158,7 @@ function LineItemForm(props) {
             handleBlurAmount={handleBlurAmount}
             line_item_amount_type={formData.line_item_amount_type}
           />
-          <LineItemFormAmountType
-            value={formData.line_item_amount_type}
-            handleChangeAmountType={handleChangeAmountType}
-            error={formError.line_item_amount_type}
-          />
+
           {formData.line_item_amount_type === "percent" ? (
             <LineItemFormPercentOf
               lineItems={lineItems}
@@ -156,7 +168,7 @@ function LineItemForm(props) {
             />
           ) : null}
           <FormSaveButton
-            formData={formData}
+            formData={getFormData()}
             formName="lineItem"
             endpointSuffix="line_items"
             redirectSuffix="pnl"

@@ -74,7 +74,7 @@ function ProfitLoss(props) {
   };
 
   const renderEmptyList = () => {
-    return <EmptyList name="line_item" url="/form/line_item/new" />;
+    return <EmptyList name="Line Item" url="/form/line-item/new" />;
   };
 
   const renderPage = () => {
@@ -103,6 +103,9 @@ function ProfitLoss(props) {
   const renderPageContent = () => {
     return (
       <>
+        <div className="pnl__header-container">
+          <h1>The Quarter</h1>
+        </div>
         <Category
           name="Sales"
           lineItems={lineItemsByCategory.sales.list}
