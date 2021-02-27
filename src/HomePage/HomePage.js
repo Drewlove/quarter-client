@@ -1,6 +1,9 @@
 import React from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function HomePage() {
+  const { loginWithRedirect } = useAuth0();
+
   return (
     <>
       <main className="main">
@@ -13,9 +16,10 @@ function HomePage() {
             </p>
           </div>
           <div className="home-page__hero-image"></div>
-          <a className="home-page__user-link_register" href="/register">
-            Register
-          </a>
+          <button onClick={() => loginWithRedirect()}>Register</button>
+          {/* <a className="home-page__user-link_register" href="/register">
+            {LoginButton}
+          </a> */}
         </section>
         <section className="home-page">
           <div className="home-page__container">

@@ -12,7 +12,6 @@ function CellShift(props) {
     return props.shift.people === 1
       ? `${props.shift.people} person`
       : `${props.shift.people} people`;
-    // return `${props.shift.people}X`;
   };
 
   return (
