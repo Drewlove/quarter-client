@@ -9,7 +9,10 @@ function CellShift(props) {
   };
 
   const renderNumPeople = () => {
-    return `${props.shift.people}X`;
+    return props.shift.people === 1
+      ? `${props.shift.people} person`
+      : `${props.shift.people} people`;
+    // return `${props.shift.people}X`;
   };
 
   return (
