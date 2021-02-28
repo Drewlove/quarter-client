@@ -83,7 +83,7 @@ function getErrorMessagePeople(formValue) {
 }
 
 function getErrorMessageWage(formValue) {
-  if (formValue <= 0) {
+  if (formValue <= 0 || isNaN(formValue)) {
     return "Enter $0.01 or more.";
   } else if (formValue >= 10000) {
     return "Value is out of range.";
@@ -141,7 +141,7 @@ function getErrorMessageLineItemName(formValue) {
 }
 
 function getErrorMessageAmount(formValue) {
-  if (formValue <= 0) {
+  if (formValue <= 0 || isNaN(formValue)) {
     return "Enter a value greater than 0.";
   } else if (formValue >= 10000000) {
     return "Value is out of range.";
