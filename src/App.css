@@ -158,16 +158,32 @@
   color: white;
   position: sticky;
   top: 0px;
-  height: 55px;
+  height: 60px;
   z-index: 1;
 }
 
 .header__button-container {
-  margin-top: 10px;
+}
+
+.header__button-container_hamburger {
+  display: flex;
+  flex-direction: column;
 }
 
 .header__button-container_new-button {
-  margin-left: auto;
+}
+
+.header__button_log-out {
+  width: 100px;
+  height: 25px;
+}
+
+.header__button_log-out:hover {
+  cursor: pointer;
+}
+
+.header__display-mobile-none {
+  display: none;
 }
 
 .header__menu-button_hamburger {
@@ -178,6 +194,68 @@
   transition: 0.1s ease-in-out;
   cursor: pointer;
   border: none;
+}
+
+.header__item-container {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.header__item-container_signed-out {
+  flex-direction: row;
+  margin-left: auto;
+}
+
+.header__item-container_right {
+  margin-left: auto;
+}
+
+.header__item-container_row {
+  display: none;
+}
+
+.header__item {
+  color: white;
+  text-decoration: none;
+}
+
+.header__item:hover {
+  cursor: pointer;
+}
+
+.header__item_row {
+  height: 30px;
+  color: white;
+  background-color: black;
+  text-decoration: none;
+  font-size: 16px;
+  border: 1px solid white;
+  padding: 5px;
+  border-radius: 2px;
+  margin-left: 15px;
+  white-space: nowrap;
+}
+
+.header__item_row:hover {
+  cursor: pointer;
+}
+
+.header__item_dropdown {
+  display: block;
+  text-decoration: none;
+  padding: 10px;
+}
+
+.header__item_dropdown:hover {
+  text-decoration: underline;
+}
+
+.header__logout-button {
+  margin: 10px auto;
+  width: 100px;
+  display: block;
+  padding: 5px;
 }
 
 .header__menu-button_hamburger span {
@@ -222,71 +300,10 @@
   left: 8px;
 }
 
-.header__link-container {
-  margin: 10px;
-  display: flex;
-  flex-direction: column;
-}
-
-.header__link-container_signed-out {
-  flex-direction: row;
-  margin-left: auto;
-}
-
-.header__link-container_right {
-  margin-left: auto;
-}
-
-.header__link-container_row {
-  flex-direction: row;
-  display: none;
-}
-
-.header__link {
-  color: white;
-}
-
-.header__link:hover {
-  cursor: pointer;
-}
-
-.header__link_row {
-  height: 30px;
-  color: white;
-  background-color: black;
-  text-decoration: none;
-  font-size: 16px;
-  border: 1px solid white;
-  padding: 5px;
-  border-radius: 2px;
-  margin-left: 15px;
-  white-space: nowrap;
-}
-
-.header__link_row:hover {
-  cursor: pointer;
-}
-
-.header__link_dropdown {
-  display: block;
-  text-decoration: none;
-  padding: 2px;
-}
-
-.header__link_dropdown:hover {
-  text-decoration: underline;
-}
-
-.header__nav {
-  max-width: var(--page-max-width);
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-}
-
 .header__menu-button {
   background-color: black;
   border: none;
+  margin-left: auto;
 }
 
 .header__menu-button:hover {
@@ -294,14 +311,10 @@
 }
 
 .header__menu-button_new {
-  width: 40px;
+  width: 75px;
   height: 40px;
   font-size: 36px;
-  margin-right: 10px;
   border-radius: 10px;
-  margin-left: auto;
-  display: flex;
-  justify-content: center;
   align-items: center;
   background-color: white;
   color: black;
@@ -318,7 +331,14 @@
   border: 1px solid black;
   background-color: black;
   box-shadow: 5px 5px 1px darkgrey;
-  margin-top: 5px;
+}
+
+.header__nav {
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
 }
 
 .header__new-menu-button:focus {
@@ -513,7 +533,7 @@
 .schedule__header {
   padding: 5px;
   position: sticky;
-  top: 50px;
+  top: 60px;
   background-color: white;
 }
 
@@ -524,7 +544,7 @@
 }
 
 .schedule__holder {
-  padding: 5px 5px 25px 5px;
+  padding: 0px 2px;
 }
 
 .schedule-row {
@@ -542,7 +562,7 @@
 }
 
 .schedule-row__cell {
-  border: 1px solid black;
+  border: 1px solid gainsboro;
   height: 75px;
   overflow: hidden;
   display: flex;
@@ -620,21 +640,38 @@
 }
 
 @media only screen and (min-width: 600px) {
-  .header__link-container_row {
-    display: flex;
+  .header__item-container_row {
+    display: block;
   }
 
   .home-page__hero-image {
     height: 400px;
   }
+
   .home-page__promo-image {
     height: 250px;
     width: 300px;
   }
 
+  .header__nav {
+    display: grid;
+    grid-template-columns: 2fr 7fr 1fr;
+  }
+
+  .header__items-container {
+    display: flex;
+  }
+
+  .header__item-div {
+    margin-right: auto;
+    display: block;
+    margin-top: 10px;
+  }
+
   .header__button-container_hamburger {
     display: none;
   }
+
   .input-section {
     display: grid;
     grid-template-columns: 1fr 2fr;

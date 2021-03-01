@@ -6,9 +6,9 @@ import MenuSignedInNewItem from "../MenuSignedInNewItem/MenuSignedInNewItem";
 function MenuSignedIn() {
   return (
     <>
+      <MenuSignedInNewItem />
       <MenuSignedInMainRow />
       <MenuSignedInMainHamburger />
-      <MenuSignedInNewItem />
     </>
   );
 }

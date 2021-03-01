@@ -5,7 +5,7 @@ function HeaderLink(props) {
   return (
     <Link
       to={props.url}
-      className={`header__link${props.className ? ` ${props.className}` : ""}`}
+      className={`header__item${props.className ? ` ${props.className}` : ""}`}
       onClick={() => props.toggleMenuDisplay()}
     >
       {props.text}

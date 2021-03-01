@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import HeaderLink from "../HeaderLink/HeaderLink";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function MenuSignedInMain() {
   const [menu, setMenuDisplay] = useState({
@@ -28,6 +29,8 @@ function MenuSignedInMain() {
     setMenuDisplay({ display: !menuDisplayStatus });
   };
 
+  const { logout } = useAuth0();
+
   const renderMenu = () => {
     return (
       <div className="header__menu_drop-down">
@@ -35,26 +38,34 @@ function MenuSignedInMain() {
           url="/pnl"
           toggleMenuDisplay={() => toggleMenuDisplay()}
           text="Home"
-          className="header__link_dropdown"
+          className="header__item_dropdown"
         />
         <HeaderLink
           url="/departments"
           toggleMenuDisplay={() => toggleMenuDisplay()}
           text="Departments"
-          className="header__link_dropdown"
+          className="header__item_dropdown"
         />
         <HeaderLink
           url="/roles"
           toggleMenuDisplay={() => toggleMenuDisplay()}
           text="Roles"
-          className="header__link_dropdown"
+          className="header__item_dropdown"
         />
         <HeaderLink
           url="/schedule"
           toggleMenuDisplay={() => toggleMenuDisplay()}
           text="Schedule"
-          className="header__link_dropdown"
+          className="header__item_dropdown"
         />
+        <div>
+          <button
+            className="header__logout-button"
+            onClick={() => logout({ returnTo: window.location.origin })}
+          >
+            Log Out
+          </button>
+        </div>
       </div>
     );
   };

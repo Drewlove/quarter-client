@@ -35,35 +35,32 @@ function MenuSignedInNewItem() {
           url="/form/line-item/new"
           toggleMenuDisplay={() => toggleMenuDisplay()}
           text="New Line Item"
-          className="header__link_dropdown"
+          className="header__item_dropdown"
         />
         <HeaderLink
           url="/form/schedule/new"
           toggleMenuDisplay={() => toggleMenuDisplay()}
           text="New Shift"
-          className="header__link_dropdown"
+          className="header__item_dropdown"
         />
         <HeaderLink
           url="/form/department/new"
           toggleMenuDisplay={() => toggleMenuDisplay()}
           text="New Department"
-          className="header__link_dropdown"
+          className="header__item_dropdown"
         />
         <HeaderLink
           url="/form/role/new"
           toggleMenuDisplay={() => toggleMenuDisplay()}
           text="New Role"
-          className="header__link_dropdown"
+          className="header__item_dropdown"
         />
       </div>
     );
   };
 
   return (
-    <div
-      className="header__button-container header__button-container_new-button"
-      ref={wrapperRef}
-    >
+    <div className="header__button-container" ref={wrapperRef}>
       <button
         className="header__menu-button header__menu-button_new"
         onClick={() => toggleMenuDisplay()}
