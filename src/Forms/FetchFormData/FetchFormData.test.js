@@ -54,6 +54,6 @@ describe("FetchFormData", () => {
         <PropsChildrenStub />
       </FetchFormData>
     );
-    expect(wrapper.find(".fetch-form-data")).toHaveLength(1);
+    expect(wrapper.find(FetchFormData)).toHaveLength(1);
   });
 });

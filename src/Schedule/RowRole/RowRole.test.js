@@ -52,7 +52,7 @@ const row = describe("RowRole", () => {
   });
   it("renders text: number of people", () => {
     expect(wrapper.find(".schedule-text_shift-people").at(0).text()).toEqual(
-      "1X"
+      "1 person"
     );
   });
   it("renders text: shift hours", () => {

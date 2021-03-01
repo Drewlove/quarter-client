@@ -1,18 +1,40 @@
 import React from "react";
 import EmptyList from "./EmptyList";
-import { shallow } from "enzyme";
+import { MemoryRouter } from "react-router-dom";
+
+import { shallow, mount } from "enzyme";
 
 describe("EmptyList", () => {
   it("renders", () => {
-    const wrapper = shallow(<EmptyList />);
+    const wrapper = mount(
+      <MemoryRouter>
+        <EmptyList name="test" url="/test" />
+      </MemoryRouter>
+    );
     expect(wrapper.find(".empty-list")).toHaveLength(1);
   });
   it("displays text accurately", () => {
-    const wrapper = shallow(<EmptyList name="test" />);
+    const wrapper = mount(
+      <MemoryRouter>
+        <EmptyList name="test" url="/test" />
+      </MemoryRouter>
+    );
     expect(wrapper.find(".empty-list__text").text()).toEqual("No tests found.");
   });
   it("displays link text accurately", () => {
-    const wrapper = shallow(<EmptyList name="test" />);
-    expect(wrapper.find(".empty-list__link").text()).toEqual("Add Test");
+    const wrapper = mount(
+      <MemoryRouter>
+        <EmptyList name="test" url="/test" />
+      </MemoryRouter>
+    );
+    expect(wrapper.find("a").text()).toEqual("Add Test");
+  });
+  it("generates correct href", () => {
+    const wrapper = mount(
+      <MemoryRouter>
+        <EmptyList name="test" url="/test" />
+      </MemoryRouter>
+    );
+    expect(wrapper.find("a").props().href).toBe("/test");
   });
 });

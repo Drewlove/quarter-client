@@ -52,6 +52,7 @@ const shift = {
   shift_role: "4",
   people: 2,
   wage: "13.50",
+  payroll_tax: "7.65",
   shift_start: "09:00:00",
   shift_end: "16:30:00",
   shift_day: [0, 2, 4],
@@ -124,6 +125,9 @@ describe("ShiftFormContainer", () => {
     expect(wrapper.find(".input-section__input_wage").props().value).toBe(
       "13.50"
     );
+    expect(
+      wrapper.find(".input-section__input_payroll-tax").props().value
+    ).toBe("7.65");
     expect(wrapper.find(".input-section__input_time").at(0).props().value).toBe(
       "09:00:00"
     );

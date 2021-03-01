@@ -1,5 +1,5 @@
 import React from "react";
-import { mount } from "enzyme";
+import { shallow, mount } from "enzyme";
 import LineItemForm from "./LineItemForm";
 
 const lineItems = [
@@ -63,7 +63,7 @@ const lineItemDollar = {
 };
 
 const lineItemPercent = {
-  amount: "25",
+  amount: "25.00",
   line_item_amount_type: "percent",
   line_item_category: "cogs",
   line_item_id: 3,
@@ -75,41 +75,57 @@ const dummyDataLineItemDollar = [lineItems, lineItemDollar];
 const dummyDataLineItemPercent = [lineItems, lineItemPercent];
 const dummyDataBlankForm = [lineItems];
 
-//does not provide the given line item as an option in the percentOf component (ie, cannot choose itself)
-describe("LineItemForm", () => {
+const categories = ["Sales", "COGS", "Overhead"];
+
+describe("LineItemForm, Name", () => {
   it("renders", () => {
     const wrapper = mount(
       <LineItemForm data={dummyDataLineItemDollar} id="1" />
     );
-    expect(wrapper.find(LineItemForm)).toHaveLength(1);
+    expect(wrapper.find(".input-section_name")).toHaveLength(1);
   });
-  it("renders four inputs", () => {
+  it("If value is given, the value renders", () => {
     const wrapper = mount(
       <LineItemForm data={dummyDataLineItemDollar} id="1" />
     );
-    expect(wrapper.find("input")).toHaveLength(4);
+    expect(wrapper.find(".input-section_name input").props().value).toBe(
+      "Food"
+    );
   });
-  it("if fetched line item has a null percent_of value, then renders one select tag", () => {
+  it("If no value is given, then no value renders", () => {
+    const wrapper = mount(<LineItemForm data={dummyDataBlankForm} id="new" />);
+    expect(wrapper.find(".input-section_name input").props().value).toBe("");
+  });
+  it("If input value is changed, then changed value renders", () => {
     const wrapper = mount(
       <LineItemForm data={dummyDataLineItemDollar} id="1" />
     );
-    expect(wrapper.find("select")).toHaveLength(1);
-  });
-  it("if fetched line item has a percent_of value, then renders two select tags", () => {
-    const wrapper = mount(<LineItemForm data={dummyDataLineItemPercent} />);
-    expect(wrapper.find("select")).toHaveLength(2);
-  });
-  it("if user clicks save on a blank form and all fields are empty, renders three errors", () => {
-    const wrapper = mount(<LineItemForm data={dummyDataBlankForm} id="new" />);
-    wrapper.find("#button-save").simulate("click");
-    expect(wrapper.find(".form-error")).toHaveLength(3);
-  });
-  it("if user clicks save, and amount type is set to 'percent of', and all fields are empty, renders four errors", () => {
-    const wrapper = mount(<LineItemForm data={dummyDataBlankForm} id="new" />);
-    wrapper.find("#percent").simulate("change", {
-      target: { name: "line_item_amount_type", value: "percent" },
+    wrapper.find(".input-section_name input").simulate("change", {
+      target: {
+        name: "line_item_name",
+        value: "coffee",
+      },
     });
-    wrapper.find("#button-save").simulate("click");
-    expect(wrapper.find(".form-error")).toHaveLength(4);
+    expect(wrapper.find(".input-section_name input").props().value).toBe(
+      "coffee"
+    );
+  });
+  it("If input has focus, then blurs focus with no value, error component renders", () => {
+    const wrapper = mount(<LineItemForm data={dummyDataBlankForm} id="new" />);
+    wrapper.find(".input-section_name input").simulate("focus");
+    wrapper.find(".input-section_name input").simulate("blur");
+    expect(wrapper.find(".input-section_name .form-error")).toHaveLength(1);
+  });
+  it("If input is changed from a value of 1 character or more to a value of 0 characters, error renders", () => {
+    const wrapper = mount(
+      <LineItemForm data={dummyDataLineItemDollar} id="1" />
+    );
+    wrapper.find(".input-section_name input").simulate("change", {
+      target: {
+        name: "line_item_name",
+        value: "",
+      },
+    });
+    expect(wrapper.find(".input-section_name .form-error")).toHaveLength(1);
   });
 });

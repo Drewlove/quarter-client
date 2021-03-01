@@ -24,12 +24,12 @@ function LineItemFormAmountType(props) {
               type="radio"
               className="radio"
               name="line_item_amount_type"
-              id="percentage"
-              value="percentage"
+              id="percent"
+              value="percent"
               checked={props.value === "percent"}
               onChange={(e) => props.handleChangeAmountType(e)}
             />
-            <label htmlFor="percentage">Percent</label>
+            <label htmlFor="percent">Percent</label>
           </div>
         </div>
         {props.formError ? <Error message="Choose an amount type" /> : null}

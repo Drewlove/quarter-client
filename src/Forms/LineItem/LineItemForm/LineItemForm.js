@@ -35,10 +35,7 @@ function LineItemForm(props) {
     const sortLineItems = () => {
       const lineItems = { sales: [], cogs: [], overhead: [] };
       props.data[0].forEach((key) => {
-        if (
-          key.line_item_amount_type === "dollars" &&
-          key.line_item_id !== parseInt(props.id)
-        )
+        if (key.line_item_id !== parseInt(props.id))
           lineItems[key.line_item_category].push(key);
       });
       return lineItems;
@@ -117,14 +114,11 @@ function LineItemForm(props) {
     );
   };
 
-  const getFormData = () => {
-    return {
-      ...formData,
-      amount: parseFloat(formData.amount.replace(/,/g, "")),
-    };
-  };
-
-  const categories = ["sales", "cogs", "overhead"];
+  const categories = [
+    { actualVal: "sales", displayVal: "Sales" },
+    { actualVal: "cogs", displayVal: "COGS" },
+    { actualVal: "overhead", displayVal: "Overhead" },
+  ];
 
   return (
     <main className="main">
@@ -168,7 +162,7 @@ function LineItemForm(props) {
             />
           ) : null}
           <FormSaveButton
-            formData={getFormData()}
+            formData={{ ...formData, amount: formData.amount.replace(",", "") }}
             formName="lineItem"
             endpointSuffix="line_items"
             redirectSuffix="pnl"

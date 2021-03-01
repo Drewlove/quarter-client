@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow, mount } from "enzyme";
+import { shallow } from "enzyme";
 import LineItemFormAmountType from "./LineItemFormAmountType";
 
 describe("LineItemFormAmountType", () => {
@@ -7,13 +7,14 @@ describe("LineItemFormAmountType", () => {
     const wrapper = shallow(<LineItemFormAmountType />);
     expect(wrapper.find(".input-section_amount-type")).toHaveLength(1);
   });
-
-  it("If error, error component renders", () => {
-    const wrapper = mount(<LineItemFormAmountType error={true} />);
-    expect(wrapper.find(".form-error")).toHaveLength(1);
+  it("if value is 'dollars', dollar input is checked", () => {
+    const wrapper = shallow(<LineItemFormAmountType value="dollars" />);
+    expect(wrapper.find("#dollars").props().checked).toBe(true);
+    expect(wrapper.find("#percent").props().checked).toBe(false);
   });
-  it("If no error, no error component renders", () => {
-    const wrapper = mount(<LineItemFormAmountType error={false} />);
-    expect(wrapper.find(".form-error")).toHaveLength(0);
+  it("if value is 'percent', percent input is checked", () => {
+    const wrapper = shallow(<LineItemFormAmountType value="percent" />);
+    expect(wrapper.find("#percent").props().checked).toBe(true);
+    expect(wrapper.find("#dollars").props().checked).toBe(false);
   });
 });

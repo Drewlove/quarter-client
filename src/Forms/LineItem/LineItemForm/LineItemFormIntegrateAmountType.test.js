@@ -63,7 +63,7 @@ const lineItemDollar = {
 };
 
 const lineItemPercent = {
-  amount: "25",
+  amount: "25.00",
   line_item_amount_type: "percent",
   line_item_category: "cogs",
   line_item_id: 3,
@@ -75,41 +75,42 @@ const dummyDataLineItemDollar = [lineItems, lineItemDollar];
 const dummyDataLineItemPercent = [lineItems, lineItemPercent];
 const dummyDataBlankForm = [lineItems];
 
-//does not provide the given line item as an option in the percentOf component (ie, cannot choose itself)
-describe("LineItemForm", () => {
+const categories = ["Sales", "COGS", "Overhead"];
+
+describe("LineItemForm, AmountType", () => {
   it("renders", () => {
     const wrapper = mount(
       <LineItemForm data={dummyDataLineItemDollar} id="1" />
     );
-    expect(wrapper.find(LineItemForm)).toHaveLength(1);
+    expect(wrapper.find(".input-section_amount-type")).toHaveLength(1);
   });
-  it("renders four inputs", () => {
+  it("if new line item form, default value is set to dollars", () => {
+    const wrapper = mount(<LineItemForm data={dummyDataBlankForm} id="new" />);
+    expect(wrapper.find("#dollars").props().checked).toBe(true);
+    expect(wrapper.find("#percent").props().checked).toBe(false);
+  });
+  it("if value is 'dollars', dollar input is checked", () => {
     const wrapper = mount(
       <LineItemForm data={dummyDataLineItemDollar} id="1" />
     );
-    expect(wrapper.find("input")).toHaveLength(4);
+    expect(wrapper.find("#dollars").props().checked).toBe(true);
+    expect(wrapper.find("#percent").props().checked).toBe(false);
   });
-  it("if fetched line item has a null percent_of value, then renders one select tag", () => {
+  it("if value is 'percent', percent input is checked", () => {
+    const wrapper = mount(
+      <LineItemForm data={dummyDataLineItemPercent} id="3" />
+    );
+    expect(wrapper.find("#percent").props().checked).toBe(true);
+    expect(wrapper.find("#dollars").props().checked).toBe(false);
+  });
+  it("if user changes value from dollar to percent, register new value", () => {
     const wrapper = mount(
       <LineItemForm data={dummyDataLineItemDollar} id="1" />
     );
-    expect(wrapper.find("select")).toHaveLength(1);
-  });
-  it("if fetched line item has a percent_of value, then renders two select tags", () => {
-    const wrapper = mount(<LineItemForm data={dummyDataLineItemPercent} />);
-    expect(wrapper.find("select")).toHaveLength(2);
-  });
-  it("if user clicks save on a blank form and all fields are empty, renders three errors", () => {
-    const wrapper = mount(<LineItemForm data={dummyDataBlankForm} id="new" />);
-    wrapper.find("#button-save").simulate("click");
-    expect(wrapper.find(".form-error")).toHaveLength(3);
-  });
-  it("if user clicks save, and amount type is set to 'percent of', and all fields are empty, renders four errors", () => {
-    const wrapper = mount(<LineItemForm data={dummyDataBlankForm} id="new" />);
     wrapper.find("#percent").simulate("change", {
       target: { name: "line_item_amount_type", value: "percent" },
     });
-    wrapper.find("#button-save").simulate("click");
-    expect(wrapper.find(".form-error")).toHaveLength(4);
+    expect(wrapper.find("#percent").props().checked).toBe(true);
+    expect(wrapper.find("#dollars").props().checked).toBe(false);
   });
 });

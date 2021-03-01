@@ -1,13 +1,16 @@
 import React from "react";
 import Error from "../../CommonFormComponents/FormError/FormError";
-import { CapitalizeAllWords } from "../../../Utilities/UtilityFunctions";
 
 function LineItemFormCategory(props) {
   const renderCategories = () => {
     return props.categories.map((key) => {
       return (
-        <option value={key} key={key}>
-          {CapitalizeAllWords(key)}
+        <option
+          className="input-section__input-option"
+          value={key.actualVal}
+          key={key.actualVal}
+        >
+          {key.displayVal}
         </option>
       );
     });

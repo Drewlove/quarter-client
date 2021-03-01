@@ -75,7 +75,7 @@ describe("Department", () => {
   });
   it("renders text for first role: number of people", () => {
     expect(wrapper.find(".schedule-text_shift-people").at(0).text()).toEqual(
-      "1X"
+      "1 person"
     );
   });
   it("renders text for first role: shift hours", () => {
@@ -91,7 +91,7 @@ describe("Department", () => {
   });
   it("renders text for second role: number of people", () => {
     expect(wrapper.find(".schedule-text_shift-people").at(5).text()).toEqual(
-      "1X"
+      "1 person"
     );
   });
   it("renders text for second role: shift hours", () => {

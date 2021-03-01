@@ -1,5 +1,4 @@
 import React from "react";
-import { CapitalizeAllWords } from "../../../Utilities/UtilityFunctions";
 import Error from "../../CommonFormComponents/FormError/FormError";
 
 function LineItemFormPercentOf(props) {
@@ -7,7 +6,7 @@ function LineItemFormPercentOf(props) {
     return lineItems.map((key) => {
       return (
         <option value={key.line_item_id} key={key.line_item_id}>
-          {CapitalizeAllWords(key.line_item_category)} - {key.line_item_name}
+          {key.line_item_category} - {key.line_item_name}
         </option>
       );
     });

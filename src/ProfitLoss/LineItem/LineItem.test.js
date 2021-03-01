@@ -7,10 +7,10 @@ describe("LineItem", () => {
   it("renders", () => {
     const wrapper = shallow(
       <LineItem
-        line_item_category="cogs"
+        category="cogs"
         name="food"
         amount={200}
-        line_item_id={1}
+        id={1}
         number_symbol="$"
       />
     );
@@ -20,10 +20,10 @@ describe("LineItem", () => {
     const wrapper = mount(
       <BrowserRouter>
         <LineItem
-          line_item_category="cogs"
+          category="cogs"
           name="food"
           amount={200}
-          line_item_id={1}
+          id={1}
           number_symbol="$"
         />
       </BrowserRouter>
@@ -34,10 +34,10 @@ describe("LineItem", () => {
     const wrapper = mount(
       <BrowserRouter>
         <LineItem
-          line_item_category="cogs"
+          category="cogs"
           name="food"
           amount={200}
-          line_item_id={1}
+          id={1}
           number_symbol="$"
         />
       </BrowserRouter>
@@ -48,10 +48,10 @@ describe("LineItem", () => {
     const wrapper = mount(
       <BrowserRouter>
         <LineItem
-          line_item_category="direct_labor"
+          category="direct_labor"
           name="kitchen"
           amount={200}
-          line_item_id={2}
+          id={2}
           number_symbol="$"
         />
       </BrowserRouter>

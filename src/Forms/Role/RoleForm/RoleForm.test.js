@@ -56,7 +56,7 @@ describe("RoleForm: RoleFormDepartment", () => {
     expect(wrapper.find(".form-error").at(0)).toHaveLength(1);
   });
 });
-//HERE
+
 describe("RoleForm: RoleFormName", () => {
   it("If id is 'new', role field value is an empty string", () => {
     const wrapper = mount(<RoleForm data={dummyData} id="new" />);

@@ -33,7 +33,9 @@ describe("CellShift", () => {
     );
   });
   it("renders text: number of people", () => {
-    expect(wrapper.find(".schedule-text_shift-people").text()).toEqual("3X");
+    expect(wrapper.find(".schedule-text_shift-people").text()).toEqual(
+      "3 people"
+    );
   });
   it("renders text: shift hours", () => {
     expect(wrapper.find(".schedule-text_shift-hours").text()).toEqual(

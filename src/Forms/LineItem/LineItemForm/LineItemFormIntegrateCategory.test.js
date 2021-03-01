@@ -63,7 +63,7 @@ const lineItemDollar = {
 };
 
 const lineItemPercent = {
-  amount: "25",
+  amount: "25.00",
   line_item_amount_type: "percent",
   line_item_category: "cogs",
   line_item_id: 3,
@@ -75,41 +75,60 @@ const dummyDataLineItemDollar = [lineItems, lineItemDollar];
 const dummyDataLineItemPercent = [lineItems, lineItemPercent];
 const dummyDataBlankForm = [lineItems];
 
-//does not provide the given line item as an option in the percentOf component (ie, cannot choose itself)
-describe("LineItemForm", () => {
+describe("LineItemForm, Category", () => {
   it("renders", () => {
     const wrapper = mount(
       <LineItemForm data={dummyDataLineItemDollar} id="1" />
     );
-    expect(wrapper.find(LineItemForm)).toHaveLength(1);
+    expect(wrapper.find(".input-section_category")).toHaveLength(1);
   });
-  it("renders four inputs", () => {
+  it("If value is given, the value renders", () => {
     const wrapper = mount(
       <LineItemForm data={dummyDataLineItemDollar} id="1" />
     );
-    expect(wrapper.find("input")).toHaveLength(4);
+    expect(wrapper.find("#line_item_category").props().value).toBe("sales");
   });
-  it("if fetched line item has a null percent_of value, then renders one select tag", () => {
-    const wrapper = mount(
-      <LineItemForm data={dummyDataLineItemDollar} id="1" />
+  it("If no value is given, then no value renders", () => {
+    const wrapper = mount(<LineItemForm data={dummyDataBlankForm} id="new" />);
+    expect(wrapper.find("#line_item_category").props().value).toBe("");
+  });
+  it("renders category options", () => {
+    const wrapper = mount(<LineItemForm data={dummyDataLineItemDollar} />);
+    expect(wrapper.find(".input-section_category option")).toHaveLength(4);
+    expect(wrapper.find(".input-section_category option").at(0).text()).toBe(
+      "- Select Category -"
     );
-    expect(wrapper.find("select")).toHaveLength(1);
+    expect(wrapper.find(".input-section_category option").at(1).text()).toBe(
+      "Sales"
+    );
+    expect(wrapper.find(".input-section_category option").at(2).text()).toBe(
+      "COGS"
+    );
+    expect(wrapper.find(".input-section_category option").at(3).text()).toBe(
+      "Overhead"
+    );
   });
-  it("if fetched line item has a percent_of value, then renders two select tags", () => {
-    const wrapper = mount(<LineItemForm data={dummyDataLineItemPercent} />);
-    expect(wrapper.find("select")).toHaveLength(2);
-  });
-  it("if user clicks save on a blank form and all fields are empty, renders three errors", () => {
+  it("If user clicks save and value is blank, error component renders", () => {
     const wrapper = mount(<LineItemForm data={dummyDataBlankForm} id="new" />);
     wrapper.find("#button-save").simulate("click");
-    expect(wrapper.find(".form-error")).toHaveLength(3);
+    expect(wrapper.find(".input-section_category .form-error")).toHaveLength(1);
   });
-  it("if user clicks save, and amount type is set to 'percent of', and all fields are empty, renders four errors", () => {
-    const wrapper = mount(<LineItemForm data={dummyDataBlankForm} id="new" />);
-    wrapper.find("#percent").simulate("change", {
-      target: { name: "line_item_amount_type", value: "percent" },
+  it("If user clicks save and value is valid, no error component renders", () => {
+    const wrapper = mount(
+      <LineItemForm data={dummyDataLineItemDollar} id="1" />
+    );
+    wrapper.find("#button-save").simulate("click");
+    expect(wrapper.find(".input-section_category .form-error")).toHaveLength(0);
+  });
+  it("updates value based on user input", () => {
+    const wrapper = mount(
+      <LineItemForm data={dummyDataLineItemDollar} id="1" />
+    );
+    wrapper.find(".input-section_category select").simulate("change", {
+      target: { name: "line_item_category", value: "cogs" },
     });
-    wrapper.find("#button-save").simulate("click");
-    expect(wrapper.find(".form-error")).toHaveLength(4);
+    expect(wrapper.find(".input-section_category select").props().value).toBe(
+      "cogs"
+    );
   });
 });

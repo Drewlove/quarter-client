@@ -4,8 +4,8 @@ import HomePage from "./HomePage";
 
 describe("HomePage", () => {
   it("renders", () => {
-    const wrapper = shallow(<HomePage />);
-    expect(wrapper.find(".home-page")).toHaveLength(2);
+    const wrapper = mount(<HomePage />);
+    expect(wrapper.find(HomePage)).toHaveLength(1);
   });
   it("renders three home page containers", () => {
     const wrapper = shallow(<HomePage />);

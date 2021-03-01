@@ -83,9 +83,10 @@ function getErrorMessagePeople(formValue) {
 }
 
 function getErrorMessageWage(formValue) {
-  if (formValue <= 0 || isNaN(formValue)) {
+  let valAsNum = parseFloat(formValue.replace(/,/g, "")).toFixed(2);
+  if (valAsNum <= 0 || isNaN(valAsNum)) {
     return "Enter $0.01 or more.";
-  } else if (formValue >= 10000) {
+  } else if (valAsNum >= 10000) {
     return "Value is out of range.";
   } else {
     return "";
@@ -141,9 +142,10 @@ function getErrorMessageLineItemName(formValue) {
 }
 
 function getErrorMessageAmount(formValue) {
-  if (formValue <= 0 || isNaN(formValue)) {
+  let valAsNum = parseFloat(formValue.replace(/,/g, "")).toFixed(2);
+  if (valAsNum <= 0 || isNaN(valAsNum)) {
     return "Enter a value greater than 0.";
-  } else if (formValue >= 10000000) {
+  } else if (valAsNum >= 10000000) {
     return "Value is out of range.";
   } else {
     return "";
