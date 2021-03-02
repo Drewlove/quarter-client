@@ -7,28 +7,51 @@ import ProfitLossContainer from "./ProfitLoss/ProfitLossContainer/ProfitLossCont
 import DepartmentsListContainer from "./DepartmentsListContainer/DepartmentsListContainer";
 import RolesListContainer from "./RolesListContainer/RolesListContainer";
 import HomePage from "./HomePage/HomePage";
+import NotSignedIn from "./NotSignedIn/NotSignedIn";
+import LoadingIndicator from "./LoadingIndicator/LoadingIndicator";
+import { useAuth0 } from "@auth0/auth0-react";
 import "./App.css";
 
 function App() {
+  const { user, isAuthenticated, isLoading } = useAuth0();
+
+  const renderRoute = (routeName) => {
+    console.log(user, isAuthenticated, isLoading);
+    if (!isLoading && !isAuthenticated) return <NotSignedIn />;
+
+    switch (routeName) {
+      case "pnl":
+        return <ProfitLossContainer />;
+      case "departments":
+        return <DepartmentsListContainer />;
+      case "roles":
+        return <RolesListContainer />;
+      case "schedule":
+        return <ScheduleContainer />;
+      case "formsRouter":
+        return <FormsRouter />;
+    }
+  };
+
   return (
     <BrowserRouter>
       <Header />
       <div className="App">
         <Switch>
-          <Route path="/schedule">
-            <ScheduleContainer />
-          </Route>
-          <Route path="/form">
-            <FormsRouter />
-          </Route>
           <Route path="/pnl">
-            <ProfitLossContainer />
+            {isLoading ? <LoadingIndicator /> : renderRoute("pnl")}
           </Route>
           <Route path="/departments">
-            <DepartmentsListContainer />
+            {isLoading ? <LoadingIndicator /> : renderRoute("departments")}
           </Route>
           <Route path="/roles">
-            <RolesListContainer />
+            {isLoading ? <LoadingIndicator /> : renderRoute("roles")}
+          </Route>
+          <Route path="/schedule">
+            {isLoading ? <LoadingIndicator /> : renderRoute("schedule")}
+          </Route>
+          <Route path="/form">
+            {isLoading ? <LoadingIndicator /> : renderRoute("formsRouter")}
           </Route>
           <Route path="/">
             <HomePage />

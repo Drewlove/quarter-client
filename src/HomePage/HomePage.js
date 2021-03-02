@@ -1,8 +1,7 @@
 import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
+import SignInButton from "../SignInButton/SignInButton";
 
 function HomePage() {
-  const { loginWithRedirect } = useAuth0();
   return (
     <main className="main">
       <section className="home-page">
@@ -13,12 +12,7 @@ function HomePage() {
             P&L projections.
           </p>
           <div className="home-page__hero-image"></div>
-          <button
-            className="home-page__user-link_register"
-            onClick={() => loginWithRedirect()}
-          >
-            Sign In
-          </button>
+          <SignInButton />
         </div>
         <div className="home-page__container">
           <div className="home-page__divider"></div>
