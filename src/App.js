@@ -13,10 +13,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 import "./App.css";
 
 function App() {
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { isAuthenticated, isLoading } = useAuth0();
 
   const renderRoute = (routeName) => {
-    console.log(user, isAuthenticated, isLoading);
     if (!isLoading && !isAuthenticated) return <NotSignedIn />;
 
     switch (routeName) {
@@ -30,6 +29,8 @@ function App() {
         return <ScheduleContainer />;
       case "formsRouter":
         return <FormsRouter />;
+      default:
+        return <HomePage />;
     }
   };
 
