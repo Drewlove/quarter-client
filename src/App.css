@@ -166,8 +166,6 @@
 }
 
 .header__button-container_hamburger {
-  display: flex;
-  flex-direction: column;
 }
 
 .header__button-container_new-button {
@@ -187,6 +185,7 @@
 }
 
 .header__menu-button_hamburger {
+  float: right;
   width: 50px;
   height: 45px;
   background-color: black;
@@ -222,6 +221,7 @@
 
 .header__item:hover {
   cursor: pointer;
+  text-decoration: underline;
 }
 
 .header__item_row {
@@ -244,7 +244,7 @@
 .header__item_dropdown {
   display: block;
   text-decoration: none;
-  padding: 10px;
+  padding: 20px 5px;
 }
 
 .header__item_dropdown:hover {
@@ -252,8 +252,9 @@
 }
 
 .header__logout-button {
-  margin: 10px auto;
-  width: 100px;
+  margin: 100px auto;
+  width: 250px;
+  height: 50px;
   display: block;
   padding: 5px;
 }
@@ -303,7 +304,6 @@
 .header__menu-button {
   background-color: black;
   border: none;
-  margin-left: auto;
 }
 
 .header__menu-button:hover {
@@ -331,6 +331,21 @@
   border: 1px solid black;
   background-color: black;
   box-shadow: 5px 5px 1px darkgrey;
+  width: 100vh;
+  height: 100vh;
+}
+
+.header__menu_hamburger-drop-down {
+  border: 1px solid black;
+  background-color: black;
+  box-shadow: 5px 5px 1px darkgrey;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr 4fr;
 }
 
 .header__nav {
@@ -338,7 +353,7 @@
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  padding: 10px;
+  padding: 10px 0px;
 }
 
 .header__new-menu-button:focus {
@@ -640,8 +655,20 @@
 }
 
 @media only screen and (min-width: 600px) {
+  .header__menu_drop-down {
+    height: 250px;
+    width: 100%;
+  }
+
   .header__item-container_row {
     display: block;
+  }
+
+  .header__logout-button {
+    margin: 10px auto;
+    width: 100px;
+    display: block;
+    padding: 5px;
   }
 
   .home-page__hero-image {
@@ -655,7 +682,7 @@
 
   .header__nav {
     display: grid;
-    grid-template-columns: 2fr 7fr 1fr;
+    grid-template-columns: 3fr 6fr 1fr;
   }
 
   .header__items-container {
