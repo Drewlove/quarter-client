@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Header from "./Header/Header/Header";
 import ScheduleContainer from "./Schedule/ScheduleContainer/ScheduleContainer";
 import FormsRouter from "./Forms/FormsRouter";
@@ -35,7 +35,6 @@ function App() {
   };
 
   return (
-    // <BrowserRouter>
     <>
       <Header />
       <div className="App">
@@ -61,7 +60,6 @@ function App() {
         </Switch>
       </div>
     </>
-    // </BrowserRouter>
   );
 }
 
