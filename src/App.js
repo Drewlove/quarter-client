@@ -1,6 +1,5 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import Header from "./Header/Header/Header";
 import ScheduleContainer from "./Schedule/ScheduleContainer/ScheduleContainer";
 import FormsRouter from "./Forms/FormsRouter";
 import ProfitLossContainer from "./ProfitLoss/ProfitLossContainer/ProfitLossContainer";
@@ -8,23 +7,26 @@ import DepartmentsListContainer from "./DepartmentsListContainer/DepartmentsList
 import RolesListContainer from "./RolesListContainer/RolesListContainer";
 import HomePage from "./HomePage/HomePage";
 import ProtectedRoute from "./Authentication/ProtectedRoute/ProtectedRoute";
+import MenuAuthenticated from "./Header/MenuAuthenticated/MenuAuthenticated";
+import MenuNotAuthenticated from "./Header/MenuNotAuthenticated/MenuNotAuthenticated";
 import "./App.css";
 
 function App() {
   return (
     <>
-      <Header />
       <div className="App">
+        <Route exact path="/" component={MenuNotAuthenticated} />
+        {/* <Route path="/app" component={MenuAuthenticated} /> */}
         <Switch>
-          <ProtectedRoute path="/pnl" component={ProfitLossContainer} />
+          <ProtectedRoute path="/app/pnl" component={ProfitLossContainer} />
           <ProtectedRoute
-            path="/departments"
+            path="/app/departments"
             component={DepartmentsListContainer}
           />
-          <ProtectedRoute path="/roles" component={RolesListContainer} />
-          <ProtectedRoute path="/schedule" component={ScheduleContainer} />
-          <ProtectedRoute path="/form" component={FormsRouter} />
-          <Route path="/">
+          <ProtectedRoute path="/app/roles" component={RolesListContainer} />
+          <ProtectedRoute path="/app/schedule" component={ScheduleContainer} />
+          <ProtectedRoute path="/app/form" component={FormsRouter} />
+          <Route exact path="/">
             <HomePage />
           </Route>
         </Switch>

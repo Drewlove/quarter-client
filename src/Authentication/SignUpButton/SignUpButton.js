@@ -5,7 +5,7 @@ const SignupButton = (props) => {
   const { loginWithRedirect } = useAuth0();
   return (
     <button
-      className="home-page__user-link_authentication"
+      className={`button ${props.optionalClass}`}
       onClick={() =>
         loginWithRedirect({
           screen_hint: "signup",

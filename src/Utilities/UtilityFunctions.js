@@ -41,7 +41,7 @@ export const SUM_WEEKLY_SHIFT_TOTAL = (shift) => {
     shift.people *
     shift.shift_day.length *
     (parseFloat(shift.payroll_tax).toFixed(2) / 100 + 1);
-  return sum;
+  return isNaN(sum) ? 0 : sum;
 };
 
 function timeStringToFloat(time) {

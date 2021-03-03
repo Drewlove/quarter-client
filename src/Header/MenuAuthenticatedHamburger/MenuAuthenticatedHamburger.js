@@ -35,25 +35,25 @@ function MenuAuthenticatedHamburger() {
     return (
       <div className="header__menu_hamburger-drop-down">
         <HeaderLink
-          url="/pnl"
+          url="/app/pnl"
           toggleMenuDisplay={() => toggleMenuDisplay()}
           text="Home"
           className="header__item_dropdown"
         />
         <HeaderLink
-          url="/departments"
+          url="/app/departments"
           toggleMenuDisplay={() => toggleMenuDisplay()}
           text="Departments"
           className="header__item_dropdown"
         />
         <HeaderLink
-          url="/roles"
+          url="/app/roles"
           toggleMenuDisplay={() => toggleMenuDisplay()}
           text="Roles"
           className="header__item_dropdown"
         />
         <HeaderLink
-          url="/schedule"
+          url="/app/schedule"
           toggleMenuDisplay={() => toggleMenuDisplay()}
           text="Schedule"
           className="header__item_dropdown"

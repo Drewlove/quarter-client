@@ -1,14 +1,18 @@
 import React from "react";
 import ProfitLoss from "../ProfitLoss/ProfitLoss";
 import FetchListData from "../../FetchListData/FetchListData";
+import MenuAuthenticated from "../../Header/MenuAuthenticated/MenuAuthenticated";
 
 function ProfitLossContainer() {
   return (
-    <main className="main">
-      <FetchListData endpointStr="line_items, shifts">
-        <ProfitLoss />
-      </FetchListData>
-    </main>
+    <>
+      <MenuAuthenticated />
+      <main className="main">
+        <FetchListData endpointStr="line_items, shifts">
+          <ProfitLoss />
+        </FetchListData>
+      </main>
+    </>
   );
 }
 

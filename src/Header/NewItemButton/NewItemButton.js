@@ -32,25 +32,25 @@ function MenuSignedInNewItem() {
     return (
       <div className="header__menu_drop-down">
         <HeaderLink
-          url="/form/line-item/new"
+          url="/app/form/line-item/new"
           toggleMenuDisplay={() => toggleMenuDisplay()}
           text="New Line Item"
           className="header__item_dropdown"
         />
         <HeaderLink
-          url="/form/schedule/new"
+          url="/app/form/schedule/new"
           toggleMenuDisplay={() => toggleMenuDisplay()}
           text="New Shift"
           className="header__item_dropdown"
         />
         <HeaderLink
-          url="/form/department/new"
+          url="/app/form/department/new"
           toggleMenuDisplay={() => toggleMenuDisplay()}
           text="New Department"
           className="header__item_dropdown"
         />
         <HeaderLink
-          url="/form/role/new"
+          url="/app/form/role/new"
           toggleMenuDisplay={() => toggleMenuDisplay()}
           text="New Role"
           className="header__item_dropdown"
