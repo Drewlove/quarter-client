@@ -7,7 +7,7 @@ import ProfitLossContainer from "./ProfitLoss/ProfitLossContainer/ProfitLossCont
 import DepartmentsListContainer from "./DepartmentsListContainer/DepartmentsListContainer";
 import RolesListContainer from "./RolesListContainer/RolesListContainer";
 import HomePage from "./HomePage/HomePage";
-import NotSignedIn from "./NotSignedIn/NotSignedIn";
+import NotSignedIn from "./Authentication/NotSignedIn/NotSignedIn";
 import LoadingIndicator from "./LoadingIndicator/LoadingIndicator";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./App.css";
@@ -35,7 +35,8 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
+    // <BrowserRouter>
+    <>
       <Header />
       <div className="App">
         <Switch>
@@ -59,7 +60,8 @@ function App() {
           </Route>
         </Switch>
       </div>
-    </BrowserRouter>
+    </>
+    // </BrowserRouter>
   );
 }
 

@@ -1,9 +1,8 @@
 import React from "react";
 import HeaderLink from "../HeaderLink/HeaderLink";
-import { useAuth0 } from "@auth0/auth0-react";
+import LogOutButton from "../../Authentication/LogOutButton/LogOutButton";
 
 function MenuSignedInMainRow() {
-  const { logout } = useAuth0();
   return (
     <>
       <div className="header__items-container header__display-mobile-none">
@@ -33,12 +32,7 @@ function MenuSignedInMainRow() {
         </div>
       </div>
       <div className="header__item-div header__display-mobile-none">
-        <button
-          className="header__button_log-out"
-          onClick={() => logout({ returnTo: window.location.origin })}
-        >
-          Log Out
-        </button>
+        <LogOutButton />
       </div>
     </>
   );

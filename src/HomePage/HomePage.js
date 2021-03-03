@@ -1,5 +1,6 @@
 import React from "react";
-import SignInButton from "../SignInButton/SignInButton";
+import SignUpButton from "../Authentication/SignUpButton/SignUpButton";
+import LogInButton from "../Authentication/LogInButton/LogInButton";
 
 function HomePage() {
   return (
@@ -12,7 +13,8 @@ function HomePage() {
             P&L projections.
           </p>
           <div className="home-page__hero-image"></div>
-          <SignInButton />
+          <SignUpButton />
+          <LogInButton />
         </div>
         <div className="home-page__container">
           <div className="home-page__divider"></div>

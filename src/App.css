@@ -425,7 +425,7 @@
   margin-bottom: 25px;
 }
 
-.home-page__user-link_register {
+.home-page__user-link_authentication {
   display: block;
   margin: 5px auto;
   padding: 5px;
@@ -436,7 +436,7 @@
   background-color: black;
 }
 
-.home-page__user-link_register:hover {
+.home-page__user-link_authentication:hover {
   cursor: pointer;
 }
 

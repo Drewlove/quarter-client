@@ -3,17 +3,16 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { Auth0Provider } from "@auth0/auth0-react";
+import { BrowserRouter } from "react-router-dom";
+import Auth0ProviderWithHistory from "./auth/auth0-provider-with-history";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Auth0Provider
-      domain="dev-twvvyq34.auth0.com"
-      clientId="Bm9jxDvy5oPvOrhWnH6iMTSF0JdiCWA0"
-      redirectUri={"http://localhost:3000/pnl"}
-    >
-      <App />
-    </Auth0Provider>
+    <BrowserRouter>
+      <Auth0ProviderWithHistory>
+        <App />
+      </Auth0ProviderWithHistory>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );
