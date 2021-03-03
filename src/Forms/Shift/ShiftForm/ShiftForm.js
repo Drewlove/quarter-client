@@ -112,7 +112,9 @@ function ShiftForm(props) {
 
   const getWeeklyTotal = () => {
     let sum = SUM_WEEKLY_SHIFT_TOTAL(formData);
-    return sum >= 0 ? parseFloat(sum).toFixed(2) : "0.00";
+    return Number(sum).toLocaleString(undefined, {
+      minimumFractionDigits: 2,
+    });
   };
 
   const renderDeleteButton = () => {
