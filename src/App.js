@@ -7,53 +7,23 @@ import ProfitLossContainer from "./ProfitLoss/ProfitLossContainer/ProfitLossCont
 import DepartmentsListContainer from "./DepartmentsListContainer/DepartmentsListContainer";
 import RolesListContainer from "./RolesListContainer/RolesListContainer";
 import HomePage from "./HomePage/HomePage";
-import NotSignedIn from "./Authentication/NotSignedIn/NotSignedIn";
-import LoadingIndicator from "./LoadingIndicator/LoadingIndicator";
-import { useAuth0 } from "@auth0/auth0-react";
+import ProtectedRoute from "./Authentication/ProtectedRoute/ProtectedRoute";
 import "./App.css";
 
 function App() {
-  const { isAuthenticated, isLoading } = useAuth0();
-
-  const renderRoute = (routeName) => {
-    if (!isLoading && !isAuthenticated) return <NotSignedIn />;
-
-    switch (routeName) {
-      case "pnl":
-        return <ProfitLossContainer />;
-      case "departments":
-        return <DepartmentsListContainer />;
-      case "roles":
-        return <RolesListContainer />;
-      case "schedule":
-        return <ScheduleContainer />;
-      case "formsRouter":
-        return <FormsRouter />;
-      default:
-        return <HomePage />;
-    }
-  };
-
   return (
     <>
       <Header />
       <div className="App">
         <Switch>
-          <Route path="/pnl">
-            {isLoading ? <LoadingIndicator /> : renderRoute("pnl")}
-          </Route>
-          <Route path="/departments">
-            {isLoading ? <LoadingIndicator /> : renderRoute("departments")}
-          </Route>
-          <Route path="/roles">
-            {isLoading ? <LoadingIndicator /> : renderRoute("roles")}
-          </Route>
-          <Route path="/schedule">
-            {isLoading ? <LoadingIndicator /> : renderRoute("schedule")}
-          </Route>
-          <Route path="/form">
-            {isLoading ? <LoadingIndicator /> : renderRoute("formsRouter")}
-          </Route>
+          <ProtectedRoute path="/pnl" component={ProfitLossContainer} />
+          <ProtectedRoute
+            path="/departments"
+            component={DepartmentsListContainer}
+          />
+          <ProtectedRoute path="/roles" component={RolesListContainer} />
+          <ProtectedRoute path="/schedule" component={ScheduleContainer} />
+          <ProtectedRoute path="/form" component={FormsRouter} />
           <Route path="/">
             <HomePage />
           </Route>
