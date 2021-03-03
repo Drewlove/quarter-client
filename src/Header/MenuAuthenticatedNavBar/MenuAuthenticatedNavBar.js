@@ -2,7 +2,7 @@ import React from "react";
 import HeaderLink from "../HeaderLink/HeaderLink";
 import LogOutButton from "../../Authentication/LogOutButton/LogOutButton";
 
-function MenuSignedInMainRow() {
+function MenuAuthenticatedNavBar() {
   return (
     <>
       <div className="header__items-container header__display-mobile-none">
@@ -38,4 +38,4 @@ function MenuSignedInMainRow() {
   );
 }
 
-export default MenuSignedInMainRow;
+export default MenuAuthenticatedNavBar;

@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import { shallow, mount } from "enzyme";
-import MenuSignedIn from "./MenuSignedIn";
+import { mount } from "enzyme";
+import MenuAuthenticatedHamburger from "./MenuAuthenticatedHamburger";
 
-describe("MenuSignedIn", () => {
+describe("MenuAuthenticatedHamburger", () => {
   it("renders row container", () => {
     const wrapper = mount(
       <BrowserRouter>
-        <MenuSignedIn />
+        <MenuAuthenticatedHamburger />
       </BrowserRouter>
     );
     expect(wrapper.find(".header__link-container_row")).toHaveLength(1);
@@ -15,7 +15,7 @@ describe("MenuSignedIn", () => {
   it("renders hamburger button", () => {
     const wrapper = mount(
       <BrowserRouter>
-        <MenuSignedIn />
+        <MenuAuthenticatedHamburger />
       </BrowserRouter>
     );
     expect(wrapper.find(".header__menu-button_hamburger")).toHaveLength(1);
@@ -23,7 +23,7 @@ describe("MenuSignedIn", () => {
   it("renders new item button", () => {
     const wrapper = mount(
       <BrowserRouter>
-        <MenuSignedIn />
+        <MenuAuthenticatedHamburger />
       </BrowserRouter>
     );
     expect(wrapper.find(".header__button-container_new-button")).toHaveLength(

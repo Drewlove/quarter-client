@@ -1,10 +1,11 @@
-import React from "react";
-import AuthenticationButton from "../AuthenticationButton/AuthenticationButton";
+//DELETE?
+// import React from "react";
+// import AuthenticationButton from "../AuthenticationButton/AuthenticationButton";
 
-const AuthNav = () => (
-  <div className="navbar-nav ml-auto">
-    <AuthenticationButton />
-  </div>
-);
+// const AuthNav = () => (
+//   <div className="navbar-nav ml-auto">
+//     <AuthenticationButton />
+//   </div>
+// );
 
-export default AuthNav;
+// export default AuthNav;

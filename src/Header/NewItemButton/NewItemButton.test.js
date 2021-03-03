@@ -1,8 +1,8 @@
 import React from "react";
-import MenuSignedInNewItem from "./MenuSignedInNewItem";
-import { shallow, mount } from "enzyme";
+import MenuSignedInNewItem from "./NewItemButton";
+import { shallow } from "enzyme";
 
-describe("MenuSignedInNewItem", () => {
+describe("NewItemButton", () => {
   it("renders", () => {
     const wrapper = shallow(<MenuSignedInNewItem />);
     expect(wrapper.find(".header__button-container_new-button")).toHaveLength(
