@@ -7,7 +7,6 @@ import DepartmentsListContainer from "./DepartmentsListContainer/DepartmentsList
 import RolesListContainer from "./RolesListContainer/RolesListContainer";
 import HomePage from "./HomePage/HomePage";
 import ProtectedRoute from "./Authentication/ProtectedRoute/ProtectedRoute";
-import MenuAuthenticated from "./Header/MenuAuthenticated/MenuAuthenticated";
 import MenuNotAuthenticated from "./Header/MenuNotAuthenticated/MenuNotAuthenticated";
 import "./App.css";
 
@@ -16,7 +15,6 @@ function App() {
     <>
       <div className="App">
         <Route exact path="/" component={MenuNotAuthenticated} />
-        {/* <Route path="/app" component={MenuAuthenticated} /> */}
         <Switch>
           <ProtectedRoute path="/app/pnl" component={ProfitLossContainer} />
           <ProtectedRoute
