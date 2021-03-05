@@ -4,12 +4,10 @@ import LineItemFormContainer from "./LineItem/LineItemFormContainer/LineItemForm
 import ShiftFormContainer from "../Forms/Shift/ShiftFormContainer/ShiftFormContainer";
 import DepartmentFormContainer from "./Department/DepartmentFormContainer/DepartmentFormContainer";
 import RoleFormContainer from "./Role/RoleFormContainer/RoleFormContainer";
-import MenuAuthenticated from "../Header/MenuAuthenticated/MenuAuthenticated";
 
 function FormsRouter() {
   return (
     <>
-      <MenuAuthenticated />
       <Switch>
         <Route path="/app/form/line-item/:id">
           <LineItemFormContainer />

@@ -18,7 +18,7 @@ function RowRole(props) {
     <div className="schedule-row_role-container">
       <Link
         className="schedule-row schedule-row_role"
-        to={`/form/schedule/${props.id}`}
+        to={`/app/form/schedule/${props.id}`}
       >
         {renderRow()}
       </Link>

@@ -6,7 +6,9 @@ import LoadingIndicator from "../../LoadingIndicator/LoadingIndicator";
 const ProtectedRoute = ({ component, ...args }) => (
   <Route
     component={withAuthenticationRequired(component, {
-      onRedirecting: () => <LoadingIndicator />,
+      onRedirecting: () => {
+        return args.path !== "/app" ? <LoadingIndicator /> : null;
+      },
     })}
     {...args}
   />

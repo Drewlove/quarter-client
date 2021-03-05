@@ -8,7 +8,7 @@ function RolesListItem(props) {
         <Link
           key={key.role_id}
           className="fieldset__item-container"
-          to={`/form/role/${key.role_id}`}
+          to={`/app/form/role/${key.role_id}`}
         >
           <span className="fieldset__item-text">{key.role_name}</span>
         </Link>

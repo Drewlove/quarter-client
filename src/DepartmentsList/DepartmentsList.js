@@ -23,7 +23,7 @@ function DepartmentsList(props) {
         <Link
           className="fieldset__item-container"
           key={key.department_id}
-          to={`/form/department/${key.department_id}`}
+          to={`/app/form/department/${key.department_id}`}
         >
           <span className="fieldset__item-text">{key.department_name}</span>
         </Link>
