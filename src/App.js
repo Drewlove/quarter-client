@@ -17,9 +17,8 @@ function App() {
   return (
     <>
       <div className="App">
-        {console.log(isLoading, isAuthenticated)}
         <Route exact path="/" component={MenuNotAuthenticated} />
-        <ProtectedRoute path="/app" component={MenuAuthenticated} />
+        <Route path="/app" component={MenuAuthenticated} />
         <Switch>
           <ProtectedRoute path="/app/pnl" component={ProfitLossContainer} />
           <ProtectedRoute

@@ -1,12 +1,37 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 
-function SkeletonLoader() {
+function SkeletonLoader(props) {
   const location = useLocation();
+  let pathnameArr = location.pathname.split("/");
 
-  const renderSkeletonCard = () => {
-    console.log(location);
+  const switchSkeleton = () => {
+    console.log(pathnameArr[2]);
+    switch (pathnameArr[2]) {
+      case "pnl":
+        return renderSkeletonMultiple();
+      case "schedule":
+        return renderSkeletonMultiple();
+      default:
+        return renderSkeletonSingle();
+    }
+  };
 
+  const renderSkeletonMultiple = () => {
+    return (
+      <>
+        {renderSkeletonSingle()}
+        {renderSkeletonSingle()}
+        {renderSkeletonSingle()}
+        {renderSkeletonSingle()}
+        {renderSkeletonSingle()}
+        {renderSkeletonSingle()}
+        {renderSkeletonSingle()}
+      </>
+    );
+  };
+
+  const renderSkeletonSingle = () => {
     return (
       <div className="card br">
         <div>
@@ -18,7 +43,7 @@ function SkeletonLoader() {
     );
   };
 
-  return <>{renderSkeletonCard()}</>;
+  return <main className="main">{switchSkeleton()}</main>;
 }
 
 export default SkeletonLoader;
