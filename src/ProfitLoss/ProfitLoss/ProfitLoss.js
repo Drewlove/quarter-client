@@ -15,30 +15,6 @@ function ProfitLoss(props) {
     setLineItemsById(obj);
   }, [props.data]);
 
-  const getDirectLaborCategory = () => {
-    let directLaborCategoryObj = { total: 0, list: [] };
-    let schedule = COLLATE_SCHEDULE(props.data[1]);
-    schedule.forEach((key, i) => {
-      directLaborCategoryObj.list.push({
-        line_item_category: "direct_labor",
-        line_item_id: i,
-        line_item_name: key.deptName,
-        amount: parseFloat(key.cost * 13).toFixed(2),
-        line_item_amount_type: "dollars",
-        percent_of: null,
-      });
-      directLaborCategoryObj.total += Number(key.cost * 13);
-    });
-    return directLaborCategoryObj;
-  };
-
-  const getAmountByPercent = (key) => {
-    return (
-      parseFloat(key.amount) *
-      (lineItemsById[key.percent_of].amount * 0.01)
-    ).toFixed(2);
-  };
-
   const renderEmptyList = () => {
     return <EmptyList name="Line Item" url="/form/line-item/new" />;
   };
@@ -63,6 +39,10 @@ function ProfitLoss(props) {
   };
 
   const renderPage = () => {
+    return Object.keys(lineItemsById).length === 0 ? null : renderPageContent();
+  };
+
+  const renderPageContent = () => {
     const lineItemsByCategory = getLineItemsByCategory();
     return (
       <>
@@ -135,10 +115,34 @@ function ProfitLoss(props) {
     };
   };
 
+  const getAmountByPercent = (key) => {
+    return (
+      parseFloat(key.amount) *
+      (lineItemsById[key.percent_of].amount * 0.01)
+    ).toFixed(2);
+  };
+
+  const getDirectLaborCategory = () => {
+    let directLaborCategoryObj = { total: 0, list: [] };
+    let schedule = COLLATE_SCHEDULE(props.data[1]);
+    schedule.forEach((key, i) => {
+      directLaborCategoryObj.list.push({
+        line_item_category: "direct_labor",
+        line_item_id: i,
+        line_item_name: key.deptName,
+        amount: parseFloat(key.cost * 13).toFixed(2),
+        line_item_amount_type: "dollars",
+        percent_of: null,
+      });
+      directLaborCategoryObj.total += Number(key.cost * 13);
+    });
+    return directLaborCategoryObj;
+  };
+
   return (
     <>
       <section className="fieldset__container fieldset__container-pnl">
-        {Object.keys(lineItemsById).length === 0
+        {props.data[0].length === 0 && props.data[1].length === 0
           ? renderEmptyList()
           : renderPage()}
       </section>
