@@ -43,7 +43,7 @@ function SkeletonLoader(props) {
     );
   };
 
-  return <main className="main">{switchSkeleton()}</main>;
+  return <main className="main main_skeleton">{switchSkeleton()}</main>;
 }
 
 export default SkeletonLoader;

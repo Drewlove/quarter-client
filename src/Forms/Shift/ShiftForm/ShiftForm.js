@@ -114,6 +114,7 @@ function ShiftForm(props) {
     let sum = SUM_WEEKLY_SHIFT_TOTAL(formData);
     return Number(sum).toLocaleString(undefined, {
       minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
     });
   };
 

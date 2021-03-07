@@ -105,7 +105,7 @@ describe("ProfitLossContainer", () => {
         <ProfitLossContainer />
       </MemoryRouter>
     );
-    expect(wrapper.find(".loading-indicator")).toHaveLength(1);
+    expect(wrapper.find(".main_skeleton")).toHaveLength(1);
   });
   it("Renders error when isError is true", async () => {
     MOCK_GET.API_GET = jest.fn(() => {
