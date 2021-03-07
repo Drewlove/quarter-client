@@ -32,11 +32,11 @@ function SkeletonLoader(props) {
 
   const renderSkeletonSingle = () => {
     return (
-      <div className="card br">
+      <div className="skeleton-card br">
         <div>
-          <div className="comment animate"></div>
-          <div className="comment animate"></div>
-          <div className="comment animate"></div>
+          <div className="skeleton-card__comment skeleton-card__animate"></div>
+          <div className="skeleton-card__comment skeleton-card__animate"></div>
+          <div className="skeleton-card__comment skeleton-card__animate"></div>
         </div>
       </div>
     );
