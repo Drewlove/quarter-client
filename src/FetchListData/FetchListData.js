@@ -1,7 +1,6 @@
 import React from "react";
 import { API_GET } from "../Utilities/API_Methods/API_GET";
 import SkeletonLoader from "../SkeletonLoader/SkeletonLoader";
-import { useLocation } from "react-router-dom";
 import Error from "../Error/Error";
 
 function FetchListData(props) {
