@@ -123,7 +123,7 @@ function ShiftForm(props) {
       <FormDeleteButton
         endpointSuffix="shifts"
         id={props.id}
-        redirectSuffix="schedule"
+        redirectSuffix="app/schedule"
       />
     );
   };
@@ -187,7 +187,7 @@ function ShiftForm(props) {
             formData={{ ...formData, wage: formData.wage.replace(",", "") }}
             formName="shift"
             endpointSuffix="shifts"
-            redirectSuffix="schedule"
+            redirectSuffix="app/schedule"
             id={props.id}
             setFormError={setFormError}
           />

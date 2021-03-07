@@ -109,7 +109,7 @@ function LineItemForm(props) {
       <FormDeleteButton
         endpointSuffix="line_items"
         id={props.id}
-        redirectSuffix="pnl"
+        redirectSuffix="app/pnl"
       />
     );
   };
@@ -165,7 +165,7 @@ function LineItemForm(props) {
             formData={{ ...formData, amount: formData.amount.replace(",", "") }}
             formName="lineItem"
             endpointSuffix="line_items"
-            redirectSuffix="pnl"
+            redirectSuffix="app/pnl"
             id={props.id}
             setFormError={setFormError}
           />

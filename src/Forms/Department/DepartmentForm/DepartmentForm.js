@@ -49,7 +49,7 @@ function DepartmentForm(props) {
         handleDelete={handleDelete}
         endpointSuffix="departments"
         id={props.id}
-        redirectSuffix="departments"
+        redirectSuffix="app/departments"
       />
     );
   };
@@ -82,7 +82,7 @@ function DepartmentForm(props) {
           formData={formData}
           formName="department"
           endpointSuffix="departments"
-          redirectSuffix="departments"
+          redirectSuffix="app/departments"
           id={props.id}
           setFormError={setFormError}
         />

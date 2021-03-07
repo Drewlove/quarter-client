@@ -46,7 +46,7 @@ function RoleForm(props) {
       <FormDeleteButton
         endpointSuffix="roles"
         id={props.id}
-        redirectSuffix="roles"
+        redirectSuffix="app/roles"
       />
     );
   };
@@ -71,7 +71,7 @@ function RoleForm(props) {
           formData={formData}
           formName="role"
           endpointSuffix="roles"
-          redirectSuffix="roles"
+          redirectSuffix="app/roles"
           id={props.id}
           setFormError={setFormError}
         />
