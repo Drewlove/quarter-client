@@ -10,6 +10,6 @@ describe("MenuNotAuthenticated", () => {
         <MenuNotAuthenticated />
       </BrowserRouter>
     );
-    expect(wrapper.find(".header__link-container_signed-out")).toHaveLength(1);
+    expect(wrapper.find(".header__nav_not-authenticated")).toHaveLength(1);
   });
 });

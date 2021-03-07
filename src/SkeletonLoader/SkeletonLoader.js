@@ -6,7 +6,6 @@ function SkeletonLoader(props) {
   let pathnameArr = location.pathname.split("/");
 
   const switchSkeleton = () => {
-    console.log(pathnameArr[2]);
     switch (pathnameArr[2]) {
       case "pnl":
         return renderSkeletonMultiple();

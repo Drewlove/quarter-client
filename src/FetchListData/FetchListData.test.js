@@ -1,11 +1,12 @@
 import React from "react";
 import FetchListData from "./FetchListData";
 import { mount } from "enzyme";
+import { MemoryRouter } from "react-router-dom";
 import * as MOCK_GET from "../Utilities/API_Methods/API_GET";
 import PropsChildrenStub from "./PropsChildrenStub";
 
 describe("FetchListData", () => {
-  it("Renders LoadingIndicator when isLoading is true", () => {
+  it("Renders skeleton loading indicator when isLoading is true", () => {
     MOCK_GET.API_GET = jest.fn(() => {
       return [
         {
@@ -17,8 +18,12 @@ describe("FetchListData", () => {
         () => {},
       ];
     });
-    const wrapper = mount(<FetchListData />);
-    expect(wrapper.find(".loading-indicator")).toHaveLength(1);
+    const wrapper = mount(
+      <MemoryRouter initialEntries={["/"]}>
+        <FetchListData />
+      </MemoryRouter>
+    );
+    expect(wrapper.find(".main_skeleton")).toHaveLength(1);
   });
 
   it("Renders Error when isError is true", () => {
@@ -33,7 +38,11 @@ describe("FetchListData", () => {
         () => {},
       ];
     });
-    const wrapper = mount(<FetchListData />);
+    const wrapper = mount(
+      <MemoryRouter initialEntries={["/"]}>
+        <FetchListData />
+      </MemoryRouter>
+    );
     expect(wrapper.find(".error")).toHaveLength(1);
   });
 
@@ -50,9 +59,11 @@ describe("FetchListData", () => {
       ];
     });
     const wrapper = mount(
-      <FetchListData>
-        <PropsChildrenStub />
-      </FetchListData>
+      <MemoryRouter initialEntries={["/"]}>
+        <FetchListData>
+          <PropsChildrenStub />
+        </FetchListData>
+      </MemoryRouter>
     );
     expect(wrapper.find(FetchListData)).toHaveLength(1);
   });

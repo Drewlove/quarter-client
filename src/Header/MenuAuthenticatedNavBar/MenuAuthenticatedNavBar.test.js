@@ -5,6 +5,6 @@ import { shallow } from "enzyme";
 describe("MenuAuthenticatedNavBar", () => {
   it("renders", () => {
     const wrapper = shallow(<MenuAuthenticatedNavBar />);
-    expect(wrapper.find(".header__link-container_row")).toHaveLength(1);
+    expect(wrapper.find(".header__items-container")).toHaveLength(1);
   });
 });

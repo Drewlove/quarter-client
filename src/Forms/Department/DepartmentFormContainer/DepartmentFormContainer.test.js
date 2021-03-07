@@ -5,7 +5,7 @@ import * as MOCK_GET from "../../../Utilities/API_Methods/API_GET";
 import DepartmentFormContainer from "./DepartmentFormContainer";
 
 describe("DepartmentFormContainer", () => {
-  it("Renders loading indicator when isLoading is true", async () => {
+  it("Renders skeleton loading indicator when isLoading is true", async () => {
     MOCK_GET.API_GET = jest.fn(() => {
       return [
         {
@@ -22,7 +22,7 @@ describe("DepartmentFormContainer", () => {
         <DepartmentFormContainer />
       </MemoryRouter>
     );
-    expect(wrapper.find(".loading-indicator")).toHaveLength(1);
+    expect(wrapper.find(".main_skeleton")).toHaveLength(1);
   });
   it("Renders error when isError is true", async () => {
     MOCK_GET.API_GET = jest.fn(() => {

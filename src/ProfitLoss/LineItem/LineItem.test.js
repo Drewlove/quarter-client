@@ -42,7 +42,7 @@ describe("LineItem", () => {
         />
       </BrowserRouter>
     );
-    expect(wrapper.find("a").prop("href")).toEqual("/form/line-item/1");
+    expect(wrapper.find("a").prop("href")).toEqual("/app/form/line-item/1");
   });
   it("formats link correctly when line_item_category prop does equal direct_labor", () => {
     const wrapper = mount(
@@ -56,6 +56,6 @@ describe("LineItem", () => {
         />
       </BrowserRouter>
     );
-    expect(wrapper.find("a").prop("href")).toEqual("/schedule");
+    expect(wrapper.find("a").prop("href")).toEqual("/app/schedule");
   });
 });

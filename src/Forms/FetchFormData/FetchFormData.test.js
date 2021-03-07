@@ -1,11 +1,13 @@
 import React from "react";
 import FetchFormData from "./FetchFormData";
 import { mount } from "enzyme";
+import { MemoryRouter } from "react-router-dom";
 import * as MOCK_GET from "../../Utilities/API_Methods/API_GET";
+
 import PropsChildrenStub from "./PropsChildrenStub";
 
 describe("FetchFormData", () => {
-  it("Renders LoadingIndicator when isLoading is true", () => {
+  it("Renders skeleton loading indicator when isLoading is true", () => {
     MOCK_GET.API_GET = jest.fn(() => {
       return [
         {
@@ -17,8 +19,12 @@ describe("FetchFormData", () => {
         () => {},
       ];
     });
-    const wrapper = mount(<FetchFormData />);
-    expect(wrapper.find(".loading-indicator")).toHaveLength(1);
+    const wrapper = mount(
+      <MemoryRouter initialEntries={[`/form`]}>
+        <FetchFormData />
+      </MemoryRouter>
+    );
+    expect(wrapper.find(".main_skeleton")).toHaveLength(1);
   });
 
   it("Renders Error when isError is true", () => {
@@ -33,7 +39,11 @@ describe("FetchFormData", () => {
         () => {},
       ];
     });
-    const wrapper = mount(<FetchFormData />);
+    const wrapper = mount(
+      <MemoryRouter initialEntries={[`/form`]}>
+        <FetchFormData />
+      </MemoryRouter>
+    );
     expect(wrapper.find(".error")).toHaveLength(1);
   });
 
@@ -50,9 +60,11 @@ describe("FetchFormData", () => {
       ];
     });
     const wrapper = mount(
-      <FetchFormData>
-        <PropsChildrenStub />
-      </FetchFormData>
+      <MemoryRouter initialEntries={[`/form`]}>
+        <FetchFormData>
+          <PropsChildrenStub />
+        </FetchFormData>
+      </MemoryRouter>
     );
     expect(wrapper.find(FetchFormData)).toHaveLength(1);
   });
