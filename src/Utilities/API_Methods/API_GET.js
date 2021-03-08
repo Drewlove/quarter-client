@@ -2,8 +2,6 @@ import { useEffect, useReducer } from "react";
 import config from "../../config";
 import { useAuth0 } from "@auth0/auth0-react";
 
-// const headers = new Headers(config.HEADERS);
-
 const dataReducer = (state, action) => {
   switch (action.type) {
     case "FETCH_INIT":
@@ -79,7 +77,6 @@ export const API_GET = (endpointStr) => {
             urls.map((url) => {
               return fetch(url, {
                 method: "GET",
-                // headers,
                 headers: {
                   Authorization: `Bearer ${token}`,
                   "Content-Type": "application/json",
