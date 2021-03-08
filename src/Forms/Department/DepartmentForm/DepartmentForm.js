@@ -18,16 +18,16 @@ function DepartmentForm(props) {
   useEffect(() => {
     if (props.id !== "new")
       setFormData({
-        ...formData,
+        app_user_id: user.sub,
         department_name: props.data[0].department_name,
       });
     if (props.id === "new") {
       setFormData({
-        ...formData,
+        app_user_id: user.sub,
         department_name: "",
       });
     }
-  }, [props.id, props.data]);
+  }, [props.id, user.sub, props.data]);
 
   const handleChange = (e) => {
     validate(e);

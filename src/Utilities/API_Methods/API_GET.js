@@ -2,7 +2,7 @@ import { useEffect, useReducer } from "react";
 import config from "../../config";
 import { useAuth0 } from "@auth0/auth0-react";
 
-const headers = new Headers(config.HEADERS);
+// const headers = new Headers(config.HEADERS);
 
 const dataReducer = (state, action) => {
   switch (action.type) {
@@ -66,27 +66,6 @@ export const API_GET = (endpointStr) => {
   useEffect(() => {
     let didCancel = false;
 
-    // const callSecureApi = async () => {
-    //   try {
-    //     const token = await getAccessTokenSilently();
-
-    //     const response = await fetch(
-    //       `${serverUrl}/api/messages/protected-message`,
-    //       {
-    //         headers: {
-    //           Authorization: `Bearer ${token}`,
-    //         },
-    //       }
-    //     );
-
-    //     const responseData = await response.json();
-
-    //     setMessage(responseData.message);
-    //   } catch (error) {
-    //     setMessage(error.message);
-    //   }
-    // };
-
     const getData = async () => {
       if (endpointStr === "")
         return dispatch({ type: "FETCH_SUCCESS", payload: {} });
@@ -125,6 +104,6 @@ export const API_GET = (endpointStr) => {
     return () => {
       didCancel = true;
     };
-  }, [endpointStr]);
+  }, [endpointStr, getAccessTokenSilently]);
   return [state, dispatch];
 };

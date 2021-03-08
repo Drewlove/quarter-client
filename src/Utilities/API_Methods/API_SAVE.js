@@ -2,7 +2,7 @@ import { useState, useCallback } from "react";
 import config from "../../config";
 import { useAuth0 } from "@auth0/auth0-react";
 
-const headers = new Headers(config.HEADERS);
+// const headers = new Headers(config.HEADERS);
 
 export const API_SAVE = (formData, endpointSuffix, id) => {
   const [resSave, setRes] = useState({
@@ -58,6 +58,6 @@ export const API_SAVE = (formData, endpointSuffix, id) => {
         saveError: "Failed to save.",
       }));
     }
-  }, [formData, saveMethod, url]);
+  }, [formData, saveMethod, getAccessTokenSilently, url]);
   return [resSave, saveData];
 };

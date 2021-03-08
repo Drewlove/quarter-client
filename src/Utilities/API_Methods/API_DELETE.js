@@ -2,7 +2,7 @@ import { useState, useCallback } from "react";
 import config from "../../config";
 import { useAuth0 } from "@auth0/auth0-react";
 
-const headers = new Headers(config.HEADERS);
+// const headers = new Headers(config.HEADERS);
 
 export const API_DELETE = (endpointSuffix, id) => {
   const [resDelete, setResDelete] = useState({
@@ -54,6 +54,6 @@ export const API_DELETE = (endpointSuffix, id) => {
         recordDeleted: false,
       }));
     }
-  }, [endpointSuffix, id]);
+  }, [endpointSuffix, getAccessTokenSilently, id]);
   return [resDelete, deleteData];
 };
