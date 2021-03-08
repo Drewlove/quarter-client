@@ -2,11 +2,22 @@ import React from "react";
 import Error from "../../CommonFormComponents/FormError/FormError";
 
 function LineItemFormPercentOf(props) {
+  const displayCategory = (catName) => {
+    switch (catName) {
+      case "sales":
+        return "Sales";
+      case "cogs":
+        return "COGS";
+      case "overhead":
+        return "Overhead";
+    }
+  };
+
   const renderLineItems = (lineItems) => {
     return lineItems.map((key) => {
       return (
         <option value={key.line_item_id} key={key.line_item_id}>
-          {key.line_item_category} - {key.line_item_name}
+          {displayCategory(key.line_item_category)} - {key.line_item_name}
         </option>
       );
     });

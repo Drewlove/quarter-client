@@ -51,6 +51,7 @@ function LineItemForm(props) {
         line_item_name: props.data[1].line_item_name,
         amount: Number(props.data[1].amount).toLocaleString(undefined, {
           minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
         }),
         line_item_amount_type: props.data[1].line_item_amount_type,
         percent_of: props.data[1].percent_of,
@@ -130,7 +131,6 @@ function LineItemForm(props) {
             error={formError.line_item_category}
             handleChange={handleChange}
             categories={categories}
-            name="category"
           />
           <LineItemFormName
             value={formData.line_item_name}
