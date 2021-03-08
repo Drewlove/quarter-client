@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import config from "../../config";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const headers = new Headers(config.HEADERS);
 
@@ -10,6 +11,8 @@ export const API_SAVE = (formData, endpointSuffix, id) => {
     saveSuccessful: false,
     saveError: "",
   });
+
+  const { getAccessTokenSilently } = useAuth0();
 
   let saveMethod;
   let url = `${config.API_ENDPOINT}/${endpointSuffix}`;
@@ -23,10 +26,14 @@ export const API_SAVE = (formData, endpointSuffix, id) => {
   const saveData = useCallback(async () => {
     setRes((prevState) => ({ ...prevState, isSaving: true }));
     try {
+      const token = await getAccessTokenSilently();
       const result = await fetch(url, {
         method: saveMethod,
         body: JSON.stringify(formData),
-        headers,
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
       });
       if (result.ok)
         setRes((prevState) => ({

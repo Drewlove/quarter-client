@@ -9,15 +9,14 @@ import HomePage from "./HomePage/HomePage";
 import ProtectedRoute from "./Authentication/ProtectedRoute/ProtectedRoute";
 import MenuNotAuthenticated from "./Header/MenuNotAuthenticated/MenuNotAuthenticated";
 import MenuAuthenticated from "./Header/MenuAuthenticated/MenuAuthenticated";
-import { useAuth0 } from "@auth0/auth0-react";
+// import ExternalApi from "./Utilities/API_Methods/ExternalApi";
 import "./App.css";
 
 function App() {
-  const { user } = useAuth0();
   return (
     <>
-      {console.log(user)}
       <div className="App">
+        {/* <ExternalApi /> */}
         <Route exact path="/" component={MenuNotAuthenticated} />
         <Route path="/app" component={MenuAuthenticated} />
         <Switch>

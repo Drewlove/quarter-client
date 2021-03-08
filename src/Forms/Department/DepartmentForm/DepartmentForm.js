@@ -3,10 +3,13 @@ import FormError from "../../CommonFormComponents/FormError/FormError";
 import FormSaveButton from "../../CommonFormComponents/FormSaveButton/FormSaveButton";
 import FormDeleteButton from "../../CommonFormComponents/FormDeleteButton/FormDeleteButton";
 import { GET_ERROR_MESSAGE } from "../../ValidateForm/GET_ERROR_MESSAGE";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function DepartmentForm(props) {
+  const { user } = useAuth0();
   const [formData, setFormData] = useState({
     department_name: "",
+    app_user_id: user.sub,
   });
   const [formError, setFormError] = useState({
     department_name: "",
@@ -15,10 +18,12 @@ function DepartmentForm(props) {
   useEffect(() => {
     if (props.id !== "new")
       setFormData({
+        ...formData,
         department_name: props.data[0].department_name,
       });
     if (props.id === "new") {
       setFormData({
+        ...formData,
         department_name: "",
       });
     }

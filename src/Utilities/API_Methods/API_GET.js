@@ -1,5 +1,6 @@
 import { useEffect, useReducer } from "react";
 import config from "../../config";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const headers = new Headers(config.HEADERS);
 
@@ -60,9 +61,31 @@ export const API_GET = (endpointStr) => {
     isError: false,
     data: [],
   });
+  const { getAccessTokenSilently } = useAuth0();
 
   useEffect(() => {
     let didCancel = false;
+
+    // const callSecureApi = async () => {
+    //   try {
+    //     const token = await getAccessTokenSilently();
+
+    //     const response = await fetch(
+    //       `${serverUrl}/api/messages/protected-message`,
+    //       {
+    //         headers: {
+    //           Authorization: `Bearer ${token}`,
+    //         },
+    //       }
+    //     );
+
+    //     const responseData = await response.json();
+
+    //     setMessage(responseData.message);
+    //   } catch (error) {
+    //     setMessage(error.message);
+    //   }
+    // };
 
     const getData = async () => {
       if (endpointStr === "")
@@ -72,11 +95,16 @@ export const API_GET = (endpointStr) => {
       const urls = getUrls(endpointStr);
       try {
         if (!didCancel) {
+          const token = await getAccessTokenSilently();
           const responseArr = await Promise.all(
             urls.map((url) => {
               return fetch(url, {
                 method: "GET",
-                headers,
+                // headers,
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                  "Content-Type": "application/json",
+                },
               });
             })
           );

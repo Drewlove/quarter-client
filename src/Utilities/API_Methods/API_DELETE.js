@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import config from "../../config";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const headers = new Headers(config.HEADERS);
 
@@ -10,15 +11,21 @@ export const API_DELETE = (endpointSuffix, id) => {
     deleteErrorMessage: "",
     recordDeleted: false,
   });
+  const { getAccessTokenSilently } = useAuth0();
 
   const deleteData = useCallback(async () => {
     setResDelete((prevState) => ({ ...prevState, isDeleting: true }));
     try {
+      const token = await getAccessTokenSilently();
       const result = await fetch(
         `${config.API_ENDPOINT}/${endpointSuffix}/${id}`,
         {
           method: "DELETE",
-          headers,
+          // headers,
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
         }
       );
       if (result.ok) {
