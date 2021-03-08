@@ -30,6 +30,7 @@ export const API_SAVE = (formData, endpointSuffix, id) => {
       const result = await fetch(url, {
         method: saveMethod,
         body: JSON.stringify(formData),
+        // headers,
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
