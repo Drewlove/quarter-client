@@ -10,6 +10,8 @@ function LineItemFormPercentOf(props) {
         return "COGS";
       case "overhead":
         return "Overhead";
+      default:
+        return "";
     }
   };
 
