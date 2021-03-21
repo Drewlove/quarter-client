@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 function FormDeleteButton(props) {
   const history = useHistory();
 
-  const [resDelete, deleteData] = API_DELETE(props.endpointSuffix, props.id);
+  const [resDelete, deleteData] = API_DELETE(props.endpointSuffix, props.rowId);
   const [modal, setModal] = useState({
     display: false,
     text: "",

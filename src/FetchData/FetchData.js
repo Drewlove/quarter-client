@@ -3,11 +3,11 @@ import { API_GET } from "../Utilities/API_Methods/API_GET";
 import SkeletonLoader from "../SkeletonLoader/SkeletonLoader";
 import Error from "../Error/Error";
 
-function FetchListData(props) {
-  const [{ data, isLoading, isError }] = API_GET(props.endpointStr);
+function FetchData(props) {
+  const [{ data, isLoading, isError }] = API_GET(props.endpointArr);
 
   const renderSkeleton = () => {
-    return <SkeletonLoader />;
+    return <SkeletonLoader skeletonNumber={props.skeletonNumber} />;
   };
 
   const renderResults = () => {
@@ -31,4 +31,4 @@ function FetchListData(props) {
   return <>{isLoading ? renderSkeleton() : renderResults()}</>;
 }
 
-export default FetchListData;
+export default FetchData;

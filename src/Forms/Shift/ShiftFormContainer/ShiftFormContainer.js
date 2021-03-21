@@ -1,18 +1,28 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import ShiftForm from "../ShiftForm/ShiftForm";
-import FetchFormData from "../../FetchFormData/FetchFormData";
+import FetchData from "../../../FetchData/FetchData";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function ShiftFormContainer() {
-  const { id } = useParams();
-  let endpointStr =
-    id === `new` ? `departments, roles` : `departments, roles, shifts/${id}`;
+  const { rowId } = useParams();
+  const { user } = useAuth0();
+  let userId = user.sub.split("auth0|")[1];
+
+  let endpointArr =
+    rowId === `new`
+      ? [`departments/${userId}`, `roles/${userId}`]
+      : [
+          `departments/${userId}`,
+          `roles/${userId}`,
+          `shifts/${userId}/${rowId}`,
+        ];
 
   return (
     <>
-      <FetchFormData endpointStr={endpointStr}>
-        <ShiftForm id={id} />
-      </FetchFormData>
+      <FetchData endpointArr={endpointArr}>
+        <ShiftForm rowId={rowId} />
+      </FetchData>
     </>
   );
 }

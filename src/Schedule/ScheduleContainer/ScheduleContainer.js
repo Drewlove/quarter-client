@@ -1,13 +1,17 @@
 import React from "react";
 import Schedule from "../Schedule/Schedule";
-import FetchListData from "../../FetchListData/FetchListData";
+import FetchData from "../../FetchData/FetchData";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function ScheduleContainer() {
+  const { user } = useAuth0();
+  let userId = user.sub.split("auth0|")[1];
+
   return (
     <>
-      <FetchListData endpointStr="shifts">
+      <FetchData endpointArr={[`shifts/${userId}`]} skeletonNumber={4}>
         <Schedule />
-      </FetchListData>
+      </FetchData>
     </>
   );
 }

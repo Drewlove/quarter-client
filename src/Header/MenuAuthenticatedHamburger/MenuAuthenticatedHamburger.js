@@ -33,7 +33,7 @@ function MenuAuthenticatedHamburger() {
 
   const renderMenu = () => {
     return (
-      <div className="header__menu_hamburger-drop-down">
+      <div className="header__menu_drop-down">
         <HeaderLink
           url="/app/pnl"
           toggleMenuDisplay={() => toggleMenuDisplay()}

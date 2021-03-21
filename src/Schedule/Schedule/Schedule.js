@@ -5,7 +5,7 @@ import EmptyList from "../../EmptyList/EmptyList";
 
 function Schedule(props) {
   const renderEmptyList = () => {
-    return <EmptyList name="shift" url="/form/schedule/new" />;
+    return <EmptyList name="shift" url="/app/form/schedule/new" />;
   };
 
   let schedule = [];

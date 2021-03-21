@@ -16,7 +16,7 @@ function ProfitLoss(props) {
   }, [props.data]);
 
   const renderEmptyList = () => {
-    return <EmptyList name="Line Item" url="/form/line-item/new" />;
+    return <EmptyList name="Line Item" url="/app/form/line-item/new" />;
   };
 
   const getGrossProfit = (lineItemsByCategory) => {

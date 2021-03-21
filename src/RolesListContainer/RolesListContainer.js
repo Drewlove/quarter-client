@@ -1,14 +1,18 @@
 import React from "react";
 import RolesList from "../RolesList/RolesList";
-import FetchListData from "../FetchListData/FetchListData";
+import FetchData from "../FetchData/FetchData";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function RolesListContainer() {
+  const { user } = useAuth0();
+  let userId = user.sub.split("auth0|")[1];
+
   return (
     <>
       <main className="main">
-        <FetchListData endpointStr="roles">
+        <FetchData endpointArr={[`roles/${userId}`]} skeletonNumber={1}>
           <RolesList />
-        </FetchListData>
+        </FetchData>
       </main>
     </>
   );

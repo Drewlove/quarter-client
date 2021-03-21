@@ -10,7 +10,6 @@ function RoleForm(props) {
     role_id: "",
     role_name: "",
     department_id: "",
-    department_name: "",
   });
 
   const [formError, setFormError] = useState({
@@ -19,13 +18,14 @@ function RoleForm(props) {
   });
 
   useEffect(() => {
-    if (props.id !== "new")
+    if (props.rowId !== "new")
       setFormData({
+        ...formData,
         role_id: props.data[1].role_id,
         role_name: props.data[1].role_name,
         department_id: props.data[1].department_id.toString(),
       });
-  }, [props.id, props.data]);
+  }, [props.rowId, props.data]);
 
   const handleChange = (e) => {
     validate(e);
@@ -45,7 +45,7 @@ function RoleForm(props) {
     return (
       <FormDeleteButton
         endpointSuffix="roles"
-        id={props.id}
+        rowId={props.rowId}
         redirectSuffix="app/roles"
       />
     );
@@ -54,7 +54,7 @@ function RoleForm(props) {
   return (
     <form className="form form_role">
       <fieldset className="fieldset_form">
-        {props.id !== "new" ? renderDeleteButton() : null}
+        {props.rowId !== "new" ? renderDeleteButton() : null}
         <RoleFormDepartment
           departments={props.data[0]}
           value={formData.department_id}
@@ -72,7 +72,7 @@ function RoleForm(props) {
           formName="role"
           endpointSuffix="roles"
           redirectSuffix="app/roles"
-          id={props.id}
+          rowId={props.rowId}
           setFormError={setFormError}
         />
       </fieldset>

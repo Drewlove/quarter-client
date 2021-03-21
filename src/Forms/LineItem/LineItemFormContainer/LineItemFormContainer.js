@@ -1,20 +1,25 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import LineItemForm from "../LineItemForm/LineItemForm";
-import FetchFormData from "../../FetchFormData/FetchFormData";
+import FetchData from "../../../FetchData/FetchData";
+import { useAuth0 } from "@auth0/auth0-react";
 
-function RoleFormContainer() {
-  const { id } = useParams();
-  let endpointStr =
-    id === `new` ? `line_items` : `line_items, line_items/${id}`;
+function LineItemFormContainer() {
+  const { rowId } = useParams();
+  const { user } = useAuth0();
+  let userId = user.sub.split("auth0|")[1];
+  let endpointArr =
+    rowId === `new`
+      ? [`line_items/${userId}`]
+      : [`line_items/${userId}`, `line_items/${userId}/${rowId}`];
 
   return (
     <>
-      <FetchFormData endpointStr={endpointStr}>
-        <LineItemForm id={id} />
-      </FetchFormData>
+      <FetchData endpointArr={endpointArr}>
+        <LineItemForm rowId={rowId} />
+      </FetchData>
     </>
   );
 }
 
-export default RoleFormContainer;
+export default LineItemFormContainer;

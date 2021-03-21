@@ -41,8 +41,9 @@ function ShiftForm(props) {
   });
 
   useEffect(() => {
-    if (props.id !== "new") {
+    if (props.rowId !== "new") {
       setFormData({
+        ...formData,
         shift_id: props.data[2].shift_id,
         shift_department: props.data[2].shift_department.toString(),
         shift_role: props.data[2].shift_role.toString(),
@@ -56,7 +57,7 @@ function ShiftForm(props) {
     }
     setDepartments(props.data[0]);
     setRoles(props.data[1]);
-  }, [props.data, props.id]);
+  }, [props.data, props.rowId]);
 
   const handleChange = (e) => {
     validate(e);
@@ -122,7 +123,7 @@ function ShiftForm(props) {
     return (
       <FormDeleteButton
         endpointSuffix="shifts"
-        id={props.id}
+        rowId={props.rowId}
         redirectSuffix="app/schedule"
       />
     );
@@ -135,7 +136,7 @@ function ShiftForm(props) {
           Weekly Total: ${getWeeklyTotal()}
         </p>
         <fieldset className="fieldset_form">
-          {props.id !== "new" ? renderDeleteButton() : null}
+          {props.rowId !== "new" ? renderDeleteButton() : null}
           <ShiftFormDepartment
             handleChange={(e) => handleChange(e)}
             value={formData.shift_department}
@@ -188,7 +189,7 @@ function ShiftForm(props) {
             formName="shift"
             endpointSuffix="shifts"
             redirectSuffix="app/schedule"
-            id={props.id}
+            rowId={props.rowId}
             setFormError={setFormError}
           />
         </fieldset>

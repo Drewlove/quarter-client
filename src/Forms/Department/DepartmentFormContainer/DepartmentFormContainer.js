@@ -1,17 +1,21 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import DepartmentForm from "../DepartmentForm/DepartmentForm";
-import FetchFormData from "../../FetchFormData/FetchFormData";
+import FetchData from "../../../FetchData/FetchData";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function DepartmentFormContainer() {
-  const { id } = useParams();
-  let endpointStr = id === `new` ? `` : `departments/${id}`;
+  const { rowId } = useParams();
+  const { user } = useAuth0();
+  let userId = user.sub.split("auth0|")[1];
+
+  let endpointArr = rowId === `new` ? [] : [`departments/${userId}/${rowId}`];
 
   return (
     <>
-      <FetchFormData endpointStr={endpointStr}>
-        <DepartmentForm id={id} />
-      </FetchFormData>
+      <FetchData endpointArr={endpointArr} skeletonNumber={1}>
+        <DepartmentForm rowId={rowId} />
+      </FetchData>
     </>
   );
 }

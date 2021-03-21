@@ -9,7 +9,7 @@ function FormSaveButton(props) {
   const [resSave, saveData] = API_SAVE(
     props.formData,
     props.endpointSuffix,
-    props.id
+    props.rowId
   );
   const [modal, setModal] = useState({
     display: false,

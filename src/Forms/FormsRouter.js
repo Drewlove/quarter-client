@@ -9,16 +9,16 @@ function FormsRouter() {
   return (
     <>
       <Switch>
-        <Route path="/app/form/line-item/:id">
+        <Route path="/app/form/line-item/:rowId">
           <LineItemFormContainer />
         </Route>
-        <Route path="/app/form/schedule/:id">
+        <Route path="/app/form/schedule/:rowId">
           <ShiftFormContainer />
         </Route>
-        <Route path="/app/form/department/:id">
+        <Route path="/app/form/department/:rowId">
           <DepartmentFormContainer />
         </Route>
-        <Route path="/app/form/role/:id">
+        <Route path="/app/form/role/:rowId">
           <RoleFormContainer />
         </Route>
       </Switch>

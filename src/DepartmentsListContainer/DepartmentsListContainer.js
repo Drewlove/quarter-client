@@ -1,14 +1,18 @@
 import React from "react";
 import DepartmentsList from "../DepartmentsList/DepartmentsList";
-import FetchListData from "../FetchListData/FetchListData";
+import FetchData from "../FetchData/FetchData";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function DepartmentsListContainer() {
+  const { user } = useAuth0();
+  let userId = user.sub.split("auth0|")[1];
+
   return (
     <>
       <main className="main">
-        <FetchListData endpointStr="departments">
+        <FetchData endpointArr={[`departments/${userId}`]} skeletonNumber={1}>
           <DepartmentsList />
-        </FetchListData>
+        </FetchData>
       </main>
     </>
   );

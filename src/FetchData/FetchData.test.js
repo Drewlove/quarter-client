@@ -1,12 +1,11 @@
 import React from "react";
-import FetchFormData from "./FetchFormData";
+import FetchData from "./FetchData";
 import { mount } from "enzyme";
 import { MemoryRouter } from "react-router-dom";
-import * as MOCK_GET from "../../Utilities/API_Methods/API_GET";
-
+import * as MOCK_GET from "../Utilities/API_Methods/API_GET";
 import PropsChildrenStub from "./PropsChildrenStub";
 
-describe("FetchFormData", () => {
+describe("FetchData", () => {
   it("Renders skeleton loading indicator when isLoading is true", () => {
     MOCK_GET.API_GET = jest.fn(() => {
       return [
@@ -20,8 +19,8 @@ describe("FetchFormData", () => {
       ];
     });
     const wrapper = mount(
-      <MemoryRouter initialEntries={[`/form`]}>
-        <FetchFormData />
+      <MemoryRouter initialEntries={["/"]}>
+        <FetchData />
       </MemoryRouter>
     );
     expect(wrapper.find(".main_skeleton")).toHaveLength(1);
@@ -40,14 +39,14 @@ describe("FetchFormData", () => {
       ];
     });
     const wrapper = mount(
-      <MemoryRouter initialEntries={[`/form`]}>
-        <FetchFormData />
+      <MemoryRouter initialEntries={["/"]}>
+        <FetchData />
       </MemoryRouter>
     );
     expect(wrapper.find(".error")).toHaveLength(1);
   });
 
-  it("Renders container if isLoaded is true", async () => {
+  it("Renders FetchData if isLoaded is true", async () => {
     MOCK_GET.API_GET = jest.fn(() => {
       return [
         {
@@ -60,12 +59,12 @@ describe("FetchFormData", () => {
       ];
     });
     const wrapper = mount(
-      <MemoryRouter initialEntries={[`/form`]}>
-        <FetchFormData>
+      <MemoryRouter initialEntries={["/"]}>
+        <FetchData>
           <PropsChildrenStub />
-        </FetchFormData>
+        </FetchData>
       </MemoryRouter>
     );
-    expect(wrapper.find(FetchFormData)).toHaveLength(1);
+    expect(wrapper.find(FetchData)).toHaveLength(1);
   });
 });

@@ -8,8 +8,11 @@ import FormSaveButton from "../../CommonFormComponents/FormSaveButton/FormSaveBu
 import FormDeleteButton from "../../CommonFormComponents/FormDeleteButton/FormDeleteButton";
 import { GET_ERROR_MESSAGE } from "../../ValidateForm/GET_ERROR_MESSAGE";
 import { FORMAT_NUM } from "../../../Utilities/UtilityFunctions";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function LineItemForm(props) {
+  const { user } = useAuth0();
+
   const [lineItems, setLineItems] = useState({
     sales: [],
     cogs: [],
@@ -17,6 +20,7 @@ function LineItemForm(props) {
   });
 
   const [formData, setFormData] = useState({
+    app_user_id: user.sub,
     line_item_category: "",
     line_item_name: "",
     amount: "",
@@ -35,18 +39,19 @@ function LineItemForm(props) {
     const sortLineItems = () => {
       const lineItems = { sales: [], cogs: [], overhead: [] };
       props.data[0].forEach((key) => {
-        if (key.line_item_id !== parseInt(props.id))
+        if (key.line_item_id !== parseInt(props.rowId))
           lineItems[key.line_item_category].push(key);
       });
       return lineItems;
     };
 
     setLineItems(sortLineItems());
-  }, [props.data, props.id]);
+  }, [props.data, props.rowId]);
 
   useEffect(() => {
-    if (props.id !== "new")
+    if (props.rowId !== "new")
       setFormData({
+        ...formData,
         line_item_category: props.data[1].line_item_category,
         line_item_name: props.data[1].line_item_name,
         amount: Number(props.data[1].amount).toLocaleString(undefined, {
@@ -56,7 +61,7 @@ function LineItemForm(props) {
         line_item_amount_type: props.data[1].line_item_amount_type,
         percent_of: props.data[1].percent_of,
       });
-  }, [props.data, props.id]);
+  }, [props.data, props.rowId]);
 
   const handleChange = (e) => {
     validate(e);
@@ -109,7 +114,7 @@ function LineItemForm(props) {
     return (
       <FormDeleteButton
         endpointSuffix="line_items"
-        id={props.id}
+        rowId={props.rowId}
         redirectSuffix="app/pnl"
       />
     );
@@ -125,7 +130,7 @@ function LineItemForm(props) {
     <main className="main">
       <form className="form">
         <fieldset className="fieldset_form">
-          {props.id !== "new" ? renderDeleteButton() : null}
+          {props.rowId !== "new" ? renderDeleteButton() : null}
           <LineItemFormCategory
             value={formData.line_item_category}
             error={formError.line_item_category}
@@ -166,7 +171,7 @@ function LineItemForm(props) {
             formName="lineItem"
             endpointSuffix="line_items"
             redirectSuffix="app/pnl"
-            id={props.id}
+            rowId={props.rowId}
             setFormError={setFormError}
           />
         </fieldset>

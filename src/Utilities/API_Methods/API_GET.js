@@ -31,18 +31,13 @@ const dataReducer = (state, action) => {
   }
 };
 
-const getUrls = (endpointStr) => {
-  let urlArr = [];
-  let endpoint = "";
-  for (let i = 0; i <= endpointStr.length; i++) {
-    let char = endpointStr[i];
-    if (char === "," || i === endpointStr.length) {
-      urlArr.push(`${config.API_ENDPOINT}/${endpoint}`);
-      endpoint = "";
-    } else if (char !== " ") {
-      endpoint += char;
-    }
-  }
+const getUrls = (endpointArr) => {
+  console.log(endpointArr);
+  let urlArr = endpointArr.map((key) => {
+    let url = `${config.API_ENDPOINT}/${key}`;
+    return url;
+  });
+  console.log(urlArr);
   return urlArr;
 };
 
@@ -53,7 +48,7 @@ const allResponsesOk = (responseArr) => {
   return true;
 };
 
-export const API_GET = (endpointStr) => {
+export const API_GET = (endpointArr) => {
   const [state, dispatch] = useReducer(dataReducer, {
     isLoading: true,
     isError: false,
@@ -65,11 +60,11 @@ export const API_GET = (endpointStr) => {
     let didCancel = false;
 
     const getData = async () => {
-      if (endpointStr === "")
+      if (endpointArr.length === 0)
         return dispatch({ type: "FETCH_SUCCESS", payload: {} });
 
       dispatch({ type: "FETCH_INIT" });
-      const urls = getUrls(endpointStr);
+      const urls = getUrls(endpointArr);
       try {
         if (!didCancel) {
           const token = await getAccessTokenSilently();
@@ -101,6 +96,6 @@ export const API_GET = (endpointStr) => {
     return () => {
       didCancel = true;
     };
-  }, [endpointStr, getAccessTokenSilently]);
+  }, [endpointArr, getAccessTokenSilently]);
   return [state, dispatch];
 };

@@ -9,25 +9,40 @@ import HomePage from "./HomePage/HomePage";
 import ProtectedRoute from "./Authentication/ProtectedRoute/ProtectedRoute";
 import MenuNotAuthenticated from "./Header/MenuNotAuthenticated/MenuNotAuthenticated";
 import MenuAuthenticated from "./Header/MenuAuthenticated/MenuAuthenticated";
-// import ExternalApi from "./Utilities/API_Methods/ExternalApi";
 import "./App.css";
 
 function App() {
   return (
     <>
       <div className="App">
-        {/* <ExternalApi /> */}
         <Route exact path="/" component={MenuNotAuthenticated} />
         <Route path="/app" component={MenuAuthenticated} />
         <Switch>
-          <ProtectedRoute path="/app/pnl" component={ProfitLossContainer} />
+          <ProtectedRoute
+            path="/app/pnl"
+            component={ProfitLossContainer}
+            skeletonNumber={7}
+          />
           <ProtectedRoute
             path="/app/departments"
             component={DepartmentsListContainer}
+            skeletonNumber={1}
           />
-          <ProtectedRoute path="/app/roles" component={RolesListContainer} />
-          <ProtectedRoute path="/app/schedule" component={ScheduleContainer} />
-          <ProtectedRoute path="/app/form" component={FormsRouter} />
+          <ProtectedRoute
+            path="/app/roles"
+            component={RolesListContainer}
+            skeletonNumber={1}
+          />
+          <ProtectedRoute
+            path="/app/schedule"
+            component={ScheduleContainer}
+            skeletonNumber={5}
+          />
+          <ProtectedRoute
+            path="/app/form"
+            component={FormsRouter}
+            skeletonNumber={1}
+          />
           <Route exact path="/">
             <HomePage />
           </Route>

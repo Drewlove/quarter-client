@@ -3,31 +3,22 @@ import FormError from "../../CommonFormComponents/FormError/FormError";
 import FormSaveButton from "../../CommonFormComponents/FormSaveButton/FormSaveButton";
 import FormDeleteButton from "../../CommonFormComponents/FormDeleteButton/FormDeleteButton";
 import { GET_ERROR_MESSAGE } from "../../ValidateForm/GET_ERROR_MESSAGE";
-import { useAuth0 } from "@auth0/auth0-react";
 
 function DepartmentForm(props) {
-  const { user } = useAuth0();
   const [formData, setFormData] = useState({
     department_name: "",
-    app_user_id: user.sub,
   });
   const [formError, setFormError] = useState({
     department_name: "",
   });
 
   useEffect(() => {
-    if (props.id !== "new")
+    if (props.rowId !== "new")
       setFormData({
-        app_user_id: user.sub,
+        ...formData,
         department_name: props.data[0].department_name,
       });
-    if (props.id === "new") {
-      setFormData({
-        app_user_id: user.sub,
-        department_name: "",
-      });
-    }
-  }, [props.id, user.sub, props.data]);
+  }, [props.rowId, props.data]);
 
   const handleChange = (e) => {
     validate(e);
@@ -53,7 +44,7 @@ function DepartmentForm(props) {
       <FormDeleteButton
         handleDelete={handleDelete}
         endpointSuffix="departments"
-        id={props.id}
+        rowId={props.rowId}
         redirectSuffix="app/departments"
       />
     );
@@ -62,7 +53,7 @@ function DepartmentForm(props) {
   return (
     <form className="form form_department">
       <fieldset className="fieldset_form">
-        {props.id !== "new" ? renderDeleteButton() : null}
+        {props.rowId !== "new" ? renderDeleteButton() : null}
         <section className="input-section input-section_role-name">
           <label className="input-section__label" htmlFor="line-item">
             Department
@@ -88,7 +79,7 @@ function DepartmentForm(props) {
           formName="department"
           endpointSuffix="departments"
           redirectSuffix="app/departments"
-          id={props.id}
+          rowId={props.rowId}
           setFormError={setFormError}
         />
       </fieldset>

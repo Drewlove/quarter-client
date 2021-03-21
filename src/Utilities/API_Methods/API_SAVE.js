@@ -2,9 +2,7 @@ import { useState, useCallback } from "react";
 import config from "../../config";
 import { useAuth0 } from "@auth0/auth0-react";
 
-// const headers = new Headers(config.HEADERS);
-
-export const API_SAVE = (formData, endpointSuffix, id) => {
+export const API_SAVE = (formData, endpointSuffix, rowId) => {
   const [resSave, setRes] = useState({
     formData: null,
     isSaving: false,
@@ -15,12 +13,15 @@ export const API_SAVE = (formData, endpointSuffix, id) => {
   const { getAccessTokenSilently } = useAuth0();
 
   let saveMethod;
-  let url = `${config.API_ENDPOINT}/${endpointSuffix}`;
-  if (id === "new") {
+  const { user } = useAuth0();
+  const userId = user.sub.split("auth0|")[1];
+
+  let url = `${config.API_ENDPOINT}/${endpointSuffix}/${userId}`;
+  if (rowId === "new") {
     saveMethod = "POST";
-  } else if (id >= 1) {
+  } else {
     saveMethod = "PATCH";
-    url = `${config.API_ENDPOINT}/${endpointSuffix}/${id}`;
+    url = `${url}/${rowId}`;
   }
 
   const saveData = useCallback(async () => {
@@ -30,7 +31,6 @@ export const API_SAVE = (formData, endpointSuffix, id) => {
       const result = await fetch(url, {
         method: saveMethod,
         body: JSON.stringify(formData),
-        // headers,
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
