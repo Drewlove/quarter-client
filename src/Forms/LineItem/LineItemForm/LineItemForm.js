@@ -51,7 +51,6 @@ function LineItemForm(props) {
   useEffect(() => {
     if (props.rowId !== "new")
       setFormData({
-        ...formData,
         line_item_category: props.data[1].line_item_category,
         line_item_name: props.data[1].line_item_name,
         amount: Number(props.data[1].amount).toLocaleString(undefined, {

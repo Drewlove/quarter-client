@@ -53,6 +53,6 @@ export const API_DELETE = (endpointSuffix, rowId) => {
         recordDeleted: false,
       }));
     }
-  }, [endpointSuffix, getAccessTokenSilently, rowId]);
+  }, [endpointSuffix, userId, getAccessTokenSilently, rowId]);
   return [resDelete, deleteData];
 };

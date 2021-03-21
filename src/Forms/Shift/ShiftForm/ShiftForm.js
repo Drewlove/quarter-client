@@ -43,7 +43,6 @@ function ShiftForm(props) {
   useEffect(() => {
     if (props.rowId !== "new") {
       setFormData({
-        ...formData,
         shift_id: props.data[2].shift_id,
         shift_department: props.data[2].shift_department.toString(),
         shift_role: props.data[2].shift_role.toString(),

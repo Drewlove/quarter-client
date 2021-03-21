@@ -15,7 +15,6 @@ function DepartmentForm(props) {
   useEffect(() => {
     if (props.rowId !== "new")
       setFormData({
-        ...formData,
         department_name: props.data[0].department_name,
       });
   }, [props.rowId, props.data]);

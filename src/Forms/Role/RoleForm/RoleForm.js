@@ -20,7 +20,6 @@ function RoleForm(props) {
   useEffect(() => {
     if (props.rowId !== "new")
       setFormData({
-        ...formData,
         role_id: props.data[1].role_id,
         role_name: props.data[1].role_name,
         department_id: props.data[1].department_id.toString(),
