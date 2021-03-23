@@ -9,7 +9,6 @@ const ExternalApi = () => {
 
   const callApi = async () => {
     try {
-      // const response = await fetch(`${serverUrl}/messages/public-message`);
       const response = await fetch(`${serverUrl}/messages/public-message`, {
         headers: {
           Authorization: process.env.REACT_APP_API_KEY,
