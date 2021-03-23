@@ -7,7 +7,6 @@ const ProtectedRoute = ({ component, ...args }) => (
   <Route
     component={withAuthenticationRequired(component, {
       onRedirecting: () => {
-        console.log(args.skeletonNumber);
         return <SkeletonLoader skeletonNumber={args.skeletonNumber} />;
       },
     })}
