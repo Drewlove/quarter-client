@@ -32,12 +32,10 @@ const dataReducer = (state, action) => {
 };
 
 const getUrls = (endpointArr) => {
-  console.log(endpointArr);
   let urlArr = endpointArr.map((key) => {
     let url = `${config.API_ENDPOINT}/${key}`;
     return url;
   });
-  console.log(urlArr);
   return urlArr;
 };
 
