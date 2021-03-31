@@ -4,7 +4,7 @@ import SkeletonLoader from "../SkeletonLoader/SkeletonLoader";
 import Error from "../Error/Error";
 
 function FetchData(props) {
-  const [{ data, isLoading, isError }] = API_GET(props.endpointArr);
+  const [{ data, isLoading, isError, error }] = API_GET(props.endpointArr);
 
   const renderSkeleton = () => {
     return <SkeletonLoader skeletonNumber={props.skeletonNumber} />;
@@ -15,7 +15,8 @@ function FetchData(props) {
   };
 
   const renderError = () => {
-    return <Error />;
+    //pass error
+    return <Error error={error} />;
   };
 
   const renderContainer = () => {
