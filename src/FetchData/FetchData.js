@@ -15,7 +15,6 @@ function FetchData(props) {
   };
 
   const renderError = () => {
-    //pass error
     return <Error error={error} />;
   };
 

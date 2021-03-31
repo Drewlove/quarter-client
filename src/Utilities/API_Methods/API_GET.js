@@ -61,7 +61,7 @@ export const API_GET = (endpointArr) => {
         if (!didCancel)
           dispatch({
             type: "FETCH_FAILURE",
-            error: { status: 0, statusText: "non-specified error" },
+            error: { status: "NA", statusText: "Failed to fetch resource" },
           });
       }
     };
