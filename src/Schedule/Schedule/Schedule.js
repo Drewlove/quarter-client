@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { COLLATE_SCHEDULE } from "../../Utilities/COLLATE_SCHEDULE";
 import Department from "../Department/Department";
 import EmptyList from "../../EmptyList/EmptyList";
 
 function Schedule(props) {
+  let schedule = [];
+
   const renderEmptyList = () => {
     return <EmptyList name="shift" url="/app/form/schedule/new" />;
   };
-
-  let schedule = [];
 
   const renderResults = () => {
     schedule = COLLATE_SCHEDULE(props.data[0]);
@@ -47,8 +47,8 @@ function Schedule(props) {
 
   const renderTotalWages = () => {
     let totalCost = 0;
-    schedule.forEach((key) => {
-      totalCost += key.cost;
+    Object.keys(schedule).forEach((key) => {
+      totalCost += schedule[key].cost;
     });
     return (
       <h2>
@@ -62,13 +62,13 @@ function Schedule(props) {
   };
 
   const renderSchedule = () => {
-    return schedule.map((key) => {
+    return Object.keys(schedule).map((key) => {
       return (
         <Department
-          key={key.deptName}
-          shifts={key.shifts}
-          cost={key.cost}
-          deptName={key.deptName}
+          key={key}
+          shifts={schedule[key].shifts}
+          cost={schedule[key].cost}
+          deptName={key}
         />
       );
     });

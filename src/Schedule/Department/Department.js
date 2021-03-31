@@ -4,7 +4,14 @@ import RowRole from "../RowRole/RowRole";
 function Department(props) {
   const renderSchedule = () => {
     return Object.keys(props.shifts).map((key) => {
-      return <RowRole key={key} row={props.shifts[key]} id={key} />;
+      return (
+        <RowRole
+          key={key}
+          row={props.shifts[key]}
+          id={key}
+          row_id={props.shifts[key].row_id}
+        />
+      );
     });
   };
 

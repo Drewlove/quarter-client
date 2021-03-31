@@ -5,9 +5,9 @@ import CellShift from "../CellShift/CellShift";
 
 function RowRole(props) {
   const renderRow = () => {
-    return props.row.map((key) => {
+    return props.row.shifts.map((key) => {
       return key.isShift ? (
-        <CellShift key={key.id} shift={key.shift} id={key.id} />
+        <CellShift key={key.id} shift={key.shift} id={key.row_id} />
       ) : (
         <CellBlank key={key.id} />
       );
@@ -18,7 +18,7 @@ function RowRole(props) {
     <div className="schedule-row_role-container">
       <Link
         className="schedule-row schedule-row_role"
-        to={`/app/form/schedule/${props.id}`}
+        to={`/app/form/schedule/${props.row_id}`}
       >
         {renderRow()}
       </Link>

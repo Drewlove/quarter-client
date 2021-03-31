@@ -11,8 +11,7 @@ export const COLLATE_SCHEDULE = (shifts) => {
       shift
     );
   });
-  const sortedSchedule = sortSchedule(collatedSchedule);
-  return sortedSchedule;
+  return collatedSchedule;
 };
 
 function addDepartment(shift) {
@@ -20,30 +19,30 @@ function addDepartment(shift) {
 }
 
 function addRow(shift) {
-  let row = [];
-  for (let i = 0; i < 7; i++) {
-    row[i] = {
-      isShift: false,
-      id: `${shift.shift_department}${shift.shift_role}-${i}`,
-    };
-  }
-  shift.shift_day.forEach((day) => {
-    row[day] = { isShift: true, id: `${shift.shift_id}-${day}`, shift: shift };
-  });
+  let row = {
+    shifts: getShifts(shift),
+    row_id: shift.shift_id,
+  };
   collatedSchedule[shift.department_name].shifts[
     `${shift.role_name}-${shift.shift_id}`
   ] = row;
 }
 
-function sortSchedule(schedule) {
-  let sortedSchedule = Object.keys(schedule)
-    .sort()
-    .map(function (dept) {
-      return {
-        deptName: [dept][0],
-        shifts: schedule[dept].shifts,
-        cost: schedule[dept].cost,
-      };
-    });
-  return sortedSchedule;
+function getShifts(shift) {
+  let shifts = [];
+  for (let i = 0; i < 7; i++) {
+    shifts[i] = {
+      shift: null,
+      isShift: false,
+      id: `${shift.shift_department}${shift.shift_role}-${i}`,
+    };
+  }
+  shift.shift_day.forEach((day) => {
+    shifts[day] = {
+      ...shifts[day],
+      isShift: true,
+      shift: shift,
+    };
+  });
+  return shifts;
 }
