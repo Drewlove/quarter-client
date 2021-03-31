@@ -6,12 +6,10 @@ export const COLLATE_SCHEDULE = (shifts) => {
   collatedSchedule = {};
   shifts.forEach((shift) => {
     if (!collatedSchedule[shift.department_name]) addDepartment(shift);
-    if (!collatedSchedule[shift.department_name].shifts[shift.shift_id]) {
-      addRow(shift);
-      collatedSchedule[shift.department_name].cost += SUM_WEEKLY_SHIFT_TOTAL(
-        shift
-      );
-    }
+    addRow(shift);
+    collatedSchedule[shift.department_name].cost += SUM_WEEKLY_SHIFT_TOTAL(
+      shift
+    );
   });
   const sortedSchedule = sortSchedule(collatedSchedule);
   return sortedSchedule;
@@ -32,8 +30,9 @@ function addRow(shift) {
   shift.shift_day.forEach((day) => {
     row[day] = { isShift: true, id: `${shift.shift_id}-${day}`, shift: shift };
   });
-
-  collatedSchedule[shift.department_name].shifts[shift.shift_id] = row;
+  collatedSchedule[shift.department_name].shifts[
+    `${shift.role_name}-${shift.shift_id}`
+  ] = row;
 }
 
 function sortSchedule(schedule) {
