@@ -134,7 +134,7 @@ function ShiftForm(props) {
         <p className="form_shift__weekly-total">
           Weekly Total: ${getWeeklyTotal()}
         </p>
-        <fieldset className="fieldset_form">
+        <fieldset className="fieldset fieldset_form">
           {props.rowId !== "new" ? renderDeleteButton() : null}
           <ShiftFormDepartment
             handleChange={(e) => handleChange(e)}

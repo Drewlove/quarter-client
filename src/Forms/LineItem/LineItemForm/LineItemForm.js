@@ -128,7 +128,7 @@ function LineItemForm(props) {
   return (
     <main className="main">
       <form className="form">
-        <fieldset className="fieldset_form">
+        <fieldset className="fieldset fieldset_form">
           {props.rowId !== "new" ? renderDeleteButton() : null}
           <LineItemFormCategory
             value={formData.line_item_category}

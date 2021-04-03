@@ -18,8 +18,8 @@
 }
 
 .save-button-section__button {
-  width: 150px;
-  height: 50px;
+  width: 100px;
+  height: 33px;
   margin-top: 25px;
   font-size: 21px;
   background-color: white;
@@ -32,6 +32,7 @@
 
 .save-button-section__button:hover {
   box-shadow: 1px 1px 1px black;
+  background-color: whitesmoke;
 }
 
 .button:hover {
@@ -55,7 +56,8 @@
 
 .delete-button-section__button:hover {
   box-shadow: none;
-  border: 1px solid whitesmoke;
+  color: white;
+  background-color: red;
 }
 
 .departments__link {
@@ -110,18 +112,23 @@
 
 .fieldset {
   margin-top: 20px;
+  box-shadow: 5px 5px 5px darkgrey;
+  border-top: 2px solid whitesmoke;
+  border-bottom: 5px solid whitesmoke;
+  border-right: 5px solid whitesmoke;
+  border-left: 3px solid whitesmoke;
+  border-radius: 20px;
 }
 
 .fieldset_form {
-  box-shadow: 5px 5px 5px black;
-  border: 2px solid lightgrey;
+  margin-top: 50px;
 }
 
 .fieldset__amount {
 }
 
 .fieldset__container {
-  padding: 5px;
+  padding: 10px;
 }
 
 .fieldset__item-container {
@@ -160,11 +167,13 @@
 .fieldset__item-container_kpi:hover {
   background-color: black;
   cursor: default;
+  box-shadow: none;
 }
 
 .fieldset__item-container_total:hover {
   cursor: default;
   background-color: slategray;
+  box-shadow: none;
 }
 
 .fieldset__item-text {
@@ -295,6 +304,7 @@
 .header__item {
   color: white;
   text-decoration: none;
+  font-weight: bold;
 }
 
 .header__item:hover {
@@ -335,6 +345,8 @@
   height: 50px;
   display: block;
   padding: 5px;
+  font-weight: bold;
+  font-size: 18px;
 }
 
 .header__menu-button_hamburger span {
@@ -613,6 +625,7 @@
   padding: 10px;
   margin-top: 20px;
   border-radius: 20px 20px 0px 0px;
+  font-weight: bold;
 }
 
 .roles-list-item__container {

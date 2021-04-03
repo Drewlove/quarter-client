@@ -51,7 +51,7 @@ function DepartmentForm(props) {
 
   return (
     <form className="form form_department">
-      <fieldset className="fieldset_form">
+      <fieldset className="fieldset fieldset_form">
         {props.rowId !== "new" ? renderDeleteButton() : null}
         <section className="input-section input-section_role-name">
           <label className="input-section__label" htmlFor="line-item">

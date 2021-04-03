@@ -125,16 +125,17 @@ function ProfitLoss(props) {
   const getDirectLaborCategory = () => {
     let directLaborCategoryObj = { total: 0, list: [] };
     let schedule = COLLATE_SCHEDULE(props.data[1]);
-    schedule.forEach((key, i) => {
+    Object.keys(schedule).forEach((key, i) => {
+      let obj = schedule[key];
+      directLaborCategoryObj.total += obj.cost;
       directLaborCategoryObj.list.push({
         line_item_category: "direct_labor",
         line_item_id: i,
-        line_item_name: key.deptName,
-        amount: parseFloat(key.cost * 13).toFixed(2),
+        line_item_name: key,
+        amount: parseFloat(obj.cost * 13).toFixed(2),
         line_item_amount_type: "dollars",
         percent_of: null,
       });
-      directLaborCategoryObj.total += Number(key.cost * 13);
     });
     return directLaborCategoryObj;
   };

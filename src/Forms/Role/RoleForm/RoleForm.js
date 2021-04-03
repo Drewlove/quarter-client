@@ -52,7 +52,7 @@ function RoleForm(props) {
 
   return (
     <form className="form form_role">
-      <fieldset className="fieldset_form">
+      <fieldset className="fieldset fieldset_form">
         {props.rowId !== "new" ? renderDeleteButton() : null}
         <RoleFormDepartment
           departments={props.data[0]}
