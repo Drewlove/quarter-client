@@ -4,6 +4,7 @@ import Department from "../Department/Department";
 import EmptyList from "../../EmptyList/EmptyList";
 
 function Schedule(props) {
+  const [state, setState] = useState({ timePeriod: "quarter" });
   let schedule = [];
 
   const renderEmptyList = () => {
@@ -12,6 +13,10 @@ function Schedule(props) {
 
   const renderResults = () => {
     schedule = COLLATE_SCHEDULE(props.data[0]);
+    let multiplier = state.timePeriod === "quarter" ? 13 : 1;
+    Object.keys(schedule).forEach((key) => {
+      schedule[key].cost *= multiplier;
+    });
     return (
       <>
         <section className="schedule__header">
@@ -50,15 +55,23 @@ function Schedule(props) {
     Object.keys(schedule).forEach((key) => {
       totalCost += schedule[key].cost;
     });
+    const timePeriodName = state.timePeriod === "week" ? "Weekly" : "Quarterly";
     return (
-      <h2>
-        Weekly Payroll: $
-        {totalCost.toLocaleString(undefined, {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
-        })}
-      </h2>
+      <button onClick={() => toggleTimePeriod()}>
+        <h2>
+          {timePeriodName} Payroll: $
+          {totalCost.toLocaleString(undefined, {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          })}
+        </h2>
+      </button>
     );
+  };
+
+  const toggleTimePeriod = () => {
+    const newTimePeriod = state.timePeriod === "week" ? "quarter" : "week";
+    setState({ ...state, timePeriod: newTimePeriod });
   };
 
   const renderSchedule = () => {
@@ -66,7 +79,7 @@ function Schedule(props) {
       return (
         <Department
           key={key}
-          shifts={schedule[key].shifts}
+          row={schedule[key].row}
           cost={schedule[key].cost}
           deptName={key}
         />

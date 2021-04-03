@@ -7,7 +7,7 @@ function RowRole(props) {
   const renderRow = () => {
     return props.row.shifts.map((key) => {
       return key.isShift ? (
-        <CellShift key={key.id} shift={key.shift} id={key.row_id} />
+        <CellShift key={key.id} shift={key.shift} />
       ) : (
         <CellBlank key={key.id} />
       );

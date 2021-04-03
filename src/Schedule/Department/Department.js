@@ -3,13 +3,13 @@ import RowRole from "../RowRole/RowRole";
 
 function Department(props) {
   const renderSchedule = () => {
-    return Object.keys(props.shifts).map((key) => {
+    return Object.keys(props.row).map((key) => {
       return (
         <RowRole
           key={key}
-          row={props.shifts[key]}
+          row={props.row[key]}
           id={key}
-          row_id={props.shifts[key].row_id}
+          row_id={props.row[key].row_id}
         />
       );
     });

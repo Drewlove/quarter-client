@@ -15,7 +15,7 @@ export const COLLATE_SCHEDULE = (shifts) => {
 };
 
 function addDepartment(shift) {
-  collatedSchedule[shift.department_name] = { cost: 0, shifts: {} };
+  collatedSchedule[shift.department_name] = { cost: 0, row: {} };
 }
 
 function addRow(shift) {
@@ -23,7 +23,7 @@ function addRow(shift) {
     shifts: getShifts(shift),
     row_id: shift.shift_id,
   };
-  collatedSchedule[shift.department_name].shifts[
+  collatedSchedule[shift.department_name].row[
     `${shift.role_name}-${shift.shift_id}`
   ] = row;
 }
