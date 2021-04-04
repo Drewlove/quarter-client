@@ -17,7 +17,7 @@ describe("RoleFormDepartment", () => {
         departments={departments}
       />
     );
-    expect(wrapper.find(".input-section_role-department")).toHaveLength(1);
+    expect(wrapper.find(".form-section_role-department")).toHaveLength(1);
   });
   it("Renders the selected department name", () => {
     const wrapper = mount(
@@ -28,7 +28,7 @@ describe("RoleFormDepartment", () => {
         departments={departments}
       />
     );
-    expect(wrapper.find(".input-section__input").props().value).toBe("1");
+    expect(wrapper.find(".form-section__input").props().value).toBe("1");
   });
   it("Renders the department names as options", () => {
     const wrapper = mount(
@@ -39,8 +39,8 @@ describe("RoleFormDepartment", () => {
         departments={departments}
       />
     );
-    expect(wrapper.find(".input-section__option").at(0).text()).toBe("kitchen");
-    expect(wrapper.find(".input-section__option").at(1).text()).toBe("service");
+    expect(wrapper.find(".form-section__option").at(0).text()).toBe("kitchen");
+    expect(wrapper.find(".form-section__option").at(1).text()).toBe("service");
   });
   it("If error, error component renders", () => {
     const wrapper = mount(

@@ -65,45 +65,45 @@ beforeEach(() => {
 
 describe("ShiftForm, wage", () => {
   it("Renders", () => {
-    expect(wrapper.find(".input-section_wage")).toHaveLength(1);
+    expect(wrapper.find(".form-section_wage")).toHaveLength(1);
   });
   it("Renders value", () => {
-    expect(wrapper.find(".input-section__input_wage").props().value).toBe(
+    expect(wrapper.find(".form-section__input_wage").props().value).toBe(
       "13.50"
     );
   });
   it("Renders updated value based on user input", () => {
     const userEvent = { target: { name: "wage", value: "14.25" } };
-    wrapper.find(".input-section__input_wage").simulate("change", userEvent);
-    expect(wrapper.find(".input-section__input_wage").props().value).toBe(
+    wrapper.find(".form-section__input_wage").simulate("change", userEvent);
+    expect(wrapper.find(".form-section__input_wage").props().value).toBe(
       "14.25"
     );
   });
   it("Renders error on blur if value is an empty string", () => {
     const userEvent = { target: { name: "wage", value: "" } };
-    wrapper.find(".input-section__input_wage").simulate("change", userEvent);
-    wrapper.find(".input-section__input_wage").simulate("blur");
+    wrapper.find(".form-section__input_wage").simulate("change", userEvent);
+    wrapper.find(".form-section__input_wage").simulate("blur");
     expect(wrapper.find(".form-error")).toHaveLength(1);
   });
   it("Renders error on blur if value is set to 0", () => {
     const userEvent = { target: { name: "wage", value: "0" } };
-    wrapper.find(".input-section__input_wage").simulate("change", userEvent);
-    wrapper.find(".input-section__input_wage").simulate("blur");
+    wrapper.find(".form-section__input_wage").simulate("change", userEvent);
+    wrapper.find(".form-section__input_wage").simulate("blur");
     expect(wrapper.find(".form-error")).toHaveLength(1);
   });
   it("Rounds value on blur if value has more than two digits to right of decimal point", () => {
     const userEvent = { target: { name: "wage", value: "9.123" } };
-    wrapper.find(".input-section__input_wage").simulate("change", userEvent);
-    wrapper.find(".input-section__input_wage").simulate("blur");
-    expect(wrapper.find(".input-section__input_wage").props().value).toBe(
+    wrapper.find(".form-section__input_wage").simulate("change", userEvent);
+    wrapper.find(".form-section__input_wage").simulate("blur");
+    expect(wrapper.find(".form-section__input_wage").props().value).toBe(
       "9.12"
     );
   });
   it("Renders two numbers to right of decimal point if one or zero numbers to right of decimal point are entered", () => {
     const userEvent = { target: { name: "wage", value: "9.1" } };
-    wrapper.find(".input-section__input_wage").simulate("change", userEvent);
-    wrapper.find(".input-section__input_wage").simulate("blur");
-    expect(wrapper.find(".input-section__input_wage").props().value).toBe(
+    wrapper.find(".form-section__input_wage").simulate("change", userEvent);
+    wrapper.find(".form-section__input_wage").simulate("blur");
+    expect(wrapper.find(".form-section__input_wage").props().value).toBe(
       "9.10"
     );
   });

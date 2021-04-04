@@ -3,13 +3,13 @@ import FormError from "../../CommonFormComponents/FormError/FormError";
 
 function RoleFormName(props) {
   return (
-    <section className="input-section input-section_role-name">
-      <label className="input-section__label" htmlFor="line-item">
+    <section className="form-section form-section_role-name">
+      <label className="form-section__label" htmlFor="line-item">
         Role
       </label>
-      <div className="input-section__input-container">
+      <div className="form-section__input-container">
         <input
-          className="input-section__input"
+          className="form-section__input"
           type="text"
           id="role"
           placeholder="Role"

@@ -5,7 +5,7 @@ import LineItemFormAmount from "./LineItemFormAmount";
 describe("LineItemFormAmount", () => {
   it("renders", () => {
     const wrapper = shallow(<LineItemFormAmount />);
-    expect(wrapper.find(".input-section_amount")).toHaveLength(1);
+    expect(wrapper.find(".form-section_amount")).toHaveLength(1);
   });
   it("If value is given, the value renders", () => {
     const wrapper = shallow(

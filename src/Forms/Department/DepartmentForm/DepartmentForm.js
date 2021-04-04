@@ -53,13 +53,13 @@ function DepartmentForm(props) {
     <form className="form form_department">
       <fieldset className="fieldset fieldset_form">
         {props.rowId !== "new" ? renderDeleteButton() : null}
-        <section className="input-section input-section_role-name">
-          <label className="input-section__label" htmlFor="line-item">
+        <section className="form-section form-section_role-name">
+          <label className="form-section__label" htmlFor="line-item">
             Department
           </label>
-          <div className="input-section__input-container">
+          <div className="form-section__input-container">
             <input
-              className="input-section__input"
+              className="form-section__input"
               type="text"
               id="department"
               placeholder="Department"

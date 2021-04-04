@@ -4,7 +4,7 @@ import Department from "../Department/Department";
 import EmptyList from "../../EmptyList/EmptyList";
 
 function Schedule(props) {
-  const [state, setState] = useState({ timePeriod: "quarter" });
+  const [timePeriod, setTimePeriod] = useState("weekly");
   let schedule = [];
 
   const renderEmptyList = () => {
@@ -13,7 +13,7 @@ function Schedule(props) {
 
   const renderResults = () => {
     schedule = COLLATE_SCHEDULE(props.data[0]);
-    let multiplier = state.timePeriod === "quarter" ? 13 : 1;
+    let multiplier = timePeriod === "quarter" ? 13 : 1;
     Object.keys(schedule).forEach((key) => {
       schedule[key].cost *= multiplier;
     });
@@ -55,9 +55,12 @@ function Schedule(props) {
     Object.keys(schedule).forEach((key) => {
       totalCost += schedule[key].cost;
     });
-    const timePeriodName = state.timePeriod === "week" ? "Weekly" : "Quarterly";
+    const timePeriodName = timePeriod === "week" ? "Weekly" : "Quarterly";
     return (
-      <button onClick={() => toggleTimePeriod()}>
+      <button
+        onClick={() => handleClick()}
+        onMouseLeave={() => handleMouseLeave()}
+      >
         <h2>
           {timePeriodName} Payroll: $
           {totalCost.toLocaleString(undefined, {
@@ -69,9 +72,13 @@ function Schedule(props) {
     );
   };
 
-  const toggleTimePeriod = () => {
-    const newTimePeriod = state.timePeriod === "week" ? "quarter" : "week";
-    setState({ ...state, timePeriod: newTimePeriod });
+  const handleClick = () => {
+    const newTimePeriod = timePeriod === "week" ? "quarter" : "week";
+    setTimePeriod(newTimePeriod);
+  };
+
+  const handleMouseLeave = (e) => {
+    document.activeElement.blur();
   };
 
   const renderSchedule = () => {

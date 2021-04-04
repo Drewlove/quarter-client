@@ -3,13 +3,13 @@ import FormError from "../../CommonFormComponents/FormError/FormError";
 
 function ShiftFormWage(props) {
   return (
-    <section className="input-section input-section_wage">
-      <label className="input-section__label" htmlFor="wage">
+    <section className="form-section form-section_wage">
+      <label className="form-section__label" htmlFor="wage">
         Hourly Wage
       </label>
-      <div className="input-section__input-container">
+      <div className="form-section__input-container">
         <input
-          className="input-section__input input-section__input_wage"
+          className="form-section__input form-section__input_wage"
           type="text"
           id="wage"
           placeholder="Hourly wage Rate"

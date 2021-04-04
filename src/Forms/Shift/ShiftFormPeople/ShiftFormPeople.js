@@ -3,13 +3,13 @@ import FormError from "../../CommonFormComponents/FormError/FormError";
 
 function ShiftFormPeople(props) {
   return (
-    <section className="input-section input-section_people">
-      <label className="input-section__label" htmlFor="people">
+    <section className="form-section form-section_people">
+      <label className="form-section__label" htmlFor="people">
         People{" "}
       </label>
-      <div className="input-section__input-container">
+      <div className="form-section__input-container">
         <input
-          className="input-section__input input-section__input_people"
+          className="form-section__input form-section__input_people"
           type="number"
           id="people"
           placeholder="No. of People"

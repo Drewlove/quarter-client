@@ -7,13 +7,13 @@ function LineItemFormAmount(props) {
   };
 
   return (
-    <section className="input-section input-section_amount">
-      <label className="input-section__label" htmlFor="amount">
+    <section className="form-section form-section_amount">
+      <label className="form-section__label" htmlFor="amount">
         Amount {getAmountSign()}{" "}
       </label>
-      <div className="input-section__input-container">
+      <div className="form-section__input-container">
         <input
-          className="input-section__input"
+          className="form-section__input"
           type="text"
           id="amount"
           placeholder={

@@ -82,50 +82,48 @@ describe("LineItemForm, Name", () => {
     const wrapper = mount(
       <LineItemForm data={dummyDataLineItemDollar} id="1" />
     );
-    expect(wrapper.find(".input-section_name")).toHaveLength(1);
+    expect(wrapper.find(".form-section_name")).toHaveLength(1);
   });
   it("If value is given, the value renders", () => {
     const wrapper = mount(
       <LineItemForm data={dummyDataLineItemDollar} id="1" />
     );
-    expect(wrapper.find(".input-section_name input").props().value).toBe(
-      "Food"
-    );
+    expect(wrapper.find(".form-section_name input").props().value).toBe("Food");
   });
   it("If no value is given, then no value renders", () => {
     const wrapper = mount(<LineItemForm data={dummyDataBlankForm} id="new" />);
-    expect(wrapper.find(".input-section_name input").props().value).toBe("");
+    expect(wrapper.find(".form-section_name input").props().value).toBe("");
   });
   it("If input value is changed, then changed value renders", () => {
     const wrapper = mount(
       <LineItemForm data={dummyDataLineItemDollar} id="1" />
     );
-    wrapper.find(".input-section_name input").simulate("change", {
+    wrapper.find(".form-section_name input").simulate("change", {
       target: {
         name: "line_item_name",
         value: "coffee",
       },
     });
-    expect(wrapper.find(".input-section_name input").props().value).toBe(
+    expect(wrapper.find(".form-section_name input").props().value).toBe(
       "coffee"
     );
   });
   it("If input has focus, then blurs focus with no value, error component renders", () => {
     const wrapper = mount(<LineItemForm data={dummyDataBlankForm} id="new" />);
-    wrapper.find(".input-section_name input").simulate("focus");
-    wrapper.find(".input-section_name input").simulate("blur");
-    expect(wrapper.find(".input-section_name .form-error")).toHaveLength(1);
+    wrapper.find(".form-section_name input").simulate("focus");
+    wrapper.find(".form-section_name input").simulate("blur");
+    expect(wrapper.find(".form-section_name .form-error")).toHaveLength(1);
   });
   it("If input is changed from a value of 1 character or more to a value of 0 characters, error renders", () => {
     const wrapper = mount(
       <LineItemForm data={dummyDataLineItemDollar} id="1" />
     );
-    wrapper.find(".input-section_name input").simulate("change", {
+    wrapper.find(".form-section_name input").simulate("change", {
       target: {
         name: "line_item_name",
         value: "",
       },
     });
-    expect(wrapper.find(".input-section_name .form-error")).toHaveLength(1);
+    expect(wrapper.find(".form-section_name .form-error")).toHaveLength(1);
   });
 });

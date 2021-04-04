@@ -7,15 +7,15 @@ describe("ShiftFormPayrollTax", () => {
     const wrapper = mount(
       <ShiftFormPayrollTax error="" handleChangePayrollTax={() => null} />
     );
-    expect(wrapper.find(".input-section_payroll-tax")).toHaveLength(1);
+    expect(wrapper.find(".form-section_payroll-tax")).toHaveLength(1);
   });
   it("Renders the value correctly", () => {
     const wrapper = mount(
       <ShiftFormPayrollTax value="7.65" handleChangePayrollTax={() => null} />
     );
-    expect(
-      wrapper.find(".input-section__input_payroll-tax").props().value
-    ).toBe("7.65");
+    expect(wrapper.find(".form-section__input_payroll-tax").props().value).toBe(
+      "7.65"
+    );
   });
   it("Renders error message if there is an error", () => {
     const wrapper = mount(

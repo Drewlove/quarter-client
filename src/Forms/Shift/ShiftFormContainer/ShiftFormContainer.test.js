@@ -117,21 +117,21 @@ describe("ShiftFormContainer", () => {
       </MemoryRouter>
     );
     expect(wrapper.find(".form_shift")).toHaveLength(1);
-    expect(wrapper.find(".input-section__input_department").props().value).toBe(
+    expect(wrapper.find(".form-section__input_department").props().value).toBe(
       "2"
     );
-    expect(wrapper.find(".input-section__input_role").props().value).toBe("4");
-    expect(wrapper.find(".input-section__input_people").props().value).toBe(2);
-    expect(wrapper.find(".input-section__input_wage").props().value).toBe(
+    expect(wrapper.find(".form-section__input_role").props().value).toBe("4");
+    expect(wrapper.find(".form-section__input_people").props().value).toBe(2);
+    expect(wrapper.find(".form-section__input_wage").props().value).toBe(
       "13.50"
     );
-    expect(
-      wrapper.find(".input-section__input_payroll-tax").props().value
-    ).toBe("7.65");
-    expect(wrapper.find(".input-section__input_time").at(0).props().value).toBe(
+    expect(wrapper.find(".form-section__input_payroll-tax").props().value).toBe(
+      "7.65"
+    );
+    expect(wrapper.find(".form-section__input_time").at(0).props().value).toBe(
       "09:00:00"
     );
-    expect(wrapper.find(".input-section__input_time").at(1).props().value).toBe(
+    expect(wrapper.find(".form-section__input_time").at(1).props().value).toBe(
       "16:30:00"
     );
 

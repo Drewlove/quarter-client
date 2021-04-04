@@ -65,7 +65,7 @@ beforeEach(() => {
 
 describe("ShiftForm, Department", () => {
   it("Renders department section", () => {
-    expect(wrapper.find(".input-section_department")).toHaveLength(1);
+    expect(wrapper.find(".form-section_department")).toHaveLength(1);
   });
   it("Renders all departments from data", () => {
     expect(wrapper.find(".option_shift-department")).toHaveLength(4);
@@ -96,7 +96,7 @@ describe("ShiftForm, Department", () => {
     );
   });
   it("Renders the selected department", () => {
-    expect(wrapper.find(".input-section__input_department").props().value).toBe(
+    expect(wrapper.find(".form-section__input_department").props().value).toBe(
       "2"
     );
   });
@@ -105,9 +105,9 @@ describe("ShiftForm, Department", () => {
       target: { name: "shift_department", value: "1" },
     };
     wrapper
-      .find(".input-section__input_department")
+      .find(".form-section__input_department")
       .simulate("change", userEvent);
-    expect(wrapper.find(".input-section__input_department").props().value).toBe(
+    expect(wrapper.find(".form-section__input_department").props().value).toBe(
       "1"
     );
   });

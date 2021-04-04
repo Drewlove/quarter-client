@@ -80,7 +80,7 @@ describe("LineItemForm, Category", () => {
     const wrapper = mount(
       <LineItemForm data={dummyDataLineItemDollar} id="1" />
     );
-    expect(wrapper.find(".input-section_category")).toHaveLength(1);
+    expect(wrapper.find(".form-section_category")).toHaveLength(1);
   });
   it("If value is given, the value renders", () => {
     const wrapper = mount(
@@ -94,40 +94,40 @@ describe("LineItemForm, Category", () => {
   });
   it("renders category options", () => {
     const wrapper = mount(<LineItemForm data={dummyDataLineItemDollar} />);
-    expect(wrapper.find(".input-section_category option")).toHaveLength(4);
-    expect(wrapper.find(".input-section_category option").at(0).text()).toBe(
+    expect(wrapper.find(".form-section_category option")).toHaveLength(4);
+    expect(wrapper.find(".form-section_category option").at(0).text()).toBe(
       "- Select Category -"
     );
-    expect(wrapper.find(".input-section_category option").at(1).text()).toBe(
+    expect(wrapper.find(".form-section_category option").at(1).text()).toBe(
       "Sales"
     );
-    expect(wrapper.find(".input-section_category option").at(2).text()).toBe(
+    expect(wrapper.find(".form-section_category option").at(2).text()).toBe(
       "COGS"
     );
-    expect(wrapper.find(".input-section_category option").at(3).text()).toBe(
+    expect(wrapper.find(".form-section_category option").at(3).text()).toBe(
       "Overhead"
     );
   });
   it("If user clicks save and value is blank, error component renders", () => {
     const wrapper = mount(<LineItemForm data={dummyDataBlankForm} id="new" />);
     wrapper.find("#button-save").simulate("click");
-    expect(wrapper.find(".input-section_category .form-error")).toHaveLength(1);
+    expect(wrapper.find(".form-section_category .form-error")).toHaveLength(1);
   });
   it("If user clicks save and value is valid, no error component renders", () => {
     const wrapper = mount(
       <LineItemForm data={dummyDataLineItemDollar} id="1" />
     );
     wrapper.find("#button-save").simulate("click");
-    expect(wrapper.find(".input-section_category .form-error")).toHaveLength(0);
+    expect(wrapper.find(".form-section_category .form-error")).toHaveLength(0);
   });
   it("updates value based on user input", () => {
     const wrapper = mount(
       <LineItemForm data={dummyDataLineItemDollar} id="1" />
     );
-    wrapper.find(".input-section_category select").simulate("change", {
+    wrapper.find(".form-section_category select").simulate("change", {
       target: { name: "line_item_category", value: "cogs" },
     });
-    expect(wrapper.find(".input-section_category select").props().value).toBe(
+    expect(wrapper.find(".form-section_category select").props().value).toBe(
       "cogs"
     );
   });

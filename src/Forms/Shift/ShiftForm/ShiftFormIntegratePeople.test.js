@@ -65,26 +65,24 @@ beforeEach(() => {
 
 describe("ShiftForm, people", () => {
   it("Renders", () => {
-    expect(wrapper.find(".input-section__input_people")).toHaveLength(1);
+    expect(wrapper.find(".form-section__input_people")).toHaveLength(1);
   });
   it("Renders value", () => {
-    expect(wrapper.find(".input-section__input_people").props().value).toBe(2);
+    expect(wrapper.find(".form-section__input_people").props().value).toBe(2);
   });
   it("Renders updated value based on user input", () => {
     const userEvent = { target: { name: "people", value: "3" } };
-    wrapper.find(".input-section__input_people").simulate("change", userEvent);
-    expect(wrapper.find(".input-section__input_people").props().value).toBe(
-      "3"
-    );
+    wrapper.find(".form-section__input_people").simulate("change", userEvent);
+    expect(wrapper.find(".form-section__input_people").props().value).toBe("3");
   });
   it("Renders error if value is an empty string", () => {
     const userEvent = { target: { name: "people", value: "" } };
-    wrapper.find(".input-section__input_people").simulate("change", userEvent);
+    wrapper.find(".form-section__input_people").simulate("change", userEvent);
     expect(wrapper.find(".form-error")).toHaveLength(1);
   });
   it("Renders error if value is set to 0", () => {
     const userEvent = { target: { name: "people", value: "0" } };
-    wrapper.find(".input-section__input_people").simulate("change", userEvent);
+    wrapper.find(".form-section__input_people").simulate("change", userEvent);
     expect(wrapper.find(".form-error")).toHaveLength(1);
   });
 });

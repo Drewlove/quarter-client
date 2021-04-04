@@ -7,7 +7,7 @@ describe("RoleFormRoleName", () => {
     const wrapper = shallow(
       <RoleFormRoleName value="chef" formError="" handleChange={() => null} />
     );
-    expect(wrapper.find(".input-section_role-name")).toHaveLength(1);
+    expect(wrapper.find(".form-section_role-name")).toHaveLength(1);
   });
   it("renders value", () => {
     const wrapper = mount(

@@ -65,7 +65,7 @@ beforeEach(() => {
 
 describe("ShiftForm, Role", () => {
   it("Renders role section", () => {
-    expect(wrapper.find(".input-section_role")).toHaveLength(1);
+    expect(wrapper.find(".form-section_role")).toHaveLength(1);
   });
   it("Renders all roles from data", () => {
     expect(wrapper.find(".option_shift-role")).toHaveLength(3);
@@ -82,13 +82,13 @@ describe("ShiftForm, Role", () => {
     expect(wrapper.find(".option_shift-role").at(2).props().value).toBe("4");
   });
   it("Renders the selected role", () => {
-    expect(wrapper.find(".input-section__input_role").props().value).toBe("4");
+    expect(wrapper.find(".form-section__input_role").props().value).toBe("4");
   });
   it("Updates the list of available roles to correspond with user selected department", () => {
     const userEvent = {
       target: { name: "shift_department", value: "1" },
     };
-    wrapper.find(".input-section__input_role").simulate("change", userEvent);
+    wrapper.find(".form-section__input_role").simulate("change", userEvent);
     expect(wrapper.find(".option_shift-role").at(1).props().value).toBe("2");
     expect(wrapper.find(".option_shift-role").at(2).props().value).toBe("1");
   });
@@ -96,7 +96,7 @@ describe("ShiftForm, Role", () => {
     const userEvent = {
       target: { name: "shift_role", value: "3" },
     };
-    wrapper.find(".input-section__input_role").simulate("change", userEvent);
-    expect(wrapper.find(".input-section__input_role").props().value).toBe("3");
+    wrapper.find(".form-section__input_role").simulate("change", userEvent);
+    expect(wrapper.find(".form-section__input_role").props().value).toBe("3");
   });
 });

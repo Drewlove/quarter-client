@@ -65,40 +65,40 @@ beforeEach(() => {
 
 describe("ShiftForm, payroll tax", () => {
   it("Renders", () => {
-    expect(wrapper.find(".input-section_payroll-tax")).toHaveLength(1);
+    expect(wrapper.find(".form-section_payroll-tax")).toHaveLength(1);
   });
   it("Renders value", () => {
-    expect(
-      wrapper.find(".input-section__input_payroll-tax").props().value
-    ).toBe("7.65");
+    expect(wrapper.find(".form-section__input_payroll-tax").props().value).toBe(
+      "7.65"
+    );
   });
   it("Renders updated value based on user input", () => {
     const userEvent = { target: { name: "payroll_tax", value: "8.50" } };
     wrapper
-      .find(".input-section__input_payroll-tax")
+      .find(".form-section__input_payroll-tax")
       .simulate("change", userEvent);
-    expect(
-      wrapper.find(".input-section__input_payroll-tax").props().value
-    ).toBe("8.50");
+    expect(wrapper.find(".form-section__input_payroll-tax").props().value).toBe(
+      "8.50"
+    );
   });
   it("Rounds value on blur if value has more than two digits to right of decimal point", () => {
     const userEvent = { target: { name: "wage", value: "9.123" } };
     wrapper
-      .find(".input-section__input_payroll-tax")
+      .find(".form-section__input_payroll-tax")
       .simulate("change", userEvent);
-    wrapper.find(".input-section__input_payroll-tax").simulate("blur");
-    expect(
-      wrapper.find(".input-section__input_payroll-tax").props().value
-    ).toBe("9.12");
+    wrapper.find(".form-section__input_payroll-tax").simulate("blur");
+    expect(wrapper.find(".form-section__input_payroll-tax").props().value).toBe(
+      "9.12"
+    );
   });
   it("Renders two numbers to right of decimal point if one or zero numbers to right of decimal point are entered", () => {
     const userEvent = { target: { name: "payroll_tax", value: "9.1" } };
     wrapper
-      .find(".input-section__input_payroll-tax")
+      .find(".form-section__input_payroll-tax")
       .simulate("change", userEvent);
-    wrapper.find(".input-section__input_payroll-tax").simulate("blur");
-    expect(
-      wrapper.find(".input-section__input_payroll-tax").props().value
-    ).toBe("9.10");
+    wrapper.find(".form-section__input_payroll-tax").simulate("blur");
+    expect(wrapper.find(".form-section__input_payroll-tax").props().value).toBe(
+      "9.10"
+    );
   });
 });

@@ -6,7 +6,7 @@ describe("ShiftFormDays", () => {
   const days = [0, 1, 2];
   it("renders", () => {
     const wrapper = shallow(<ShiftFormDays days={days} formError="" />);
-    expect(wrapper.find(".input-section_days")).toHaveLength(1);
+    expect(wrapper.find(".form-section_days")).toHaveLength(1);
   });
   it("Checkboxes that should be checked, are checked", () => {
     const wrapper = shallow(<ShiftFormDays days={days} formError="" />);

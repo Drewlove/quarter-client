@@ -8,7 +8,7 @@ function RoleFormDepartment(props) {
         <option
           value={key.department_id}
           key={key.department_id}
-          className="input-section__option"
+          className="form-section__option"
         >
           {key.department_name}
         </option>
@@ -17,13 +17,13 @@ function RoleFormDepartment(props) {
   };
 
   return (
-    <section className="input-section input-section_role-department">
-      <label className="input-section__label" htmlFor="department">
+    <section className="form-section form-section_role-department">
+      <label className="form-section__label" htmlFor="department">
         Department
       </label>
-      <div className="input-section__input-container">
+      <div className="form-section__input-container">
         <select
-          className="input-section__input"
+          className="form-section__input"
           id="department"
           onChange={props.handleChange}
           name="department_id"

@@ -11,7 +11,7 @@ const categories = [
 describe("LineItemFormCategory", () => {
   it("renders", () => {
     const wrapper = shallow(<LineItemFormCategory categories={categories} />);
-    expect(wrapper.find(".input-section")).toHaveLength(1);
+    expect(wrapper.find(".form-section")).toHaveLength(1);
   });
   it("If value is given, the value renders", () => {
     const wrapper = shallow(

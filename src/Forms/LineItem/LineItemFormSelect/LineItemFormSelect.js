@@ -15,15 +15,15 @@ function LineItemFormSelect(props) {
 
   return (
     <section
-      className={`input-section input-section_select ${props.optionalClass}`}
+      className={`form-section form-section_select ${props.optionalClass}`}
     >
-      <label className="input-section__label" htmlFor={props.name}>
+      <label className="form-section__label" htmlFor={props.name}>
         {CapitalizeAllWords(props.name)}
       </label>
-      <div className="input-section__input-container">
+      <div className="form-section__input-container">
         <select
-          className={`input-section__input ${
-            props.error ? "input-section__error" : ""
+          className={`form-section__input ${
+            props.error ? "form-section__error" : ""
           }`}
           id={props.name}
           onChange={props.handleChange}

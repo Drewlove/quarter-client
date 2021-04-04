@@ -5,7 +5,7 @@ import LineItemFormSelect from "./LineItemFormSelect";
 describe("LineItemFormSelect", () => {
   it("renders", () => {
     const wrapper = mount(<LineItemFormSelect options={[]} />);
-    expect(wrapper.find(".input-section_select")).toHaveLength(1);
+    expect(wrapper.find(".form-section_select")).toHaveLength(1);
   });
   it("If error, error component renders", () => {
     const wrapper = mount(<LineItemFormSelect error="Error" />);

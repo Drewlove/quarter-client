@@ -26,7 +26,7 @@ describe("ShiftFormDepartment", () => {
         departments={departments}
       />
     );
-    expect(wrapper.find(".input-section_department")).toHaveLength(1);
+    expect(wrapper.find(".form-section_department")).toHaveLength(1);
   });
   it("Renders value", () => {
     const wrapper = mount(
@@ -37,10 +37,10 @@ describe("ShiftFormDepartment", () => {
         departments={departments}
       />
     );
-    expect(wrapper.find(".input-section__input_department").props().value).toBe(
+    expect(wrapper.find(".form-section__input_department").props().value).toBe(
       "1"
     );
-    expect(wrapper.find(".input-section__input_department").props().value).toBe(
+    expect(wrapper.find(".form-section__input_department").props().value).toBe(
       "1"
     );
   });

@@ -82,7 +82,7 @@ describe("LineItemForm, AmountType", () => {
     const wrapper = mount(
       <LineItemForm data={dummyDataLineItemDollar} id="1" />
     );
-    expect(wrapper.find(".input-section_amount-type")).toHaveLength(1);
+    expect(wrapper.find(".form-section_amount-type")).toHaveLength(1);
   });
   it("if new line item form, default value is set to dollars", () => {
     const wrapper = mount(<LineItemForm data={dummyDataBlankForm} id="new" />);

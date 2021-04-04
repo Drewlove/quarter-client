@@ -28,7 +28,7 @@ describe("ShiftFormRole", () => {
     const wrapper = mount(
       <ShiftFormRole handleChange={() => null} formError="" roles={roles} />
     );
-    expect(wrapper.find(".input-section_role")).toHaveLength(1);
+    expect(wrapper.find(".form-section_role")).toHaveLength(1);
   });
   it("Renders value", () => {
     const wrapper = mount(
@@ -39,7 +39,7 @@ describe("ShiftFormRole", () => {
         roles={roles}
       />
     );
-    expect(wrapper.find(".input-section__input_role").props().value).toBe("1");
+    expect(wrapper.find(".form-section__input_role").props().value).toBe("1");
   });
   it("Renders error message if there is an error", () => {
     const wrapper = mount(

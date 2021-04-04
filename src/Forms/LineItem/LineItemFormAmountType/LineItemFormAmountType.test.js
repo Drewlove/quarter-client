@@ -5,7 +5,7 @@ import LineItemFormAmountType from "./LineItemFormAmountType";
 describe("LineItemFormAmountType", () => {
   it("renders", () => {
     const wrapper = shallow(<LineItemFormAmountType />);
-    expect(wrapper.find(".input-section_amount-type")).toHaveLength(1);
+    expect(wrapper.find(".form-section_amount-type")).toHaveLength(1);
   });
   it("if value is 'dollars', dollar input is checked", () => {
     const wrapper = shallow(<LineItemFormAmountType value="dollars" />);

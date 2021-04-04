@@ -4,14 +4,14 @@ import FormError from "../../CommonFormComponents/FormError/FormError";
 function ShiftFormTime(props) {
   return (
     <>
-      <section className="input-section input-section_time">
-        <label className="input-section__label" htmlFor="start-time">
+      <section className="form-section form-section_time">
+        <label className="form-section__label" htmlFor="start-time">
           Start
         </label>
-        <div className="input-section__input-container">
+        <div className="form-section__input-container">
           <input
             type="time"
-            className="input-section__input input-section__input_time"
+            className="form-section__input form-section__input_time"
             id="start-time"
             onChange={props.handleChange}
             onBlur={props.handleBlur}
@@ -23,14 +23,14 @@ function ShiftFormTime(props) {
           ) : null}
         </div>
       </section>
-      <section className="input-section input-section_time">
-        <label className="input-section__label" htmlFor="end-time">
+      <section className="form-section form-section_time">
+        <label className="form-section__label" htmlFor="end-time">
           End
         </label>
-        <div className="input-section__input-container">
+        <div className="form-section__input-container">
           <input
             type="time"
-            className="input-section__input input-section__input_time"
+            className="form-section__input form-section__input_time"
             id="end-time"
             onChange={props.handleChange}
             onBlur={props.handleBlur}

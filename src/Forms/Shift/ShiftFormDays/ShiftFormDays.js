@@ -42,8 +42,8 @@ function ShiftFormDays(props) {
   };
 
   return (
-    <section className="input-section input-section_days">
-      <label className="input-section__label">Days</label>
+    <section className="form-section form-section_days">
+      <label className="form-section__label">Days</label>
       <div>
         <div className="toggle-container">{renderDays()}</div>
         {props.formError.length > 0 ? (

@@ -6,7 +6,7 @@ function LineItemFormCategory(props) {
     return props.categories.map((key) => {
       return (
         <option
-          className="input-section__input-option"
+          className="form-section__input-option"
           value={key.actualVal}
           key={key.actualVal}
         >
@@ -17,13 +17,13 @@ function LineItemFormCategory(props) {
   };
 
   return (
-    <section className="input-section input-section_category">
-      <label className="input-section__label" htmlFor="line_item_category">
+    <section className="form-section form-section_category">
+      <label className="form-section__label" htmlFor="line_item_category">
         Category
       </label>
-      <div className="input-section__input-container">
+      <div className="form-section__input-container">
         <select
-          className="input-section__input"
+          className="form-section__input"
           id="line_item_category"
           onChange={props.handleChange}
           name="line_item_category"

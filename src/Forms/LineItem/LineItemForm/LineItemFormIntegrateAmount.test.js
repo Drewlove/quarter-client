@@ -82,65 +82,65 @@ describe("LineItemForm, Amount", () => {
     const wrapper = mount(
       <LineItemForm data={dummyDataLineItemDollar} id="1" />
     );
-    expect(wrapper.find(".input-section_amount")).toHaveLength(1);
+    expect(wrapper.find(".form-section_amount")).toHaveLength(1);
   });
   it("If value is given, the value renders", () => {
     const wrapper = mount(
       <LineItemForm data={dummyDataLineItemDollar} id="1" />
     );
-    expect(wrapper.find(".input-section_amount input").props().value).toBe(
+    expect(wrapper.find(".form-section_amount input").props().value).toBe(
       "1,000.25"
     );
   });
   it("If no value is given, then no value renders", () => {
     const wrapper = mount(<LineItemForm data={dummyDataBlankForm} id="new" />);
-    expect(wrapper.find(".input-section_amount input").props().value).toBe("");
+    expect(wrapper.find(".form-section_amount input").props().value).toBe("");
   });
 
   it("If input value is changed, then changed value renders", () => {
     const wrapper = mount(
       <LineItemForm data={dummyDataLineItemDollar} id="1" />
     );
-    wrapper.find(".input-section_amount input").simulate("change", {
+    wrapper.find(".form-section_amount input").simulate("change", {
       target: {
         name: "line_item_amount",
         value: "99.65",
       },
     });
-    expect(wrapper.find(".input-section_amount input").props().value).toBe(
+    expect(wrapper.find(".form-section_amount input").props().value).toBe(
       "99.65"
     );
   });
   it("If input has focus, then blurs focus with no value, error component renders", () => {
     const wrapper = mount(<LineItemForm data={dummyDataBlankForm} id="new" />);
-    wrapper.find(".input-section_amount input").simulate("focus");
-    wrapper.find(".input-section_amount input").simulate("blur");
-    expect(wrapper.find(".input-section_amount .form-error")).toHaveLength(1);
+    wrapper.find(".form-section_amount input").simulate("focus");
+    wrapper.find(".form-section_amount input").simulate("blur");
+    expect(wrapper.find(".form-section_amount .form-error")).toHaveLength(1);
   });
   it("If input is changed to a negative value and then user blurs focus, error component renders", () => {
     const wrapper = mount(
       <LineItemForm data={dummyDataLineItemDollar} id="1" />
     );
-    wrapper.find(".input-section_amount input").simulate("change", {
+    wrapper.find(".form-section_amount input").simulate("change", {
       target: {
         name: "line_item_amount",
         value: "-1",
       },
     });
-    wrapper.find(".input-section_amount input").simulate("blur");
-    expect(wrapper.find(".input-section_amount .form-error")).toHaveLength(1);
+    wrapper.find(".form-section_amount input").simulate("blur");
+    expect(wrapper.find(".form-section_amount .form-error")).toHaveLength(1);
   });
   it("If input is changed to value greater than 9,999,999.99 and then user blurs focus, error component renders", () => {
     const wrapper = mount(
       <LineItemForm data={dummyDataLineItemDollar} id="1" />
     );
-    wrapper.find(".input-section_amount input").simulate("change", {
+    wrapper.find(".form-section_amount input").simulate("change", {
       target: {
         name: "line_item_amount",
         value: "10,000,000.00",
       },
     });
-    wrapper.find(".input-section_amount input").simulate("blur");
-    expect(wrapper.find(".input-section_amount .form-error")).toHaveLength(1);
+    wrapper.find(".form-section_amount input").simulate("blur");
+    expect(wrapper.find(".form-section_amount .form-error")).toHaveLength(1);
   });
 });

@@ -28,11 +28,11 @@ const lineItems = {
 describe("LineItemFormPercentOf", () => {
   it("renders", () => {
     const wrapper = shallow(<LineItemFormPercentOf lineItems={lineItems} />);
-    expect(wrapper.find(".input-section_percent-of")).toHaveLength(1);
+    expect(wrapper.find(".form-section_percent-of")).toHaveLength(1);
   });
   it("renders", () => {
     const wrapper = shallow(<LineItemFormPercentOf lineItems={lineItems} />);
-    expect(wrapper.find(".input-section_percent-of")).toHaveLength(1);
+    expect(wrapper.find(".form-section_percent-of")).toHaveLength(1);
   });
   it("If error, error component renders", () => {
     const wrapper = mount(

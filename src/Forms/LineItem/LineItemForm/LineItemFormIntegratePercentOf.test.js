@@ -83,20 +83,20 @@ describe("LineItemForm, PercentOf", () => {
     const wrapper = mount(
       <LineItemForm data={dummyDataLineItemPercent} id="3" />
     );
-    expect(wrapper.find(".input-section_percent-of")).toHaveLength(1);
+    expect(wrapper.find(".form-section_percent-of")).toHaveLength(1);
   });
   it("If form object amount_type is 'dollars', then the component does not render", () => {
     const wrapper = mount(
       <LineItemForm data={dummyDataLineItemDollar} id="3" />
     );
-    expect(wrapper.find(".input-section_percent-of")).toHaveLength(0);
+    expect(wrapper.find(".form-section_percent-of")).toHaveLength(0);
   });
 
   it("If form object has a percent_of value, then the value renders", () => {
     const wrapper = mount(
       <LineItemForm data={dummyDataLineItemPercent} id="3" />
     );
-    expect(wrapper.find(".input-section_percent-of select").props().value).toBe(
+    expect(wrapper.find(".form-section_percent-of select").props().value).toBe(
       1
     );
   });
@@ -104,33 +104,33 @@ describe("LineItemForm, PercentOf", () => {
     const wrapper = mount(
       <LineItemForm data={dummyDataLineItemDollar} id="1" />
     );
-    expect(wrapper.find(".input-section_percent-of select")).toHaveLength(0);
+    expect(wrapper.find(".form-section_percent-of select")).toHaveLength(0);
     wrapper.find("#percent").simulate("change", {
       target: { name: "line_item_amount_type", value: "percent" },
     });
-    expect(wrapper.find(".input-section_percent-of select")).toHaveLength(1);
+    expect(wrapper.find(".form-section_percent-of select")).toHaveLength(1);
   });
   it("renders options", () => {
     const wrapper = mount(
       <LineItemForm data={dummyDataLineItemPercent} id="3" />
     );
-    expect(wrapper.find(".input-section_percent-of option")).toHaveLength(6);
-    expect(wrapper.find(".input-section_percent-of option").at(0).text()).toBe(
+    expect(wrapper.find(".form-section_percent-of option")).toHaveLength(6);
+    expect(wrapper.find(".form-section_percent-of option").at(0).text()).toBe(
       "- Select Line Item -"
     );
-    expect(wrapper.find(".input-section_percent-of option").at(1).text()).toBe(
+    expect(wrapper.find(".form-section_percent-of option").at(1).text()).toBe(
       "sales - Food"
     );
-    expect(wrapper.find(".input-section_percent-of option").at(2).text()).toBe(
+    expect(wrapper.find(".form-section_percent-of option").at(2).text()).toBe(
       "sales - Beverage"
     );
-    expect(wrapper.find(".input-section_percent-of option").at(3).text()).toBe(
+    expect(wrapper.find(".form-section_percent-of option").at(3).text()).toBe(
       "cogs - Beverage"
     );
-    expect(wrapper.find(".input-section_percent-of option").at(4).text()).toBe(
+    expect(wrapper.find(".form-section_percent-of option").at(4).text()).toBe(
       "overhead - Rent"
     );
-    expect(wrapper.find(".input-section_percent-of option").at(5).text()).toBe(
+    expect(wrapper.find(".form-section_percent-of option").at(5).text()).toBe(
       "overhead - Utilities"
     );
   });

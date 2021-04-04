@@ -65,7 +65,7 @@ beforeEach(() => {
 
 describe("ShiftForm, days", () => {
   it("Renders", () => {
-    expect(wrapper.find(".input-section_days")).toHaveLength(1);
+    expect(wrapper.find(".form-section_days")).toHaveLength(1);
   });
   it("Renders which checkboxes are checked", () => {
     expect(

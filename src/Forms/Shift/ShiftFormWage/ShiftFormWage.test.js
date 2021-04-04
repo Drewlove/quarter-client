@@ -7,13 +7,13 @@ describe("ShiftFormWage", () => {
     const wrapper = mount(
       <ShiftFormWage error="" handleChangeWage={() => null} />
     );
-    expect(wrapper.find(".input-section_wage")).toHaveLength(1);
+    expect(wrapper.find(".form-section_wage")).toHaveLength(1);
   });
   it("Renders the value correctly", () => {
     const wrapper = mount(
       <ShiftFormWage value="15.50" handleChangeWage={() => null} />
     );
-    expect(wrapper.find(".input-section__input_wage").props().value).toBe(
+    expect(wrapper.find(".form-section__input_wage").props().value).toBe(
       "15.50"
     );
   });

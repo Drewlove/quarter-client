@@ -3,13 +3,13 @@ import FormError from "../../CommonFormComponents/FormError/FormError";
 
 function ShiftFormPayrollTax(props) {
   return (
-    <section className="input-section input-section_payroll-tax">
-      <label className="input-section__label" htmlFor="payroll_tax">
+    <section className="form-section form-section_payroll-tax">
+      <label className="form-section__label" htmlFor="payroll_tax">
         Payroll Tax (%)
       </label>
-      <div className="input-section__input-container">
+      <div className="form-section__input-container">
         <input
-          className="input-section__input input-section__input_payroll-tax"
+          className="form-section__input form-section__input_payroll-tax"
           type="text"
           id="payroll_tax"
           placeholder="Payroll Tax"

@@ -26,13 +26,13 @@ function LineItemFormPercentOf(props) {
   };
 
   return (
-    <section className="input-section input-section_percent-of">
-      <label className="input-section__label" htmlFor="percent_of">
+    <section className="form-section form-section_percent-of">
+      <label className="form-section__label" htmlFor="percent_of">
         Percent Of
       </label>
-      <div className="input-section__input-container">
+      <div className="form-section__input-container">
         <select
-          className="input-section__input"
+          className="form-section__input"
           id="percent_of"
           onChange={(e) => props.onChange(e)}
           name="percent_of"

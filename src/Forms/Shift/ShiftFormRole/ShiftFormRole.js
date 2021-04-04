@@ -32,13 +32,13 @@ function ShiftFormRole(props) {
   };
 
   return (
-    <section className="input-section input-section_role">
-      <label className="input-section__label" htmlFor="role">
+    <section className="form-section form-section_role">
+      <label className="form-section__label" htmlFor="role">
         Role
       </label>
-      <div className="input-section__input-container">
+      <div className="form-section__input-container">
         <select
-          className="input-section__input input-section__input_role"
+          className="form-section__input form-section__input_role"
           id="role"
           onChange={props.handleChange}
           name="shift_role"

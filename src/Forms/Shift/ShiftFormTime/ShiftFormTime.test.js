@@ -5,13 +5,13 @@ import { mount, shallow } from "enzyme";
 describe("ShiftFormTime", () => {
   it("Renders", () => {
     const wrapper = mount(<ShiftFormTime />);
-    expect(wrapper.find(".input-section_time")).toHaveLength(2);
+    expect(wrapper.find(".form-section_time")).toHaveLength(2);
   });
   it("Renders the start time accurately", () => {
     const wrapper = mount(
       <ShiftFormTime handleChange={() => null} startTime="09:00:00" />
     );
-    expect(wrapper.find(".input-section__input_time").at(0).props().value).toBe(
+    expect(wrapper.find(".form-section__input_time").at(0).props().value).toBe(
       "09:00:00"
     );
   });
@@ -19,7 +19,7 @@ describe("ShiftFormTime", () => {
     const wrapper = mount(
       <ShiftFormTime handleChange={() => null} endTime="17:00:00" />
     );
-    expect(wrapper.find(".input-section__input_time").at(1).props().value).toBe(
+    expect(wrapper.find(".form-section__input_time").at(1).props().value).toBe(
       "17:00:00"
     );
   });

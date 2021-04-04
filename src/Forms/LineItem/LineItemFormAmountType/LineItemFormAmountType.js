@@ -3,11 +3,11 @@ import Error from "../../CommonFormComponents/FormError/FormError";
 
 function LineItemFormAmountType(props) {
   return (
-    <section className="input-section input-section_amount-type">
-      <p className="input-section__label">Amount Type</p>
-      <div className="input-section__input-container">
-        <div className="input-section__input input-section__input_radio">
-          <div className="input-section__radio-container">
+    <section className="form-section form-section_amount-type">
+      <p className="form-section__label">Amount Type</p>
+      <div className="form-section__input-container">
+        <div className="form-section__input form-section__input_radio">
+          <div className="form-section__radio-container">
             <input
               type="radio"
               className="radio"
@@ -19,7 +19,7 @@ function LineItemFormAmountType(props) {
             />
             <label htmlFor="dollars">Dollars</label>
           </div>
-          <div className="input-section__radio-container">
+          <div className="form-section__radio-container">
             <input
               type="radio"
               className="radio"

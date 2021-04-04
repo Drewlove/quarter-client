@@ -26,13 +26,13 @@ function ShiftFormDepartment(props) {
   };
 
   return (
-    <section className={`input-section input-section_department`}>
-      <label className="input-section__label" htmlFor="department">
+    <section className="form-section form-section_department">
+      <label className="form-section__label" htmlFor="department">
         Department
       </label>
-      <div className="input-section__input-container">
+      <div className="form-section__input-container">
         <select
-          className="input-section__input input-section__input_department"
+          className="form-section__input form-section__input_department"
           id="department"
           onChange={props.handleChange}
           name="shift_department"

@@ -25,6 +25,8 @@ function ShiftForm(props) {
     shift_day: [],
   });
 
+  const [timePeriod, setTimePeriod] = useState("quarter");
+
   const [roles, setRoles] = useState([]);
   const [departments, setDepartments] = useState([]);
 
@@ -111,7 +113,8 @@ function ShiftForm(props) {
   };
 
   const getWeeklyTotal = () => {
-    let sum = SUM_WEEKLY_SHIFT_TOTAL(formData);
+    const multiplier = timePeriod === "quarter" ? 13 : 1;
+    let sum = SUM_WEEKLY_SHIFT_TOTAL(formData) * multiplier;
     return Number(sum).toLocaleString(undefined, {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
@@ -128,16 +131,33 @@ function ShiftForm(props) {
     );
   };
 
+  const toggleTimePeriod = (e) => {
+    e.preventDefault();
+    const newTimePeriod = timePeriod === "week" ? "quarter" : "week";
+    setTimePeriod(newTimePeriod);
+  };
+
+  const handleMouseLeave = (e) => {
+    document.activeElement.blur();
+  };
+
+  const timePeriodName = timePeriod === "week" ? "Weekly" : "Quarterly";
+
   return (
     <main className="main">
       <form className="form form_shift">
         <fieldset className="fieldset fieldset_form">
-          <section className="fieldset__weekly-total">
-            <div className="form_shift__weekly-total">Weekly Total:</div>
-            <div>
-              <p>${getWeeklyTotal()}</p>
-              {props.rowId !== "new" ? renderDeleteButton() : null}
-            </div>
+          {props.rowId !== "new" ? renderDeleteButton() : null}
+          <section className="form-section__shift-total">
+            <button
+              // className="form-section__shift-total"
+              onClick={(e) => toggleTimePeriod(e)}
+              onMouseLeave={() => handleMouseLeave()}
+            >
+              <div>
+                {timePeriodName} Total: ${getWeeklyTotal()}
+              </div>
+            </button>
           </section>
           <ShiftFormDepartment
             handleChange={(e) => handleChange(e)}
