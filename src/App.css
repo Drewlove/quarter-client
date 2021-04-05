@@ -41,9 +41,7 @@
   font-size: 21px;
   background-color: white;
   font-weight: bold;
-  border: none;
-  border-top: 1px ridge darkgray;
-  border-left: 1px ridge lightgray;
+  border: 1px solid darkgray;
   box-shadow: 2px 2px 2px darkgrey;
 }
 
@@ -604,6 +602,10 @@ button:focus {
 
 .form-section__error {
   border: 1px solid red;
+}
+
+.form-section__input-container {
+  background-color: white;
 }
 
 .form-section__input {
