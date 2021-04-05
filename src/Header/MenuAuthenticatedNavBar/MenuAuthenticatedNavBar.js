@@ -10,7 +10,7 @@ function MenuAuthenticatedNavBar() {
           <HeaderLink
             url="/app/pnl"
             toggleMenuDisplay={() => null}
-            text="Home"
+            text="P&L"
           />
         </div>
         <div className="header__item-div">

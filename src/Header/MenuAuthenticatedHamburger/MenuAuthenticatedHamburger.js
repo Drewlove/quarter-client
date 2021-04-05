@@ -37,7 +37,7 @@ function MenuAuthenticatedHamburger() {
         <HeaderLink
           url="/app/pnl"
           toggleMenuDisplay={() => toggleMenuDisplay()}
-          text="Home"
+          text="P&L"
           className="header__item_dropdown"
         />
         <HeaderLink
