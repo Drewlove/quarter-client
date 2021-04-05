@@ -150,12 +150,13 @@ function ShiftForm(props) {
           {props.rowId !== "new" ? renderDeleteButton() : null}
           <section className="form-section__shift-total">
             <button
-              // className="form-section__shift-total"
               onClick={(e) => toggleTimePeriod(e)}
               onMouseLeave={() => handleMouseLeave()}
             >
               <div>
-                {timePeriodName} Total: ${getWeeklyTotal()}
+                <p className="form-section__shift-total-text">
+                  {timePeriodName} Total: ${getWeeklyTotal()}
+                </p>
               </div>
             </button>
           </section>

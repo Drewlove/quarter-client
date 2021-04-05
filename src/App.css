@@ -68,9 +68,7 @@ button:focus {
   font-size: 18px;
   background-color: white;
   font-weight: bold;
-  border: none;
-  border-top: 1px ridge darkgray;
-  border-left: 1px ridge lightgray;
+  border: 1px solid darkgray;
   box-shadow: 2px 1px 1px darkgrey;
   padding: 10px;
   margin-top: 5px;
@@ -113,8 +111,7 @@ button:focus {
   height: 33px;
   font-size: 21px;
   font-weight: bold;
-  border-top: 1px ridge lightgray;
-  border-left: 1px ridge lightgray;
+  border: 1px solid darkgray;
   box-shadow: 2px 2px 2px darkgrey;
   text-decoration: none;
   color: black;
@@ -640,12 +637,15 @@ button:focus {
   margin: 0 auto;
   font-weight: bold;
   border: none;
-  border-top: 2px solid whitesmoke;
-  border-left: 2px solid whitesmoke;
+  border: 2px solid darkgray;
   box-shadow: 3px 3px 1px lightgrey;
   position: sticky;
   top: 55px;
   margin-top: 10px;
+}
+
+.form-section__shift-total-text {
+  font-size: 18px;
 }
 
 .form-section__shift-total button {
