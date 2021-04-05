@@ -308,12 +308,12 @@ button:focus {
 .header__button_authenticate {
   padding: 5px;
   font-size: 16px;
-  background-color: white;
-  font-weight: bold;
-  border: none;
-  border-top: 1px ridge lightgray;
-  border-left: 1px ridge lightgray;
-  margin-left: 10px;
+  background-color: #fff;
+  font-weight: 700;
+  border: 1px ridge #d3d3d3;
+  border-right: none;
+  border-bottom: none;
+  margin: 0px 15px;
 }
 
 .header__display-mobile-none {
@@ -382,6 +382,10 @@ button:focus {
   display: block;
   text-decoration: none;
   padding: 20px 5px;
+  margin-left: 50px;
+  width: 250px;
+  margin: 0px auto;
+  font-size: 21px;
 }
 
 .header__item_dropdown:hover {
@@ -454,7 +458,6 @@ button:focus {
   width: 75px;
   height: 40px;
   border-radius: 5px;
-  align-items: center;
   font-size: 36px;
   background-color: white;
   font-weight: bold;
@@ -462,6 +465,9 @@ button:focus {
   border-top: 1px ridge lightgray;
   border-left: 1px ridge lightgray;
   box-shadow: 2px 2px 2px lightgrey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .header__menu-button_main {
@@ -472,6 +478,9 @@ button:focus {
 }
 
 .header__menu_drop-down {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   padding-top: 25px;
   background-color: black;
   box-shadow: 5px 5px 1px darkgrey;
@@ -480,8 +489,6 @@ button:focus {
   left: 0;
   width: 100%;
   height: 100vh;
-  display: grid;
-  grid-template-rows: 1fr 1fr 1fr 1fr 4fr;
 }
 
 .header__nav {

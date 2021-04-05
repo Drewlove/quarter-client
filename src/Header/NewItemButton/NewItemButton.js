@@ -65,7 +65,7 @@ function MenuSignedInNewItem() {
         className="header__menu-button header__menu-button_new"
         onClick={() => toggleMenuDisplay()}
       >
-        +
+        <p>+</p>
       </button>
       {menuNewItem.display ? renderNewMenu() : null}
     </div>
