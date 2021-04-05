@@ -34,37 +34,39 @@ function MenuAuthenticatedHamburger() {
   const renderMenu = () => {
     return (
       <div className="header__menu_drop-down">
-        <HeaderLink
-          url="/app/pnl"
-          toggleMenuDisplay={() => toggleMenuDisplay()}
-          text="P&L"
-          className="header__item_dropdown"
-        />
-        <HeaderLink
-          url="/app/departments"
-          toggleMenuDisplay={() => toggleMenuDisplay()}
-          text="Departments"
-          className="header__item_dropdown"
-        />
-        <HeaderLink
-          url="/app/roles"
-          toggleMenuDisplay={() => toggleMenuDisplay()}
-          text="Roles"
-          className="header__item_dropdown"
-        />
-        <HeaderLink
-          url="/app/schedule"
-          toggleMenuDisplay={() => toggleMenuDisplay()}
-          text="Schedule"
-          className="header__item_dropdown"
-        />
-        <div className="header__logout-button-container">
-          <button
-            className="header__logout-button"
-            onClick={() => logout({ returnTo: window.location.origin })}
-          >
-            Log Out
-          </button>
+        <div className="header__menu_drop-down-content">
+          <HeaderLink
+            url="/app/pnl"
+            toggleMenuDisplay={() => toggleMenuDisplay()}
+            text="P&L"
+            className="header__item_dropdown"
+          />
+          <HeaderLink
+            url="/app/departments"
+            toggleMenuDisplay={() => toggleMenuDisplay()}
+            text="Departments"
+            className="header__item_dropdown"
+          />
+          <HeaderLink
+            url="/app/roles"
+            toggleMenuDisplay={() => toggleMenuDisplay()}
+            text="Roles"
+            className="header__item_dropdown"
+          />
+          <HeaderLink
+            url="/app/schedule"
+            toggleMenuDisplay={() => toggleMenuDisplay()}
+            text="Schedule"
+            className="header__item_dropdown"
+          />
+          <div className="header__logout-button-container">
+            <button
+              className="header__logout-button"
+              onClick={() => logout({ returnTo: window.location.origin })}
+            >
+              Log Out
+            </button>
+          </div>
         </div>
       </div>
     );

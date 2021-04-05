@@ -42,7 +42,7 @@
   background-color: white;
   font-weight: bold;
   border: none;
-  border-top: 1px ridge lightgray;
+  border-top: 1px ridge darkgray;
   border-left: 1px ridge lightgray;
   box-shadow: 2px 2px 2px darkgrey;
 }
@@ -186,13 +186,13 @@ button:focus {
 .fieldset__item-container {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  margin: 10px 0px;
-  color: black;
+  margin: 10px 0;
+  color: #000;
   text-decoration: none;
   padding: 10px;
-  border-top: 1px ridge darkgray;
-  border-left: 1px ridge lightgray;
-  box-shadow: 1px 1px 1px darkgrey;
+  border-top: 1px solid darkgray;
+  border-left: 1px solid darkgray;
+  box-shadow: 2px 2px 2px darkgrey;
 }
 
 .fieldset__amount-container {
@@ -330,6 +330,7 @@ button:focus {
   cursor: pointer;
   border: none;
   margin-right: 10px;
+  margin-top: 5px;
 }
 
 .header__item-container {
@@ -394,7 +395,7 @@ button:focus {
 }
 
 .header__logout-button {
-  margin: 0px auto 125px auto;
+  margin: 100px auto;
   width: 250px;
   height: 50px;
   display: block;
@@ -479,9 +480,6 @@ button:focus {
 }
 
 .header__menu_drop-down {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
   padding-top: 25px;
   background-color: black;
   box-shadow: 5px 5px 1px darkgrey;
@@ -490,6 +488,10 @@ button:focus {
   left: 0;
   width: 100%;
   height: 100vh;
+  z-index: 1;
+}
+
+.header__menu_drop-down-content {
 }
 
 .header__nav {
