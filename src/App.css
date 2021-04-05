@@ -381,7 +381,7 @@ button:focus {
   margin-left: 50px;
   width: 250px;
   margin: 0px auto;
-  font-size: 21px;
+  font-size: 18px;
 }
 
 .header__item_dropdown:hover {
@@ -938,8 +938,8 @@ button:focus {
   }
 
   .header__menu_drop-down {
-    height: 250px;
-    width: 150px;
+    height: 300px;
+    width: 175px;
     position: relative;
     top: 0;
   }
