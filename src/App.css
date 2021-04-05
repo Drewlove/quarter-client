@@ -71,10 +71,11 @@ button:focus {
   background-color: white;
   font-weight: bold;
   border: none;
-  border-top: 1px ridge lightgray;
+  border-top: 1px ridge darkgray;
   border-left: 1px ridge lightgray;
   box-shadow: 2px 1px 1px darkgrey;
   padding: 10px;
+  margin-top: 5px;
 }
 
 .delete-button-section__button:hover {
@@ -608,9 +609,10 @@ button:focus {
   font-size: 14px;
   padding: 10px;
   border: none;
-  border-top: 2px solid whitesmoke;
-  border-left: 2px solid whitesmoke;
+  border-top: 2px solid darkgray;
+  border-left: 2px solid lightgray;
   box-shadow: 3px 3px 1px lightgrey;
+  background-color: white;
 }
 
 .form-section__input:hover {
