@@ -610,9 +610,7 @@ button:focus {
   width: 100%;
   font-size: 14px;
   padding: 10px;
-  border: none;
-  border-top: 2px solid darkgray;
-  border-left: 2px solid lightgray;
+  border: 1px solid darkgray;
   box-shadow: 3px 3px 1px lightgrey;
   background-color: white;
 }
