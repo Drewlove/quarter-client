@@ -185,8 +185,7 @@ button:focus {
   color: #000;
   text-decoration: none;
   padding: 10px;
-  border-top: 1px solid darkgray;
-  border-left: 1px solid darkgray;
+  border: 1px solid darkgray;
   box-shadow: 2px 2px 2px darkgrey;
 }
 
@@ -606,8 +605,9 @@ button:focus {
 }
 
 .form-section__input {
+  appearance: none;
   width: 100%;
-  font-size: 14px;
+  font-size: 16px;
   padding: 10px;
   border: 1px solid darkgray;
   box-shadow: 3px 3px 1px lightgrey;
@@ -740,7 +740,7 @@ button:focus {
 }
 
 .modal__close-button {
-  margin-left: auto;
+  margin-left: 10px;
   font-size: 42px;
   background-color: white;
   color: red;
