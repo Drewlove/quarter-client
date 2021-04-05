@@ -15,14 +15,12 @@ function RowRole(props) {
   };
 
   return (
-    <div className="schedule-row_role-container">
-      <Link
-        className="schedule-row schedule-row_role"
-        to={`/app/form/schedule/${props.row_id}`}
-      >
-        {renderRow()}
-      </Link>
-    </div>
+    <Link
+      className="schedule-row schedule-row_role"
+      to={`/app/form/schedule/${props.row_id}`}
+    >
+      {renderRow()}
+    </Link>
   );
 }
 

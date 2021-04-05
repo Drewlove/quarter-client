@@ -44,11 +44,11 @@
   border: none;
   border-top: 1px ridge lightgray;
   border-left: 1px ridge lightgray;
-  box-shadow: 5px 5px 5px darkgrey;
+  box-shadow: 2px 2px 2px darkgrey;
 }
 
 .save-button-section__button:hover {
-  box-shadow: 1px 1px 1px black;
+  box-shadow: none;
   background-color: whitesmoke;
 }
 
@@ -63,7 +63,6 @@ button:focus {
 .delete-button-section {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 25px;
 }
 
 .delete-button-section__button {
@@ -76,7 +75,6 @@ button:focus {
   border-left: 1px ridge lightgray;
   box-shadow: 2px 1px 1px darkgrey;
   padding: 10px;
-  font-weight: bold;
 }
 
 .delete-button-section__button:hover {
@@ -112,16 +110,25 @@ button:focus {
 }
 
 .empty-list__link {
-  border: 1px solid black;
-  padding: 5px;
-  margin: 10px;
+  width: 250px;
+  height: 33px;
+  font-size: 21px;
+  font-weight: bold;
+  border-top: 1px ridge lightgray;
+  border-left: 1px ridge lightgray;
+  box-shadow: 2px 2px 2px darkgrey;
   text-decoration: none;
-  background-color: black;
-  color: white;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
 .empty-list__link:hover {
   cursor: pointer;
+  background-color: whitesmoke;
+  box-shadow: none;
 }
 
 .error {
@@ -136,7 +143,7 @@ button:focus {
 }
 
 .fieldset {
-  margin-top: 20px;
+  margin: 20px 0px 50px 0px;
   box-shadow: 5px 5px 5px darkgrey;
   border-top: 2px solid whitesmoke;
   border-bottom: 5px solid whitesmoke;
@@ -276,6 +283,7 @@ button:focus {
 
 .form-error {
   color: red;
+  margin-top: 5px;
 }
 
 .header {
@@ -305,6 +313,7 @@ button:focus {
   border: none;
   border-top: 1px ridge lightgray;
   border-left: 1px ridge lightgray;
+  margin-left: 10px;
 }
 
 .header__display-mobile-none {
@@ -387,6 +396,7 @@ button:focus {
   padding: 5px;
   font-weight: bold;
   font-size: 18px;
+  background-color: white;
 }
 
 .header__menu-button_hamburger span {
@@ -588,6 +598,7 @@ button:focus {
 
 .form-section__input {
   width: 100%;
+  font-size: 14px;
   padding: 10px;
   border: none;
   border-top: 2px solid whitesmoke;
@@ -605,12 +616,12 @@ button:focus {
 
 .form-section__input_radio {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   border: none;
+  box-shadow: none;
 }
 
 .form-section__radio-container {
-  margin-right: auto;
 }
 
 .form-section__shift-total {
@@ -623,6 +634,7 @@ button:focus {
   box-shadow: 3px 3px 1px lightgrey;
   position: sticky;
   top: 55px;
+  margin-top: 10px;
 }
 
 .form-section__shift-total button {
@@ -649,6 +661,7 @@ button:focus {
   display: block;
   font-weight: bold;
   padding: 10px;
+  font-size: 16px;
 }
 
 .main {
@@ -672,11 +685,44 @@ button:focus {
   justify-content: center;
 }
 
+.modal__button-container {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 50px;
+}
+
+.modal__button {
+  padding: 10px;
+  background-color: white;
+  border-radius: 5px;
+  border: none;
+  border-top: 2px solid whitesmoke;
+  border-left: 2px solid whitesmoke;
+  box-shadow: 3px 3px 1px lightgrey;
+  font-size: 21px;
+  font-weight: bold;
+}
+
+.modal__button:hover {
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.modal__button_confirm {
+  background-color: red;
+  color: white;
+}
+
+.modal__button_cancel:hover {
+  background-color: whitesmoke;
+}
+
 .modal__content {
   background-color: #fefefe;
-  margin-top: 100px;
-  width: 300px;
-  height: 150px;
+  margin-top: 75px;
+  width: 325px;
+  height: 250px;
+  border-radius: 5px;
 }
 
 .modal__close {
@@ -685,21 +731,21 @@ button:focus {
 
 .modal__close-button {
   margin-left: auto;
-  font-size: 28px;
-  padding: 0px 5px;
+  font-size: 42px;
   background-color: white;
+  color: red;
   border: none;
 }
 
 .modal__close-button:hover,
 .modal__close-button:focus {
   cursor: pointer;
-  color: red;
 }
 
 .modal__text {
   display: flex;
   justify-content: center;
+  font-size: 21px;
 }
 
 .pnl__header-container {
@@ -778,6 +824,13 @@ button:focus {
   grid-template-columns: repeat(7, 1fr);
 }
 
+.schedule-row_role-container {
+  border-top: 1px ridge lightgray;
+  border-left: 1px ridge lightgray;
+  box-shadow: 1px 1px 1px darkgrey;
+  margin-bottom: 5px;
+}
+
 .schedule-row_role {
   text-decoration: none;
 }
@@ -796,7 +849,6 @@ button:focus {
   flex-direction: column;
   justify-content: center;
   color: black;
-  text-decoration: none;
 }
 
 .schedule-row__cell_days {
@@ -856,6 +908,10 @@ button:focus {
   margin: 0px;
 }
 
+.toggle-container__box_amount-type {
+  width: 100px;
+}
+
 .toggle-container__box:hover {
   cursor: pointer;
 }
@@ -910,8 +966,7 @@ button:focus {
 
   .header__item_button-container {
     display: block;
-    margin-top: 5px;
-    margin-left: auto;
+    margin: 5px 5px 0px auto;
   }
 
   .header__item-div {

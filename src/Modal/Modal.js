@@ -3,20 +3,20 @@ import React from "react";
 function Modal(props) {
   const renderButtons = () => {
     return (
-      <>
+      <div className="modal__button-container">
         <button
-          className="modal__button_confirm"
+          className="modal__button modal__button_confirm"
           onClick={(e) => props.handleModalConfirm(e)}
         >
           {props.confirmAction}
         </button>
         <button
-          className="modal__button_cancel"
+          className="modal__button modal__button_cancel"
           onClick={(e) => props.handleModalClose(e)}
         >
           Cancel
         </button>
-      </>
+      </div>
     );
   };
 

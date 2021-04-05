@@ -95,7 +95,7 @@ function getErrorMessageWage(formValue) {
 
 function getErrorMessagePayrollTax(formValue) {
   if (formValue === "") {
-    return "Enter a number 0 through 100";
+    return "Enter a number greater than or equal to 0";
   } else {
     return "";
   }
