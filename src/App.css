@@ -329,6 +329,7 @@ button:focus {
   transition: 0.1s ease-in-out;
   cursor: pointer;
   border: none;
+  margin-right: 10px;
 }
 
 .header__item-container {
@@ -393,7 +394,7 @@ button:focus {
 }
 
 .header__logout-button {
-  margin: 100px auto;
+  margin: 0px auto 125px auto;
   width: 250px;
   height: 50px;
   display: block;
