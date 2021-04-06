@@ -20,19 +20,32 @@ function Modal(props) {
     );
   };
 
+  const renderOtherButtons = () => {
+    return (
+      <div className="modal__button-container">
+        <button
+          className="modal__button modal__button_cancel"
+          onClick={(e) => props.handleModalClose(e)}
+        >
+          OK
+        </button>
+      </div>
+    );
+  };
+
   return (
     <div className="modal">
       <div className="modal__content">
-        <div className="modal__close">
-          <button
+        {/* <div className="modal__close"> */}
+        {/* <button
             onClick={(e) => props.handleModalClose(e)}
             className="modal__close-button"
           >
             &times;
-          </button>
-        </div>
+          </button> */}
+        {/* </div> */}
         <p className="modal__text">{props.text}</p>
-        {props.type === "confirmation" ? renderButtons() : null}
+        {props.type === "confirmation" ? renderButtons() : renderOtherButtons()}
       </div>
     </div>
   );

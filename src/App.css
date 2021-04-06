@@ -698,10 +698,10 @@ button:focus {
 .modal__button-container {
   display: flex;
   justify-content: space-evenly;
-  margin-top: 50px;
 }
 
 .modal__button {
+  height: 50px;
   padding: 10px;
   background-color: white;
   border-radius: 5px;
@@ -733,10 +733,12 @@ button:focus {
   width: 325px;
   height: 250px;
   border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .modal__close {
-  display: flex;
 }
 
 .modal__close-button {
