@@ -587,7 +587,6 @@ button:focus {
 .form-section {
   margin: 0 auto;
   padding: 10px 0px;
-  align-items: center;
 }
 
 .form-section__error {
@@ -666,6 +665,7 @@ button:focus {
   display: block;
   font-weight: bold;
   font-size: 16px;
+  margin-top: 10px;
 }
 
 .main {
