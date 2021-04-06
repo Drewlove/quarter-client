@@ -194,12 +194,6 @@ button:focus {
   grid-template-columns: 12px 10px 10px 10px 5px 10px 10px 10px 5px 10px 10px 10px 5px 10px 10px;
 }
 
-.fieldset__item-container:hover {
-  background-color: whitesmoke;
-  cursor: pointer;
-  box-shadow: 5px 5px 5px darkgrey;
-}
-
 .fieldset__item-container_total {
   background-color: slategray;
   color: white;
@@ -936,6 +930,12 @@ button:focus {
 @media only screen and (min-width: 600px) {
   .form {
     margin: 20px auto;
+  }
+
+  .fieldset__item-container:hover {
+    background-color: whitesmoke;
+    cursor: pointer;
+    box-shadow: 5px 5px 5px darkgrey;
   }
 
   .header__menu_drop-down {
