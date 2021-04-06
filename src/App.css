@@ -840,12 +840,6 @@ button:focus {
   text-decoration: none;
 }
 
-.schedule-row_role:hover {
-  background-color: whitesmoke;
-  cursor: pointer;
-  box-shadow: 5px 5px 5px darkgrey;
-}
-
 .schedule-row__cell {
   border: 1px solid gainsboro;
   height: 75px;
@@ -1001,5 +995,11 @@ button:focus {
 
   .schedule-text_shift {
     font-size: 11px;
+  }
+
+  .schedule-row_role:hover {
+    background-color: whitesmoke;
+    cursor: pointer;
+    box-shadow: 5px 5px 5px darkgrey;
   }
 }
