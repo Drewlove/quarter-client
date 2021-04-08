@@ -9,7 +9,6 @@ import HomePage from "./HomePage/HomePage";
 import ProtectedRoute from "./Authentication/ProtectedRoute/ProtectedRoute";
 import MenuNotAuthenticated from "./Header/MenuNotAuthenticated/MenuNotAuthenticated";
 import MenuAuthenticated from "./Header/MenuAuthenticated/MenuAuthenticated";
-import { useAuth0 } from "@auth0/auth0-react";
 import "./App.css";
 
 function App() {
