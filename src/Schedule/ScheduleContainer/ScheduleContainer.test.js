@@ -1,10 +1,12 @@
 import React from "react";
 import { mount } from "enzyme";
 import ScheduleContainer from "./ScheduleContainer";
+import * as CONSTANTS from "../../Authentication/UserId";
 import { MemoryRouter } from "react-router-dom";
 import * as MOCK_GET from "../../Utilities/API_Methods/API_GET";
 
 describe("ScheduleContainer", () => {
+  CONSTANTS.useAuthId = jest.fn(() => "auth0|123");
   const dummyData = [
     {
       shift_id: 1,
@@ -49,7 +51,7 @@ describe("ScheduleContainer", () => {
     });
     let wrapper = mount(
       <MemoryRouter>
-        <ScheduleContainer />
+        <ScheduleContainer user={() => "auth0|123"} />
       </MemoryRouter>
     );
     expect(wrapper.find(".main_skeleton")).toHaveLength(1);
