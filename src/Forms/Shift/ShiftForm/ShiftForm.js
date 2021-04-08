@@ -71,8 +71,31 @@ function ShiftForm(props) {
   };
 
   const handleChangePayrollTax = (e) => {
-    if (Number(e.target.value) <= 100)
+    if (Number(e.target.value) <= 100 && Number(e.target.value) >= 0)
       setFormData({ ...formData, payroll_tax: e.target.value });
+  };
+
+  const handleChangeShiftStart = (e) => {
+    handleChange(e);
+    if (formData.shift_end !== "")
+      validateShiftEnd(e.target.value, formData.shift_end);
+  };
+
+  const validateShiftEnd = (shiftStartVal, shiftEndVal) => {
+    let errorShiftEnd = GET_ERROR_MESSAGE(
+      "shift_end",
+      shiftStartVal,
+      shiftEndVal
+    );
+    setFormError({
+      ...formError,
+      shift_end: errorShiftEnd,
+    });
+  };
+
+  const handleChangeShiftEnd = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    validateShiftEnd(formData.shift_start, e.target.value);
   };
 
   const handleChangeDay = (e) => {
@@ -105,6 +128,10 @@ function ShiftForm(props) {
   const validate = (e) => {
     let errorMessage = GET_ERROR_MESSAGE(e.target.name, e.target.value);
     setFormError({ ...formError, [e.target.name]: errorMessage });
+  };
+
+  const handleBlurShiftEnd = (e) => {
+    validateShiftEnd(formData.shift_start, formData.shift_end);
   };
 
   const validateDays = (days) => {
@@ -195,7 +222,9 @@ function ShiftForm(props) {
           />
 
           <ShiftFormTime
-            handleChange={(e) => handleChange(e)}
+            handleChangeShiftStart={(e) => handleChangeShiftStart(e)}
+            handleChangeShiftEnd={(e) => handleChangeShiftEnd(e)}
+            handleBlurShiftEnd={(e) => handleBlurShiftEnd(e)}
             handleBlur={(e) => handleBlur(e)}
             startTime={formData.shift_start}
             endTime={formData.shift_end}

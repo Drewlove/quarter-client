@@ -1,4 +1,4 @@
-export const GET_ERROR_MESSAGE = (name, formValue) => {
+export const GET_ERROR_MESSAGE = (name, formValue, secondFormValue) => {
   switch (name) {
     case "department_name":
       return getErrorMessageDepartmentName(formValue);
@@ -19,7 +19,7 @@ export const GET_ERROR_MESSAGE = (name, formValue) => {
     case "shift_start":
       return getErrorMessageShiftStart(formValue);
     case "shift_end":
-      return getErrorMessageShiftEnd(formValue);
+      return getErrorMessageShiftEnd(formValue, secondFormValue);
     case "shift_day":
       return getErrorMessageShiftDay(formValue);
     case "line_item_category":
@@ -109,12 +109,22 @@ function getErrorMessageShiftStart(formValue) {
   }
 }
 
-function getErrorMessageShiftEnd(formValue) {
-  if (formValue.length === 0) {
+function getErrorMessageShiftEnd(shiftStartVal, shiftEndVal) {
+  if (shiftEndVal.length === 0) {
     return "Enter an end time.";
+  } else if (strToTimeVal(shiftStartVal) >= strToTimeVal(shiftEndVal)) {
+    return "Shift end time must be later than shift start time. ";
   } else {
     return "";
   }
+}
+
+function strToTimeVal(str) {
+  let timeArr = str.split(":");
+  let hour = parseInt(timeArr[0]);
+  let min = parseInt(timeArr[1]) / 60;
+  let timeVal = hour + min;
+  return timeVal;
 }
 
 function getErrorMessageShiftDay(formValue) {

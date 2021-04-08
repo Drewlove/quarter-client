@@ -13,7 +13,7 @@ function ShiftFormTime(props) {
             type="time"
             className="form-section__input form-section__input_time"
             id="start-time"
-            onChange={props.handleChange}
+            onChange={props.handleChangeShiftStart}
             onBlur={props.handleBlur}
             name="shift_start"
             value={props.startTime}
@@ -32,8 +32,8 @@ function ShiftFormTime(props) {
             type="time"
             className="form-section__input form-section__input_time"
             id="end-time"
-            onChange={props.handleChange}
-            onBlur={props.handleBlur}
+            onChange={props.handleChangeShiftEnd}
+            onBlur={props.handleBlurShiftEnd}
             name="shift_end"
             value={props.endTime}
           />
