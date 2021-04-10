@@ -1,10 +1,12 @@
 import React from "react";
 import { mount } from "enzyme";
 import DepartmentsListContainer from "./DepartmentsListContainer";
+import * as CONSTANTS from "../Authentication/useAuthId";
 import { MemoryRouter } from "react-router-dom";
 import * as MOCK_GET from "../Utilities/API_Methods/API_GET";
 
 describe("DepartmentsListContainer", () => {
+  CONSTANTS.useAuthId = jest.fn(() => "auth0|123");
   const dummyData = [
     { department_name: "kitchen", department_id: 1 },
     { department_name: "front of house", department_id: 2 },
@@ -38,6 +40,10 @@ describe("DepartmentsListContainer", () => {
           isLoading: false,
           isLoaded: true,
           isError: true,
+          error: {
+            status: 401,
+            statusText: "failed to load.",
+          },
           data: [],
         },
         () => {},

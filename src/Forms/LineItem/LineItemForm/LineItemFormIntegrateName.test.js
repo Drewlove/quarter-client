@@ -1,6 +1,7 @@
 import React from "react";
-import { shallow, mount } from "enzyme";
+import { mount } from "enzyme";
 import LineItemForm from "./LineItemForm";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const lineItems = [
   {
@@ -71,6 +72,14 @@ const lineItemPercent = {
   percent_of: 1,
 };
 
+const user = {
+  email: "johndoe@me.com",
+  email_verified: true,
+  sub: "google-oauth2|2147627834623744883746",
+};
+
+jest.mock("@auth0/auth0-react");
+
 const dummyDataLineItemDollar = [lineItems, lineItemDollar];
 const dummyDataLineItemPercent = [lineItems, lineItemPercent];
 const dummyDataBlankForm = [lineItems];
@@ -78,25 +87,37 @@ const dummyDataBlankForm = [lineItems];
 const categories = ["Sales", "COGS", "Overhead"];
 
 describe("LineItemForm, Name", () => {
+  beforeEach(() => {
+    useAuth0.mockReturnValue({
+      isAuthenticated: true,
+      user,
+      logout: jest.fn(),
+      loginWithRedirect: jest.fn(),
+      getAccessTokenSilently: jest.fn(),
+    });
+  });
+
   it("renders", () => {
     const wrapper = mount(
-      <LineItemForm data={dummyDataLineItemDollar} id="1" />
+      <LineItemForm data={dummyDataLineItemDollar} rowId="1" />
     );
     expect(wrapper.find(".form-section_name")).toHaveLength(1);
   });
   it("If value is given, the value renders", () => {
     const wrapper = mount(
-      <LineItemForm data={dummyDataLineItemDollar} id="1" />
+      <LineItemForm data={dummyDataLineItemDollar} rowId="1" />
     );
     expect(wrapper.find(".form-section_name input").props().value).toBe("Food");
   });
   it("If no value is given, then no value renders", () => {
-    const wrapper = mount(<LineItemForm data={dummyDataBlankForm} id="new" />);
+    const wrapper = mount(
+      <LineItemForm data={dummyDataBlankForm} rowId="new" />
+    );
     expect(wrapper.find(".form-section_name input").props().value).toBe("");
   });
   it("If input value is changed, then changed value renders", () => {
     const wrapper = mount(
-      <LineItemForm data={dummyDataLineItemDollar} id="1" />
+      <LineItemForm data={dummyDataLineItemDollar} rowId="1" />
     );
     wrapper.find(".form-section_name input").simulate("change", {
       target: {
@@ -109,14 +130,16 @@ describe("LineItemForm, Name", () => {
     );
   });
   it("If input has focus, then blurs focus with no value, error component renders", () => {
-    const wrapper = mount(<LineItemForm data={dummyDataBlankForm} id="new" />);
+    const wrapper = mount(
+      <LineItemForm data={dummyDataBlankForm} rowId="new" />
+    );
     wrapper.find(".form-section_name input").simulate("focus");
     wrapper.find(".form-section_name input").simulate("blur");
     expect(wrapper.find(".form-section_name .form-error")).toHaveLength(1);
   });
   it("If input is changed from a value of 1 character or more to a value of 0 characters, error renders", () => {
     const wrapper = mount(
-      <LineItemForm data={dummyDataLineItemDollar} id="1" />
+      <LineItemForm data={dummyDataLineItemDollar} rowId="1" />
     );
     wrapper.find(".form-section_name input").simulate("change", {
       target: {

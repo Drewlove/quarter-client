@@ -3,6 +3,7 @@ import { MemoryRouter } from "react-router-dom";
 import { mount } from "enzyme";
 import * as MOCK_GET from "../../../Utilities/API_Methods/API_GET";
 import LineItemFormContainer from "./LineItemFormContainer";
+import * as CONSTANTS from "../../../Authentication/useAuthId";
 
 const lineItems = [
   {
@@ -78,6 +79,7 @@ const dummyDataLineItemPercent = [lineItems, lineItemPercent];
 const dummyDataBlankForm = [lineItems];
 
 describe("LineItemFormContainer", () => {
+  CONSTANTS.useAuthId = jest.fn(() => "123");
   it("Renders skeleton loading indicator when isLoading is true", async () => {
     MOCK_GET.API_GET = jest.fn(() => {
       return [
@@ -104,6 +106,10 @@ describe("LineItemFormContainer", () => {
           isLoading: false,
           isLoaded: false,
           isError: true,
+          error: {
+            status: 401,
+            statusText: "failed to load.",
+          },
           data: [],
         },
         () => {},

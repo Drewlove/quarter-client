@@ -28,6 +28,7 @@ export const API_SAVE = (formData, endpointSuffix, rowId) => {
     setRes((prevState) => ({ ...prevState, isSaving: true }));
     try {
       const token = await getAccessTokenSilently();
+
       const result = await fetch(url, {
         method: saveMethod,
         body: JSON.stringify(formData),

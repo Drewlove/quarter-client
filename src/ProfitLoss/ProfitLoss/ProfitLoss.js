@@ -127,7 +127,7 @@ function ProfitLoss(props) {
     let schedule = COLLATE_SCHEDULE(props.data[1]);
     Object.keys(schedule).forEach((key, i) => {
       let obj = schedule[key];
-      directLaborCategoryObj.total += obj.cost;
+      directLaborCategoryObj.total += obj.cost * 13;
       directLaborCategoryObj.list.push({
         line_item_category: "direct_labor",
         line_item_id: i,

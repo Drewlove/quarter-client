@@ -1,6 +1,15 @@
 import React from "react";
 import ShiftForm from "./ShiftForm";
 import { shallow, mount } from "enzyme";
+import { useAuth0 } from "@auth0/auth0-react";
+
+const user = {
+  email: "johndoe@me.com",
+  email_verified: true,
+  sub: "google-oauth2|2147627834623744883746",
+};
+
+jest.mock("@auth0/auth0-react");
 
 const departments = [
   {
@@ -64,6 +73,15 @@ beforeEach(() => {
 });
 
 describe("ShiftForm, payroll tax", () => {
+  beforeEach(() => {
+    useAuth0.mockReturnValue({
+      isAuthenticated: true,
+      user,
+      logout: jest.fn(),
+      loginWithRedirect: jest.fn(),
+      getAccessTokenSilently: jest.fn(),
+    });
+  });
   it("Renders", () => {
     expect(wrapper.find(".form-section_payroll-tax")).toHaveLength(1);
   });

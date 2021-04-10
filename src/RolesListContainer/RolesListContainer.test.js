@@ -1,6 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 import RolesListContainer from "./RolesListContainer";
+import * as CONSTANTS from "../Authentication/useAuthId";
 import { MemoryRouter } from "react-router-dom";
 import * as MOCK_GET from "../Utilities/API_Methods/API_GET";
 
@@ -44,6 +45,7 @@ const dummyData = [
 ];
 
 describe("RolesListContainer", () => {
+  CONSTANTS.useAuthId = jest.fn(() => "auth0|123");
   it("Renders skeleton loading indicator when isLoading is true", async () => {
     MOCK_GET.API_GET = jest.fn(() => {
       return [
@@ -70,6 +72,10 @@ describe("RolesListContainer", () => {
           isLoading: false,
           isLoaded: true,
           isError: true,
+          error: {
+            status: 401,
+            statusText: "failed to load.",
+          },
           data: [],
         },
         () => {},

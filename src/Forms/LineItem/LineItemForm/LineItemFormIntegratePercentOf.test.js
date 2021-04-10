@@ -1,6 +1,15 @@
 import React from "react";
 import { mount } from "enzyme";
 import LineItemForm from "./LineItemForm";
+import { useAuth0 } from "@auth0/auth0-react";
+
+const user = {
+  email: "johndoe@me.com",
+  email_verified: true,
+  sub: "google-oauth2|2147627834623744883746",
+};
+
+jest.mock("@auth0/auth0-react");
 
 const lineItems = [
   {
@@ -79,22 +88,31 @@ const categories = ["Sales", "COGS", "Overhead"];
 
 //if the form has a line_item_id value, then that corresponding line_item does not appear as a selectable option
 describe("LineItemForm, PercentOf", () => {
+  beforeEach(() => {
+    useAuth0.mockReturnValue({
+      isAuthenticated: true,
+      user,
+      logout: jest.fn(),
+      loginWithRedirect: jest.fn(),
+      getAccessTokenSilently: jest.fn(),
+    });
+  });
   it("If form object amount_type is 'percent', then the component does render", () => {
     const wrapper = mount(
-      <LineItemForm data={dummyDataLineItemPercent} id="3" />
+      <LineItemForm data={dummyDataLineItemPercent} rowId="3" />
     );
     expect(wrapper.find(".form-section_percent-of")).toHaveLength(1);
   });
   it("If form object amount_type is 'dollars', then the component does not render", () => {
     const wrapper = mount(
-      <LineItemForm data={dummyDataLineItemDollar} id="3" />
+      <LineItemForm data={dummyDataLineItemDollar} rowId="3" />
     );
     expect(wrapper.find(".form-section_percent-of")).toHaveLength(0);
   });
 
   it("If form object has a percent_of value, then the value renders", () => {
     const wrapper = mount(
-      <LineItemForm data={dummyDataLineItemPercent} id="3" />
+      <LineItemForm data={dummyDataLineItemPercent} rowId="3" />
     );
     expect(wrapper.find(".form-section_percent-of select").props().value).toBe(
       1
@@ -102,7 +120,7 @@ describe("LineItemForm, PercentOf", () => {
   });
   it("if If form object amount_type is 'dollars', then user click on 'percent,' component renders", () => {
     const wrapper = mount(
-      <LineItemForm data={dummyDataLineItemDollar} id="1" />
+      <LineItemForm data={dummyDataLineItemDollar} rowId="1" />
     );
     expect(wrapper.find(".form-section_percent-of select")).toHaveLength(0);
     wrapper.find("#percent").simulate("change", {
@@ -112,26 +130,26 @@ describe("LineItemForm, PercentOf", () => {
   });
   it("renders options", () => {
     const wrapper = mount(
-      <LineItemForm data={dummyDataLineItemPercent} id="3" />
+      <LineItemForm data={dummyDataLineItemPercent} rowId="3" />
     );
     expect(wrapper.find(".form-section_percent-of option")).toHaveLength(6);
     expect(wrapper.find(".form-section_percent-of option").at(0).text()).toBe(
       "- Select Line Item -"
     );
     expect(wrapper.find(".form-section_percent-of option").at(1).text()).toBe(
-      "sales - Food"
+      "Sales - Food"
     );
     expect(wrapper.find(".form-section_percent-of option").at(2).text()).toBe(
-      "sales - Beverage"
+      "Sales - Beverage"
     );
     expect(wrapper.find(".form-section_percent-of option").at(3).text()).toBe(
-      "cogs - Beverage"
+      "COGS - Beverage"
     );
     expect(wrapper.find(".form-section_percent-of option").at(4).text()).toBe(
-      "overhead - Rent"
+      "Overhead - Rent"
     );
     expect(wrapper.find(".form-section_percent-of option").at(5).text()).toBe(
-      "overhead - Utilities"
+      "Overhead - Utilities"
     );
   });
 });

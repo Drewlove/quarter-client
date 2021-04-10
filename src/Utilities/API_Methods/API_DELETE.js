@@ -9,9 +9,10 @@ export const API_DELETE = (endpointSuffix, rowId) => {
     deleteErrorMessage: "",
     recordDeleted: false,
   });
-  const { getAccessTokenSilently } = useAuth0();
+
   const { user } = useAuth0();
   const userId = user.sub.split("auth0|")[1];
+  const { getAccessTokenSilently } = useAuth0();
 
   const deleteData = useCallback(async () => {
     setResDelete((prevState) => ({ ...prevState, isDeleting: true }));

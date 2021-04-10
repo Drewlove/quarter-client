@@ -1,12 +1,12 @@
 import React from "react";
 import { mount } from "enzyme";
 import ScheduleContainer from "./ScheduleContainer";
-import * as CONSTANTS from "../../Authentication/UserId";
+import * as CONSTANTS from "../../Authentication/useAuthId";
 import { MemoryRouter } from "react-router-dom";
 import * as MOCK_GET from "../../Utilities/API_Methods/API_GET";
 
 describe("ScheduleContainer", () => {
-  CONSTANTS.useAuthId = jest.fn(() => "auth0|123");
+  CONSTANTS.useAuthId = jest.fn(() => "123");
   const dummyData = [
     {
       shift_id: 1,
@@ -63,6 +63,10 @@ describe("ScheduleContainer", () => {
           isLoading: false,
           isLoaded: true,
           isError: true,
+          error: {
+            status: 401,
+            statusText: "Not found",
+          },
           data: [],
         },
         () => {},

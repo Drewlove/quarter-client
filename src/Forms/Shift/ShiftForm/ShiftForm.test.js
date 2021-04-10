@@ -2,6 +2,15 @@ import React from "react";
 import ShiftForm from "./ShiftForm";
 import { SUM_WEEKLY_SHIFT_TOTAL } from "../../../Utilities/UtilityFunctions";
 import { shallow, mount } from "enzyme";
+import { useAuth0 } from "@auth0/auth0-react";
+
+const user = {
+  email: "johndoe@me.com",
+  email_verified: true,
+  sub: "google-oauth2|2147627834623744883746",
+};
+
+jest.mock("@auth0/auth0-react");
 
 const departments = [
   {
@@ -60,6 +69,15 @@ const shift = {
 const dummyData = [departments, roles, shift];
 
 describe("ShiftForm", () => {
+  beforeEach(() => {
+    useAuth0.mockReturnValue({
+      isAuthenticated: true,
+      user,
+      logout: jest.fn(),
+      loginWithRedirect: jest.fn(),
+      getAccessTokenSilently: jest.fn(),
+    });
+  });
   it("Renders", () => {
     const wrapper = mount(<ShiftForm data={dummyData} />);
     expect(wrapper.find(".form_shift")).toHaveLength(1);

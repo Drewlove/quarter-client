@@ -1,6 +1,15 @@
 import React from "react";
 import { mount } from "enzyme";
 import LineItemForm from "./LineItemForm";
+import { useAuth0 } from "@auth0/auth0-react";
+
+const user = {
+  email: "johndoe@me.com",
+  email_verified: true,
+  sub: "google-oauth2|2147627834623744883746",
+};
+
+jest.mock("@auth0/auth0-react");
 
 const lineItems = [
   {
@@ -76,20 +85,31 @@ const dummyDataLineItemPercent = [lineItems, lineItemPercent];
 const dummyDataBlankForm = [lineItems];
 
 describe("LineItemForm, Category", () => {
+  beforeEach(() => {
+    useAuth0.mockReturnValue({
+      isAuthenticated: true,
+      user,
+      logout: jest.fn(),
+      loginWithRedirect: jest.fn(),
+      getAccessTokenSilently: jest.fn(),
+    });
+  });
   it("renders", () => {
     const wrapper = mount(
-      <LineItemForm data={dummyDataLineItemDollar} id="1" />
+      <LineItemForm data={dummyDataLineItemDollar} rowId="1" />
     );
     expect(wrapper.find(".form-section_category")).toHaveLength(1);
   });
   it("If value is given, the value renders", () => {
     const wrapper = mount(
-      <LineItemForm data={dummyDataLineItemDollar} id="1" />
+      <LineItemForm data={dummyDataLineItemDollar} rowId="1" />
     );
     expect(wrapper.find("#line_item_category").props().value).toBe("sales");
   });
   it("If no value is given, then no value renders", () => {
-    const wrapper = mount(<LineItemForm data={dummyDataBlankForm} id="new" />);
+    const wrapper = mount(
+      <LineItemForm data={dummyDataBlankForm} rowId="new" />
+    );
     expect(wrapper.find("#line_item_category").props().value).toBe("");
   });
   it("renders category options", () => {
@@ -109,20 +129,22 @@ describe("LineItemForm, Category", () => {
     );
   });
   it("If user clicks save and value is blank, error component renders", () => {
-    const wrapper = mount(<LineItemForm data={dummyDataBlankForm} id="new" />);
+    const wrapper = mount(
+      <LineItemForm data={dummyDataBlankForm} rowId="new" />
+    );
     wrapper.find("#button-save").simulate("click");
     expect(wrapper.find(".form-section_category .form-error")).toHaveLength(1);
   });
   it("If user clicks save and value is valid, no error component renders", () => {
     const wrapper = mount(
-      <LineItemForm data={dummyDataLineItemDollar} id="1" />
+      <LineItemForm data={dummyDataLineItemDollar} rowId="1" />
     );
     wrapper.find("#button-save").simulate("click");
     expect(wrapper.find(".form-section_category .form-error")).toHaveLength(0);
   });
   it("updates value based on user input", () => {
     const wrapper = mount(
-      <LineItemForm data={dummyDataLineItemDollar} id="1" />
+      <LineItemForm data={dummyDataLineItemDollar} rowId="1" />
     );
     wrapper.find(".form-section_category select").simulate("change", {
       target: { name: "line_item_category", value: "cogs" },

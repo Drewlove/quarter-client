@@ -1,10 +1,12 @@
 import React from "react";
 import { mount } from "enzyme";
 import ProfitLossContainer from "./ProfitLossContainer";
+import * as CONSTANTS from "../../Authentication/useAuthId";
 import { MemoryRouter } from "react-router-dom";
 import * as MOCK_GET from "../../Utilities/API_Methods/API_GET";
 
 describe("ProfitLossContainer", () => {
+  CONSTANTS.useAuthId = jest.fn(() => "auth0|123");
   const dummyData = [
     [
       {
@@ -114,6 +116,10 @@ describe("ProfitLossContainer", () => {
           isLoading: false,
           isLoaded: true,
           isError: true,
+          error: {
+            status: 401,
+            statusText: "failed to load.",
+          },
           data: [],
         },
         () => {},

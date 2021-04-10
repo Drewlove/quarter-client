@@ -4,8 +4,10 @@ import Department from "../Department/Department";
 import EmptyList from "../../EmptyList/EmptyList";
 
 function Schedule(props) {
-  const [timePeriod, setTimePeriod] = useState("weekly");
+  const [timePeriod, setTimePeriod] = useState("quarter");
   let schedule = [];
+
+  window.scrollTo(0, 0);
 
   const renderEmptyList = () => {
     return <EmptyList name="shift" url="/app/form/schedule/new" />;
@@ -89,6 +91,7 @@ function Schedule(props) {
           row={schedule[key].row}
           cost={schedule[key].cost}
           deptName={key}
+          multiplier={timePeriod}
         />
       );
     });

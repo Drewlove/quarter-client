@@ -1,13 +1,10 @@
 import React from "react";
 import Schedule from "../Schedule/Schedule";
 import FetchData from "../../FetchData/FetchData";
-import { useAuthId } from "../../Authentication/UserId";
-// import { useAuth0 } from "@auth0/auth0-react";
+import { useAuthId } from "../../Authentication/useAuthId";
 
 function ScheduleContainer() {
   const userId = useAuthId();
-  // const { user } = useAuth0();
-  // let userId = user.sub.split("auth0|")[1];
 
   return (
     <>

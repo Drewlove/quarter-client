@@ -1,6 +1,15 @@
 import React from "react";
 import { mount } from "enzyme";
 import LineItemForm from "./LineItemForm";
+import { useAuth0 } from "@auth0/auth0-react";
+
+const user = {
+  email: "johndoe@me.com",
+  email_verified: true,
+  sub: "google-oauth2|2147627834623744883746",
+};
+
+jest.mock("@auth0/auth0-react");
 
 const lineItems = [
   {
@@ -78,28 +87,39 @@ const dummyDataBlankForm = [lineItems];
 const categories = ["Sales", "COGS", "Overhead"];
 
 describe("LineItemForm, Amount", () => {
+  beforeEach(() => {
+    useAuth0.mockReturnValue({
+      isAuthenticated: true,
+      user,
+      logout: jest.fn(),
+      loginWithRedirect: jest.fn(),
+      getAccessTokenSilently: jest.fn(),
+    });
+  });
   it("renders", () => {
     const wrapper = mount(
-      <LineItemForm data={dummyDataLineItemDollar} id="1" />
+      <LineItemForm data={dummyDataLineItemDollar} rowId="1" />
     );
     expect(wrapper.find(".form-section_amount")).toHaveLength(1);
   });
   it("If value is given, the value renders", () => {
     const wrapper = mount(
-      <LineItemForm data={dummyDataLineItemDollar} id="1" />
+      <LineItemForm data={dummyDataLineItemDollar} rowId="1" />
     );
     expect(wrapper.find(".form-section_amount input").props().value).toBe(
       "1,000.25"
     );
   });
   it("If no value is given, then no value renders", () => {
-    const wrapper = mount(<LineItemForm data={dummyDataBlankForm} id="new" />);
+    const wrapper = mount(
+      <LineItemForm data={dummyDataBlankForm} rowId="new" />
+    );
     expect(wrapper.find(".form-section_amount input").props().value).toBe("");
   });
 
   it("If input value is changed, then changed value renders", () => {
     const wrapper = mount(
-      <LineItemForm data={dummyDataLineItemDollar} id="1" />
+      <LineItemForm data={dummyDataLineItemDollar} rowId="1" />
     );
     wrapper.find(".form-section_amount input").simulate("change", {
       target: {
@@ -112,14 +132,16 @@ describe("LineItemForm, Amount", () => {
     );
   });
   it("If input has focus, then blurs focus with no value, error component renders", () => {
-    const wrapper = mount(<LineItemForm data={dummyDataBlankForm} id="new" />);
+    const wrapper = mount(
+      <LineItemForm data={dummyDataBlankForm} rowId="new" />
+    );
     wrapper.find(".form-section_amount input").simulate("focus");
     wrapper.find(".form-section_amount input").simulate("blur");
     expect(wrapper.find(".form-section_amount .form-error")).toHaveLength(1);
   });
   it("If input is changed to a negative value and then user blurs focus, error component renders", () => {
     const wrapper = mount(
-      <LineItemForm data={dummyDataLineItemDollar} id="1" />
+      <LineItemForm data={dummyDataLineItemDollar} rowId="1" />
     );
     wrapper.find(".form-section_amount input").simulate("change", {
       target: {
@@ -132,7 +154,7 @@ describe("LineItemForm, Amount", () => {
   });
   it("If input is changed to value greater than 9,999,999.99 and then user blurs focus, error component renders", () => {
     const wrapper = mount(
-      <LineItemForm data={dummyDataLineItemDollar} id="1" />
+      <LineItemForm data={dummyDataLineItemDollar} rowId="1" />
     );
     wrapper.find(".form-section_amount input").simulate("change", {
       target: {

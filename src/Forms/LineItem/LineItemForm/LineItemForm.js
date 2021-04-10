@@ -12,6 +12,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 function LineItemForm(props) {
   const { user } = useAuth0();
+  const userId = user.sub.split("auth0|")[1];
 
   const [lineItems, setLineItems] = useState({
     sales: [],
@@ -20,7 +21,7 @@ function LineItemForm(props) {
   });
 
   const [formData, setFormData] = useState({
-    app_user_id: user.sub,
+    app_user_id: userId,
     line_item_category: "",
     line_item_name: "",
     amount: "",

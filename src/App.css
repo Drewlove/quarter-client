@@ -923,13 +923,13 @@ button:focus {
   .fieldset__item-container_kpi:hover {
     background-color: black;
     cursor: default;
-    box-shadow: none;
+    box-shadow: 2px 2px 2px darkgrey;
   }
 
   .fieldset__item-container_total:hover {
     cursor: default;
     background-color: slategray;
-    box-shadow: none;
+    box-shadow: 2px 2px 2px darkgrey;
   }
 
   .header__menu_drop-down {

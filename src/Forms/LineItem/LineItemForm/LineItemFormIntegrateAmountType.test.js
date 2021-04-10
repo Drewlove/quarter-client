@@ -80,32 +80,34 @@ const categories = ["Sales", "COGS", "Overhead"];
 describe("LineItemForm, AmountType", () => {
   it("renders", () => {
     const wrapper = mount(
-      <LineItemForm data={dummyDataLineItemDollar} id="1" />
+      <LineItemForm data={dummyDataLineItemDollar} rowId="1" />
     );
     expect(wrapper.find(".form-section_amount-type")).toHaveLength(1);
   });
   it("if new line item form, default value is set to dollars", () => {
-    const wrapper = mount(<LineItemForm data={dummyDataBlankForm} id="new" />);
+    const wrapper = mount(
+      <LineItemForm data={dummyDataBlankForm} rowId="new" />
+    );
     expect(wrapper.find("#dollars").props().checked).toBe(true);
     expect(wrapper.find("#percent").props().checked).toBe(false);
   });
   it("if value is 'dollars', dollar input is checked", () => {
     const wrapper = mount(
-      <LineItemForm data={dummyDataLineItemDollar} id="1" />
+      <LineItemForm data={dummyDataLineItemDollar} rowId="1" />
     );
     expect(wrapper.find("#dollars").props().checked).toBe(true);
     expect(wrapper.find("#percent").props().checked).toBe(false);
   });
   it("if value is 'percent', percent input is checked", () => {
     const wrapper = mount(
-      <LineItemForm data={dummyDataLineItemPercent} id="3" />
+      <LineItemForm data={dummyDataLineItemPercent} rowId="3" />
     );
     expect(wrapper.find("#percent").props().checked).toBe(true);
     expect(wrapper.find("#dollars").props().checked).toBe(false);
   });
   it("if user changes value from dollar to percent, register new value", () => {
     const wrapper = mount(
-      <LineItemForm data={dummyDataLineItemDollar} id="1" />
+      <LineItemForm data={dummyDataLineItemDollar} rowId="1" />
     );
     wrapper.find("#percent").simulate("change", {
       target: { name: "line_item_amount_type", value: "percent" },
