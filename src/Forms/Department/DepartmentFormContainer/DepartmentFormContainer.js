@@ -7,7 +7,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 function DepartmentFormContainer() {
   const { rowId } = useParams();
   const { user } = useAuth0();
-  let userId = user.sub.split("auth0|")[1];
+  let userId = user.sub.split("|")[1];
 
   let endpointArr = rowId === `new` ? [] : [`departments/${userId}/${rowId}`];
 

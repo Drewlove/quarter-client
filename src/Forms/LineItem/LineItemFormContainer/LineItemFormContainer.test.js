@@ -3,7 +3,15 @@ import { MemoryRouter } from "react-router-dom";
 import { mount } from "enzyme";
 import * as MOCK_GET from "../../../Utilities/API_Methods/API_GET";
 import LineItemFormContainer from "./LineItemFormContainer";
-import * as CONSTANTS from "../../../Authentication/useAuthId";
+import { useAuth0 } from "@auth0/auth0-react";
+
+const user = {
+  email: "johndoe@me.com",
+  email_verified: true,
+  sub: "google-oauth2|2147627834623744883746",
+};
+
+jest.mock("@auth0/auth0-react");
 
 const lineItems = [
   {
@@ -79,7 +87,16 @@ const dummyDataLineItemPercent = [lineItems, lineItemPercent];
 const dummyDataBlankForm = [lineItems];
 
 describe("LineItemFormContainer", () => {
-  CONSTANTS.useAuthId = jest.fn(() => "123");
+  beforeEach(() => {
+    useAuth0.mockReturnValue({
+      isAuthenticated: true,
+      user,
+      logout: jest.fn(),
+      loginWithRedirect: jest.fn(),
+      getAccessTokenSilently: jest.fn(),
+    });
+  });
+
   it("Renders skeleton loading indicator when isLoading is true", async () => {
     MOCK_GET.API_GET = jest.fn(() => {
       return [

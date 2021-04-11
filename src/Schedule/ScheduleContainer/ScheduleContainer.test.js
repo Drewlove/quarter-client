@@ -7,6 +7,7 @@ import * as MOCK_GET from "../../Utilities/API_Methods/API_GET";
 
 describe("ScheduleContainer", () => {
   CONSTANTS.useAuthId = jest.fn(() => "123");
+  global.scrollTo = jest.fn();
   const dummyData = [
     {
       shift_id: 1,

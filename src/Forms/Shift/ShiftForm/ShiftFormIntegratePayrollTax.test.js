@@ -69,19 +69,19 @@ const dummyData = [departments, roles, shift];
 
 let wrapper;
 beforeEach(() => {
+  useAuth0.mockReturnValue({
+    isAuthenticated: true,
+    user,
+    logout: jest.fn(),
+    loginWithRedirect: jest.fn(),
+    getAccessTokenSilently: jest.fn(),
+  });
+});
+beforeEach(() => {
   wrapper = mount(<ShiftForm data={dummyData} id={1} />);
 });
 
 describe("ShiftForm, payroll tax", () => {
-  beforeEach(() => {
-    useAuth0.mockReturnValue({
-      isAuthenticated: true,
-      user,
-      logout: jest.fn(),
-      loginWithRedirect: jest.fn(),
-      getAccessTokenSilently: jest.fn(),
-    });
-  });
   it("Renders", () => {
     expect(wrapper.find(".form-section_payroll-tax")).toHaveLength(1);
   });

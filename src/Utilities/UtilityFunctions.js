@@ -44,9 +44,9 @@ export const SUM_WEEKLY_SHIFT_TOTAL = (shift) => {
   return isNaN(sum) ? 0 : sum;
 };
 
-function timeStringToFloat(time) {
+export const timeStringToFloat = (time) => {
   var hoursMinutes = time.split(/[.:]/);
   var hours = parseInt(hoursMinutes[0], 10);
   var minutes = hoursMinutes[1] ? parseInt(hoursMinutes[1], 10) : 0;
   return hours + minutes / 60;
-}
+};

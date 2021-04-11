@@ -69,19 +69,19 @@ const dummyData = [departments, roles, shift];
 
 let wrapper;
 beforeEach(() => {
+  useAuth0.mockReturnValue({
+    isAuthenticated: true,
+    user,
+    logout: jest.fn(),
+    loginWithRedirect: jest.fn(),
+    getAccessTokenSilently: jest.fn(),
+  });
+});
+beforeEach(() => {
   wrapper = mount(<ShiftForm data={dummyData} id={1} />);
 });
 
 describe("ShiftForm, start and end time", () => {
-  beforeEach(() => {
-    useAuth0.mockReturnValue({
-      isAuthenticated: true,
-      user,
-      logout: jest.fn(),
-      loginWithRedirect: jest.fn(),
-      getAccessTokenSilently: jest.fn(),
-    });
-  });
   it("Renders", () => {
     expect(wrapper.find(".form-section_time")).toHaveLength(2);
   });
@@ -117,23 +117,35 @@ describe("ShiftForm, start and end time", () => {
   });
   it("Renders one error if start value is an empty string", () => {
     const userEvent = { target: { name: "shift_start", value: "" } };
-    wrapper
-      .find(".form-section__input_time")
-      .at(0)
-      .simulate("change", userEvent);
+    wrapper.find("#start-time").simulate("change", userEvent);
+    wrapper.find("#start-time").simulate("blur");
     expect(wrapper.find(".form-error")).toHaveLength(1);
   });
   it("Renders two errors if start value and end value is an empty string", () => {
     const userEventStart = { target: { name: "shift_start", value: "" } };
     const userEventEnd = { target: { name: "shift_end", value: "" } };
-    wrapper
-      .find(".form-section__input_time")
-      .at(0)
-      .simulate("change", userEventStart);
-    wrapper
-      .find(".form-section__input_time")
-      .at(1)
-      .simulate("change", userEventEnd);
+    wrapper.find("#start-time").simulate("change", userEventStart);
+    wrapper.find("#start-time").simulate("blur");
+    wrapper.find("#end-time").simulate("change", userEventEnd);
+    wrapper.find("#end-time").simulate("blur");
     expect(wrapper.find(".form-error")).toHaveLength(2);
+  });
+  it("Renders error if start time is later than end time", () => {
+    const userEventStart = { target: { name: "shift_start", value: "12:00" } };
+    const userEventEnd = { target: { name: "shift_end", value: "11:00" } };
+    wrapper.find("#start-time").simulate("change", userEventStart);
+    wrapper.find("#start-time").simulate("blur");
+    wrapper.find("#end-time").simulate("change", userEventEnd);
+    wrapper.find("#end-time").simulate("blur");
+    expect(wrapper.find(".form-error")).toHaveLength(1);
+  });
+  it("Renders no error if start time is earlier than end time", () => {
+    const userEventStart = { target: { name: "shift_start", value: "10:00" } };
+    const userEventEnd = { target: { name: "shift_end", value: "11:00" } };
+    wrapper.find("#start-time").simulate("change", userEventStart);
+    wrapper.find("#start-time").simulate("blur");
+    wrapper.find("#end-time").simulate("change", userEventEnd);
+    wrapper.find("#end-time").simulate("blur");
+    expect(wrapper.find(".form-error")).toHaveLength(0);
   });
 });

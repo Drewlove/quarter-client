@@ -8,12 +8,8 @@ import FormSaveButton from "../../CommonFormComponents/FormSaveButton/FormSaveBu
 import FormDeleteButton from "../../CommonFormComponents/FormDeleteButton/FormDeleteButton";
 import { GET_ERROR_MESSAGE } from "../../ValidateForm/GET_ERROR_MESSAGE";
 import { FORMAT_NUM } from "../../../Utilities/UtilityFunctions";
-import { useAuth0 } from "@auth0/auth0-react";
 
 function LineItemForm(props) {
-  const { user } = useAuth0();
-  const userId = user.sub.split("auth0|")[1];
-
   const [lineItems, setLineItems] = useState({
     sales: [],
     cogs: [],
@@ -21,7 +17,6 @@ function LineItemForm(props) {
   });
 
   const [formData, setFormData] = useState({
-    app_user_id: userId,
     line_item_category: "",
     line_item_name: "",
     amount: "",

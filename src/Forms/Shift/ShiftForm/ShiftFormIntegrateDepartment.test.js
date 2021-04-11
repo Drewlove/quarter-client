@@ -69,19 +69,19 @@ const dummyData = [departments, roles, shift];
 
 let wrapper;
 beforeEach(() => {
+  useAuth0.mockReturnValue({
+    isAuthenticated: true,
+    user,
+    logout: jest.fn(),
+    loginWithRedirect: jest.fn(),
+    getAccessTokenSilently: jest.fn(),
+  });
+});
+beforeEach(() => {
   wrapper = mount(<ShiftForm data={dummyData} id={1} />);
 });
 
 describe("ShiftForm, Department", () => {
-  beforeEach(() => {
-    useAuth0.mockReturnValue({
-      isAuthenticated: true,
-      user,
-      logout: jest.fn(),
-      loginWithRedirect: jest.fn(),
-      getAccessTokenSilently: jest.fn(),
-    });
-  });
   it("Renders department section", () => {
     expect(wrapper.find(".form-section_department")).toHaveLength(1);
   });

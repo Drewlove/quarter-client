@@ -3,6 +3,15 @@ import { MemoryRouter } from "react-router-dom";
 import { mount } from "enzyme";
 import * as MOCK_GET from "../../../Utilities/API_Methods/API_GET";
 import RoleFormContainer from "./RoleFormContainer";
+import { useAuth0 } from "@auth0/auth0-react";
+
+const user = {
+  email: "johndoe@me.com",
+  email_verified: true,
+  sub: "google-oauth2|2147627834623744883746",
+};
+
+jest.mock("@auth0/auth0-react");
 
 describe("RoleFormContainer", () => {
   const dummyData = [
@@ -17,6 +26,15 @@ describe("RoleFormContainer", () => {
       department_name: "kitchen",
     },
   ];
+  beforeEach(() => {
+    useAuth0.mockReturnValue({
+      isAuthenticated: true,
+      user,
+      logout: jest.fn(),
+      loginWithRedirect: jest.fn(),
+      getAccessTokenSilently: jest.fn(),
+    });
+  });
 
   it("Renders skeleton loading indicator when isLoading is true", async () => {
     MOCK_GET.API_GET = jest.fn(() => {
@@ -44,6 +62,10 @@ describe("RoleFormContainer", () => {
           isLoading: false,
           isLoaded: false,
           isError: true,
+          error: {
+            status: 401,
+            statusText: "Not found",
+          },
           data: [],
         },
         () => {},

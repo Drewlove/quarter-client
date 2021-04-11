@@ -16,15 +16,18 @@ const dummyShift = {
   wage: "15.00",
 };
 
-const dummyRow = [
-  { isShift: false, id: "13-0" },
-  { isShift: false, id: "13-1" },
-  { isShift: false, id: "13-2" },
-  { isShift: false, id: "13-3" },
-  { isShift: true, id: "13-4", shift: dummyShift },
-  { isShift: true, id: "13-5", shift: dummyShift },
-  { isShift: true, id: "13-6", shift: dummyShift },
-];
+const dummyRow = {
+  row_id: 1,
+  shifts: [
+    { isShift: false, id: "13-0" },
+    { isShift: false, id: "13-1" },
+    { isShift: false, id: "13-2" },
+    { isShift: false, id: "13-3" },
+    { isShift: true, id: "13-4", shift: dummyShift },
+    { isShift: true, id: "13-5", shift: dummyShift },
+    { isShift: true, id: "13-6", shift: dummyShift },
+  ],
+};
 
 const row = describe("RowRole", () => {
   let wrapper;
@@ -37,7 +40,7 @@ const row = describe("RowRole", () => {
     );
   });
   it("renders", () => {
-    expect(wrapper.find(".schedule-row_role-container")).toHaveLength(1);
+    expect(wrapper.find("a.schedule-row_role")).toHaveLength(1);
   });
   it("renders correct number of blank cells", () => {
     expect(wrapper.find(".schedule-row__cell_blank")).toHaveLength(4);

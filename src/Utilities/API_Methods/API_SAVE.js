@@ -14,7 +14,7 @@ export const API_SAVE = (formData, endpointSuffix, rowId) => {
 
   let saveMethod;
   const { user } = useAuth0();
-  const userId = user.sub.split("auth0|")[1];
+  const userId = user.sub.split("|")[1];
 
   let url = `${config.API_ENDPOINT}/${endpointSuffix}/${userId}`;
   if (rowId === "new") {

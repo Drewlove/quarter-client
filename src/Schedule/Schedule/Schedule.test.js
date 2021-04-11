@@ -2,6 +2,7 @@ import React from "react";
 import Schedule from "./Schedule";
 import { shallow, mount } from "enzyme";
 import { MemoryRouter } from "react-router-dom";
+import { SUM_WEEKLY_SHIFT_TOTAL } from "../../Utilities/UtilityFunctions";
 
 const dummyData = [
   {
@@ -45,13 +46,23 @@ const dummyData = [
   },
 ];
 
+function getDeptWages(arr, dept) {
+  let total = 0;
+  arr.forEach((key) => {
+    if (key.department_name === dept) {
+      total += SUM_WEEKLY_SHIFT_TOTAL(key) * 13;
+    }
+  });
+  return total.toLocaleString(undefined, {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+}
+
 const dummyDataEmpty = [];
 
 describe("Schedule", () => {
-  it("Renders", () => {
-    const wrapper = shallow(<Schedule data={[dummyData]} />);
-    expect(wrapper.find(".schedule__header")).toHaveLength(1);
-  });
+  global.scrollTo = jest.fn();
   it("Renders EmptyList if data is empty", () => {
     const wrapper = mount(
       <MemoryRouter>
@@ -74,11 +85,13 @@ describe("Schedule", () => {
         <Schedule data={[dummyData]} />
       </MemoryRouter>
     );
+    const kitchenWages = getDeptWages(dummyData, "kitchen");
+    const serviceWages = getDeptWages(dummyData, "service");
     expect(wrapper.find(".schedule-text_department").at(0).text()).toBe(
-      "kitchen - $1,830.05"
+      `kitchen - $${kitchenWages}`
     );
     expect(wrapper.find(".schedule-text_department").at(1).text()).toBe(
-      "service - $871.97"
+      `service - $${serviceWages}`
     );
   });
   it("Renders the correct number of rows for each department", () => {
@@ -87,6 +100,6 @@ describe("Schedule", () => {
         <Schedule data={[dummyData]} />
       </MemoryRouter>
     );
-    expect(wrapper.find(".schedule-row_role-container")).toHaveLength(3);
+    expect(wrapper.find("a.schedule-row_role")).toHaveLength(3);
   });
 });

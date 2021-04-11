@@ -1,6 +1,15 @@
 import React from "react";
 import { mount } from "enzyme";
 import LineItemForm from "./LineItemForm";
+import { useAuth0 } from "@auth0/auth0-react";
+
+const user = {
+  email: "johndoe@me.com",
+  email_verified: true,
+  sub: "google-oauth2|2147627834623744883746",
+};
+
+jest.mock("@auth0/auth0-react");
 
 const lineItems = [
   {
@@ -75,23 +84,31 @@ const dummyDataLineItemDollar = [lineItems, lineItemDollar];
 const dummyDataLineItemPercent = [lineItems, lineItemPercent];
 const dummyDataBlankForm = [lineItems];
 
-//does not provide the given line item as an option in the percentOf component (ie, cannot choose itself)
 describe("LineItemForm", () => {
+  beforeEach(() => {
+    useAuth0.mockReturnValue({
+      isAuthenticated: true,
+      user,
+      logout: jest.fn(),
+      loginWithRedirect: jest.fn(),
+      getAccessTokenSilently: jest.fn(),
+    });
+  });
   it("renders", () => {
     const wrapper = mount(
-      <LineItemForm data={dummyDataLineItemDollar} id="1" />
+      <LineItemForm data={dummyDataLineItemDollar} rowId="1" />
     );
     expect(wrapper.find(LineItemForm)).toHaveLength(1);
   });
   it("renders four inputs", () => {
     const wrapper = mount(
-      <LineItemForm data={dummyDataLineItemDollar} id="1" />
+      <LineItemForm data={dummyDataLineItemDollar} rowId="1" />
     );
     expect(wrapper.find("input")).toHaveLength(4);
   });
   it("if fetched line item has a null percent_of value, then renders one select tag", () => {
     const wrapper = mount(
-      <LineItemForm data={dummyDataLineItemDollar} id="1" />
+      <LineItemForm data={dummyDataLineItemDollar} rowId="1" />
     );
     expect(wrapper.find("select")).toHaveLength(1);
   });
@@ -100,12 +117,16 @@ describe("LineItemForm", () => {
     expect(wrapper.find("select")).toHaveLength(2);
   });
   it("if user clicks save on a blank form and all fields are empty, renders three errors", () => {
-    const wrapper = mount(<LineItemForm data={dummyDataBlankForm} id="new" />);
+    const wrapper = mount(
+      <LineItemForm data={dummyDataBlankForm} rowId="new" />
+    );
     wrapper.find("#button-save").simulate("click");
     expect(wrapper.find(".form-error")).toHaveLength(3);
   });
   it("if user clicks save, and amount type is set to 'percent of', and all fields are empty, renders four errors", () => {
-    const wrapper = mount(<LineItemForm data={dummyDataBlankForm} id="new" />);
+    const wrapper = mount(
+      <LineItemForm data={dummyDataBlankForm} rowId="new" />
+    );
     wrapper.find("#percent").simulate("change", {
       target: { name: "line_item_amount_type", value: "percent" },
     });

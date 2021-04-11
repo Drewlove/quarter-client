@@ -11,7 +11,7 @@ export const API_DELETE = (endpointSuffix, rowId) => {
   });
 
   const { user } = useAuth0();
-  const userId = user.sub.split("auth0|")[1];
+  const userId = user.sub.split("|")[1];
   const { getAccessTokenSilently } = useAuth0();
 
   const deleteData = useCallback(async () => {

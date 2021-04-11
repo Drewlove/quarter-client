@@ -86,7 +86,6 @@ const dummyDataBlankForm = [lineItems];
 
 const categories = ["Sales", "COGS", "Overhead"];
 
-//if the form has a line_item_id value, then that corresponding line_item does not appear as a selectable option
 describe("LineItemForm, PercentOf", () => {
   beforeEach(() => {
     useAuth0.mockReturnValue({

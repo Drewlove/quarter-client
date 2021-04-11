@@ -3,14 +3,6 @@ import ShiftForm from "./ShiftForm";
 import { shallow, mount } from "enzyme";
 import { useAuth0 } from "@auth0/auth0-react";
 
-const user = {
-  email: "johndoe@me.com",
-  email_verified: true,
-  sub: "google-oauth2|2147627834623744883746",
-};
-
-jest.mock("@auth0/auth0-react");
-
 const departments = [
   {
     department_id: 1,
@@ -67,21 +59,29 @@ const shift = {
 
 const dummyData = [departments, roles, shift];
 
+const user = {
+  email: "johndoe@me.com",
+  email_verified: true,
+  sub: "google-oauth2|2147627834623744883746",
+};
+
+jest.mock("@auth0/auth0-react");
+
 let wrapper;
 beforeEach(() => {
-  wrapper = mount(<ShiftForm data={dummyData} id={1} />);
+  useAuth0.mockReturnValue({
+    isAuthenticated: true,
+    user,
+    logout: jest.fn(),
+    loginWithRedirect: jest.fn(),
+    getAccessTokenSilently: jest.fn(),
+  });
+});
+beforeEach(() => {
+  wrapper = mount(<ShiftForm data={dummyData} rowId={1} />);
 });
 
 describe("ShiftForm, days", () => {
-  beforeEach(() => {
-    useAuth0.mockReturnValue({
-      isAuthenticated: true,
-      user,
-      logout: jest.fn(),
-      loginWithRedirect: jest.fn(),
-      getAccessTokenSilently: jest.fn(),
-    });
-  });
   it("Renders", () => {
     expect(wrapper.find(".form-section_days")).toHaveLength(1);
   });

@@ -42,9 +42,10 @@ describe("Department", () => {
     wrapper = mount(
       <MemoryRouter>
         <Department
-          shifts={dummySchedule[0].shifts}
-          cost={dummySchedule[0].cost}
-          deptName={dummySchedule[0].deptName}
+          row={dummySchedule.kitchen.row}
+          cost={dummySchedule.kitchen.cost}
+          deptName={"kitchen"}
+          multiplier={"quarter"}
         />
       </MemoryRouter>
     );
@@ -59,7 +60,7 @@ describe("Department", () => {
     );
   });
   it("Renders two rows when given two roles", () => {
-    expect(wrapper.find(".schedule-row_role-container")).toHaveLength(2);
+    expect(wrapper.find("a.schedule-row_role")).toHaveLength(2);
   });
 
   it("renders correct number of blank cells", () => {

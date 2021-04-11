@@ -69,15 +69,15 @@ const dummyData = [departments, roles, shift];
 
 let wrapper;
 beforeEach(() => {
-  beforeEach(() => {
-    useAuth0.mockReturnValue({
-      isAuthenticated: true,
-      user,
-      logout: jest.fn(),
-      loginWithRedirect: jest.fn(),
-      getAccessTokenSilently: jest.fn(),
-    });
+  useAuth0.mockReturnValue({
+    isAuthenticated: true,
+    user,
+    logout: jest.fn(),
+    loginWithRedirect: jest.fn(),
+    getAccessTokenSilently: jest.fn(),
   });
+});
+beforeEach(() => {
   wrapper = mount(<ShiftForm data={dummyData} id={1} />);
 });
 

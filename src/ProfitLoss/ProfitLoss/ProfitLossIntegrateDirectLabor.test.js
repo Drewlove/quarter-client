@@ -84,67 +84,66 @@ const shifts = [
 ];
 
 describe("ProfitLoss, Direct Labor", () => {
-  // it("renders category name", () => {
-  //   const wrapper = mount(
-  //     <MemoryRouter>
-  //       <ProfitLoss data={[lineItems, shifts]} />
-  //     </MemoryRouter>
-  //   );
-  //   expect(wrapper.find(".fieldset__header").at(3).text()).toBe("Direct Labor");
-  // });
-  // it("renders first line item amount and text", () => {
-  //   const wrapper = mount(
-  //     <MemoryRouter>
-  //       <ProfitLoss data={[lineItems, shifts]} />
-  //     </MemoryRouter>
-  //   );
-  //   expect(wrapper.find(".fieldset__item-text").at(9).text()).toBe("kitchen");
-  //   expect(wrapper.find(".fieldset__amount").at(135).text()).toBe("$");
-  //   expect(wrapper.find(".fieldset__amount").at(136).text()).toBe("");
-  //   expect(wrapper.find(".fieldset__amount").at(137).text()).toBe("");
-  //   expect(wrapper.find(".fieldset__amount").at(138).text()).toBe("");
-  //   expect(wrapper.find(".fieldset__amount").at(139).text()).toBe("");
-  //   expect(wrapper.find(".fieldset__amount").at(140).text()).toBe("");
-  //   expect(wrapper.find(".fieldset__amount").at(141).text()).toBe("1");
-  //   expect(wrapper.find(".fieldset__amount").at(142).text()).toBe("3");
-  //   expect(wrapper.find(".fieldset__amount").at(143).text()).toBe(",");
-  //   expect(wrapper.find(".fieldset__amount").at(144).text()).toBe("9");
-  //   expect(wrapper.find(".fieldset__amount").at(145).text()).toBe("9");
-  //   expect(wrapper.find(".fieldset__amount").at(146).text()).toBe("4");
-  //   expect(wrapper.find(".fieldset__amount").at(147).text()).toBe(".");
-  //   expect(wrapper.find(".fieldset__amount").at(148).text()).toBe("5");
-  //   expect(wrapper.find(".fieldset__amount").at(149).text()).toBe("0");
-  // });
-  // it("renders second line item amount and text", () => {
-  //   const wrapper = mount(
-  //     <MemoryRouter>
-  //       <ProfitLoss data={[lineItems, shifts]} />
-  //     </MemoryRouter>
-  //   );
-  //   expect(wrapper.find(".fieldset__item-text").at(10).text()).toBe("service");
-  //   expect(wrapper.find(".fieldset__amount").at(150).text()).toBe("$");
-  //   expect(wrapper.find(".fieldset__amount").at(151).text()).toBe("");
-  //   expect(wrapper.find(".fieldset__amount").at(152).text()).toBe("");
-  //   expect(wrapper.find(".fieldset__amount").at(153).text()).toBe("");
-  //   expect(wrapper.find(".fieldset__amount").at(154).text()).toBe("");
-  //   expect(wrapper.find(".fieldset__amount").at(155).text()).toBe("");
-  //   expect(wrapper.find(".fieldset__amount").at(156).text()).toBe("2");
-  //   expect(wrapper.find(".fieldset__amount").at(157).text()).toBe("5");
-  //   expect(wrapper.find(".fieldset__amount").at(158).text()).toBe(",");
-  //   expect(wrapper.find(".fieldset__amount").at(159).text()).toBe("1");
-  //   expect(wrapper.find(".fieldset__amount").at(160).text()).toBe("9");
-  //   expect(wrapper.find(".fieldset__amount").at(161).text()).toBe("0");
-  //   expect(wrapper.find(".fieldset__amount").at(162).text()).toBe(".");
-  //   expect(wrapper.find(".fieldset__amount").at(163).text()).toBe("1");
-  //   expect(wrapper.find(".fieldset__amount").at(164).text()).toBe("0");
-  // });
+  it("renders category name", () => {
+    const wrapper = mount(
+      <MemoryRouter>
+        <ProfitLoss data={[lineItems, shifts]} />
+      </MemoryRouter>
+    );
+    expect(wrapper.find(".fieldset__header").at(3).text()).toBe("Direct Labor");
+  });
+  it("renders first line item amount and text", () => {
+    const wrapper = mount(
+      <MemoryRouter>
+        <ProfitLoss data={[lineItems, shifts]} />
+      </MemoryRouter>
+    );
+    expect(wrapper.find(".fieldset__item-text").at(9).text()).toBe("kitchen");
+    expect(wrapper.find(".fieldset__amount").at(135).text()).toBe("$");
+    expect(wrapper.find(".fieldset__amount").at(136).text()).toBe("");
+    expect(wrapper.find(".fieldset__amount").at(137).text()).toBe("");
+    expect(wrapper.find(".fieldset__amount").at(138).text()).toBe("");
+    expect(wrapper.find(".fieldset__amount").at(139).text()).toBe("");
+    expect(wrapper.find(".fieldset__amount").at(140).text()).toBe("");
+    expect(wrapper.find(".fieldset__amount").at(141).text()).toBe("1");
+    expect(wrapper.find(".fieldset__amount").at(142).text()).toBe("3");
+    expect(wrapper.find(".fieldset__amount").at(143).text()).toBe(",");
+    expect(wrapper.find(".fieldset__amount").at(144).text()).toBe("9");
+    expect(wrapper.find(".fieldset__amount").at(145).text()).toBe("9");
+    expect(wrapper.find(".fieldset__amount").at(146).text()).toBe("4");
+    expect(wrapper.find(".fieldset__amount").at(147).text()).toBe(".");
+    expect(wrapper.find(".fieldset__amount").at(148).text()).toBe("5");
+    expect(wrapper.find(".fieldset__amount").at(149).text()).toBe("0");
+  });
+  it("renders second line item amount and text", () => {
+    const wrapper = mount(
+      <MemoryRouter>
+        <ProfitLoss data={[lineItems, shifts]} />
+      </MemoryRouter>
+    );
+    expect(wrapper.find(".fieldset__item-text").at(10).text()).toBe("service");
+    expect(wrapper.find(".fieldset__amount").at(150).text()).toBe("$");
+    expect(wrapper.find(".fieldset__amount").at(151).text()).toBe("");
+    expect(wrapper.find(".fieldset__amount").at(152).text()).toBe("");
+    expect(wrapper.find(".fieldset__amount").at(153).text()).toBe("");
+    expect(wrapper.find(".fieldset__amount").at(154).text()).toBe("");
+    expect(wrapper.find(".fieldset__amount").at(155).text()).toBe("");
+    expect(wrapper.find(".fieldset__amount").at(156).text()).toBe("2");
+    expect(wrapper.find(".fieldset__amount").at(157).text()).toBe("5");
+    expect(wrapper.find(".fieldset__amount").at(158).text()).toBe(",");
+    expect(wrapper.find(".fieldset__amount").at(159).text()).toBe("1");
+    expect(wrapper.find(".fieldset__amount").at(160).text()).toBe("9");
+    expect(wrapper.find(".fieldset__amount").at(161).text()).toBe("0");
+    expect(wrapper.find(".fieldset__amount").at(162).text()).toBe(".");
+    expect(wrapper.find(".fieldset__amount").at(163).text()).toBe("1");
+    expect(wrapper.find(".fieldset__amount").at(164).text()).toBe("0");
+  });
   it("renders total direct labor in dollars, with label", () => {
     const wrapper = mount(
       <MemoryRouter>
         <ProfitLoss data={[lineItems, shifts]} />
       </MemoryRouter>
     );
-    console.log(wrapper.debug());
     expect(wrapper.find(".fieldset__item-text").at(11).text()).toBe(
       "Direct Labor"
     );

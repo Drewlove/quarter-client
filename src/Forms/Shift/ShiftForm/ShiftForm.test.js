@@ -83,18 +83,22 @@ describe("ShiftForm", () => {
     expect(wrapper.find(".form_shift")).toHaveLength(1);
   });
   it("Renders delete button if the id is a number", () => {
-    const wrapper = mount(<ShiftForm data={dummyData} id={1} />);
+    const wrapper = mount(<ShiftForm data={dummyData} rowId={1} />);
     expect(wrapper.find(".delete-button-section")).toHaveLength(1);
   });
   it("Renders NO delete button if the id is 'new' ", () => {
-    const wrapper = mount(<ShiftForm data={dummyData} id="new" />);
+    const wrapper = mount(<ShiftForm data={dummyData} rowId="new" />);
     expect(wrapper.find(".delete-button-section")).toHaveLength(0);
   });
   it("totals weekly shift cost", () => {
     const wrapper = mount(<ShiftForm data={dummyData} />);
-    let sum = SUM_WEEKLY_SHIFT_TOTAL(shift);
-    expect(wrapper.find(".form_shift__weekly-total").text()).toBe(
-      `Weekly Total: $${parseFloat(sum).toFixed(2)}`
+    let sum = SUM_WEEKLY_SHIFT_TOTAL(shift) * 13;
+    let sumAsString = sum.toLocaleString(undefined, {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+    expect(wrapper.find(".form-section__shift-total").text()).toBe(
+      `Quarterly Total: $${sumAsString}`
     );
   });
 });
