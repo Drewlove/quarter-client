@@ -593,6 +593,7 @@ button:focus {
   border: 1px solid darkgray;
   box-shadow: 3px 3px 1px lightgrey;
   background-color: white;
+  height: 40px;
 }
 
 .form-section__input:hover {
