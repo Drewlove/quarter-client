@@ -17,6 +17,9 @@ function Schedule(props) {
     return (
       <section className="fieldset__container">
         <fieldset className="fieldset">
+          <legend className="fieldset__legend">
+            <h2 className="fieldset__header">Schedule</h2>
+          </legend>
           <EmptyList name="shift" url="/app/form/schedule/new" />
         </fieldset>
       </section>
