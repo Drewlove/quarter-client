@@ -11,7 +11,9 @@ export const COLLATE_SCHEDULE = (shifts) => {
       shift
     );
   });
-  return collatedSchedule;
+  let sortedSchedule = sortSchedule(collatedSchedule);
+
+  return sortedSchedule;
 };
 
 function addDepartment(shift) {
@@ -45,4 +47,16 @@ function getShifts(shift) {
     };
   });
   return shifts;
+}
+
+function sortSchedule(schedule) {
+  let deptNamesSortedAlpha = Object.keys(schedule).sort((a, b) =>
+    a.localeCompare(b)
+  );
+  let scheduleSorted = [];
+  deptNamesSortedAlpha.forEach((key) => {
+    let obj = { ...schedule[key], deptName: key };
+    scheduleSorted.push(obj);
+  });
+  return scheduleSorted;
 }

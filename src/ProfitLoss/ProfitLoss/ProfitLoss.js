@@ -131,7 +131,7 @@ function ProfitLoss(props) {
       directLaborCategoryObj.list.push({
         line_item_category: "direct_labor",
         line_item_id: i,
-        line_item_name: key,
+        line_item_name: schedule[key].deptName,
         amount: parseFloat(obj.cost * 13).toFixed(2),
         line_item_amount_type: "dollars",
         percent_of: null,
