@@ -33,6 +33,10 @@ describe("FetchData", () => {
           isLoading: false,
           isLoaded: false,
           isError: true,
+          error: {
+            status: 401,
+            statusText: "Not found",
+          },
           data: [],
         },
         () => {},

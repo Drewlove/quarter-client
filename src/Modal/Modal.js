@@ -24,7 +24,7 @@ function Modal(props) {
     return (
       <div className="modal__button-container">
         <button
-          className="modal__button modal__button_cancel"
+          className="modal__button modal__button_acknowledge"
           onClick={(e) => props.handleModalClose(e)}
         >
           OK

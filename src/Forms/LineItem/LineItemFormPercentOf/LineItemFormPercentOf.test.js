@@ -4,21 +4,21 @@ import LineItemFormPercentOf from "./LineItemFormPercentOf";
 
 const lineItems = {
   sales: [
-    { line_item_category: "Sales", line_item_id: 1, line_item_name: "Food" },
+    { line_item_category: "sales", line_item_id: 1, line_item_name: "Food" },
     {
-      line_item_category: "Sales",
+      line_item_category: "sales",
       line_item_id: 2,
       line_item_name: "Beverage",
     },
   ],
   cogs: [
-    { line_item_category: "COGS", line_item_id: 3, line_item_name: "Food" },
-    { line_item_category: "COGS", line_item_id: 4, line_item_name: "Beverage" },
+    { line_item_category: "cogs", line_item_id: 3, line_item_name: "Food" },
+    { line_item_category: "cogs", line_item_id: 4, line_item_name: "Beverage" },
   ],
   overhead: [
-    { line_item_category: "Overhead", line_item_id: 5, line_item_name: "Rent" },
+    { line_item_category: "overhead", line_item_id: 5, line_item_name: "Rent" },
     {
-      line_item_category: "Overhead",
+      line_item_category: "overhead",
       line_item_id: 6,
       line_item_name: "Utilities",
     },

@@ -16,9 +16,8 @@ describe("Modal", () => {
     expect(wrapper.find(".modal__button_confirm")).toHaveLength(1);
     expect(wrapper.find(".modal__button_cancel")).toHaveLength(1);
   });
-  it("Does not renders confirm and cancel buttons if props.type does not equal 'confirmation'", () => {
+  it("Only renders acknowledge button if type does not equal 'confirmation'", () => {
     const wrapper = shallow(<Modal type="notification" />);
-    expect(wrapper.find(".modal__button_confirm")).toHaveLength(0);
-    expect(wrapper.find(".modal__button_cancel")).toHaveLength(0);
+    expect(wrapper.find(".modal__button_acknowledge")).toHaveLength(1);
   });
 });

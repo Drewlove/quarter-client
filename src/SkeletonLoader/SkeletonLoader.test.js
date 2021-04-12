@@ -7,7 +7,7 @@ describe("SkeletonLoader", () => {
   it("renders", () => {
     const wrapper = mount(
       <MemoryRouter initialEntries={["/"]}>
-        <SkeletonLoader />
+        <SkeletonLoader skeletonNumber={1} />
       </MemoryRouter>
     );
     expect(wrapper.find(".main_skeleton")).toHaveLength(1);
@@ -15,7 +15,7 @@ describe("SkeletonLoader", () => {
   it("Renders multiple skeleton cards if path ends in 'pnl' ", () => {
     const wrapper = mount(
       <MemoryRouter initialEntries={["/app/pnl"]}>
-        <SkeletonLoader />
+        <SkeletonLoader skeletonNumber={7} />
       </MemoryRouter>
     );
     expect(wrapper.find(".skeleton-card")).toHaveLength(7);
@@ -23,7 +23,7 @@ describe("SkeletonLoader", () => {
   it("Renders multiple skeleton cards if path ends in 'schedule' ", () => {
     const wrapper = mount(
       <MemoryRouter initialEntries={["/app/schedule"]}>
-        <SkeletonLoader />
+        <SkeletonLoader skeletonNumber={7} />
       </MemoryRouter>
     );
     expect(wrapper.find(".skeleton-card")).toHaveLength(7);
@@ -32,7 +32,7 @@ describe("SkeletonLoader", () => {
   it("Renders only one skeleton card for all other paths ", () => {
     const wrapper = mount(
       <MemoryRouter initialEntries={["/app/"]}>
-        <SkeletonLoader />
+        <SkeletonLoader skeletonNumber={1} />
       </MemoryRouter>
     );
     expect(wrapper.find(".skeleton-card")).toHaveLength(1);

@@ -35,7 +35,10 @@ function LineItemForm(props) {
     const sortLineItems = () => {
       const lineItems = { sales: [], cogs: [], overhead: [] };
       props.data[0].forEach((key) => {
-        if (key.line_item_id !== parseInt(props.rowId))
+        if (
+          key.line_item_id !== parseInt(props.rowId) &&
+          key.percent_of !== parseInt(props.rowId)
+        )
           lineItems[key.line_item_category].push(key);
       });
       return lineItems;

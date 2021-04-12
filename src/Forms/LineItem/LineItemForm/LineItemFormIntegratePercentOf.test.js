@@ -117,7 +117,7 @@ describe("LineItemForm, PercentOf", () => {
       1
     );
   });
-  it("if If form object amount_type is 'dollars', then user click on 'percent,' component renders", () => {
+  it("If form object amount_type is 'dollars', then user click on 'percent,' component renders", () => {
     const wrapper = mount(
       <LineItemForm data={dummyDataLineItemDollar} rowId="1" />
     );
