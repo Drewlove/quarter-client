@@ -14,7 +14,13 @@ function Schedule(props) {
   }, [location]);
 
   const renderEmptyList = () => {
-    return <EmptyList name="shift" url="/app/form/schedule/new" />;
+    return (
+      <section className="fieldset__container">
+        <fieldset className="fieldset">
+          <EmptyList name="shift" url="/app/form/schedule/new" />
+        </fieldset>
+      </section>
+    );
   };
 
   const renderResults = () => {
