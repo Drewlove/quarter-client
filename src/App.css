@@ -681,7 +681,6 @@ button:focus {
   height: 40px;
   line-height: 40px;
   margin-top: 25px;
-  font-size: 21px;
   background-color: white;
   font-weight: bold;
   border: 1px solid darkgray;
@@ -719,11 +718,16 @@ button:focus {
 
 .schedule-department {
   grid-column: 1/-1;
+  height: 40px;
+  line-height: 40px;
+  margin-top: 25px;
+  background-color: white;
+  font-weight: bold;
+  border: 1px solid darkgray;
+  border-radius: 25px 25px 0px 0px;
   background-color: black;
   color: white;
-  padding: 10px;
-  margin-top: 20px;
-  border-radius: 20px 20px 0px 0px;
+  padding-left: 25px;
 }
 
 .schedule__header {

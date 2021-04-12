@@ -15,14 +15,19 @@ function Schedule(props) {
 
   const renderResults = () => {
     schedule = COLLATE_SCHEDULE(props.data[0]);
+    let totalScheduleCost = 0;
     let multiplier = timePeriod === "quarter" ? 13 : 1;
-    Object.keys(schedule).forEach((key) => {
-      schedule[key].cost *= multiplier;
+    schedule.forEach((key) => {
+      let roleCost = key.cost * multiplier;
+      key.cost = roleCost;
+      totalScheduleCost += roleCost;
     });
     return (
       <>
         <section className="schedule__header">
-          <div className="schedule__total-wages">{renderTotalWages()}</div>
+          <div className="schedule__total-wages">
+            {renderTotalWages(totalScheduleCost)}
+          </div>
           <div className="schedule-row">
             <div className="schedule-row_weekdays__weekday">
               <h3>Mon</h3>
@@ -52,11 +57,7 @@ function Schedule(props) {
     );
   };
 
-  const renderTotalWages = () => {
-    let totalCost = 0;
-    Object.keys(schedule).forEach((key) => {
-      totalCost += schedule[key].cost;
-    });
+  const renderTotalWages = (totalScheduleCost) => {
     const timePeriodName = timePeriod === "week" ? "Weekly" : "Quarterly";
     return (
       <button
@@ -65,7 +66,7 @@ function Schedule(props) {
       >
         <h2>
           {timePeriodName} Payroll: $
-          {totalCost.toLocaleString(undefined, {
+          {totalScheduleCost.toLocaleString(undefined, {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2,
           })}
@@ -84,13 +85,13 @@ function Schedule(props) {
   };
 
   const renderSchedule = () => {
-    return Object.keys(schedule).map((key) => {
+    return schedule.map((key) => {
       return (
         <Department
-          key={key}
-          row={schedule[key].row}
-          cost={schedule[key].cost}
-          deptName={key}
+          key={`${key.deptName}-${key.cost}`}
+          row={key.row}
+          cost={key.cost}
+          deptName={key.deptName}
           multiplier={timePeriod}
         />
       );
