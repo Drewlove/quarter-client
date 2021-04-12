@@ -9,8 +9,8 @@ function HomePage() {
           <div>
             <h2 className="home-page__h2">Project the Future</h2>
             <p className="home-page__text">
-              Model your business and make better decisions with fast intuitive
-              P&L projections.
+              Model your business and make better decisions with easy P&L
+              projections.
             </p>
             <div className="home-page__hero-image"></div>
             <SignUpButton optionalClass="home-page__user-link_authentication" />

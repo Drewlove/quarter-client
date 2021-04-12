@@ -15,6 +15,7 @@ function Schedule(props) {
 
   const renderResults = () => {
     schedule = COLLATE_SCHEDULE(props.data[0]);
+    console.log(schedule);
     let multiplier = timePeriod === "quarter" ? 13 : 1;
     Object.keys(schedule).forEach((key) => {
       schedule[key].cost *= multiplier;
