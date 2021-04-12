@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { COLLATE_SCHEDULE } from "../../Utilities/COLLATE_SCHEDULE";
 import Department from "../Department/Department";
 import EmptyList from "../../EmptyList/EmptyList";
+import { useLocation } from "react-router-dom";
 
 function Schedule(props) {
   const [timePeriod, setTimePeriod] = useState("quarter");
   let schedule = [];
+  const location = useLocation();
 
-  window.scrollTo(0, 0);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
 
   const renderEmptyList = () => {
     return <EmptyList name="shift" url="/app/form/schedule/new" />;
@@ -61,8 +65,8 @@ function Schedule(props) {
     const timePeriodName = timePeriod === "week" ? "Weekly" : "Quarterly";
     return (
       <button
-        onClick={() => handleClick()}
-        onMouseLeave={() => handleMouseLeave()}
+        onClick={(e) => handleClick(e)}
+        onMouseLeave={(e) => handleMouseLeave(e)}
       >
         <h2>
           {timePeriodName} Payroll: $
@@ -75,12 +79,14 @@ function Schedule(props) {
     );
   };
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.preventDefault();
     const newTimePeriod = timePeriod === "week" ? "quarter" : "week";
     setTimePeriod(newTimePeriod);
   };
 
   const handleMouseLeave = (e) => {
+    e.preventDefault();
     document.activeElement.blur();
   };
 

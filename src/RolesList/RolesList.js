@@ -21,7 +21,7 @@ function RolesList(props) {
     for (const property in collatedData) {
       departments.push(property);
     }
-    departments.sort();
+    departments.sort((a, b) => a.localeCompare(b));
     return departments.map((key) => {
       return (
         <RolesListItem
