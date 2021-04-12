@@ -4,13 +4,12 @@ import SignUpButton from "../Authentication/SignUpButton/SignUpButton";
 function HomePage() {
   return (
     <>
-      <main className="main">
+      <main className="main main_home-page">
         <section className="home-page">
           <div>
-            <h2 className="home-page__h2">Project the Future</h2>
+            <h2 className="home-page__h2">Quarter</h2>
             <p className="home-page__text">
-              Model your business and make better decisions with easy P&L
-              projections.
+              Model your business for easy quarterly P&L projections.
             </p>
             <div className="home-page__hero-image"></div>
             <SignUpButton optionalClass="home-page__user-link_authentication" />
@@ -42,16 +41,16 @@ function HomePage() {
             </p>
           </div>
         </section>
-        <div>
-          Icons made by{" "}
-          <a href="" title="bqlqn">
-            bqlqn
-          </a>{" "}
-          from{" "}
-          <a href="https://www.flaticon.com/" title="Flaticon">
-            www.flaticon.com
+        <footer className="footer">
+          Icons made by bqlqn from{" "}
+          <a
+            className="footer__link"
+            href="https://www.flaticon.com/"
+            title="Flaticon"
+          >
+            Flaticon
           </a>
-        </div>
+        </footer>
       </main>
     </>
   );
