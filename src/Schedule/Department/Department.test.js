@@ -42,8 +42,8 @@ describe("Department", () => {
     wrapper = mount(
       <MemoryRouter>
         <Department
-          row={dummySchedule.kitchen.row}
-          cost={dummySchedule.kitchen.cost}
+          row={dummySchedule[0].row}
+          cost={dummySchedule[0].cost}
           deptName={"kitchen"}
           multiplier={"quarter"}
         />
