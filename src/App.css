@@ -493,8 +493,8 @@ button:focus {
 }
 
 .home-page__img {
-  height: 250px;
-  width: 250px;
+  height: 200px;
+  width: 200px;
   display: block;
   margin: 25px auto;
 }
@@ -533,18 +533,21 @@ button:focus {
 }
 
 .home-page__user-link_authentication {
+  padding: 10px;
+  width: 200px;
+  margin: 0 auto;
   display: block;
-  margin: 5px auto;
-  padding: 5px;
-  width: 150px;
   font-size: 21px;
-  margin-top: 5px;
-  color: white;
   background-color: black;
+  color: white;
+  font-weight: bold;
+  border: 1px solid darkgray;
+  box-shadow: 2px 2px 2px darkgrey;
 }
 
 .home-page__user-link_authentication:hover {
   cursor: pointer;
+  box-shadow: none;
 }
 
 .main {
@@ -944,13 +947,9 @@ button:focus {
     grid-template-columns: 3fr 6fr 2fr;
   }
 
-  .home-page__hero-image {
-    height: 400px;
-  }
-
-  .home-page__promo-image {
-    height: 250px;
-    width: 300px;
+  .home-page__img {
+    height: 200px;
+    width: 200px;
   }
 
   .schedule-text_shift {
