@@ -358,6 +358,10 @@ button:focus {
   background-color: white;
 }
 
+.header__logout-button:hover {
+  cursor: pointer;
+}
+
 .header__menu-button_hamburger span {
   display: block;
   position: absolute;
@@ -488,9 +492,11 @@ button:focus {
   text-align: center;
 }
 
-.home-page__hero-image {
-  min-height: 250px;
-  background-color: lightgray;
+.home-page__img {
+  height: 250px;
+  width: 250px;
+  display: block;
+  margin: 25px auto;
 }
 
 .home-page__container {
@@ -507,6 +513,11 @@ button:focus {
   min-height: 125px;
   width: 200px;
   background-color: lightgray;
+}
+
+.home-page__tagline {
+  text-align: center;
+  margin-top: 10px;
 }
 
 .home-page__text {
