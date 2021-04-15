@@ -928,6 +928,10 @@ button:focus {
     margin-top: 10px;
   }
 
+  .header__item_dropdown {
+    width: auto;
+  }
+
   .header__logout-button {
     margin: 10px auto;
     width: 100px;
