@@ -1,14 +1,16 @@
 # The Quarter
 
-https://quarter-client.vercel.app/
-
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Summary
 
-The **The Quarter** is a full stack web app. This is the client repo. A second API repo also exists.
+**The Quarter** is a full stack web app. This is the client repo. A second API repo also exists.
 
 The purpose of **The Quarter** is to empower users to easily model a quarterly profit and loss statement for a food business.
+
+## Live Link to App
+
+To view the app: https://quarter-client.vercel.app/
 
 ## Overview
 
@@ -34,6 +36,18 @@ All together, the page is ordered as follows:
 
 7. Net Profit: Sales - COGS - Direct Labor - Overhead
 
+### Line Items
+
+The Profit and Loss page is composed primarily of line items.
+
+The only exception is the Direct Labor category, where each "line item" is actually the total quarterly spend on each department according to the user created Schedule. See the Schedule section below for details.
+
+A line item can be created, modified, or deleted using the line item form. The line item form allows the user to select the category for the line item (Sales, COGS, or Overhead), the name of the line item, and whether the amount type is dollars or % of another line item.
+
+If the user selects an amount type of percentage, the user must also select which line item to base the percentage off of.
+
+For example, if a user wants to create a line item for "COGS - Food", and set that line item as 25% of food sales, they would choose percentage as the amount type, and then choose "Sales - Food" as the line item to use when deriving the actual dollar value for "COGS - Food."
+
 ### Departments
 
 There is both a departments page and a department form. The departments page allows users to view departments that they have created. The departments form allows users to add, modify, or delete departments.
@@ -44,7 +58,7 @@ There is both a roles page and a role form. The roles page allows users to view 
 
 ### Schedule
 
-The schedule page displays the total cost of direct labor on a weekly or quarterly basis. The user can click the "Quarterly Payroll: $XX,XXX" button at the top to toggle between quarterly or weekly costs.
+The schedule page displays the total cost of direct labor on a weekly or quarterly basis. The user can click the "Quarterly Payroll: $XX,XXX" button at the top of the page to toggle between quarterly or weekly costs.
 
 The user can also view the selected weekly or quarterly cost for each department, as well as the schedule for every role.
 
@@ -60,7 +74,7 @@ Testing with enzyme and Jest.
 
 Authorization via auth0.
 
-## API Technologies
+## API and Back-End Technologies
 
 A second API repo exists built using Node.js and Express. It connects to a PostgreSQL datbase hosted on Heroku.
 
