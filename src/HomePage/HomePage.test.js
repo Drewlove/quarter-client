@@ -9,6 +9,6 @@ describe("HomePage", () => {
   });
   it("renders three home page containers", () => {
     const wrapper = shallow(<HomePage />);
-    expect(wrapper.find(".home-page__container")).toHaveLength(3);
+    expect(wrapper.find(".home-page__container")).toHaveLength(4);
   });
 });
