@@ -1,8 +1,10 @@
 import React from "react";
 import HeaderLink from "../HeaderLink/HeaderLink";
-import LogOutButton from "../../Authentication/LogOutButton/LogOutButton";
+import UserAuthenticationButton from "../../Authentication/UserAuthenticationButton/UserAuthenticationButton";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function MenuAuthenticatedNavBar() {
+  const { logout } = useAuth0();
   return (
     <>
       <div className="header__items-container header__display-mobile-none">
@@ -36,7 +38,11 @@ function MenuAuthenticatedNavBar() {
         </div>
       </div>
       <div className="header__item_button-container header__display-mobile-none">
-        <LogOutButton optionalClass="header__button_authenticate" />
+        <UserAuthenticationButton
+          optionalClass="header__button_authenticate"
+          label="Log Out"
+          handleClick={() => logout()}
+        />
       </div>
     </>
   );

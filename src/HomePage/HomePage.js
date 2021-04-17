@@ -3,9 +3,17 @@ import PnlIcon from "../Assets/pnl.png";
 import ScheduleIcon from "../Assets/schedule.png";
 import COGSIcon from "../Assets/cogs.png";
 import AccountingIcon from "../Assets/accounting.png";
-import SignUpButton from "../Authentication/SignUpButton/SignUpButton";
+import UserAuthenticationButton from "../Authentication/UserAuthenticationButton/UserAuthenticationButton";
+import { useAuth0 } from "@auth0/auth0-react";
+// import SignUpButton from "../Authentication/SignUpButton/SignUpButton";
 
 function HomePage() {
+  const { loginWithRedirect } = useAuth0;
+  const signUp = () => {
+    loginWithRedirect({
+      screen_hint: "signup",
+    });
+  };
   return (
     <>
       <main className="main main_home-page">
@@ -21,8 +29,11 @@ function HomePage() {
               src={PnlIcon}
             />
             <div className="home-page__divider"></div>
-
-            <SignUpButton optionalClass="home-page__user-link_authentication" />
+            <UserAuthenticationButton
+              optionalClass="home-page__user-link_authentication"
+              label="Sign Up"
+              handleClick={() => signUp()}
+            />
           </div>
           <div className="home-page__container">
             <div className="home-page__divider"></div>

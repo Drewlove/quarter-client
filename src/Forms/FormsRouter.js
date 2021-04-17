@@ -4,23 +4,32 @@ import LineItemFormContainer from "./LineItem/LineItemFormContainer/LineItemForm
 import ShiftFormContainer from "../Forms/Shift/ShiftFormContainer/ShiftFormContainer";
 import DepartmentFormContainer from "./Department/DepartmentFormContainer/DepartmentFormContainer";
 import RoleFormContainer from "./Role/RoleFormContainer/RoleFormContainer";
+import Error from "../Error/Error";
 
 function FormsRouter() {
   return (
     <>
       <Switch>
-        <Route path="/app/form/line-item/:rowId">
+        <Route exact path="/app/form/line-item/:rowId">
           <LineItemFormContainer />
         </Route>
-        <Route path="/app/form/schedule/:rowId">
+        <Route exact path="/app/form/schedule/:rowId">
           <ShiftFormContainer />
         </Route>
-        <Route path="/app/form/department/:rowId">
+        <Route exact path="/app/form/department/:rowId">
           <DepartmentFormContainer />
         </Route>
-        <Route path="/app/form/role/:rowId">
+        <Route exact path="/app/form/role/:rowId">
           <RoleFormContainer />
         </Route>
+        <Route
+          render={(props) => (
+            <Error
+              {...props}
+              error={{ status: 404, statusText: "Not Found" }}
+            />
+          )}
+        />
       </Switch>
     </>
   );

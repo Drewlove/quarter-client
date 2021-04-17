@@ -42,6 +42,38 @@ button:focus {
   background-color: red;
 }
 
+.demo__container {
+  max-width: 750px;
+  margin: 0px 10px 0px 10px;
+  padding: 20px;
+  box-shadow: 5px 5px 5px darkgrey;
+  border-top: 2px solid whitesmoke;
+  border-bottom: 5px solid whitesmoke;
+  border-right: 5px solid whitesmoke;
+  border-left: 3px solid whitesmoke;
+  border-radius: 20px;
+}
+
+.demo__credentials-container {
+  margin: 20px auto;
+  width: 350px;
+}
+
+.demo__credentials-text {
+  text-align: left;
+}
+
+.demo__header {
+  margin: 50px;
+  text-align: center;
+}
+
+.demo__text {
+  margin: 10px 0px 50px 0px;
+  font-size: 18px;
+  text-align: center;
+}
+
 .empty-list {
 }
 
@@ -875,6 +907,10 @@ button:focus {
 @media only screen and (min-width: 600px) {
   .delete-button-section {
     margin-bottom: 0px;
+  }
+
+  .demo__container {
+    margin: 0px auto;
   }
 
   .form-section {

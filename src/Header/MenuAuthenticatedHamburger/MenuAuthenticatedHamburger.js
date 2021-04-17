@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import HeaderLink from "../HeaderLink/HeaderLink";
+import UserAuthenticationButton from "../../Authentication/UserAuthenticationButton/UserAuthenticationButton";
 import { useAuth0 } from "@auth0/auth0-react";
 
 function MenuAuthenticatedHamburger() {
@@ -60,12 +61,11 @@ function MenuAuthenticatedHamburger() {
             className="header__item_dropdown"
           />
           <div className="header__logout-button-container">
-            <button
-              className="header__logout-button"
-              onClick={() => logout({ returnTo: window.location.origin })}
-            >
-              Log Out
-            </button>
+            <UserAuthenticationButton
+              optionalClass="header__button_authenticate header__logout-button"
+              label="Log Out"
+              handleClick={() => logout()}
+            />
           </div>
         </div>
       </div>
