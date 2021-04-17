@@ -50,9 +50,9 @@ The profit and loss page is composed primarily of user created entries from the 
 
 The only exception is for items listed under direct labor, where each "line item" is actually the total quarterly spend on each department according to the user created schedule. See the schedule section below for details.
 
-![Line Item Form](https://user-images.githubusercontent.com/24255559/115123333-8b853c00-9f8a-11eb-846b-e2b125194472.png)
-
 A line item can be created, modified, or deleted using the line item form. The line item form allows the user to select the category for the line item (sales, cogs, or overhead), the name of the line item, and whether the amount type is dollars or % of another line item.
+
+![Line Item Form](https://user-images.githubusercontent.com/24255559/115123435-0cdcce80-9f8b-11eb-803b-93bde9dddd06.png)
 
 If the user selects an amount type of percentage, the user must also select which line item to base the percentage off of.
 
