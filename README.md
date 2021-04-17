@@ -12,7 +12,7 @@ The purpose of **The Quarter** is to empower users to easily model a quarterly p
 
 To view the app: https://quarter-client.vercel.app/
 
-## Overview
+# Overview
 
 ### Profit and Loss Page
 
