@@ -14,9 +14,9 @@ To view the app: https://quarter-client.vercel.app/
 
 ### Profit and Loss Page
 
-The profit and loss page provides a quarterly overview of both revenue and expenses. It follows the template of providing Sales, COGS, Direct Labor, Overrhead and Net Profit figures.
+The profit and loss page provides a quarterly overview of both revenue and expenses. It follows the template of providing sales, cogs, direct labor, overrhead and net profit figures.
 
-Additional analysis is provided in the form of Gross Profit (Sales - COGS) and Prime Cost (Sales - COGS - Direct Labor) figures.
+Additional analysis is provided in the form of gross profit (sales - cogs) and prime cost (sales - cogs - direct labor) figures.
 
 All together, the page is ordered as follows:
 
@@ -36,15 +36,15 @@ All together, the page is ordered as follows:
 
 ### Line Items
 
-The Profit and Loss page is composed primarily of line items.
+The profit and loss page is composed primarily of user created entries from the line items form.
 
-The only exception is the Direct Labor category, where each "line item" is actually the total quarterly spend on each department according to the user created Schedule. See the Schedule section below for details.
+The only exception is for items listed under direct labor, where each "line item" is actually the total quarterly spend on each department according to the user created schedule. See the schedule section below for details.
 
-A line item can be created, modified, or deleted using the line item form. The line item form allows the user to select the category for the line item (Sales, COGS, or Overhead), the name of the line item, and whether the amount type is dollars or % of another line item.
+A line item can be created, modified, or deleted using the line item form. The line item form allows the user to select the category for the line item (sales, cogs, or overhead), the name of the line item, and whether the amount type is dollars or % of another line item.
 
 If the user selects an amount type of percentage, the user must also select which line item to base the percentage off of.
 
-For example, if a user wants to create a line item for "COGS - Food", and set that line item as 25% of food sales, they would choose percentage as the amount type, and then choose "Sales - Food" as the line item to use when deriving the actual dollar value for "COGS - Food."
+For example, if a user wants to create a line item for "COGS - Food", and set that line item as 25% of food sales, they would choose percentage as the amount type, and then choose "Sales - Food" as the basis line item.
 
 ### Departments
 
