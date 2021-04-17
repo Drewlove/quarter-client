@@ -1,4 +1,82 @@
+# The Quarter
+
+https://quarter-client.vercel.app/
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Summary
+
+The **The Quarter** is a full stack web app. This is the client repo. A second API repo also exists.
+
+The purpose of **The Quarter** is to empower users to easily model a quarterly profit and loss statement for a food business.
+
+## Overview
+
+### Profit and Loss Page
+
+The profit and loss page provides a quarterly overview of both revenue and expenses. It follows the template of providing Sales, COGS, Direct Labor, Overrhead and Net Profit figures.
+
+Additional analysis is provided in the form of Gross Profit (Sales - COGS) and Prime Cost (Sales - COGS - Direct Labor) figures.
+
+All together, the page is ordered as follows:
+
+1. Sales
+
+2. COGS
+
+3. Gross Profit: Sales - COGS
+
+4. Direct Labor
+
+5. Prime Costs: Sales - COGS - Direct Labor
+
+6. Overhead
+
+7. Net Profit: Sales - COGS - Direct Labor - Overhead
+
+### Departments
+
+There is both a departments page and a department form. The departments page allows users to view departments that they have created. The departments form allows users to add, modify, or delete departments.
+
+### Roles
+
+There is both a roles page and a role form. The roles page allows users to view roles that they have created. The roles form allows users to add, modify, or delete roles.
+
+### Schedule
+
+The schedule page displays the total cost of direct labor on a weekly or quarterly basis. The user can click the "Quarterly Payroll: $XX,XXX" button at the top to toggle between quarterly or weekly costs.
+
+The user can also view the selected weekly or quarterly cost for each department, as well as the schedule for every role.
+
+The user can click on any of the schedules in order to view a form for that schedule, and modify any of the information or delete that particular schedule.
+
+The user can also add new schedules.
+
+## Client Technologies
+
+Made with react, 16.14, react-router-dom, 5.2
+
+Testing with enzyme and Jest.
+
+Authorization via auth0.
+
+## API Technologies
+
+A second API repo exists built using Node.js and Express. It connects to a PostgreSQL datbase hosted on Heroku.
+
+## API Requests
+
+The API request logic can be found in the Utilities/API_METHODS folder of this repo.
+
+The API methods DELETE and GET have their own file.
+
+The logic for the API methods POST and PATCH are both handled in the API_SAVE file.
+
+The API_SAVE function handles both POST and PATCH requests. A URL parameter, called rowId and provided by react router, is passed to the API_SAVE function.
+
+If the rowId equals the string "new", this indicates that the user is viewing a form, and will possibly enter information into that form and then save the information. If the user clicks the "Save" button on the form, and all fields have been accurately filled out, a POST request will be sent to the API.
+
+If the rowId is a number, this indicates that the user is viewing a previously saved piece of information that has been retrieved from the database. If the user clicks the "Save" button on the form, and all fields have been accurately filled out, a PATCH request will be sent to the API.
 
 ## Available Scripts
 

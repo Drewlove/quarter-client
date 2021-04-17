@@ -14,15 +14,15 @@ function Demo() {
       <div className="demo__container">
         <p className="demo__text">
           Log in with the following credentials to view the demo:
-          <div className="demo__credentials-container">
-            <p className="demo__credentials-text">
-              <b>username:</b> quarterapptest@gmail.com
-            </p>
-            <p className="demo__credentials-text">
-              <b>password:</b> Quarter!0
-            </p>
-          </div>
         </p>
+        <div className="demo__credentials-container">
+          <p className="demo__credentials-text">
+            <b>username:</b> quarterapptest@gmail.com
+          </p>
+          <p className="demo__credentials-text">
+            <b>password:</b> Quarter!0
+          </p>
+        </div>
         <UserAuthenticationButton
           optionalClass="home-page__user-link_authentication"
           label="Log In"
