@@ -2,6 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+![Home Page](https://user-images.githubusercontent.com/24255559/115123273-39dcb180-9f8a-11eb-8573-3ca39315a520.png)
+
+
 ## Summary
 
 **The Quarter** is a full stack web app. This is the client repo. A second API repo also exists.
@@ -22,17 +25,31 @@ All together, the page is ordered as follows:
 
 1. Sales
 
+![Sales](https://user-images.githubusercontent.com/24255559/115123289-4a8d2780-9f8a-11eb-9ce9-1dc89b41a255.png)
+
 2. COGS
+
+![COGS](https://user-images.githubusercontent.com/24255559/115123295-52e56280-9f8a-11eb-9883-a7b1fb01024a.png)
 
 3. Gross Profit: Sales - COGS
 
+![Gross Profit](https://user-images.githubusercontent.com/24255559/115123302-5842ad00-9f8a-11eb-85e3-4b936755e620.png)
+
 4. Direct Labor
+
+![Direct Labor](https://user-images.githubusercontent.com/24255559/115123305-5bd63400-9f8a-11eb-8112-888766a8ca27.png)
 
 5. Prime Costs: Sales - COGS - Direct Labor
 
+![Prime Costs](https://user-images.githubusercontent.com/24255559/115123306-5f69bb00-9f8a-11eb-8ae5-fc5acd7d6ce6.png)
+
 6. Overhead
 
+![Overhead](https://user-images.githubusercontent.com/24255559/115123311-685a8c80-9f8a-11eb-8cf4-02dbde49fb92.png)
+
 7. Net Profit: Sales - COGS - Direct Labor - Overhead
+
+![Net Profit](https://user-images.githubusercontent.com/24255559/115123315-6ee90400-9f8a-11eb-8737-5e4bf892cdc5.png)
 
 ### Line Items
 
@@ -41,6 +58,8 @@ The profit and loss page is composed primarily of user created entries from the 
 The only exception is for items listed under direct labor, where each "line item" is actually the total quarterly spend on each department according to the user created schedule. See the schedule section below for details.
 
 A line item can be created, modified, or deleted using the line item form. The line item form allows the user to select the category for the line item (sales, cogs, or overhead), the name of the line item, and whether the amount type is dollars or % of another line item.
+
+![Line Item Form](https://user-images.githubusercontent.com/24255559/115123435-0cdcce80-9f8b-11eb-803b-93bde9dddd06.png)
 
 If the user selects an amount type of percentage, the user must also select which line item to base the percentage off of.
 
@@ -55,6 +74,8 @@ There is both a departments page and a department form. The departments page all
 There is both a roles page and a role form. The roles page allows users to view roles that they have created. The roles form allows users to add, modify, or delete roles.
 
 ### Schedule
+
+![Schedule](https://user-images.githubusercontent.com/24255559/115123353-a22b9300-9f8a-11eb-9eb9-92b5ad971bb1.png)
 
 The schedule page displays the total cost of direct labor on a weekly or quarterly basis. The user can click the "Quarterly Payroll: $XX,XXX" button at the top of the page to toggle between quarterly or weekly costs.
 
