@@ -106,13 +106,13 @@ A second API repo exists. The API repo is built using Node.js and Express. It co
 
 The API request logic can be found in the Utilities/API_METHODS folder of this repo.
 
-The API methods DELETE and GET have their own file.
+The API methods DELETE and GET have their own file, API_DELETE and API_GET respectively.
 
 The logic for the API methods POST and PATCH are both handled in the API_SAVE file.
 
-The API_SAVE function handles both POST and PATCH requests. A URL parameter, called rowId and provided by react router, is passed to the API_SAVE function.
+The API_SAVE function handles both POST and PATCH requests. A react-router URL parameter, called rowId, is passed to the API_SAVE function.
 
-If the rowId equals the string "new", this indicates that the user is viewing a form, and will possibly enter information into that form and then save the information. If the user clicks the "Save" button on the form, and all fields have been accurately filled out, a POST request will be sent to the API.
+If the rowId equals the string "new", this indicates that the user is viewing a form, most likely with the intention to enter information into that form and then save the information as a new row in the PostgreSQL table. If the user clicks the "Save" button on the form, and all fields have been accurately filled out, a POST request will be sent to the API.
 
 If the rowId is a number, this indicates that the user is viewing a previously saved piece of information that has been retrieved from the database. If the user clicks the "Save" button on the form, and all fields have been accurately filled out, a PATCH request will be sent to the API.
 
