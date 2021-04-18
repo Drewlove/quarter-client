@@ -163,29 +163,29 @@ describe("ProfitLoss, Direct Labor", () => {
     expect(wrapper.find(".fieldset__amount").at(178).text()).toBe("6");
     expect(wrapper.find(".fieldset__amount").at(179).text()).toBe("0");
   });
-  // it("renders total direct labor as a percentage of sales, with label", () => {
-  //   const wrapper = mount(
-  //     <MemoryRouter>
-  //       <ProfitLoss data={[lineItems, shifts]} />
-  //     </MemoryRouter>
-  //   );
-  //   expect(wrapper.find(".fieldset__item-text").at(12).text()).toBe(
-  //     "Direct Labor"
-  //   );
-  //   expect(wrapper.find(".fieldset__amount").at(180).text()).toBe("%");
-  //   expect(wrapper.find(".fieldset__amount").at(181).text()).toBe("");
-  //   expect(wrapper.find(".fieldset__amount").at(182).text()).toBe("");
-  //   expect(wrapper.find(".fieldset__amount").at(183).text()).toBe("");
-  //   expect(wrapper.find(".fieldset__amount").at(184).text()).toBe("");
-  //   expect(wrapper.find(".fieldset__amount").at(185).text()).toBe("");
-  //   expect(wrapper.find(".fieldset__amount").at(186).text()).toBe("");
-  //   expect(wrapper.find(".fieldset__amount").at(187).text()).toBe("");
-  //   expect(wrapper.find(".fieldset__amount").at(188).text()).toBe("");
-  //   expect(wrapper.find(".fieldset__amount").at(189).text()).toBe("");
-  //   expect(wrapper.find(".fieldset__amount").at(190).text()).toBe("2");
-  //   expect(wrapper.find(".fieldset__amount").at(191).text()).toBe("0");
-  //   expect(wrapper.find(".fieldset__amount").at(192).text()).toBe(".");
-  //   expect(wrapper.find(".fieldset__amount").at(193).text()).toBe("4");
-  //   expect(wrapper.find(".fieldset__amount").at(194).text()).toBe("1");
-  // });
+  it("renders total direct labor as a percentage of sales, with label", () => {
+    const wrapper = mount(
+      <MemoryRouter>
+        <ProfitLoss data={[lineItems, shifts]} />
+      </MemoryRouter>
+    );
+    expect(wrapper.find(".fieldset__item-text").at(12).text()).toBe(
+      "Direct Labor"
+    );
+    expect(wrapper.find(".fieldset__amount").at(180).text()).toBe("%");
+    expect(wrapper.find(".fieldset__amount").at(181).text()).toBe("");
+    expect(wrapper.find(".fieldset__amount").at(182).text()).toBe("");
+    expect(wrapper.find(".fieldset__amount").at(183).text()).toBe("");
+    expect(wrapper.find(".fieldset__amount").at(184).text()).toBe("");
+    expect(wrapper.find(".fieldset__amount").at(185).text()).toBe("");
+    expect(wrapper.find(".fieldset__amount").at(186).text()).toBe("");
+    expect(wrapper.find(".fieldset__amount").at(187).text()).toBe("");
+    expect(wrapper.find(".fieldset__amount").at(188).text()).toBe("");
+    expect(wrapper.find(".fieldset__amount").at(189).text()).toBe("");
+    expect(wrapper.find(".fieldset__amount").at(190).text()).toBe("2");
+    expect(wrapper.find(".fieldset__amount").at(191).text()).toBe("0");
+    expect(wrapper.find(".fieldset__amount").at(192).text()).toBe(".");
+    expect(wrapper.find(".fieldset__amount").at(193).text()).toBe("4");
+    expect(wrapper.find(".fieldset__amount").at(194).text()).toBe("1");
+  });
 });

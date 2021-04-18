@@ -5,15 +5,16 @@ import COGSIcon from "../Assets/cogs.png";
 import AccountingIcon from "../Assets/accounting.png";
 import UserAuthenticationButton from "../Authentication/UserAuthenticationButton/UserAuthenticationButton";
 import { useAuth0 } from "@auth0/auth0-react";
-// import SignUpButton from "../Authentication/SignUpButton/SignUpButton";
 
 function HomePage() {
-  const { loginWithRedirect } = useAuth0;
+  const { loginWithRedirect } = useAuth0();
+
   const signUp = () => {
     loginWithRedirect({
       screen_hint: "signup",
     });
   };
+
   return (
     <>
       <main className="main main_home-page">
