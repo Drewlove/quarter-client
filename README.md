@@ -4,7 +4,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ![Home Page](https://user-images.githubusercontent.com/24255559/115123273-39dcb180-9f8a-11eb-8573-3ca39315a520.png)
 
-
 ## Summary
 
 **The Quarter** is a full stack web app. This is the client repo. A second API repo also exists.
@@ -67,9 +66,13 @@ For example, if a user wants to create a line item for "COGS - Food", and set th
 
 ### Departments
 
+Departments are ways of categorizing direct labor costs. For example, one could have a "back of house" department for all kitchen staff including head chef, sous chef, line cook, etc. One could also have a "front of house" department for servers, hosts and bussers.
+
 There is both a departments page and a department form. The departments page allows users to view departments that they have created. The departments form allows users to add, modify, or delete departments.
 
 ### Roles
+
+Roles are subcategories within departments. Using the previous example, one could have a "back of house" department, and then create multiple roles within that department such as head chef, sous chef, line cook, etc.
 
 There is both a roles page and a role form. The roles page allows users to view roles that they have created. The roles form allows users to add, modify, or delete roles.
 
@@ -77,11 +80,13 @@ There is both a roles page and a role form. The roles page allows users to view 
 
 ![Schedule](https://user-images.githubusercontent.com/24255559/115123353-a22b9300-9f8a-11eb-9eb9-92b5ad971bb1.png)
 
-The schedule page displays the total cost of direct labor on a weekly or quarterly basis. The user can click the "Quarterly Payroll: $XX,XXX" button at the top of the page to toggle between quarterly or weekly costs.
+The schedule page displays the total cost of direct labor on a weekly or quarterly basis. The user can click the "Quarterly Payroll: $XX,XXX" button at the top of the page, which displays total direct labor costs for the given time period, to toggle between quarterly or weekly costs.
 
-The user can also view the selected weekly or quarterly cost for each department, as well as the schedule for every role.
+Toggling between total quarterly or weekly costs also udpates the direct labor costs listed below for each department to either a quarterly or weekly basis.
 
-The user can click on any of the schedules in order to view a form for that schedule, and modify any of the information or delete that particular schedule.
+The user can click on any of the schedules in order to view them in more detail. A more detailed view for that particular schedule displays the total cost for that role, which can also be toggled between a weekly or quarterly total cost, as well as other information for that role, including: name of role, hourly wage, payroll tax %, hours and days worked.
+
+The user can modify any of the information or delete that particular schedule.
 
 The user can also add new schedules.
 
