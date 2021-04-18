@@ -47,7 +47,7 @@ function ProfitLoss(props) {
     return (
       <>
         <div className="pnl__header-container">
-          <h1>The Quarter</h1>
+          <h1>Quarterly P&L</h1>
         </div>
         <Category
           name="Sales"
