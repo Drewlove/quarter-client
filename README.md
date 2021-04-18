@@ -100,7 +100,7 @@ Authorization via auth0.
 
 ## API and Back-End Technologies
 
-A second API repo exists built using Node.js and Express. It connects to a PostgreSQL datbase hosted on Heroku.
+A second API repo exists. The API repo is built using Node.js and Express. It connects to a PostgreSQL datbase hosted on Heroku.
 
 ## API Requests
 
