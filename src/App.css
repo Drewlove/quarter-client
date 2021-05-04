@@ -4,13 +4,16 @@
 
 * {
   margin: 0px;
-  overflow-x: hidden;
 }
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+main {
+  overflow-x: hidden;
 }
 
 button:focus {
