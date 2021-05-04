@@ -956,7 +956,7 @@ button:focus {
 
   .header__item_button-container {
     display: block;
-    margin: 5px 5px 0px auto;
+    margin: 5px 0px 0 auto;
   }
 
   .header__item-div {
