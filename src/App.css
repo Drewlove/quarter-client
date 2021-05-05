@@ -13,7 +13,7 @@
 }
 
 main {
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 
 button:focus {
