@@ -12,8 +12,8 @@
   box-sizing: border-box;
 }
 
-main {
-  /* overflow-x: hidden; */
+.main_pnl {
+  overflow-x: hidden;
 }
 
 button:focus {

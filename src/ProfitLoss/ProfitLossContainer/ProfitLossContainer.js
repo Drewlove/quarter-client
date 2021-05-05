@@ -8,7 +8,7 @@ function ProfitLossContainer() {
 
   return (
     <>
-      <main className="main">
+      <main className="main main_pnl">
         <FetchData
           endpointArr={[`line_items/${userId}`, `shifts/${userId}`]}
           skeletonNumber={7}
